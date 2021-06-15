@@ -97,7 +97,7 @@ const LatestNewsSection: FunctionComponent<LatestNewsSectionProps> = (props) => 
                     item
                     className={classes.project}
                     style={{
-                      backgroundImage: `url("${urlFor(project.coverImage)}")`,
+                      backgroundImage: `url("${urlFor(project.coverImage).url()}")`,
                     }}>
               </Grid>
                 <Grid container item>

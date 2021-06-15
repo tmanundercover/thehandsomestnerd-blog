@@ -158,7 +158,7 @@ const BlogSection: FunctionComponent<BlogSectionProps> = (props) => {
           <Grid container item>
             <Grid container direction="column" xs={maximize ? 6 : 12} item>
               <Grid container item style={{
-                minHeight: '250px', backgroundPosition: 'center', backgroundSize: 'cover',
+                minHeight: '318px', backgroundPosition: 'center', backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat', backgroundImage: `url('${urlFor(mainImage).height(450).url() ?? ''}')`,
               }} direction="column" justify="space-between" alignItems="flex-end">
                 <Grid item container alignContent='flex-start' style={{padding: theme.spacing(1, 0, 0, 1)}}>
@@ -221,9 +221,9 @@ const BlogSection: FunctionComponent<BlogSectionProps> = (props) => {
                           container
                           alignItems="center"
                           justify="flex-end">
-                      <Tooltip title={`by ${author.name}`}>
-                        <Avatar alt={author.name}
-                                src={urlFor(author.image).url() ?? ''}
+                      <Tooltip title={`by ${author?.name ?? ''}`}>
+                        <Avatar alt={author?.name ?? ''}
+                                src={urlFor(author?.image).height(56).width(56).url() ?? ''}
                                 style={{
                                   width: theme.spacing(7),
                                   height: theme.spacing(7),

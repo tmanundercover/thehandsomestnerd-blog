@@ -192,7 +192,7 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
                                                   item direction="column"
                                                   className={classes.project}
                                                   style={{
-                                                    backgroundImage: `url("${urlFor(project.coverImage)}")`,
+                                                    backgroundImage: `url("${urlFor(project.coverImage).size(340,340).url()}")`,
                                                     position: 'absolute',
                                                   }}>
                 </Grid>

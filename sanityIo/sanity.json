@@ -3,6 +3,25 @@
   "project": {
     "name": "theHandsomestNerdBlog"
   },
+  "__experimental_spaces": [
+    {
+      "name": "production",
+      "title": "Production",
+      "api": {
+        "projectId": "gaz8gy1w",
+        "dataset": "production"
+      }
+    },
+    {
+      "name": "development",
+      "title": "Development",
+      "default": true,
+      "api": {
+        "projectId": "gaz8gy1w",
+        "dataset": "development"
+      }
+    }
+  ],
   "api": {
     "projectId": "gaz8gy1w",
     "dataset": "production"

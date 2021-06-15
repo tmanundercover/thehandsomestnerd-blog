@@ -3,6 +3,7 @@ import cmsClient from '../common/sanityIo/cmsClient'
 import {SanityRef, SanityRepositoryType, SanitySourceCodeType} from '../common/sanityIo/Types'
 import {Avatar, Chip, Grid, Link} from '@material-ui/core'
 import {CodeBlockRender} from '../common/sanityIo/BlockContentRenderer'
+import {urlFor} from './sections/IntroSection'
 
 export type SourceCodeProps = {
   reference: SanityRef
@@ -31,7 +32,7 @@ const SourceCode: FunctionComponent<SourceCodeProps> = (props) => {
                 avatar={
                   <Avatar
                     alt={sourceCode?.repoLink?.author.name}
-                    src={sourceCode?.repoLink?.author.image?.asset.url}/>
+                    src={urlFor(sourceCode?.repoLink?.author?.image).height(36).url()??""}/>
                 }
                 label={sourceCode?.repoLink?.author.name}
           />

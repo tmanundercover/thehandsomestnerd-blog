@@ -59,7 +59,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
       <Grid item>
         <img
           alt="logo"
-          src={urlFor(menu.logoImage).height(36).url()??""}
+          src={urlFor(menu?.logoImage).height(50).url()??""}
         />
         {/*<Typography variant="h5" color="textSecondary">My<Typography component="span" variant="h5" color="primary">Logo</Typography></Typography>*/}
       </Grid>

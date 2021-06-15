@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es6"
     ],
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -25,6 +26,12 @@
   },
   "include": [
     "src"
+//    "src/**/*.ts",
+//    "src/**/*.tsx",
+//    "src/**/*.js",
+//    "node_modules/@types/**/*"
   ],
+  "exclude": ["node_modules/**/*"],
+  "files": ["src/global.d.ts"],
   "references": [{"path": "./src/common"}]
 }

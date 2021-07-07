@@ -25,11 +25,11 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
 //    "src/**/*.ts",
 //    "src/**/*.tsx",
 //    "src/**/*.js",
-//    "node_modules/@types/**/*"
+    "node_modules/@types/**/*"
   ],
   "exclude": ["node_modules/**/*"],
   "files": ["src/global.d.ts"],

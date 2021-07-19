@@ -18,6 +18,7 @@ export default {
         {type: "contactUs"},
         {type: "bookMe"},
         {type: "blogPostSection"},
+        {type: "pointOfInterestSection"},
       ]
     }
   ],

@@ -5,8 +5,8 @@ import theme from '../../common/Theme'
 import {Check} from '@material-ui/icons'
 import sanityClient from '../../sanityClient'
 import BlockContent from '@sanity/block-content-to-react'
-import {urlFor} from './IntroSection'
 import {SanityImageAssetDocument} from '@sanity/client'
+import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

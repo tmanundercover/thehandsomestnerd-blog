@@ -267,7 +267,7 @@ export const blockContentConfig = {
             name: 'item',
             type: 'reference',
             to: [
-              {type: 'homePage'},
+              {type: 'abHomePage'},
               {type: 'landingPage'}
             ]
           }

@@ -1,4 +1,5 @@
 import category from '../category'
+import theme from '../../../src/common/Theme'
 
 export default {
     name: 'portfolioItem',
@@ -33,7 +34,8 @@ export default {
             name: 'categories',
             title: 'Categories',
             type: 'array',
-            of:[{type: 'category'}]
+            of: [{type: 'reference', to: {type: 'category'}}],
+            options: { layout: 'tags' }
         },
         {
             name: 'source',
@@ -57,6 +59,30 @@ export default {
             name: 'body',
             title: 'Body',
             type: 'blockContent',
-        }
+        },
+        {
+            name: 'linkToProd',
+            title: 'Prod link',
+            type: 'url',
+        },
+        {
+            name: 'linkToDev',
+            title: 'Dev Link',
+            type: 'string',
+        },
+        {
+            title: "Icon Background",
+            description: "Pick a color",
+            name: "iconBackground",
+            type: "colorlist",
+            options: {
+                list: [
+                    { title: "red (theme)", value: "#e54b4b" },
+                    { title: "white", value: "#FFFFFF" },
+                    { title: "Pink", value: "#FDF3EB" },
+                    { title: "whitesmoke", value: "#FAFAFA" }
+                ]
+            }
+        },
     ]
 }

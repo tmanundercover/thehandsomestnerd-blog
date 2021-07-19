@@ -3,7 +3,7 @@ import cmsClient from '../common/sanityIo/cmsClient'
 import {SanityRef, SanityRepositoryType, SanitySourceCodeType} from '../common/sanityIo/Types'
 import {Avatar, Chip, Grid, Link} from '@material-ui/core'
 import {CodeBlockRender} from '../common/sanityIo/BlockContentRenderer'
-import {urlFor} from './sections/IntroSection'
+import {urlFor} from './abReplica/static-pages/cmsStaticPagesClient'
 
 export type SourceCodeProps = {
   reference: SanityRef

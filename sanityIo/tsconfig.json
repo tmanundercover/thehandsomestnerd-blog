@@ -3,9 +3,12 @@
   // parts, the actual transpilation is done by babel. Any compiler configuration in
   // here will be ignored.
   "include": [
-    "./node_modules/@sanity/base/types/**/*.ts", "./**/*.ts", "./**/*.tsx",
+    "./node_modules/@sanity/base/types/**/*.ts", "./**/*.ts", "./**/*.tsx"
   ],
   "references": [{
     "path": "../src/common"
-  }]
+  }],
+  "compilerOptions": {
+    "jsx": "react"
+  }
 }

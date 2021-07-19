@@ -22,7 +22,7 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: '#3D3D3D',
-      light: '#878787',
+      light: '#FAFAFA',
       dark: '#363636'
     },
     error: {
@@ -44,7 +44,49 @@ const theme = createMuiTheme({
       primary: '#000000',
       secondary: '#3D3D3D',
       disabled: 'rgba(0, 0, 0, 0.38)'
-    }
+    },
+    neutrals: {
+      brand: {
+        main: '#FB7C6A',
+      },
+      brandAccent: {
+        main: '#F9E6D8',
+      },
+      bodyText: {
+        main: '#000000',
+      },
+      secondaryText: {
+        main: '#3D3D3D',
+      },
+      tertiaryText: {
+        main: 'rgba(0, 0, 0, 0.6)',
+      },
+      disabledText: {
+        main: 'rgba(0, 0, 0, 0.38)',
+      },
+    },
+    accentText: {
+      blue: {
+        main: '#565190',
+      },
+      green: {
+        main: '#5C7F61',
+      },
+      coral: {
+        main: '#FB7C6A',
+      },
+    },
+    highlight: {
+      logoBlue: {
+        main: '#7FACD9',
+      },
+      logoGreen: {
+        main: '#7FA41F',
+      },
+      logoCoral: {
+        main: '#FE5E4A',
+      },
+    },
   },
   typography: {
     fontFamily: [

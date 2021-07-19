@@ -1,4 +1,4 @@
-import {Grid, makeStyles, Theme} from '@material-ui/core'
+import {Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import theme from '../../common/Theme'
 import Header from './sanity/header/Header'
@@ -39,7 +39,7 @@ type SanityHomePage = {
 
 export type AppLayoutProps = {}
 
-const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
+const TerrellsPortfolio: FunctionComponent<AppLayoutProps> = (props) => {
   const classes = useStyles(theme)
   const [homePage, setHomePage] = React.useState<SanityHomePage>({})
 
@@ -78,6 +78,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
   }, [])
 
   return (
+    <MuiThemeProvider theme={theme}>
     <Grid container direction="column" className={classes.root}>
       <Grid item>
         <Header/>
@@ -87,7 +88,9 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
           content={homePage?.pageContent}/>
       </Grid>
     </Grid>
-  )
+</MuiThemeProvider>
+
+)
 }
 
-export default AppLayout
+export default TerrellsPortfolio

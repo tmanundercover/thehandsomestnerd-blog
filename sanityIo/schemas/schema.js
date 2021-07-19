@@ -30,6 +30,23 @@ import LatestNewSection from './sections/LatestNewsSection'
 import BlogPostSection from './sections/BlogPostSection'
 import sourceCode from './sourceCode'
 import repository from './repository'
+import ImageGallery from './ImageGallery'
+import PointOfInterest from './derm-sections/poi/PointOfInterest'
+import PointOfInterestSection from './derm-sections/poi/PointOfInterestSection'
+import abEvergreenPage from './ab/abEvergreenPage'
+import abForm from './ab/abForm'
+import abLeadType from './ab/abLeadType'
+import communityPage from './ab/communityPage'
+import gradient from './ab/gradient'
+import heroImageWithText from './ab/heroImageWithText'
+import imageCarousel from './imageCarousel'
+import ourServicesSection from './ab/ourServicesSection'
+import ourStoryPage from './ab/ourStoryPage'
+import solutions from './ab/solutions'
+import weWorkWith from './ab/weWorkWith'
+import landingPage from './ab/landingPage'
+import abHomepage from './ab/abHomePage'
+import imageAsset from './imageAsset'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -66,6 +83,24 @@ export default createSchema({
     ContactUs,
     BlogPostSection,
     sourceCode,
-    repository
+    repository,
+    ImageGallery,
+    PointOfInterest,
+    PointOfInterestSection,
+    // ab
+    abEvergreenPage,
+    abForm,
+    abLeadType,
+    communityPage,
+    gradient,
+    heroImageWithText,
+    abHomepage,
+    ourServicesSection,
+    ourStoryPage,
+    solutions,
+    weWorkWith,
+    landingPage,
+    imageCarousel,
+    imageAsset
   ]),
 })

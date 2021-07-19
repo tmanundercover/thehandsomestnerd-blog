@@ -4,6 +4,7 @@ import {Grid, Typography} from "@material-ui/core";
 import theme from "../../common/Theme";
 import sanityClient from "../../sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
+import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
 
 const SECTION_HEIGHT = 600
 
@@ -37,10 +38,6 @@ export type IntroSectionProps = {
   clientName: string,
   occupation: string,
   heroImage: any
-}
-
-export const urlFor = (source:any) => {
-  return imageUrlBuilder(sanityClient).image(source)
 }
 
 const IntroSection: FunctionComponent<IntroSectionProps> = (props) => {

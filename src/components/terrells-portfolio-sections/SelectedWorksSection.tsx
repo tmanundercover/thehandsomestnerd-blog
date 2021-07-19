@@ -2,17 +2,19 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Fab, Grid, Modal, Typography} from '@material-ui/core'
 import theme from '../../common/Theme'
-import {urlFor} from './IntroSection'
 import {SanityImageAssetDocument} from '@sanity/client'
 import {Book} from '@material-ui/icons'
 import sanityClient from '../../sanityClient'
 import BlockContent from '@sanity/block-content-to-react'
+import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
+import {SanityColor} from './BlogSection'
+import {useHistory} from 'react-router-dom'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100vw',
-    backgroundColor: 'whitesmoke',
-    padding: theme.spacing(12, 20),
+    backgroundColor: '#3D3D3D',
+    padding: theme.spacing(12, 20)
   },
   project: {
     width: '340px',
@@ -21,18 +23,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: '32px',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundColor: 'rgba(0,0,0,.1)',
+    backgroundSize: 'cover'
   },
   projectsContainer: {
-    marginBottom: '70px',
+    marginBottom: '70px'
   },
   tags: {
-    color: 'rgba(0,0,0,.4)',
+    color: 'rgba(0,0,0,.4)'
   },
   title: {
     fontSize: '18px',
     fontWeight: 600,
+    color: 'whitesmoke'
   },
   aboutMe: {
     fontWeight: 800,
@@ -40,12 +42,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: 1.4,
     fontSize: '30px',
     textTransform: 'uppercase',
-    marginBottom: theme.spacing(5),
+    marginBottom: theme.spacing(5)
   },
   me: {
     display: 'inline-block',
-    marginLeft: '8px',
-  },
+    marginLeft: '8px'
+  }
 }))
 
 const useModalStyles = makeStyles((theme: Theme) => ({
@@ -57,17 +59,17 @@ const useModalStyles = makeStyles((theme: Theme) => ({
     border: '2px solid #000',
     top: '1%',
     left: '1%',
-    padding: '16px 32px 24px',
+    padding: '16px 32px 24px'
   },
   modalHeadlineIcon: {
-    fontSize: '73px',
+    fontSize: '73px'
   },
   modalChevron: {
     color: '#F04242',
     fontSize: '443px',
     marginLeft: '-168px',
-    opacity: .1,
-  },
+    opacity: .1
+  }
 }))
 
 export type SelectedWorksSectionProps = {
@@ -83,7 +85,10 @@ export type SanityPortfolioType = {
   categories: any[],
   tag: string,
   source: string,
-  coverImage: SanityImageAssetDocument
+  coverImage: SanityImageAssetDocument,
+  linkToProd: string,
+  linkToDev: string,
+  iconBackground: SanityColor
 }
 
 const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (props) => {
@@ -93,6 +98,7 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
   const [currentBlogPost, setCurrentBlogPost] = React.useState<SanityPortfolioType | undefined>(undefined)
   const [portfolioItems, setPortfolioItems] = React.useState<any | undefined>(undefined)
 
+  const history = useHistory()
   React.useEffect(() => {
     if (props.projects.length > 0) {
       setShowImage(new Array(props.projects.length).fill(false))
@@ -108,10 +114,13 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
           source, 
           coverImage, 
           body, 
-          categories[]->{title, description}
+          categories[]->{title, description},
+          linkToProd,
+          linkToDev,
+          iconBackground
        }`
         )
-        .then((data: any[]) => {
+        .then((data: SanityPortfolioType[]) => {
           console.log(data)
           setPortfolioItems(data)
         })
@@ -168,23 +177,30 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
       </Grid>
       <Grid container item spacing={4} className={classes.projectsContainer}>
         {
-          portfolioItems?.map((project:any, projectIndex:number) => (
+          portfolioItems?.map((project: SanityPortfolioType, projectIndex: number) => (
             <Grid
               key={`portfolio-project-${projectIndex}`}
               item
               style={{position: 'relative'}}
               onClick={() => {
-                openBlogPost(project)
+                // openBlogPost(project) TODO create a modal layer that shows more details
+                console.log(project.linkToDev, project.linkToDev.includes('http'))
+                if (project.linkToDev.includes('http')) {
+                  window.location.href = project.linkToDev
+                  return null
+                } else {
+                  history.push(project.linkToDev)
+                }
               }}
               onMouseEnter={() => {
                 setShowImage(
                   (state: boolean[]) =>
-                    [...state.map((item, index) => index === projectIndex)],
+                    [...state.map((item, index) => index === projectIndex)]
                 )
               }}
               onMouseLeave={() => setShowImage(
                 (state: boolean[]) =>
-                  [...state.fill(false)],
+                  [...state.fill(false)]
               )}
             >
               {
@@ -192,13 +208,15 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
                                                   item direction="column"
                                                   className={classes.project}
                                                   style={{
-                                                    backgroundImage: `url("${urlFor(project.coverImage).size(340,340).url()}")`,
+                                                    backgroundImage: `url("${urlFor(project.coverImage).size(340, 340).url()}")`,
                                                     position: 'absolute',
+                                                    backgroundColor: project?.iconBackground?.value
                                                   }}>
                 </Grid>
               }
 
-              <Grid container item direction="column" className={classes.project} justify="flex-end">
+              <Grid container item direction="column" className={classes.project} justify="flex-end"
+                    style={{backgroundColor: '#767676'}}>
                 <Grid item><Typography className={classes.tags}>{project.tag}</Typography></Grid>
                 <Grid item><Typography className={classes.title}>{project.title}</Typography></Grid>
               </Grid>
@@ -216,8 +234,8 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
       ><Typography style={{color: theme.palette.text.secondary}}>
         <Grid container className={styles.paper} direction="column">
           <Grid container direction="column" item spacing={3}>
-            <Grid container item wrap='nowrap' alignItems="center" justify="space-between" spacing={2}>
-              <Grid container item wrap='nowrap' alignItems="stretch">
+            <Grid container item wrap="nowrap" alignItems="center" justify="space-between" spacing={2}>
+              <Grid container item wrap="nowrap" alignItems="stretch">
                 <Grid item>
                   <Book className={styles.modalHeadlineIcon}/>
                 </Grid>
@@ -229,17 +247,17 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
             </Grid>
             <Grid item>
               <Grid item>
-                <Typography variant="h4" color='primary'>{currentBlogPost?.subtitle}</Typography>
+                <Typography variant="h4" color="primary">{currentBlogPost?.subtitle}</Typography>
               </Grid>
             </Grid>
           </Grid>
           <Grid container item>
             {
               currentBlogPost?.body ? <BlockContent
-                  blocks={currentBlogPost?.body}
-                  projectId={sanityClient.config().projectId}
-                  dataset={sanityClient.config().dataset}
-                />:<></>
+                blocks={currentBlogPost?.body}
+                projectId={sanityClient.config().projectId}
+                dataset={sanityClient.config().dataset}
+              /> : <></>
             }
           </Grid>
         </Grid>

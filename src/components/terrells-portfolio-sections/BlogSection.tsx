@@ -4,8 +4,8 @@ import {Avatar, Fab, Grid, Hidden, Link, Modal, Tooltip, Typography} from '@mate
 import theme from '../../common/Theme'
 import {SanityImageAssetDocument} from '@sanity/client'
 import sanityClient from '../../sanityClient'
-import {urlFor} from './IntroSection'
 import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
+import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

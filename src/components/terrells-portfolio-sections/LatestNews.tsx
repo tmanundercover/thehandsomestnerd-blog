@@ -4,7 +4,7 @@ import {Grid, Typography} from "@material-ui/core";
 import theme from "../../common/Theme";
 import Moment from "react-moment";
 import sanityClient from "../../sanityClient";
-import {urlFor} from "./IntroSection";
+import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

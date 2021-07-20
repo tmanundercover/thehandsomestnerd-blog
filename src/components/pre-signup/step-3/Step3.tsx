@@ -5,9 +5,9 @@ import {
   Grid,
   Hidden,
   InputLabel,
-  MenuItem,
+  MenuItem, MuiThemeProvider,
   Select,
-  Typography,
+  Typography
 } from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
@@ -17,6 +17,7 @@ import {useHistory} from 'react-router-dom'
 import {StepProps} from '../PreSignup'
 import CssGeogrid from '../css-geogrid/CssGeogrid'
 import GeogridShapeContainer from '../css-geogrid/GeoGridShapeContainer'
+import abTheme from '../../abReplica/common/Theme'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -142,7 +143,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const Step3: FunctionComponent<StepProps> = ({lead, setLead}: StepProps) => {
-  const classes = useStyles(theme)
+  const classes = useStyles(abTheme)
   const history = useHistory()
 
   const [formSubmitting, setFormSubmitting] = React.useState(false)
@@ -207,6 +208,8 @@ const Step3: FunctionComponent<StepProps> = ({lead, setLead}: StepProps) => {
   }
 
   return (
+    <MuiThemeProvider theme={abTheme}>
+
     <Grid container alignItems="stretch" className={classes.root}>
       <Grid container direction="column" alignContent="center" className={classes.formContainer}>
         <Grid container item>
@@ -323,6 +326,7 @@ const Step3: FunctionComponent<StepProps> = ({lead, setLead}: StepProps) => {
         </Grid>
       </Hidden>
     </Grid>
+    </MuiThemeProvider>
   )
 }
 

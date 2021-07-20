@@ -5,6 +5,7 @@ import theme from "../../../../common/Theme";
 import sanityClient from "../../../../sanityClient";
 import {SanityMenuGroup} from "../../../../sanity/Menu";
 import imageUrlBuilder from "@sanity/image-url"
+import myLogo from "./logo.png"
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -59,7 +60,9 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
       <Grid item>
         <img
           alt="logo"
-          src={urlFor(menu?.logoImage).height(50).url()??""}
+          style={{height: "50px"}}
+          src={myLogo}
+          // src={urlFor(menu?.logoImage).height(50).url()??""}
         />
         {/*<Typography variant="h5" color="textSecondary">My<Typography component="span" variant="h5" color="primary">Logo</Typography></Typography>*/}
       </Grid>

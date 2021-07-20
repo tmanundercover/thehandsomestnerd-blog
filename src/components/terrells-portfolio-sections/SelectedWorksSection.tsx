@@ -101,19 +101,22 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
   const history = useHistory()
   React.useEffect(() => {
     if (props.projects.length > 0) {
-      setShowImage(new Array(props.projects.length).fill(false))
+      const rowNumberQuery = ('\'')+props.projects.map((project)=>{
+        return project._ref
+      }).join('\',\'') + ('\'')
 
-      // fetch the projects from references
+      console.log("projects", props.projects, rowNumberQuery)
+      //fetch the projects from references
       sanityClient
         .fetch(
-          `*[_type == 'portfolioItem']{
-          title, 
-          subtitle, 
-          name, 
-          tag, 
-          source, 
-          coverImage, 
-          body, 
+          `*[_type == 'portfolioItem' && _id in [${rowNumberQuery}]]{
+          title,
+          subtitle,
+          name,
+          tag,
+          source,
+          coverImage,
+          body,
           categories[]->{title, description},
           linkToProd,
           linkToDev,
@@ -123,6 +126,7 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
         .then((data: SanityPortfolioType[]) => {
           console.log(data)
           setPortfolioItems(data)
+          setShowImage(new Array(data.length).fill(false))
         })
         .catch(console.error)
     }
@@ -193,6 +197,7 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
                 }
               }}
               onMouseEnter={() => {
+                console.log(" mouseenter", projectIndex, showImage)
                 setShowImage(
                   (state: boolean[]) =>
                     [...state.map((item, index) => index === projectIndex)]

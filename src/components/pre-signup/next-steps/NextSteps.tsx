@@ -1,10 +1,11 @@
-import {Button, Grid, Hidden, Typography} from '@material-ui/core'
+import {Button, Grid, Hidden, MuiThemeProvider, Typography} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import theme from '../../../common/Theme'
 import {StepProps} from '../PreSignup'
 import CssGeogrid from '../css-geogrid/CssGeogrid'
 import GeogridShapeContainer from '../css-geogrid/GeoGridShapeContainer'
+import abTheme from '../../abReplica/common/Theme'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -75,12 +76,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const NextSteps: FunctionComponent<StepProps> = ({lead}: StepProps) => {
-  const classes = useStyles(theme)
+  const classes = useStyles(abTheme)
 
   React.useEffect(() => {
   }, [])
 
   return (
+    <MuiThemeProvider theme={abTheme}>
+
     <Grid container alignItems="stretch" className={classes.root}>
       <Grid container direction="column" alignContent="center" className={classes.formContainer}>
         <Grid container item>
@@ -137,6 +140,7 @@ const NextSteps: FunctionComponent<StepProps> = ({lead}: StepProps) => {
         </Grid>
       </Hidden>
     </Grid>
+    </MuiThemeProvider>
   )
 }
 

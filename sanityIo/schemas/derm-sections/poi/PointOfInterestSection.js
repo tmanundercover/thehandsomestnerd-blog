@@ -1,7 +1,7 @@
 export default {
   name: 'pointOfInterestSection',
   title: 'Section with Middle Point of Interest Image',
-  type: 'object',
+  type: 'document',
   fields: [
     {
       name: 'name',

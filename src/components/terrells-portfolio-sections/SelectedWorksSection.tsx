@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100vw',
     backgroundColor: '#3D3D3D',
-    padding: theme.spacing(12, 20)
+    padding: theme.spacing(4, 4)
   },
   project: {
     width: '340px',
@@ -26,7 +26,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: 'cover'
   },
   projectsContainer: {
-    marginBottom: '70px'
+    marginBottom: '70px',
+    padding: theme.spacing(0, 4)
   },
   tags: {
     color: 'rgba(0,0,0,.4)'
@@ -101,11 +102,11 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
   const history = useHistory()
   React.useEffect(() => {
     if (props.projects.length > 0) {
-      const rowNumberQuery = ('\'')+props.projects.map((project)=>{
+      const rowNumberQuery = ('\'') + props.projects.map((project) => {
         return project._ref
       }).join('\',\'') + ('\'')
 
-      console.log("projects", props.projects, rowNumberQuery)
+      console.log('projects', props.projects, rowNumberQuery)
       //fetch the projects from references
       sanityClient
         .fetch(
@@ -170,7 +171,7 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
   }
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.root} direction="column">
       <Grid container item>
         <Typography variant="h3" className={classes.aboutMe}>
           Selected
@@ -179,7 +180,7 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
           </Typography>
         </Typography>
       </Grid>
-      <Grid container item spacing={4} className={classes.projectsContainer}>
+      <Grid container item spacing={4} className={classes.projectsContainer} justify="center">
         {
           portfolioItems?.map((project: SanityPortfolioType, projectIndex: number) => (
             <Grid
@@ -187,17 +188,15 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
               item
               style={{position: 'relative'}}
               onClick={() => {
-                // openBlogPost(project) TODO create a modal layer that shows more details
-                console.log(project.linkToDev, project.linkToDev.includes('http'))
+                // TODO create a modal layer that shows more details
                 if (project.linkToDev.includes('http')) {
-                  window.location.href = project.linkToDev
+                  window.open(project.linkToDev, '_blank')
                   return null
-                } else {
-                  history.push(project.linkToDev)
                 }
+                window.open(project.linkToDev, '_blank')
               }}
               onMouseEnter={() => {
-                console.log(" mouseenter", projectIndex, showImage)
+                console.log(' mouseenter', projectIndex, showImage)
                 setShowImage(
                   (state: boolean[]) =>
                     [...state.map((item, index) => index === projectIndex)]

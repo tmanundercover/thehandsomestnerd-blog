@@ -19,6 +19,8 @@ export default {
         {type: "bookMe"},
         {type: "blogPostSection"},
         {type: "pointOfInterestSection"},
+        {type: "modernServicesSection"},
+        {type: "selectedWorksAnimated"}
       ]
     }
   ],

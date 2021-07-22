@@ -4,13 +4,14 @@ import theme from '../../common/Theme'
 import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
 import {SanityImageAssetDocument} from '@sanity/client'
-import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
 import PointOfInterest from '../derm-sections/PointOfInterest'
+import ModernServiceSection from '../derm-sections/ModernServiceSection'
+import SelectedWorksMockupsSection from '../terrells-portfolio-sections/SelectedWorksMockupsSection'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    width: '100vw',
-  },
+    width: '100vw'
+  }
 }))
 
 
@@ -69,7 +70,7 @@ const KingDermDemo: FunctionComponent<AppLayoutProps> = (props) => {
           profileImage,
           pageContent,
           "portfolioItems":portfolioItems[]->{title, subtitle, name, tag, source, coverImage, body, categories[]->{title, description}}
-       }`,
+       }`
       )
       .then((data: SanityHomePage[]) => {
         console.log(data[0])
@@ -81,18 +82,22 @@ const KingDermDemo: FunctionComponent<AppLayoutProps> = (props) => {
   return (
     <MuiThemeProvider theme={theme}>
 
-    <Grid container direction="column" className={classes.root}>
-      <Grid item>
-        <Header/>
+      <Grid container direction="column" className={classes.root}>
+        <Grid item>
+          <Header/>
+        </Grid>
+        <Grid item>
+          <PointOfInterest/>
+        </Grid>
+        <Grid item>
+          <ModernServiceSection/>
+        </Grid>
+        <SelectedWorksMockupsSection />
+        {/*<Grid item>*/}
+        {/*  <BlockContentLayoutContainer*/}
+        {/*    content={homePage?.pageContent}/>*/}
+        {/*</Grid>*/}
       </Grid>
-      <Grid item>
-        <PointOfInterest/>
-      </Grid>
-      {/*<Grid item>*/}
-      {/*  <BlockContentLayoutContainer*/}
-      {/*    content={homePage?.pageContent}/>*/}
-      {/*</Grid>*/}
-    </Grid>
     </MuiThemeProvider>
   )
 }

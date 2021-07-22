@@ -153,7 +153,7 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
       <Grid item container xs={4}>
         <Grid item>
           <Grid container item direction="column" xs={9} spacing={3}
-                style={{padding: theme.spacing(2, 3), color: 'white', backgroundColor: '#383838'}}>
+                style={{padding: theme.spacing(2, 3), color: 'white'}}>
             <Grid item><Typography>{title}</Typography></Grid>
             <Grid item>"<Typography style={{display: 'inline-block'}}>{subtitle}</Typography>"</Grid>
             <Grid item><Typography>{description}</Typography></Grid>
@@ -229,11 +229,11 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
             <Grid item container alignContent="center" justify="center" style={{width: '206px'}}>
               {
                 gallery.map(
-                  (galleryItem) => {
-                    return <Grid item xs={6}>
+                  (galleryItem, innerIndex:number) => {
+                    return <Grid key={innerIndex} item xs={6}>
                       <img
                         // src={poi.image.url}
-                        src={`https://via.placeholder.com/100/${pointsOfInterests[index].galleryColor}/FFFFFF?text=${galleryItem.title}`}/>
+                        src={`https://via.placeholder.com/100/${pointsOfInterests[index]?.galleryColor}/FFFFFF?text=${galleryItem.title}`}/>
                     </Grid>
                   })
               }
@@ -251,7 +251,7 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
       <Modal
         open={galleryOpen}
       ><Grid container justify="center">
-        <Grid container xs={8} style={{backgroundColor: 'whitesmoke', padding: theme.spacing(3)}} justify="center">
+        <Grid container item xs={8} style={{backgroundColor: 'whitesmoke', padding: theme.spacing(3)}} justify="center">
           <Grid container item justify="flex-end">
             <Grid item>
               <IconButton onClick={()=>setGalleryOpen(false)}><Close/></IconButton>
@@ -269,11 +269,11 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
             <Grid container item justify="center">
               <Carousel>
                 {
-                  pointsOfInterests[index]?.gallery?.map((galleryImage) => {
-                    return <Grid item xs={6} container alignItems="center" direction="column">
+                  pointsOfInterests[index]?.gallery?.map((galleryImage, galleryIndex) => {
+                    return <Grid key={galleryIndex} item xs={6} container alignItems="center" direction="column">
                       <Grid container item style={{width:480, height:550}}>
                         <img
-                          src={`https://via.placeholder.com/480x550/${pointsOfInterests[index].galleryColor}/FFFFFF?text=${galleryImage.title}`}/>
+                          src={`https://via.placeholder.com/480x550/${pointsOfInterests[index]?.galleryColor}/FFFFFF?text=${galleryImage.title}`}/>
                       </Grid>
                       <Grid item container justify="center">
                         <Typography variant="subtitle1">{galleryImage.title}</Typography>

@@ -11,6 +11,7 @@ import Step3 from './components/pre-signup/step-3/Step3'
 import NextSteps from './components/pre-signup/next-steps/NextSteps'
 import {ColdLead, useStyles} from './components/pre-signup/PreSignup'
 import MainLayout from './components/abReplica/MainLayout'
+import TerrellsRealPortfolio from './components/layout/TerrellsRealPortfolio'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
             <Route exact path="/terrell" component={TerrellsPortfolio}/>
             <Route exact path="/kool-stuff" component={KingDermDemo}/>
             <Route exact path="/dermKing" component={MainLayout}/>
+            <Route exact path="/realTerrell" component={TerrellsRealPortfolio}/>
             <Route exact path="/abReplica" component={() => {
               window.location.href = 'http://assembledbrands.com';
               return null;

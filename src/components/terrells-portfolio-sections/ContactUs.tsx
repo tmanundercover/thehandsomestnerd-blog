@@ -21,7 +21,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: '100vw',
     minHeight: '100vh',
     backgroundColor: '#1f1f1f',
-    padding: theme.spacing(12, 20)
+    color: "#FAFAFA",
+    padding: theme.spacing(0, 4)
   },
   header: {
     fontWeight: 800,
@@ -68,7 +69,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "white",
   },
   sectionTitle: {
-    fontWeight: 800
+    fontWeight: 800,
+    color: "white !important"
   }
 }))
 
@@ -134,56 +136,56 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         <Grid container item xs={12} lg={6}>
           <Grid container direction="column" item justify="space-around" className={classes.lhsContainer}>
             <Grid container item>
-              <Typography variant="h2" color="textSecondary">Have a Project?</Typography>
+              <Typography variant="h2">Have a Project?</Typography>
             </Grid>
             <Grid container item>
-              <Typography color="textSecondary" style={{wordWrap: "break-word"}}>
+              <Typography style={{wordWrap: "break-word"}}>
                 Let me know how i can help. Fill out the form and i’ll be in touch as soon as
                 possible.</Typography>
             </Grid>
             <Grid container item spacing={1}>
               <Grid item>
-                <Typography color="textSecondary"><MailOutline/></Typography>
+                <Typography ><MailOutline/></Typography>
               </Grid>
               <Grid item>
-                <Typography color="textSecondary" className={classes.sectionTitle}>Address:</Typography>
-                <Typography color="textSecondary">{props.address}</Typography>
-              </Grid>
-            </Grid>
-            <Grid container item spacing={1}>
-              <Grid item>
-                <Typography color="textSecondary"><PhoneOutlined/></Typography>
-              </Grid>
-              <Grid item>
-                <Typography color="textSecondary" className={classes.sectionTitle}>Phone:</Typography>
-                <Typography color="textSecondary">{props.phone}</Typography>
+                <Typography className={classes.sectionTitle}>Address:</Typography>
+                <Typography >{props.address}</Typography>
               </Grid>
             </Grid>
             <Grid container item spacing={1}>
               <Grid item>
-                <Typography color="textSecondary"><EmailOutlined/></Typography>
+                <Typography ><PhoneOutlined/></Typography>
               </Grid>
               <Grid item>
-                <Typography color="textSecondary" className={classes.sectionTitle}>Email:</Typography>
-                <Typography color="textSecondary">{props.email}</Typography>
+                <Typography  className={classes.sectionTitle}>Phone:</Typography>
+                <Typography >{props.phone}</Typography>
+              </Grid>
+            </Grid>
+            <Grid container item spacing={1}>
+              <Grid item>
+                <Typography ><EmailOutlined/></Typography>
+              </Grid>
+              <Grid item>
+                <Typography  className={classes.sectionTitle}>Email:</Typography>
+                <Typography >{props.email}</Typography>
                 <Grid container item className={classes.socialMediaContainer} spacing={1}>
                   <Grid item>
-                    <Typography color="textSecondary">
+                    <Typography >
                       <Link href={"http://facebook.com/"+props.facebook}><Facebook fontSize="large"/></Link>
                     </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography color="textSecondary">
+                    <Typography >
                       <Link href={"http://twitter.com/"+props.twitter}><Twitter fontSize="large"/></Link>
                     </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography color="textSecondary">
+                    <Typography >
                       <Link href={"http://linkedIn.com/"+props.linkedIn}><LinkedIn fontSize="large"/></Link>
                     </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography color="textSecondary">
+                    <Typography >
                       <Link href={"http://youtube.com/"+props.youtube}><YouTube fontSize="large"/></Link>
                     </Typography>
                   </Grid>
@@ -196,7 +198,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         <Grid container item xs={12} lg={6} justify="center">
           <Grid container item className={classes.formContainer}>
             <Grid container item justify="center" className={classes.formTitle}>
-              <Typography variant="h3" color="textSecondary" className={classes.header}>
+              <Typography variant="h3"  className={classes.header}>
                 Get in
                 <Typography component="span" variant="h3" className={`${classes.header} ${classes.headerAccent}`}
                             color="primary">
@@ -208,12 +210,12 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
               <StyledTextField
                 fullWidth
                 id="contact-name-input"
-                label="Name"
+                label={<Typography style={{color:"white"}}>Name</Typography>}
                 variant="outlined"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Typography color="textSecondary" className={classes.inputAdornmentContainer}>
+                      <Typography  className={classes.inputAdornmentContainer}>
                         <AccountCircle/>
                       </Typography>
                     </InputAdornment>
@@ -226,12 +228,12 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
               <StyledTextField
                 fullWidth
                 id="contact-email-input"
-                label="Email"
+                label={<Typography style={{color:"white"}}>Email</Typography>}
                 variant="outlined"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Typography color="textSecondary" className={classes.inputAdornmentContainer}>
+                      <Typography  className={classes.inputAdornmentContainer}>
                         <Email/>
                       </Typography>
                     </InputAdornment>
@@ -244,12 +246,12 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
               <StyledTextField
                 fullWidth
                 id="contact-phone-input"
-                label="Phone"
+                label={<Typography style={{color:"white"}}>Phone</Typography>}
                 variant="outlined"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Typography color="textSecondary"
+                      <Typography
                                   className={classes.inputAdornmentContainer}><Phone/></Typography>
                     </InputAdornment>
                   ),
@@ -261,7 +263,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
               <StyledTextField
                 fullWidth
                 id="contact-message-input"
-                label="Message"
+                label={<Typography style={{color:"white"}}>Message</Typography>}
                 variant="outlined"
                 multiline
                 rows="4"
@@ -269,7 +271,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                   startAdornment: (
                     <InputAdornment position="start">
                       <Typography
-                        color="textSecondary"
+
                         className={classes.inputAdornmentTextBlockContainer}>
                         <Message/>
                       </Typography>
@@ -280,7 +282,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
               />
             </Grid>
             <Grid container item alignItems="center" justify="center">
-              <Button color="primary" variant="contained"><Typography color="textSecondary" variant="button">Send
+              <Button color="primary" variant="contained"><Typography  variant="button">Send
                 Button</Typography></Button>
             </Grid>
           </Grid>

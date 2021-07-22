@@ -46,7 +46,7 @@ const TerrellsPortfolio: FunctionComponent<AppLayoutProps> = (props) => {
   React.useEffect(() => {
     sanityClient
       .fetch(
-        `*[slug.current == 'terrell-s-portfolio']{
+        `*[slug.current == 'terrell-s-portfolio-short']{
           title,
           slug,
           clientName,

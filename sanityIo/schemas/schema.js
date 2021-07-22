@@ -47,6 +47,9 @@ import weWorkWith from './ab/weWorkWith'
 import landingPage from './ab/landingPage'
 import abHomepage from './ab/abHomePage'
 import imageAsset from './imageAsset'
+import modernServicesSection from './derm-sections/modern-services/ModernServicesSection'
+import modernService from './derm-sections/modern-services/ModernService'
+import SelectedWorksAnimated from './sections/SelectedWorksAnimated'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -77,6 +80,7 @@ export default createSchema({
     HeroImageNameCareer,
     AboutMe,
     SelectedWorks,
+    SelectedWorksAnimated,
     SkillsSection,
     BookMe,
     LatestNewSection,
@@ -101,6 +105,8 @@ export default createSchema({
     weWorkWith,
     landingPage,
     imageCarousel,
-    imageAsset
+    imageAsset,
+    modernServicesSection,
+    modernService
   ]),
 })

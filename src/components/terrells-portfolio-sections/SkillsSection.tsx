@@ -8,7 +8,7 @@ import sanityClient from "../../sanityClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: theme.spacing(12, 12)
+    padding: theme.spacing(4,4)
   },
   title: {
     fontWeight: 700,
@@ -39,8 +39,8 @@ const SkillsSection: FunctionComponent<SkillsSectionProps> = (props) => {
   const classes = useStyles(theme)
 
   return (
-    <Grid container alignItems="stretch" className={classes.root}>
-      <Grid container item xs={6}>
+    <Grid container alignItems="stretch" className={classes.root} spacing={4}>
+      <Grid container item xs={12} sm={6}>
         <Grid container item direction="column" className={classes.skillsTextContainer}>
           <Typography className={classes.title}>
             {props.skillsHeading}
@@ -56,7 +56,7 @@ const SkillsSection: FunctionComponent<SkillsSectionProps> = (props) => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container item xs={6}>
+      <Grid container item xs={12} sm={6}>
         <Grid container item spacing={3}>
           {
             props?.skills?.map(

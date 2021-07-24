@@ -223,30 +223,30 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item container xs={5} sm={8} md={3} lg={5} xl={2}>
-        <Grid item container direction="column" alignContent="center">
-          <Grid item container justify="center">
-            <Grid item container alignContent="center" justify="center" style={{width: '206px'}}>
-              {
-                gallery.map(
-                  (galleryItem, innerIndex:number) => {
-                    return <Grid key={innerIndex} item xs={6}>
-                      <img
-                        // src={poi.image.url}
-                        src={`https://via.placeholder.com/100/${pointsOfInterests[index]?.galleryColor}/FFFFFF?text=${galleryItem.title}`}/>
-                    </Grid>
-                  })
-              }
-            </Grid>
-          </Grid>
-          <Grid item justify="center" container>
-            <Grid item>
-              <Button variant="outlined" style={{color: "whitesmoke", borderColor:"whitesmoke"}} onClick={() => setGalleryOpen(true)}>View Gallery</Button>
-            </Grid>
-          </Grid>
-        </Grid>
+      {/*<Grid item container xs={5} sm={8} md={3} lg={5} xl={2}>*/}
+      {/*  <Grid item container direction="column" alignContent="center">*/}
+      {/*    <Grid item container justify="center">*/}
+      {/*      <Grid item container alignContent="center" justify="center" style={{width: '206px'}}>*/}
+      {/*        {*/}
+      {/*          gallery.map(*/}
+      {/*            (galleryItem, innerIndex:number) => {*/}
+      {/*              return <Grid key={innerIndex} item xs={6}>*/}
+      {/*                <img*/}
+      {/*                  // src={poi.image.url}*/}
+      {/*                  src={`https://via.placeholder.com/100/${pointsOfInterests[index]?.galleryColor}/FFFFFF?text=${galleryItem.title}`}/>*/}
+      {/*              </Grid>*/}
+      {/*            })*/}
+      {/*        }*/}
+      {/*      </Grid>*/}
+      {/*    </Grid>*/}
+      {/*    <Grid item justify="center" container>*/}
+      {/*      <Grid item>*/}
+      {/*        <Button variant="outlined" style={{color: "whitesmoke", borderColor:"whitesmoke"}} onClick={() => setGalleryOpen(true)}>View Gallery</Button>*/}
+      {/*      </Grid>*/}
+      {/*    </Grid>*/}
+      {/*  </Grid>*/}
 
-      </Grid>
+      {/*</Grid>*/}
 
       <Modal
         open={galleryOpen}

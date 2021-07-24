@@ -11,12 +11,14 @@ import SpecializationsMenu from './static-pages/shared/SpecializationsMenu'
 import HorizontalDivider from '../shared/HorizontalDivider'
 import PortfolioCompanies from './static-pages/shared/PortfolioCompanies'
 import ProcessSteps from './static-pages/shared/processSteps/ProcessSteps'
-import HeadlineWithList from './static-pages/shared/HeadlineWithList'
 import SolutionsSection from './static-pages/shared/SolutionsSection'
 import cmsStaticPagesClient, {SanityHomePage} from './static-pages/cmsStaticPagesClient'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import PointOfInterest from '../derm-sections/PointOfInterest'
+import ModernServiceSection from '../derm-sections/ModernServiceSection'
+// import ModernServiceSection from '../derm-sections/ModernServiceSection'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -84,7 +86,7 @@ const MainLayout: FunctionComponent = () => {
           </Grid>
           <Grid container direction="column" item className={classes.sectionContainer} alignItems="center"
                 justify="center">
-            <Grid container item direction="column" alignItems="center" spacing={mdUp ? 10 : 6}
+            <Grid container item direction="column" alignItems="center" spacing={6}
                   className={classes.homePageRoot}>
               <Grid item xs={12} container>
                 <HomePageHeroImage heroImage={homePage?.heroImage}/>
@@ -116,17 +118,15 @@ const MainLayout: FunctionComponent = () => {
               <Grid item xs={12} sm={10} container>
                 <HorizontalDivider/>
               </Grid>
-              <Grid item xs={12} sm={10} id="our-services-anchor">
-                <HeadlineWithList anchor="our-services-anchor" sectionData={homePage?.ourServicesSection}/>
-              </Grid>
-              <Grid item xs={12} sm={10} container>
-                <HorizontalDivider/>
-              </Grid>
               <Grid item xs={12} sm={10}>
                 <SolutionsSection anchor="solutions-anchor" sectionData={homePage?.solutions}/>
               </Grid>
             </Grid>
           </Grid>
+        </Grid>
+        <Grid container direction="column" style={{backgroundColor: 'black'}}>
+          <PointOfInterest/>
+          <ModernServiceSection/>
         </Grid>
         <Grid container item>
           <Footer/>

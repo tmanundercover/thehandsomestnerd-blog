@@ -227,7 +227,7 @@ const SelectedWorksMockupsSection: FunctionComponent = (props) => {
         <Typography variant="h3" className={classes.aboutMe}>
           Selected
           <Typography component="span" variant="h3" className={`${classes.aboutMe} ${classes.me}`} color="primary">
-            Works
+            Work
           </Typography>
         </Typography>
       </Grid>
@@ -239,26 +239,82 @@ const SelectedWorksMockupsSection: FunctionComponent = (props) => {
               item
               container
               spacing={8}
+              justify="center"
             >
-              <Grid item xs={12} md={6}>
-                <Link target="_blank" href={'https://assembledbrands.com'}
-                      style={{textDecoration: 'none', color: '#3D3D3D'}}><Grid item>
-                  <Grid container direction="column" alignItems="center">
-                    <motion.div
-                      initial={{scale: 1, opacity: .7}}
-                      whileHover={{scale: 1.5, opacity: 1}}
-                    >
-                      <img src={portfolio2} width="100%"/>
-                    </motion.div>
-                  </Grid>
-                  <Grid item><Typography variant="h4">Company Website</Typography></Grid>
-                  <Grid item><Typography variant="caption" style={{textAlign: 'center'}}>A financial technology company
-                    website. This includes SEO and
-                    newsletter list generation.</Typography></Grid>
-                </Grid>
-                </Link>
-              </Grid>
-              <Grid item xs={12} md={6}>
+              {
+                [videoDemos[0]].map((video, videoItemIndex)=><Grid item xs={7}>
+                  <Link
+                    target="_blank"
+                    style={{textDecoration: 'none', color: '#3D3D3D'}}
+                    href={video.link}>
+                    <Grid container direction="column" alignItems="center">
+                      <Grid item container>
+                        <motion.div
+                          style={{width: '100%', scale: .7}}
+                          initial={{scale: 1, opacity: .7}}
+                          onHoverEnd={() => {
+                            video.ref.current.pause()
+                            controls.start('plain'+videoItemIndex)
+                          }}
+                          animate={controls}
+                          variants={{
+                            ['hover'+videoItemIndex]: {scale: 1.2, opacity: 1, marginBottom: "32px"},
+                            ['plain'+videoItemIndex]: {scale: 1, opacity: .7}
+                          }}
+                        >
+                          <motion.div
+                            onHoverStart={() => {
+                              video.ref.current.play()
+                              controls.start('hover'+videoItemIndex)
+                            }}
+                            style={{
+                              width: '100%',
+                            }}
+                            animate={controls}
+                            variants={{
+                              ['hover'+videoItemIndex]: {top: '106px', left: '160px'}
+                            }}
+                          >
+                            <Grid container item style={{ marginBottom:"32px"}}>
+                              <Grid container>
+                                <Grid container item>
+                                  <Grid container item xs={leftSide}><img src={ctl} style={{width: "100%"}}/></Grid>
+                                  <Grid container item xs={middle}><img src={frametop} style={{width: "100%"}}/></Grid>
+                                  <Grid container item xs={rightSide}><img src={ctr} style={{width: "100%"}}/></Grid>
+                                </Grid>
+                                <Grid container item alignItems="stretch">
+                                  <Grid item xs={leftSide} className={sliceClasses.frame_left}></Grid>
+                                  <Grid item xs={middle}>
+                                    <video ref={video.ref} playsInline muted loop poster={video.poster} id="bgvid" style={{
+                                      position: 'relative',
+                                      width: '100%'
+                                    }}>{/*<source src="polina.webm" type="video/webm">*/}
+                                      <source src={video.video} type="video/mp4"/>
+                                    </video>
+                                  </Grid>
+                                  <Grid item xs={rightSide} className={sliceClasses.frame_right}></Grid>
+                                </Grid>
+                                <Grid container  alignItems="stretch">
+                                  <Grid container item xs={leftSide}><img src={cbl} style={{width: "100%"}}/></Grid>
+                                  <Grid container item xs={middle}><img src={framebot} style={{width: "100%"}}/></Grid>
+                                  <Grid container item xs={rightSide}><img src={cbr} style={{width: "100%"}}/></Grid>
+
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </motion.div>
+
+                        </motion.div>
+                      </Grid>
+
+                      <Grid item><Typography variant="h4">{video.title}</Typography></Grid>
+                      <Grid item><Typography variant="caption" style={{textAlign: 'center'}}>{video.description}</Typography></Grid>
+
+                    </Grid>
+                  </Link>
+                </Grid>)
+              }
+              <Grid item xs={7}>
                 <Link target="_blank" style={{textDecoration: 'none', color: '#3D3D3D'}} href={'/apply'}><Grid item>
                   <Grid container direction="column" alignItems="center">
                     <motion.div
@@ -272,78 +328,8 @@ const SelectedWorksMockupsSection: FunctionComponent = (props) => {
                 </Grid>
                 </Link>
               </Grid>
-              {/*<Grid item xs={12} md={6}>*/}
-              {/*  <Link*/}
-              {/*    target="_blank"*/}
-              {/*    style={{textDecoration: 'none', color: '#3D3D3D'}}*/}
-              {/*    href={'https://socialmediasimulator-9a49b.web.app/'}>*/}
-              {/*    <Grid container direction="column" alignItems="center">*/}
-              {/*      <Grid item container>*/}
-              {/*        <motion.div*/}
-              {/*          style={{width: '100%', scale: .7}}*/}
-              {/*          initial={{scale: 1, opacity: .7}}*/}
-              {/*          onHoverEnd={() => controls.start('plain')}*/}
-              {/*          animate={controls}*/}
-              {/*          variants={{*/}
-              {/*            ['hover']: {scale: 1.2, opacity: 1},*/}
-              {/*            ['plain']: {scale: 1, opacity: .7}*/}
-              {/*          }}*/}
-              {/*        >*/}
-              {/*          <motion.div*/}
-              {/*            onHoverStart={() => controls.start('hover')}*/}
-              {/*            style={{*/}
-              {/*              width: '100%',*/}
-              {/*              // backgroundSize: 'cover',*/}
-              {/*              // backgroundImage: `url(${portfolio3})`*/}
-              {/*            }}*/}
-              {/*            animate={controls}*/}
-              {/*            variants={{*/}
-              {/*              ['hover']: {top: '106px', left: '160px'}*/}
-              {/*            }}*/}
-              {/*          >*/}
-              {/*            <Grid container item style={{ marginBottom:"32px", backgroundColor: "#fafafa"}}>*/}
-              {/*              <Grid container>*/}
-              {/*                <Grid container item>*/}
-              {/*                  <Grid container item xs={leftSide}><img src={ctl} style={{width: "100%"}}/></Grid>*/}
-              {/*                  <Grid container item xs={middle}><img src={frametop} style={{width: "100%"}}/></Grid>*/}
-              {/*                  <Grid container item xs={rightSide}><img src={ctr} style={{width: "100%"}}/></Grid>*/}
-              {/*                </Grid>*/}
-              {/*                <Grid container item alignItems="stretch">*/}
-              {/*                  <Grid item xs={leftSide} className={sliceClasses.frame_left}></Grid>*/}
-              {/*                  <Grid item xs={middle} container>*/}
-              {/*                    <video playsInline autoPlay muted loop poster="live-sim-icon.png" id="bgvid" style={{*/}
-              {/*                      position: 'relative',*/}
-              {/*                      width: '80%',*/}
-              {/*                      marginLeft: "32px"*/}
-              {/*                    }}>/!*<source src="polina.webm" type="video/webm">*!/*/}
-              {/*                      <source src={video} type="video/mp4"/>*/}
-              {/*                    </video>*/}
-              {/*                  </Grid>*/}
-              {/*                  <Grid item xs={rightSide} className={sliceClasses.frame_right}></Grid>*/}
-              {/*                </Grid>*/}
-              {/*                <Grid container  alignItems="stretch">*/}
-              {/*                  <Grid container item xs={leftSide}><img src={cbl} style={{width: "100%"}}/></Grid>*/}
-              {/*                  <Grid container item xs={middle}><img src={framebot} style={{width: "100%"}}/></Grid>*/}
-              {/*                  <Grid container item xs={rightSide}><img src={cbr} style={{width: "100%"}}/></Grid>*/}
-
-              {/*                </Grid>*/}
-              {/*              </Grid>*/}
-              {/*            </Grid>*/}
-              {/*          </motion.div>*/}
-
-              {/*        </motion.div>*/}
-              {/*      </Grid>*/}
-
-              {/*      <Grid item><Typography variant="h4">Social Media Live Simulator</Typography></Grid>*/}
-              {/*      <Grid item><Typography variant="caption" style={{textAlign: 'center'}}>Feel like you have Tens of*/}
-              {/*        thousands of followers with this Application. You can change the inputs to personalize the*/}
-              {/*        experience.</Typography></Grid>*/}
-
-              {/*    </Grid>*/}
-              {/*  </Link>*/}
-              {/*</Grid>*/}
               {
-                videoDemos.map((video, videoItemIndex)=><Grid item xs={12} md={6}>
+                [videoDemos[1]].map((video, videoItemIndex)=><Grid item xs={7}>
                 <Link
                   target="_blank"
                   style={{textDecoration: 'none', color: '#3D3D3D'}}

@@ -4,8 +4,6 @@ import theme from '../../common/Theme'
 import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
 import {SanityImageAssetDocument} from '@sanity/client'
-import PointOfInterest from '../derm-sections/PointOfInterest'
-import ModernServiceSection from '../derm-sections/ModernServiceSection'
 import SelectedWorksMockupsSection from '../terrells-portfolio-sections/SelectedWorksMockupsSection'
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -87,12 +85,8 @@ const KingDermDemo: FunctionComponent<AppLayoutProps> = (props) => {
           <Header/>
         </Grid>
         <Grid item>
-          <PointOfInterest/>
+          <SelectedWorksMockupsSection/>
         </Grid>
-        <Grid item>
-          <ModernServiceSection/>
-        </Grid>
-        <SelectedWorksMockupsSection />
         {/*<Grid item>*/}
         {/*  <BlockContentLayoutContainer*/}
         {/*    content={homePage?.pageContent}/>*/}

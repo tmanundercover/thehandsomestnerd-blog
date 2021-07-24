@@ -205,7 +205,7 @@ const ModernServiceSection: FunctionComponent<ModernServiceProps> = (props) => {
     <Grid container>
       {
         services.map((service: SanityModernServices, index) => {
-          return <Grid key={index} container xs={3} item style={{position: 'relative'}}>
+          return <Grid key={index} container xs={12} sm={6} md={3} item style={{position: 'relative', height:"100%"}}>
             {
               <Grid
                 container
@@ -227,7 +227,7 @@ const ModernServiceSection: FunctionComponent<ModernServiceProps> = (props) => {
                   backgroundSize: 'cover',
                   color: 'whitesmoke',
                   padding: theme.spacing(6, 4),
-                  marginBottom: '32px'
+                  // marginBottom: '32px'
                 }}>
                 <Grid item><Typography variant="h2">{service.title}</Typography></Grid>
               </Grid>
@@ -263,7 +263,7 @@ const ModernServiceSection: FunctionComponent<ModernServiceProps> = (props) => {
                     backgroundRepeat: "none",
                     color: 'whitesmoke',
                     padding: theme.spacing(6, 4),
-                    marginBottom: '32px'
+                    // marginBottom: '32px'
                   }}>
                   <Grid item><Typography variant="h4">{service.title}</Typography></Grid>
                   {

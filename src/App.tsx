@@ -37,10 +37,10 @@ function App() {
             <Route exact path="/kool-stuff" component={KingDermDemo}/>
             <Route exact path="/dermKing" component={MainLayout}/>
             <Route exact path="/realTerrell" component={TerrellsRealPortfolio}/>
-            <Route exact path="/abReplica" component={() => {
-              window.location.href = 'http://assembledbrands.com';
-              return null;
-            }}/>
+            {/*<Route exact path="/abReplica" component={() => {*/}
+            {/*  window.location.href = 'http://assembledbrands.com';*/}
+            {/*  return null;*/}
+            {/*}}/>*/}
             <Route exact path="/apply" render={(): ReactElement => <Redirect to="/apply/step-1"/>}/>
             <Route exact path="/apply/step-1" render={() => <Step1 lead={coldLead} setLead={setColdLead}/>}/>
             <Route exact path="/apply/step-2" render={() => <Step2 lead={coldLead} setLead={setColdLead}/>}/>

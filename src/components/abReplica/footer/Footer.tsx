@@ -19,9 +19,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   emailContainer: {
     height: '72px',
   },
-  copyright: {
-    paddingTop: '32px',
-  },
   columnHeader: {
     fontWeight: 500,
     color: '#FDF3EB',
@@ -77,9 +74,6 @@ const Footer: FunctionComponent = (props) => {
         {/*      </Grid>*/}
         {/*    </Grid>*/}
         {/*  </Grid>*/}
-      </Grid>
-      <Grid item className={classes.copyright}>
-        <Typography variant="caption">© 2021 Assembled Brands, All Rights Reserved.</Typography>
       </Grid>
     </Grid>
 

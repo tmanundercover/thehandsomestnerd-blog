@@ -58,12 +58,12 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
   return (
     <Grid container justify="space-between" className={classes.root}>
       <Grid item>
-        <img
-          alt="logo"
-          style={{height: "50px"}}
-          src={myLogo}
-          // src={urlFor(menu?.logoImage).height(50).url()??""}
-        />
+        {/*<img*/}
+        {/*  alt="logo"*/}
+        {/*  style={{height: "50px"}}*/}
+        {/*  src={myLogo}*/}
+        {/*  // src={urlFor(menu?.logoImage).height(50).url()??""}*/}
+        {/*/>*/}
         {/*<Typography variant="h5" color="textSecondary">My<Typography component="span" variant="h5" color="primary">Logo</Typography></Typography>*/}
       </Grid>
       <Grid item>

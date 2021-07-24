@@ -13,6 +13,7 @@ import {useHistory} from 'react-router-dom'
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100vw',
+    height: `calc(100vh - 96px)`,
     backgroundColor: '#3D3D3D',
     padding: theme.spacing(4, 4)
   },
@@ -176,57 +177,60 @@ const SelectedWorksSection: FunctionComponent<SelectedWorksSectionProps> = (prop
         <Typography variant="h3" className={classes.aboutMe}>
           Selected
           <Typography component="span" variant="h3" className={`${classes.aboutMe} ${classes.me}`} color="primary">
-            Works
+            Work
           </Typography>
         </Typography>
       </Grid>
-      <Grid container item spacing={4} className={classes.projectsContainer} justify="center">
-        {
-          portfolioItems?.map((project: SanityPortfolioType, projectIndex: number) => (
-            <Grid
-              key={`portfolio-project-${projectIndex}`}
-              item
-              style={{position: 'relative'}}
-              onClick={() => {
-                // TODO create a modal layer that shows more details
-                if (project.linkToDev.includes('http')) {
+      <Grid container item alignItems="center" style={{minHeight: `calc(100vh - 96px - 200px)`}}>
+        <Grid container item spacing={4} className={classes.projectsContainer} justify="center" alignItems="center">
+          {
+            portfolioItems?.map((project: SanityPortfolioType, projectIndex: number) => (
+              <Grid
+                key={`portfolio-project-${projectIndex}`}
+                item
+                style={{position: 'relative'}}
+                onClick={() => {
+                  // TODO create a modal layer that shows more details
+                  if (project.linkToDev.includes('http')) {
+                    window.open(project.linkToDev, '_blank')
+                    return null
+                  }
                   window.open(project.linkToDev, '_blank')
-                  return null
-                }
-                window.open(project.linkToDev, '_blank')
-              }}
-              onMouseEnter={() => {
-                console.log(' mouseenter', projectIndex, showImage)
-                setShowImage(
+                }}
+                onMouseEnter={() => {
+                  console.log(' mouseenter', projectIndex, showImage)
+                  setShowImage(
+                    (state: boolean[]) =>
+                      [...state.map((item, index) => index === projectIndex)]
+                  )
+                }}
+                onMouseLeave={() => setShowImage(
                   (state: boolean[]) =>
-                    [...state.map((item, index) => index === projectIndex)]
-                )
-              }}
-              onMouseLeave={() => setShowImage(
-                (state: boolean[]) =>
-                  [...state.fill(false)]
-              )}
-            >
-              {
-                !showImage[projectIndex] && <Grid container
-                                                  item direction="column"
-                                                  className={classes.project}
-                                                  style={{
-                                                    backgroundImage: `url("${urlFor(project.coverImage).size(340, 340).url()}")`,
-                                                    position: 'absolute',
-                                                    backgroundColor: project?.iconBackground?.value
-                                                  }}>
-                </Grid>
-              }
+                    [...state.fill(false)]
+                )}
+              >
+                {
+                  !showImage[projectIndex] && <Grid container
+                                                    item direction="column"
+                                                    className={classes.project}
+                                                    style={{
+                                                      backgroundImage: `url("${urlFor(project.coverImage).size(340, 340).url()}")`,
+                                                      position: 'absolute',
+                                                      backgroundColor: project?.iconBackground?.value
+                                                    }}>
+                  </Grid>
+                }
 
-              <Grid container item direction="column" className={classes.project} justify="flex-end"
-                    style={{backgroundColor: '#767676'}}>
-                <Grid item><Typography className={classes.tags}>{project.tag}</Typography></Grid>
-                <Grid item><Typography className={classes.title}>{project.title}</Typography></Grid>
+                <Grid container item direction="column" className={classes.project} justify="flex-end"
+                      style={{backgroundColor: '#767676'}}>
+                  <Grid item><Typography className={classes.tags}>{project.tag}</Typography></Grid>
+                  <Grid item><Typography className={classes.title}>{project.title}</Typography></Grid>
+                </Grid>
               </Grid>
-            </Grid>
-          ))
-        }
+            ))
+          }
+        </Grid>
+
       </Grid>
 
 

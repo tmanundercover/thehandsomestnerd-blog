@@ -5,8 +5,11 @@ import {
   Grid,
   Hidden,
   InputLabel,
-  MenuItem, MuiThemeProvider,
+  MenuItem,
+  MuiThemeProvider,
   Select,
+  Slide,
+  TextField,
   Typography
 } from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
@@ -18,314 +21,299 @@ import {StepProps} from '../PreSignup'
 import CssGeogrid from '../css-geogrid/CssGeogrid'
 import GeogridShapeContainer from '../css-geogrid/GeoGridShapeContainer'
 import abTheme from '../../abReplica/common/Theme'
+import {motion} from 'framer-motion'
+import {useStepStyles} from '../step-1/Step1'
+import emailValidator from '../../../utils/emailValidator'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     [theme.breakpoints.up('lg')]: {
       flexDirection: 'row',
-      paddingTop: theme.spacing(16),
-    },
+      paddingTop: theme.spacing(16)
+    }
   },
   formContainer: {
     zIndex: 1200,
     [theme.breakpoints.down('xs')]: {
-      width: '300px',
+      width: '300px'
     },
     [theme.breakpoints.up('sm')]: {
-      width: '492px',
-    },
+      width: '492px'
+    }
   },
   button: {
     height: '40px',
-    boxShadow: '8px 8px #565190',
+    boxShadow: '8px 8px #CEE4D1',
     [theme.breakpoints.down('xs')]: {
-      boxShadow: '4px 4px #565190',
-    },
-  },
-  disabledButton: {
-    marginTop: theme.spacing(1),
+      boxShadow: '4px 4px #CEE4D1'
+    }
   },
   nameContainer: {
-    height: '72px',
-    marginTop: theme.spacing(12.375),
-    marginBottom: theme.spacing(5.5),
+    height: '72px'
   },
-  revenueContainer: {
-    height: '72px',
+  websiteContainer: {
+    height: '72px'
   },
-  inventoryContainer: {
+  loanAmountContainer: {
     height: '72px',
     [theme.breakpoints.down('xs')]: {
-      marginBottom: theme.spacing(6),
+      marginBottom: theme.spacing(6)
     },
     [theme.breakpoints.up('sm')]: {
-      marginBottom: theme.spacing(6.5),
-    },
-  },
-  accountsReceivableContainer: {
-    height: '72px',
+      marginBottom: theme.spacing(6.5)
+    }
   },
   formControl: {
     margin: theme.spacing(1),
-    width: '377px',
+    width: '377px'
   },
   pageIndicator: {
     display: 'block',
     [theme.breakpoints.down('xs')]: {
-      width: '24px',
-    },
+      width: '24px'
+    }
   },
   footer: {
     position: 'fixed',
     bottom: 0,
-    right: 0,
+    right: 0
+  },
+  emailContainer: {
+    height: '72px',
+    marginTop: theme.spacing(11),
   },
   responsiveTitle: {
-    [theme.breakpoints.only('xs')]: {
-      fontSize: '34px',
-      lineHeight: '39px',
-    },
+    borderLeft: '8px solid transparent',
+    [theme.breakpoints.up('sm')]: theme.typography.h3
+  },
+  responsiveTitleBrand: {
+    position: 'relative'
   },
   geogrid: {
-    marginLeft: theme.spacing(5),
+    marginLeft: theme.spacing(5)
   },
-  step3Accent: {
-    position: 'absolute',
-
-    border: '0 solid #565190',
+  step2Accent: {
+    display: 'inline-flex',
+    background: '#CEE4D1',
+    borderRadius: '51.07px',
+    position: 'relative',
     [theme.breakpoints.down('xs')]: {
-      borderTopWidth: '8px',
-      borderLeftWidth: '8px',
-      borderRightWidth: '8px',
-      borderBottomWidth: '8px',
-      top: '-16px',
-      right: '-7px',
+      top: '5px',
+      left: '-4px',
+      width: '122px',
+      height: '22.3px'
     },
     [theme.breakpoints.up('sm')]: {
-      borderTopWidth: '16px',
-      borderLeftWidth: '16px',
-      borderRightWidth: '16px',
-      borderBottomWidth: '16px',
-      top: '-29px',
-      right: '-19px',
-    },
-    background: 'transparent',
-    width: 0,
-    height: 0,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderTopColor: 'transparent',
-    transform: 'rotate(45deg)',
+      top: '16px',
+      left: '-20px',
+      width: '164px',
+      height: '31.3px'
+    }
   },
-  step3AccentTypography: {
-    position: 'relative',
-    color: '#565190',
+  step2AccentTypography: {
+    top: 0,
+    left: 0,
+    position: 'absolute'
   },
   formFieldsContainer: {
     [theme.breakpoints.down('xs')]: {
       marginTop: theme.spacing(6),
-      height: '268px',
+      height: '268px'
 
     },
     [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(5),
-      height: '300px',
+      height: '300px'
 
     },
     [theme.breakpoints.up('lg')]: {
-      marginTop: theme.spacing(5),
-      height: '288px',
-    },
+      marginTop: theme.spacing(5.25),
+      height: '288px'
+    }
   },
-  skipThisStepButton: {
-    marginTop: theme.spacing(3),
-  },
+  disabledButton: {
+    marginTop: theme.spacing(1)
+  }
 }))
 
 const Step3: FunctionComponent<StepProps> = ({lead, setLead}: StepProps) => {
-  const classes = useStyles(abTheme)
+  const classes = useStepStyles(abTheme)
   const history = useHistory()
 
+  const [validBrandName, setValidBrandName] = React.useState(true)
+  const [validWebsite, setValidWebsite] = React.useState(true)
   const [formSubmitting, setFormSubmitting] = React.useState(false)
-  const [formSkipping, setFormSkipping] = React.useState(false)
+  const [validEmail,setValidEmail] = React.useState<boolean>(true)
 
   React.useEffect(() => {
-    if (!lead.email) {
-      history.push('/apply/step-1')
-    } else {
-    }
+
   }, [])
 
-  const isRevenueValid = (): boolean => {
-    return lead.revenue !== ''
-  }
-  const isInventoryValid = (): boolean => {
-    return lead.inventory !== ''
-  }
-  const isAccountsReceivableValid = (): boolean => {
-    return lead.accountsReceivable !== ''
+  const validateBrandName = (newBrandName: string): void => {
+    /[a-zA-Z]/.test(newBrandName) ? setValidBrandName(true) : setValidBrandName(false)
   }
 
-  const onRevenueChange = (newRevenue: string): void => {
-    setLead((state: UpdateLeadRequest) => ({...state, revenue: newRevenue}))
+  const validateWebsite = (newBrandName: string): void => {
+    /[a-zA-Z]/.test(newBrandName) ? setValidWebsite(true) : setValidWebsite(false)
   }
 
-  const onInventoryChange = (newInventory: string): void => {
-    setLead((state: UpdateLeadRequest) => ({...state, inventory: newInventory}))
+  const isLoanAmountValid = (): boolean => {
+    return lead.desiredLoanAmount !== ''
   }
 
-  const onAccountsReceivableChange = (newAR: string): void => {
-    setLead((state: UpdateLeadRequest) => ({...state, accountsReceivable: newAR}))
+  const onBrandNameChange = (newBrandName: string): void => {
+    setLead((state: UpdateLeadRequest) => ({...state, brandName: newBrandName}))
+    validateBrandName(newBrandName)
+  }
+
+  const onWebsiteChange = (newWebsite: string): void => {
+    setLead((state: UpdateLeadRequest) => ({...state, website: newWebsite}))
+    validateWebsite(newWebsite)
+  }
+
+  const onEmailChange = (newEmail: string): void => {
+    setLead((state: UpdateLeadRequest) => ({...state, email: newEmail}))
+    emailValidator.isValidEmail(newEmail)
+  }
+
+  const onDesiredLoanAmountChange = (newDesiredLoanAmount: string): void => {
+    setLead((state: UpdateLeadRequest) => ({...state, desiredLoanAmount: newDesiredLoanAmount}))
+    validateBrandName(lead.brandName ?? '')
   }
 
   const isFormValid = () => {
-    return isInventoryValid() || isRevenueValid() || isAccountsReceivableValid()
+    return validBrandName && validWebsite && isLoanAmountValid()
   }
 
-  const updateLead = (isSkip: boolean): Promise<void> => {
-    isSkip ? setFormSkipping(true) : setFormSubmitting(true)
+  const updateLead = (): Promise<void> => {
+    setFormSubmitting(true)
 
-    let updateRequest: UpdateLeadRequest = {email: lead.email, submit: true}
-
-    if (lead.revenue && lead.revenue.length > 0) {
-      updateRequest = {...updateRequest, revenue: lead.revenue}
+    const updateLeadRequest: UpdateLeadRequest = {
+      email: lead.email,
+      brandName: lead.brandName,
+      website: lead.website,
+      desiredLoanAmount: lead.desiredLoanAmount
     }
 
-    if (lead.accountsReceivable && lead.accountsReceivable.length > 0) {
-      updateRequest = {...updateRequest, accountsReceivable: lead.accountsReceivable}
-    }
-
-    if (lead.inventory && lead.inventory.length > 0) {
-      updateRequest = {...updateRequest, inventory: lead.inventory}
-    }
-
-    return leadClient.updateLead(updateRequest).then(() => {
-      history.push('/apply/next-steps')
+    return leadClient.updateLead(updateLeadRequest).then(() => {
+      history.push('/BAL/boldy/adding/layers')
     }).catch(() => {
-      setFormSkipping(false)
       setFormSubmitting(false)
     })
   }
 
   return (
     <MuiThemeProvider theme={abTheme}>
+      <Grid container alignItems="stretch" className={classes.root}>
+        <Grid container direction="column" alignContent="center" className={classes.formContainer}>
+          <Grid item container direction="column">
+            <Typography
+              component="span"
+              variant="h1"
+              color="primary"
+              display="inline"
+              style={{textAlign: 'center', textDecoration: "line-through"}}
+              className={classes.responsiveTitle}>
+              Cold
+            </Typography>
+            <Typography
+              variant="h1"
+              color="textSecondary"
+              style={{textAlign: 'center'}}
+              className={classes.responsiveTitle}>
+              Lead Generation
+            </Typography>
+          </Grid>
+          <Grid container direction="column" alignItems="center"
+                className={classes.formFieldsContainer}>
+            <Grid container justify="center" item>
+              <Typography className={classes.responsiveTitleBrand}>
+                <motion.div
 
-    <Grid container alignItems="stretch" className={classes.root}>
-      <Grid container direction="column" alignContent="center" className={classes.formContainer}>
-        <Grid container item>
-          <Typography
-            variant="h3"
-            className={`${classes.responsiveTitle} ${classes.step3AccentTypography}`}>
-            Extra credit!&nbsp;
-            <div className={classes.step3Accent}>
-            </div>
-          </Typography>
+                >
+                  <div className={classes.step2Accent}></div>
 
-          <Typography
-            component="div"
-            variant="h3"
-            display="inline"
-            color="textSecondary"
-            className={classes.responsiveTitle}
-          >
-            Do you know...
-          </Typography>
-        </Grid>
-        <Grid container direction="column" alignItems="center" justify="space-between"
-              className={classes.formFieldsContainer}>
-          <Grid container justify="center" item className={classes.revenueContainer}>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="select-company-revenue-label">Revenue</InputLabel>
-              <Select labelId="select-company-revenue-label" id="select-company-revenue"
-                      value={lead.revenue ?? ''}
-                      onChange={(e): void => onRevenueChange(e.target.value as string)}>
-                <MenuItem value="" disabled>Revenue</MenuItem>
-                <MenuItem value="Not Sure">Not Sure</MenuItem>
-                <MenuItem value="Under $1M">Under $1M</MenuItem>
-                <MenuItem value="$1M - $10M">$1M - $10M</MenuItem>
-                <MenuItem value="$10M - $100M+">$10M - $100M+</MenuItem>
-              </Select>
-            </FormControl>
+                  <Typography
+                    component="div"
+                    variant="h4"
+                    display="inline"
+                    color="textSecondary"
+                    className={`${classes.step2AccentTypography} ${classes.responsiveTitle}`}
+                  >
+                    Boldy
+                  </Typography>
+                </motion.div>
+              </Typography>
+            </Grid>
+            <Grid container justify="center" item style={{overflow:"hidden"}}>
+              <motion.div
+                initial={{
+                  position:"relative",
+                  left: -250,
+                  opacity:0
+                }}
+                animate={{
+                  left: 0,
+                  opacity: 1
+                }}
+              >
+            <Typography
+                variant="h1"
+                color="textSecondary"
+                style={{textAlign: 'center', color: "rgb(86, 81, 144)", marginTop: theme.spacing(2),}}
+                className={classes.responsiveTitle}>
+                Adding
+              </Typography>
+              </motion.div>
+            </Grid>
           </Grid>
-          <Grid container justify="center" item className={classes.accountsReceivableContainer}>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="select-accounts-receivable-label">Accounts Receivable</InputLabel>
-              <Select labelId="select-accounts-receivable-label"
-                      id="select-accounts-receivable"
-                      value={lead.accountsReceivable ?? ''}
-                      onChange={(e): void => onAccountsReceivableChange(e.target.value as string)}>
-                <MenuItem value="" disabled>Accounts Receivable</MenuItem>
-                <MenuItem value="Not Sure">Not Sure</MenuItem>
-                <MenuItem value="Under $250K">Under $250K</MenuItem>
-                <MenuItem value="$250K - $500K">$250K - $500K</MenuItem>
-                <MenuItem value="$500K - $1M">$500K - $1M</MenuItem>
-                <MenuItem value="Above $1M">Above $1M</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid container justify="center" item className={classes.inventoryContainer}>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="select-inventory-label">Inventory</InputLabel>
-              <Select labelId="select-inventory-label" id="select-inventory"
-                      value={lead.inventory ?? ''}
-                      onChange={(e): void => onInventoryChange(e.target.value as string)}>
-                <MenuItem value="" disabled>Inventory</MenuItem>
-                <MenuItem value="Not Sure">Not Sure</MenuItem>
-                <MenuItem value="Under $250K">Under $250K</MenuItem>
-                <MenuItem value="$250K - $500K">$250K - $500K</MenuItem>
-                <MenuItem value="$500K - $1M">$500K - $1M</MenuItem>
-                <MenuItem value="Above $1M">Above $1M</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-        <Grid container item>
-          <Button
-            color="primary"
-            variant="contained"
-            disabled={!isFormValid() || formSubmitting}
-            aria-label="submit"
-            classes={
+          <Grid container justify="center" item className={classes.emailContainer}>
+            <TextField
+              fullWidth={true}
+              error={!validEmail}
+              helperText={validEmail ? '' : 'Invalid email, please provide a valid address.'}
+              label="Your Email"
+              id="email"
+              name="email address"
+              type="email"
+              className={classes.emailTextField}
+              value={lead.email}
+              onChange={(e): void => onEmailChange(e.target.value)}
+              onBlur={(e): void =>
               {
-                disabled: classes.disabledButton,
-              }
-            }
-            className={classes.button}
-            fullWidth={true}
-            onClick={() => updateLead(false)}
-          >
-            {!formSubmitting && <Typography variant="button" align="center">Submit</Typography>}
-            {formSubmitting && <CircularProgress color="inherit" size="22px"/>}
-          </Button>
+                emailValidator.isValidEmail(e.target.value)
+              }}
+            />
+          </Grid>
+          <Grid container item>
+            <Button
+              color="primary"
+              variant="contained"
+              // disabled={!isFormValid() || formSubmitting}
+              aria-label="next to step 3"
+              classes={{disabled: classes.disabledButton}}
+              className={classes.button}
+              fullWidth={true}
+              onClick={updateLead}
+            >
+              {!formSubmitting && <Typography variant="button" align="center">Click Here</Typography>}
+              {formSubmitting && <CircularProgress color="inherit" size="22px"/>}
+            </Button>
+          </Grid>
         </Grid>
-        <Grid container direction="column" alignItems="center">
-          <Button
-            color="primary"
-            variant="text"
-            disabled={formSkipping}
-            aria-label="skip this step"
-            className={classes.skipThisStepButton}
-            fullWidth={true}
-            onClick={() => updateLead(true)}
-          >
-            {!formSkipping && <Typography variant="button" align="center">Skip this step</Typography>}
-            {formSkipping && <CircularProgress color="inherit" size="22px"/>}
-          </Button>
-        </Grid>
+        <Hidden mdDown>
+          <Grid item className={classes.geogrid}>
+            <CssGeogrid stepNumber={3}/>
+          </Grid>
+        </Hidden>
+        <Hidden lgUp>
+          <Grid container item direction="column" className={classes.footer} alignContent="flex-end">
+            <GeogridShapeContainer color="#FB7C6A" shape="triangleUpRight" pageIndicator/>
+            <GeogridShapeContainer color="#CEE4D1" shape="triangleUpRight" fade pageIndicator/>
+            <GeogridShapeContainer color="#FDF3EB" shape="triangleUpRight" pageIndicator/>
+          </Grid>
+        </Hidden>
       </Grid>
-      <Hidden mdDown>
-        <Grid item className={classes.geogrid}>
-          <CssGeogrid stepNumber={3}/>
-        </Grid>
-      </Hidden>
-      <Hidden lgUp>
-        <Grid container item direction="column" className={classes.footer} alignContent="flex-end">
-          <GeogridShapeContainer color="#FB7C6A" shape='triangleUpRight' pageIndicator/>
-          <GeogridShapeContainer color="#CEE4D1" shape='triangleUpRight' pageIndicator/>
-          <GeogridShapeContainer color="#565190" shape='triangleUpRight' fade pageIndicator/>
-        </Grid>
-      </Hidden>
-    </Grid>
     </MuiThemeProvider>
   )
 }

@@ -269,7 +269,7 @@ const ModernServiceSection: FunctionComponent<ModernServiceProps> = (props) => {
                   {
                     service?.servicesLinks && service.servicesLinks.map((serviceLink: { title: string, url: string }, index) => {
                       return <Grid item key={index}>
-                        <Link href={serviceLink.url}
+                        <Link href="#"
                               style={{
                                 fontSize: '17px',
                                 lineHeight: 1.5,
@@ -279,7 +279,10 @@ const ModernServiceSection: FunctionComponent<ModernServiceProps> = (props) => {
                     })
                   }
                   <Grid item container justify="center">
-                    <Button variant="outlined" style={{
+                    <Button
+                      href="#"
+                      variant="outlined"
+                      style={{
                       color: 'white',
                       borderColor: 'white',
                       marginTop: '16px'

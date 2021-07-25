@@ -33,21 +33,21 @@ function App() {
       <Grid container item direction="column" alignItems="center">
         <Grid item style={{overflow: 'hidden'}}>
           <Switch>
-            <Route exact path="/terrell" component={TerrellsPortfolio}/>
+            <Route exact path="/SW" component={TerrellsPortfolio}/>
             <Route exact path="/kool-stuff" component={KingDermDemo}/>
-            <Route exact path="/dermKing" component={MainLayout}/>
+            <Route exact path="/DandA" component={MainLayout}/>
             <Route exact path="/realTerrell" component={TerrellsRealPortfolio}/>
             {/*<Route exact path="/abReplica" component={() => {*/}
             {/*  window.location.href = 'http://assembledbrands.com';*/}
             {/*  return null;*/}
             {/*}}/>*/}
-            <Route exact path="/apply" render={(): ReactElement => <Redirect to="/apply/step-1"/>}/>
-            <Route exact path="/apply/step-1" render={() => <Step1 lead={coldLead} setLead={setColdLead}/>}/>
-            <Route exact path="/apply/step-2" render={() => <Step2 lead={coldLead} setLead={setColdLead}/>}/>
-            <Route exact path="/apply/step-3" render={() => <Step3 lead={coldLead} setLead={setColdLead}/>}/>
-            <Route exact path="/apply/next-steps"
+            {/*<Route exact path="/BAL" render={(): ReactElement => <Redirect to="/BAL"/>}/>*/}
+            <Route exact path="/BAL" render={() => <Step1 lead={coldLead} setLead={setColdLead}/>}/>
+            <Route exact path="/BAL/boldy" render={() => <Step2 lead={coldLead} setLead={setColdLead}/>}/>
+            <Route exact path="/BAL/boldy/adding" render={() => <Step3 lead={coldLead} setLead={setColdLead}/>}/>
+            <Route exact path="/BAL/boldy/adding/layers"
                    render={() => <NextSteps lead={coldLead} setLead={setColdLead}/>}/>
-            <Redirect to="/terrell"/>
+            <Redirect to="/SW"/>
           </Switch>
         </Grid>
       </Grid>

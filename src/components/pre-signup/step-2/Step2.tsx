@@ -1,26 +1,15 @@
-import {
-  Button,
-  CircularProgress,
-  FormControl,
-  Grid,
-  Hidden,
-  InputLabel,
-  MenuItem,
-  MuiThemeProvider,
-  Select,
-  Slide,
-  TextField,
-  Typography
-} from '@material-ui/core'
+import {Button, CircularProgress, Grid, Hidden, MuiThemeProvider, TextField, Typography} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import theme from '../../../common/Theme'
 import leadClient, {UpdateLeadRequest} from '../leadClient'
 import {useHistory} from 'react-router-dom'
 import {StepProps} from '../PreSignup'
 import CssGeogrid from '../css-geogrid/CssGeogrid'
 import GeogridShapeContainer from '../css-geogrid/GeoGridShapeContainer'
 import abTheme from '../../abReplica/common/Theme'
+import {motion, useAnimation} from 'framer-motion'
+import {useStepStyles} from '../step-1/Step1'
+import emailValidator from '../../../utils/emailValidator'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -75,6 +64,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     bottom: 0,
     right: 0
   },
+  emailContainer: {
+    height: '72px',
+    marginTop: theme.spacing(11)
+  },
   responsiveTitle: {
     borderLeft: '8px solid transparent',
     [theme.breakpoints.up('sm')]: theme.typography.h3
@@ -97,8 +90,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: '22.3px'
     },
     [theme.breakpoints.up('sm')]: {
-      top: '6px',
-      left: '-8px',
+      top: '16px',
+      left: '-20px',
       width: '164px',
       height: '31.3px'
     }
@@ -130,18 +123,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const Step2: FunctionComponent<StepProps> = ({lead, setLead}: StepProps) => {
-  const classes = useStyles(abTheme)
+  const classes = useStepStyles(abTheme)
   const history = useHistory()
+  const controls = useAnimation()
+  controls.start('c')
 
   const [validBrandName, setValidBrandName] = React.useState(true)
   const [validWebsite, setValidWebsite] = React.useState(true)
   const [formSubmitting, setFormSubmitting] = React.useState(false)
+  const [validEmail,setValidEmail] = React.useState<boolean>(true)
 
   React.useEffect(() => {
-    if (!lead.email || lead.email === '') {
-      history.push('/apply/step-1')
-    }
+
   }, [])
+
+  const onEmailChange = (newEmail: string): void => {
+    setLead((state: UpdateLeadRequest) => ({...state, email: newEmail}))
+    emailValidator.isValidEmail(newEmail)
+  }
 
   const validateBrandName = (newBrandName: string): void => {
     /[a-zA-Z]/.test(newBrandName) ? setValidBrandName(true) : setValidBrandName(false)
@@ -185,7 +184,7 @@ const Step2: FunctionComponent<StepProps> = ({lead, setLead}: StepProps) => {
     }
 
     return leadClient.updateLead(updateLeadRequest).then(() => {
-      history.push('/apply/step-3')
+      history.push('/BAL/boldy/adding')
     }).catch(() => {
       setFormSubmitting(false)
     })
@@ -195,94 +194,85 @@ const Step2: FunctionComponent<StepProps> = ({lead, setLead}: StepProps) => {
     <MuiThemeProvider theme={abTheme}>
       <Grid container alignItems="stretch" className={classes.root}>
         <Grid container direction="column" alignContent="center" className={classes.formContainer}>
-          <Grid item>
+          <Grid item container direction="column" alignItems="center">
+
+              <Grid container item justify="center">
+
+              <Typography
+                component="span"
+                variant="h1"
+                color="primary"
+                display="inline"
+                style={{textAlign: 'center', textDecoration:"line-through"}}
+                className={classes.responsiveTitle}>
+                Cold
+              </Typography>
+              </Grid>
             <Typography
-              variant="h4"
+              variant="h1"
               color="textSecondary"
+              style={{textAlign: 'center'}}
               className={classes.responsiveTitle}>
-              Introduce your&nbsp;
-              <div className={classes.responsiveTitleBrand}>
-                <Slide in={true} direction={'right'} timeout={800}>
-                  <div className={classes.step2Accent}>
-                  </div>
-                </Slide>
-                <Typography
-                  component="div"
-                  variant="h4"
-                  display="inline"
-                  color="textSecondary"
-                  className={`${classes.step2AccentTypography} ${classes.responsiveTitle}`}
-                >
-                  brand.
-                </Typography>
-              </div>
-
-
+              Lead Generation
             </Typography>
           </Grid>
-          <Grid container direction="column" alignItems="center" justify="space-between"
+          <Grid container direction="column" alignItems="center"
                 className={classes.formFieldsContainer}>
-            <Grid container justify="center" item className={classes.nameContainer}>
-              <FormControl className={classes.formControl}>
-                <TextField
-                  fullWidth={true}
-                  error={!validBrandName}
-                  helperText={validBrandName ? '' : 'Please provide a valid brand name.'}
-                  label="Brand Name"
-                  id="brandName"
-                  name="brand name"
-                  type="text"
-                  value={lead.brandName ?? ''}
-                  onChange={(e): void => onBrandNameChange(e.target.value)}
-                  onBlur={(e): void => validateBrandName(e.target.value)}
-                />
-              </FormControl>
-            </Grid>
+            <Grid container justify="center" item>
+              <Typography className={classes.responsiveTitleBrand}>
+                  <motion.div
+                    initial={{
+                      scale:2
+                    }}
+                    animate={{
+                    scale:1
+                  }}
+                  >
+                    <div className={classes.step2Accent}></div>
 
-            <Grid container justify="center" item className={classes.websiteContainer}>
-              <FormControl className={classes.formControl}>
-                <TextField
-                  fullWidth={true}
-                  error={!validWebsite}
-                  helperText={validWebsite ? '' : 'Please provide a valid website.'}
-                  label="Website"
-                  id="webSite"
-                  name="website"
-                  type="text"
-                  value={lead.website ?? ''}
-                  onChange={(e): void => onWebsiteChange(e.target.value)}
-                  onBlur={(e): void => validateWebsite(e.target.value)}
-                />
-              </FormControl>
+                  <Typography
+                    component="div"
+                    variant="h4"
+                    display="inline"
+                    color="textSecondary"
+                    className={`${classes.step2AccentTypography} ${classes.responsiveTitle}`}
+                  >
+                    Boldy
+                  </Typography>
+                  </motion.div>
+              </Typography>
             </Grid>
-
-            <Grid container justify="center" item className={classes.loanAmountContainer}>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="select-desired-loan-amount-label">Desired Loan Amount</InputLabel>
-                <Select labelId="select-desired-loan-amount-label" id="select-desired-loan-amount"
-                        value={lead.desiredLoanAmount ?? ''}
-                        onChange={(e): void => onDesiredLoanAmountChange(e.target.value as string)}>
-                  <MenuItem value="" disabled>Desired Loan Amount</MenuItem>
-                  <MenuItem value="Not sure yet">Not sure yet</MenuItem>
-                  <MenuItem value="Under $1M">Under $1M</MenuItem>
-                  <MenuItem value="$1M - $5M">$1M - $5M</MenuItem>
-                  <MenuItem value="$5M - $10M+">$5M - $10M+</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+          </Grid>
+          <Grid container justify="center" item className={classes.emailContainer}>
+            <TextField
+              fullWidth={true}
+              error={!validEmail}
+              helperText={validEmail ? '' : 'Invalid email, please provide a valid address.'}
+              label="Your Email"
+              id="email"
+              name="email address"
+              type="email"
+              className={classes.emailTextField}
+              value={lead.email}
+              onChange={(e): void => onEmailChange(e.target.value)}
+              onBlur={(e): void =>
+              {
+                emailValidator.isValidEmail(e.target.value)
+              }}
+            />
           </Grid>
           <Grid container item>
             <Button
               color="primary"
               variant="contained"
-              disabled={!isFormValid() || formSubmitting}
+              // disabled={!isFormValid() || formSubmitting}
               aria-label="next to step 3"
               classes={{disabled: classes.disabledButton}}
               className={classes.button}
               fullWidth={true}
               onClick={updateLead}
             >
-              {!formSubmitting && <Typography variant="button" align="center">Next</Typography>}
+              {!formSubmitting && <Typography variant="button" align="center">Click Here</Typography>}
               {formSubmitting && <CircularProgress color="inherit" size="22px"/>}
             </Button>
           </Grid>

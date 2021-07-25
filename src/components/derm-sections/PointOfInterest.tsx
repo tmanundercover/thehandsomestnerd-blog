@@ -5,7 +5,7 @@ import {SanityColor} from '../terrells-portfolio-sections/BlogSection'
 import pointOfInterestMarker from '../../common/poi-mark.svg'
 import theme from '../../common/Theme'
 import subjectPhoto from './sculpting-male-front.png'
-import {motion} from 'framer-motion'
+import {motion, useAnimation} from 'framer-motion'
 import Carousel from 'react-material-ui-carousel'
 import {Close} from '@material-ui/icons'
 
@@ -29,6 +29,8 @@ export type SanityPointOfInterest = {
   gallery?: { title: string, description: string }[],
   xCoord?: number,
   yCoord?: number,
+  winX?: number,
+  winY?: number,
   galleryColor?: string,
 }
 
@@ -37,8 +39,10 @@ const pointsOfInterests: SanityPointOfInterest[] = [{
   displayedSubtitle: 'Biceps',
   displayedDescription: 'With Dr. Emer, you can achieve the perfect biceps that you’ve always wanted – ones that give you a more athletic look and boost your confidence.',
   buttonText: 'Learn More',
-  xCoord: 50,
+  xCoord: 127,
   yCoord: 220,
+  winX: 8,
+  winY: 27,
   galleryColor: '065464',
   gallery: [
     {
@@ -64,8 +68,10 @@ const pointsOfInterests: SanityPointOfInterest[] = [{
     displayedSubtitle: 'Calves',
     displayedDescription: 'Dr. Emer uses hi-definition liposuction to remove excess fat and create a more sculpted, contoured shape.',
     buttonText: 'Learn More',
-    xCoord: 210,
+    xCoord: 270,
     yCoord: 661,
+    winY: 496,
+    winX: 228,
     galleryColor: '34acbc',
     gallery: [
       {
@@ -91,8 +97,10 @@ const pointsOfInterests: SanityPointOfInterest[] = [{
     displayedSubtitle: 'Sides',
     displayedDescription: 'Liposuction to remove excess fat in the love handle area and create a more sculpted, contoured shape.',
     buttonText: 'Learn More',
-    xCoord: 193,
+    xCoord: 271,
     yCoord: 329,
+    winX: 563,
+    winY: 281,
     galleryColor: '85c3cf',
     gallery: [
       {
@@ -132,6 +140,8 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
     setIndex(0)
   }, [])
 
+  const controls = useAnimation()
+  controls.start('move')
 
   const [description, setDescription] = React.useState<string>('')
   const [subtitle, setSubtitle] = React.useState<string>('')
@@ -139,6 +149,7 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
   const [buttonText, setButtonText] = React.useState<string>('')
   const [gallery, setGallery] = React.useState<any[]>([])
   const [galleryOpen, setGalleryOpen] = React.useState<boolean>(false)
+  const [winCoord,setWinCoord] = React.useState<{x:number, y: number}>({x:0, y:0})
 
   const changePoi = (index: number) => {
     setDescription(pointsOfInterests[index].displayedDescription ?? '')
@@ -149,25 +160,36 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
   }
 
   return (
-    <Grid container style={{backgroundColor: 'black'}}>
-      <Grid item container xs={4}>
-        <Grid item>
-          <Grid container item direction="column" xs={9} spacing={3}
-                style={{padding: theme.spacing(2, 3), color: 'white'}}>
-            <Grid item><Typography>{title}</Typography></Grid>
-            <Grid item>"<Typography style={{display: 'inline-block'}}>{subtitle}</Typography>"</Grid>
-            <Grid item><Typography>{description}</Typography></Grid>
-            <Grid item container justify="center">
-              <Button variant="outlined" style={{color: 'white', borderColor: 'white'}}>
-                <Typography>{buttonText}</Typography>
-              </Button>
+    <Grid container style={{backgroundColor: 'black', position:"relative"}}>
+      <Grid item style={{position:"absolute", top:0, left:0}}>
+          <motion.div
+            style={{position:"relative", width: "450px", zIndex: 9998}}
+            animate={controls}
+            variants={{
+              ['move']: {top: pointsOfInterests[index].winY+"px", left: pointsOfInterests[index].winX+"px"},
+            }}
+          >
+            <Grid item xs={9}>
+              <Grid item
+                    style={{padding: theme.spacing(2, 3), color: 'white'}}>
+                <Grid item><Typography>{title}</Typography></Grid>
+                <Grid item>"<Typography style={{display: 'inline-block'}}>{subtitle}</Typography>"</Grid>
+                <Grid item><Typography>{description}</Typography></Grid>
+                <Grid item container justify="center">
+                  <Button href="#" variant="outlined" style={{color: 'white', borderColor: 'white'}}>
+                    <Typography>{buttonText}</Typography>
+                  </Button>
+                </Grid>
+              </Grid>
+
+
             </Grid>
-          </Grid>
-        </Grid>
+          </motion.div>
 
       </Grid>
-      <Grid container item xs={5}>
-        <Grid container item style={{position: 'relative'}}>
+      <Grid item container xs={2}></Grid>
+      <Grid container item xs={10}>
+        <Grid item style={{position: 'relative', padding: theme.spacing(0,10)}}>
           <img
             // src={poi.image.url}
             src={subjectPhoto}
@@ -184,13 +206,17 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
                       position: 'absolute',
                       top: poi.yCoord,
                       left: poi.xCoord,
-                      borderRadius: '12px'
+                      borderRadius: '12px',
+                      zIndex: 9998
                     }}>
                     <motion.div
                       initial={{
                         borderRadius: '12px'
                       }}
-                      onClick={() => {
+                      onClick={(e) => {
+                        setWinCoord({x:e.clientX, y: e.clientY})
+                        console.log("mouse event", e)
+                        controls.start('move')
                         setIndex(poiIndex)
                       }}
                       whileHover={{
@@ -248,49 +274,49 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
 
       {/*</Grid>*/}
 
-      <Modal
-        open={galleryOpen}
-      ><Grid container justify="center">
-        <Grid container item xs={8} style={{backgroundColor: 'whitesmoke', padding: theme.spacing(3)}} justify="center">
-          <Grid container item justify="flex-end">
-            <Grid item>
-              <IconButton onClick={()=>setGalleryOpen(false)}><Close/></IconButton>
-            </Grid>
-          </Grid>
-          <Grid container item direction="column" spacing={4}>
-            <Grid item container direction="column" alignItems="center" spacing={2}>
-              <Grid item>
-                <Typography variant="h5">{pointsOfInterests[index].displayedSubtitle}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography>{pointsOfInterests[index].displayedDescription}</Typography>
-              </Grid>
-            </Grid>
-            <Grid container item justify="center">
-              <Carousel>
-                {
-                  pointsOfInterests[index]?.gallery?.map((galleryImage, galleryIndex) => {
-                    return <Grid key={galleryIndex} item xs={6} container alignItems="center" direction="column">
-                      <Grid container item style={{width:480, height:550}}>
-                        <img
-                          src={`https://via.placeholder.com/480x550/${pointsOfInterests[index]?.galleryColor}/FFFFFF?text=${galleryImage.title}`}/>
-                      </Grid>
-                      <Grid item container justify="center">
-                        <Typography variant="subtitle1">{galleryImage.title}</Typography>
-                      </Grid>
-                      <Grid item container wrap="nowrap" justify="center">
-                        <Typography variant="caption" style={{textAlign: "center"}}>{galleryImage.description}</Typography>
-                      </Grid>
-                    </Grid>
-                  })
-                }
-              </Carousel>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
+      {/*<Modal*/}
+      {/*  open={galleryOpen}*/}
+      {/*><Grid container justify="center">*/}
+      {/*  <Grid container item xs={8} style={{backgroundColor: 'whitesmoke', padding: theme.spacing(3)}} justify="center">*/}
+      {/*    <Grid container item justify="flex-end">*/}
+      {/*      <Grid item>*/}
+      {/*        <IconButton onClick={()=>setGalleryOpen(false)}><Close/></IconButton>*/}
+      {/*      </Grid>*/}
+      {/*    </Grid>*/}
+      {/*    <Grid container item direction="column" spacing={4}>*/}
+      {/*      <Grid item container direction="column" alignItems="center" spacing={2}>*/}
+      {/*        <Grid item>*/}
+      {/*          <Typography variant="h5">{pointsOfInterests[index].displayedSubtitle}</Typography>*/}
+      {/*        </Grid>*/}
+      {/*        <Grid item>*/}
+      {/*          <Typography>{pointsOfInterests[index].displayedDescription}</Typography>*/}
+      {/*        </Grid>*/}
+      {/*      </Grid>*/}
+      {/*      <Grid container item justify="center">*/}
+      {/*        <Carousel>*/}
+      {/*          {*/}
+      {/*            pointsOfInterests[index]?.gallery?.map((galleryImage, galleryIndex) => {*/}
+      {/*              return <Grid key={galleryIndex} item xs={6} container alignItems="center" direction="column">*/}
+      {/*                <Grid container item style={{width:480, height:550}}>*/}
+      {/*                  <img*/}
+      {/*                    src={`https://via.placeholder.com/480x550/${pointsOfInterests[index]?.galleryColor}/FFFFFF?text=${galleryImage.title}`}/>*/}
+      {/*                </Grid>*/}
+      {/*                <Grid item container justify="center">*/}
+      {/*                  <Typography variant="subtitle1">{galleryImage.title}</Typography>*/}
+      {/*                </Grid>*/}
+      {/*                <Grid item container wrap="nowrap" justify="center">*/}
+      {/*                  <Typography variant="caption" style={{textAlign: "center"}}>{galleryImage.description}</Typography>*/}
+      {/*                </Grid>*/}
+      {/*              </Grid>*/}
+      {/*            })*/}
+      {/*          }*/}
+      {/*        </Carousel>*/}
+      {/*      </Grid>*/}
+      {/*    </Grid>*/}
+      {/*  </Grid>*/}
+      {/*</Grid>*/}
 
-      </Modal>
+      {/*</Modal>*/}
     </Grid>
   )
 }

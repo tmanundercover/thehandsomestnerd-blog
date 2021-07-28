@@ -163,7 +163,7 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
     <Grid container style={{backgroundColor: 'black', position:"relative"}}>
       <Grid item style={{position:"absolute", top:0, left:0}}>
           <motion.div
-            style={{position:"relative", width: "450px", zIndex: 9998}}
+            style={{position:"relative", width: "450px", zIndex: 9990}}
             animate={controls}
             variants={{
               ['move']: {top: pointsOfInterests[index].winY+"px", left: pointsOfInterests[index].winX+"px"},
@@ -207,7 +207,7 @@ const PointOfInterest: FunctionComponent<PointOfInterestProps> = (props) => {
                       top: poi.yCoord,
                       left: poi.xCoord,
                       borderRadius: '12px',
-                      zIndex: 9998
+                      zIndex: 9990
                     }}>
                     <motion.div
                       initial={{

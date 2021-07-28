@@ -91,10 +91,10 @@ const HomePageHeroImage: FunctionComponent<HeroImageWithTextProps> = (props) => 
         <Hidden mdUp>
           <Grid container justify="center">
             <Grid item className={classes.smallTitle}>
-              <Typography component="span" color="secondary" variant="h2" className={classes.lightText}>Capital
-                to </Typography>
-              <Typography component="span" color="secondary" variant="h2"><b>g<span
-                className={classes.underline}>row</span>.</b></Typography>
+              <Typography color="textPrimary" variant="h2" className={classes.lightText}>Skincare for</Typography>
+
+              <Typography component="span" color="textPrimary" variant="h2"><b><span
+                className={classes.underline}>you</span>.</b></Typography>
             </Grid>
           </Grid>
         </Hidden>

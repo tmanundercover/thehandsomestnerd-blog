@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   headerSectionContainer: {
     backgroundColor: theme.palette.background.paper,
     position: 'fixed',
-    zIndex: 1001,
+    zIndex: 9999,
     left: 0,
     padding: theme.spacing(0, 4, 0, 3)
   },

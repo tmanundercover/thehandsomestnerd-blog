@@ -11,7 +11,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: '30px',
     padding: theme.spacing(4,4, 8,4),
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    zIndex:9999
   },
   headerMenuItem: {
     fontWeight: 600,

@@ -53,7 +53,7 @@ function App() {
             <Route exact path="/BAL/boldy/adding" render={() => <Step3 lead={coldLead} setLead={setColdLead}/>}/>
             <Route exact path="/BAL/boldy/adding/layers"
                    render={() => <NextSteps lead={coldLead} setLead={setColdLead}/>}/>
-            <Redirect to={RoutesEnum.LANDING}/>
+            <Redirect to={RoutesEnum.MY_PORTFOLIO}/>
           </Switch>
         </Grid>
       </Grid>

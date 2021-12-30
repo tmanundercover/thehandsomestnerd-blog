@@ -1,7 +1,6 @@
 import FutureStd from './fonts/FuturaStdBook/FuturaStdBook.otf'
 import FutureHeavy from './fonts/FuturaStdHeavy/FuturaStdHeavy.otf'
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-import {responsiveFontSizes} from '@material-ui/core'
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core'
 
 declare module '@material-ui/core/styles/createPalette' {
   interface Palette {

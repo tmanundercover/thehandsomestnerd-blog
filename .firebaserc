@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "the-handsomest-nerd"
+  },
+  "targets": {
+    "the-handsomest-nerd": {
+      "hosting": {
+        "the-handsomest-nerd": [
+          "the-handsomest-nerd"
+        ],
+        "thehandsomestnerd": [
+          "thehandsomestnerd"
+        ]
+      }
+    }
   }
 }

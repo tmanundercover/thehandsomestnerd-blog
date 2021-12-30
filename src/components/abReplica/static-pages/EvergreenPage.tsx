@@ -46,11 +46,11 @@ const EvergreenPage: FunctionComponent = () => {
   const classes = useStyles(abTheme)
   const history = useHistory()
 
-  const {slug}: { slug: string } = useParams()
+  const {slug}: { slug?: string } = useParams()
   const [pageData, setPageData] = React.useState<SanityEvergreenPage>({})
 
   const getEvergreenPageData = async (): Promise<void> => {
-    let sanityEvergreenPage = await cmsStaticPagesClient.fetchEvergreenPage(slug)
+    let sanityEvergreenPage = await cmsStaticPagesClient.fetchEvergreenPage(slug ?? '')
     if (!sanityEvergreenPage) {
       history.push(`/blog/${slug}`)
     }

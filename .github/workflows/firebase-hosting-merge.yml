@@ -2,8 +2,6 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-env:
-  CI: false
 'on':
   push:
     branches:
@@ -11,7 +9,6 @@ env:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/master'}}
     steps:
       - uses: actions/checkout@v2
       - run: npm ci && tsc && yarn build
@@ -20,4 +17,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THE_HANDSOMEST_NERD }}'
           channelId: live
-          projectId: thehandsomestnerd
+          projectId: the-handsomest-nerd

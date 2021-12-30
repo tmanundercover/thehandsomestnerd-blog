@@ -16,6 +16,7 @@ import BlogSection from './terrells-portfolio-sections/BlogSection'
 import SourceCode from './SourceCode'
 import SelectedWorksMockupsSection from './terrells-portfolio-sections/SelectedWorksMockupsSection'
 import ModernServiceSection from './derm-sections/ModernServiceSection'
+import SelectedWorksMockupsSectionTerrell from './terrells-portfolio-sections/SelectedWorksMockupsSectionTerrell'
 
 export type BlockContentLayoutContainerProps = { content?: any }
 
@@ -69,7 +70,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
         return <SkillsSection key={index} skillsHeading={columnLayoutContainer.skillsHeading}
                               skillsText={columnLayoutContainer.skillsText} skills={columnLayoutContainer.skills}/>
       case 'selectedWorksAnimated':
-        return <SelectedWorksMockupsSection />
+        return <SelectedWorksMockupsSectionTerrell />
       case 'bookMe':
         return <BookMeSection key={index} prompt={columnLayoutContainer.freelancePrompt}/>
       case 'contactUs':

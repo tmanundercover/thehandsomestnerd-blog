@@ -50,6 +50,10 @@ import imageAsset from './imageAsset'
 import modernServicesSection from './derm-sections/modern-services/ModernServicesSection'
 import modernService from './derm-sections/modern-services/ModernService'
 import SelectedWorksAnimated from './sections/SelectedWorksAnimated'
+import csvToProcessFile from './csvToProcessFile'
+import csvToProcess from './csvToProcess'
+import design from './design'
+import designToProcess from './designToProcess'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -107,6 +111,11 @@ export default createSchema({
     imageCarousel,
     imageAsset,
     modernServicesSection,
-    modernService
+    modernService,
+    //firebasefunctions,
+    csvToProcessFile,
+    csvToProcess,
+    design,
+    designToProcess
   ]),
 })

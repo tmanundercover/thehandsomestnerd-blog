@@ -18,6 +18,19 @@ export default {
             },
         },
         {
+            name: 'logoImageSrc',
+            title: 'Logo image Src',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'logoImageAltText',
+            title: 'Logo Image Alt Text',
+            type: 'string',
+        },
+        {
             name: 'subMenus',
             title: 'Sub Menu',
             type: 'array',

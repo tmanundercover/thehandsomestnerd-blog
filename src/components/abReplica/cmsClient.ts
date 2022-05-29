@@ -1,9 +1,13 @@
 import sanityClient from '../../sanityClient'
+import { SanityRef } from '../../common/sanityIo/Types'
+import { WhySwitchSectionType } from '../BlockContentLayoutContainer'
 
 export type SanityMenuItem = {
   title?: string,
   displayText?: string,
   url?: string
+  isOutlinedButton?: boolean
+  isContainedButton?: boolean
 }
 
 export type SanitySlug = {
@@ -13,7 +17,7 @@ export type SanitySlug = {
 
 export type SanityMenuGroup = {
   title?: string,
-  menuGroupTitle?:string,
+  menuGroupTitle?: string,
   slug?: SanitySlug,
   displayText?: string,
   links?: SanityMenuItem[]
@@ -24,6 +28,8 @@ export type SanityMenuContainer = {
   slug?: SanitySlug,
   displayText?: string,
   menuItems?: SanityMenuGroup[]
+  logoImageAltText?: string
+  logoImageSrc?: SanityImage
 }
 
 export type SanityBlogCategory = {
@@ -35,7 +41,20 @@ export type SanityBlogCategory = {
 export type SanityImage = {
   asset: {
     _id: string,
-    url: string
+    url: string,
+    altText: string,
+    metadata: {
+      hasAlpha: boolean
+      isOpaque: boolean
+      lqip?: string
+      blurHash?: string
+      dimensions: {
+        _type: 'sanity.imageDimensions'
+        aspectRatio: number
+        height: number
+        width: number
+      }
+    },
   }
 }
 
@@ -250,21 +269,30 @@ const fetchLandingPageHeaderMenu = (): Promise<SanityMenuContainer> => {
       `*[_type=="menuContainer" && slug.current == 'header-menu']{
           title,
           slug,
-         "menuItems": subMenus[]->{slug, displayText, links[] -> {displayText, url}}
+         "menuItems": subMenus[]->{slug, displayText, links[] -> }
        }`)
     .then((data: SanityMenuContainer[]) => {
       return data[0]
     })
 }
 
-const fetchLandingPageFooterMenu = (): Promise<SanityMenuContainer> => {
+const fetchLandingPageFooterMenu = (footerSlug: string | undefined): Promise<SanityMenuContainer> => {
+  const slug = footerSlug ?? 'footer-menu'
+
   return sanityClient
     .fetch(
-      `*[_type=="menuContainer" && slug.current == 'footer-menu']{
+      `*[_type=="menuContainer" && slug.current == $slug]{
           title,
           slug,
-         "menuItems": subMenus[]->{slug, displayText, links[] -> {displayText, url}}
-       }`
+          logoImageSrc,
+          logoImageAltText,
+         "menuItems": subMenus[]->{slug, title, logoImage{
+            asset->{
+              _id,
+              url
+             }
+           }, menuGroupTitle, links[] ->}
+       }`, {slug}
     )
     .then((data: SanityMenuContainer[]) => {
       return data[0]
@@ -274,12 +302,12 @@ const fetchLandingPageFooterMenu = (): Promise<SanityMenuContainer> => {
 const fetchBlogCategories = (): Promise<SanityBlogCategory[]> => {
   return sanityClient
     .fetch(
-    `*[_type == "category"]{
+      `*[_type == "category"]{
         title,
         description,
         color
     }`
-  )
+    )
     .then((data: SanityBlogCategory[]) => {
       return data
     })
@@ -297,8 +325,39 @@ const fetchBlogGroup = (title: string): Promise<SanityBlogGroup> => {
       return data
     })
 }
+const fetchWhySwitch = async (id: string): Promise<WhySwitchSectionType> => {
+  return sanityClient
+    .fetch(
+      `*[_id == $id]{
+          imageSrc {
+            asset->{
+              altText,
+              description
+             }
+          }
+       }[0]`,
+      {id}
+    ).then((data: any) => {
+      const whySwitchSection:WhySwitchSectionType = data
+      console.log("why switch Section data", whySwitchSection)
+      return data
+    })
+}
+
+const fetchRef = (sanityRef: SanityRef): Promise<any> => {
+
+  return sanityClient
+    .fetch(
+      `*[_id == $reference][0]`,
+      {reference: sanityRef._ref}
+    ).then((data: any) => {
+      console.log('the fetched REf', sanityRef, data)
+      return data
+    })
+}
 
 export default {
+  fetchRef,
   fetchLandingPage,
   fetchBlogPost,
   fetchLatestBlogPostPreview,
@@ -308,5 +367,6 @@ export default {
   fetchLandingPageHeaderMenu,
   fetchLandingPageFooterMenu,
   fetchBlogCategories,
-  fetchBlogGroup
+  fetchBlogGroup,
+  fetchWhySwitch
 }

@@ -8,7 +8,9 @@
 export type SanityMenuItem = {
   title?: string,
   displayText?: string,
-  url?: string
+  url?: string,
+  isContainedButton?: boolean,
+  isOutlinedButton?: boolean
 }
 
 export type SanityMenuGroup = {

@@ -15,7 +15,7 @@ describe('Landing Pages', () => {
   beforeEach(async () => {
     let sanityLandingPage: SanityLandingPage = {
       welcomeMessage: 'welcome-message',
-      mainImage: {asset: {_id: 'asset-id', url: 'asset-url'}},
+      // mainImage: {asset: {_id: 'asset-id', url: 'asset-url'}},
       headerText: 'header-text',
       body: 'body-text',
       form: {
@@ -86,7 +86,7 @@ describe('Landing Pages', () => {
 
   it('displays header and footer', () => {
     expect(screen.getByText('header-text')).toBeInTheDocument()
-    expect(screen.getByText('footer-link-display-text-1'))
+    expect(screen.getByText('footer-link-display-text-1')).toBeInTheDocument()
   })
 
 })

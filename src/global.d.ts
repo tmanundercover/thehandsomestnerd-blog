@@ -14,5 +14,5 @@ declare module '*.png' {
 // }
 //
 declare module '*.mp4'
-
+declare module 'react-meta-tags';
 declare module '@sanity/block-content-to-react'

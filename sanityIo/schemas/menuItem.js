@@ -18,5 +18,15 @@ export default {
             title: 'URL',
             type: 'string'
         },
+        {
+            name: 'isOutlinedButton',
+            title: 'Is this an outlined button',
+            type: 'boolean'
+        },
+        {
+            name: 'isContainedButton',
+            title: 'Is this a contained button',
+            type: 'boolean'
+        },
     ]
 }

@@ -1,104 +1,109 @@
 import React from 'react'
 import {Grid, Link, Typography} from '@material-ui/core'
 import {InsertLink, Public} from '@material-ui/icons'
-import theme from '../../src/common/Theme'
-import {makeStyles} from '@material-ui/core/styles'
 // import dropCapImg from '../static/drop-cap-icon.png'
 import {
   BoldRender,
-  DropCapRender, KeystrokeRender,
+  DropCapRender,
+  KeystrokeRender,
   LargeBodyTextRender,
   LightRender,
   TextColorRender,
   TypographyRender,
-  UnderlineRender,
+  UnderlineRender
 } from '../../src/common/sanityIo/BlockContentMarkRenderers'
-import {CtaRender, HeaderRender, HrRender} from '../../src/common/sanityIo/BlockContentRenderer'
+import {ButtonRender, CtaRender, HeaderRender, HrRender} from '../../src/common/sanityIo/BlockContentRenderer'
 import {ListRender, UtmLinkRender} from '../../src/common/sanityIo/BlockContentAnnotations'
+import AftTheme from '../../src/theme/aft-theme/AftTheme'
 
-const useStyles = makeStyles((theme) => ({
-  highlightIcon: {
-    width: '32px',
-    height: '14px'
-  },
-  iconContainer: {
+const highlightIcon = color => {
+  console.log("highlightIcon color", color)
+
+  return (<Grid style={{
     width: '24px',
     height: '24px',
     backgroundColor: 'whitesmoke'
-  },
-  bullet: {
-    fontSize: '10px',
-    marginRight: theme.spacing(1)
-  },
-  callToAction: {
-    borderTop: '1px solid rgba(0,0,0,.12)',
-    borderBottom: '1px solid rgba(0,0,0,.12)',
-    width: '100%',
-    padding: theme.spacing(3, 0)
-  }
-}))
-
-const highlightIcon = color => {
-  const classes = useStyles(theme)
-  return (<Grid container className={classes.iconContainer} justify="center" alignItems="center">
-    <Grid item className={classes.highlightIcon} style={{color: color}}>text</Grid>
+  }} container justifyContent='center' alignItems='center'>
+    <Grid item style={{
+      color: color, width: '32px',
+      height: '14px'
+    }}>text</Grid>
   </Grid>)
 }
 
 const lightIcon = () => {
-  const classes = useStyles(theme)
-  return (<Grid container className={classes.iconContainer} justify="center" alignItems="center">㏈</Grid>)
+  return (<Grid container style={{
+    width: '24px',
+    height: '24px',
+    backgroundColor: 'whitesmoke'
+  }} justifyContent='center' alignItems='center'>㏈</Grid>)
 }
 
 const LargeBodyTextIcon = () => {
-  const classes = useStyles(theme)
-  return (<Grid container className={classes.iconContainer} justify="center" alignItems="center"
+  return (<Grid container style={{
+    width: '24px',
+    height: '24px',
+    backgroundColor: 'whitesmoke'
+  }} justifyContent='center' alignItems='center'
                 style={{fontSize: 'smaller'}}>21px</Grid>)
 }
 
 const BoldIcon = () => {
-  const classes = useStyles(theme)
-  return (<Grid container className={classes.iconContainer} justify="center" alignItems="center">𝐇</Grid>)
+  return (<Grid container style={{
+    width: '24px',
+    height: '24px',
+    backgroundColor: 'whitesmoke'
+  }} justifyContent='center' alignItems='center'>𝐇</Grid>)
 }
 
 const utmIcon = (props) => {
-  const classes = useStyles(theme)
 
-  return <Grid container className={classes.iconContainer} justify="center" alignItems="center"><Public/></Grid>
+  return <Grid container style={{
+    width: '24px',
+    height: '24px',
+    backgroundColor: 'whitesmoke'
+  }} justifyContent='center' alignItems='center'><Public/></Grid>
 }
 
 const internalIcon = (props) => {
-  const classes = useStyles(theme)
 
-  return <Grid container className={classes.iconContainer} justify="center" alignItems="center"><InsertLink/></Grid>
+  return <Grid container style={{
+    width: '24px',
+    height: '24px',
+    backgroundColor: 'whitesmoke'
+  }} justifyContent='center' alignItems='center'><InsertLink/></Grid>
 }
 
 const underlineIcon = color => {
-  const classes = useStyles(theme)
-  return <Grid container className={classes.iconContainer} justify="center" alignItems="center">
+  return <Grid container style={{
+    width: '24px',
+    height: '24px',
+    backgroundColor: 'whitesmoke'
+  }} justifyContent='center' alignItems='center'>
     <u style={{textDecoration: `${color} underline`}}>U</u>
   </Grid>
 }
-
-const dropCapIcon = (props) => {
-  const classes = useStyles(theme)
-  return <Grid container className={classes.iconContainer} justify="center" alignItems="center">
-    <img src={dropCapImg} width={28} height={28}/>
-  </Grid>
-}
+//
+// const dropCapIcon = (props) => {
+//   return <Grid container style={{  width: '24px',
+//     height: '24px',
+//     backgroundColor: 'whitesmoke'}} justifyContent="center" alignItems="center">
+//     <img src={dropCapImg} width={28} height={28}/>
+//   </Grid>
+// }
 
 const internalLinkRender = props => {
   console.log('lik props', props)
   return <Link href={props.href}>
     <Typography
-      style={{display: 'inline-block', color: theme.palette.primary.main}}>
+      style={{display: 'inline-block', color: AftTheme.palette.primary.main}}>
       {props.children}
     </Typography>
   </Link>
 }
 
 const bodyRender = (props) => (
-  <Typography variant="body1" style={{width: "100%"}}>{props.children}</Typography>
+  <Typography variant='body1' style={{width: '100%'}}>{props.children}</Typography>
 )
 
 export const blockContentConfig = {
@@ -187,7 +192,7 @@ export const blockContentConfig = {
         title: 'Subtitle',
         value: 'subtitle',
         blockEditor: {
-          // icon: () => highlightIcon(theme.palette.secondary.main),
+          icon: () => <>S</>,
           render: (props) => TypographyRender(props, 'subtitle1')
         }
       },
@@ -195,7 +200,7 @@ export const blockContentConfig = {
         title: 'Overline',
         value: 'overline',
         blockEditor: {
-          // icon: () => highlightIcon(theme.palette.secondary.main),
+          icon: () => <>O</>,
           render: (props) => TypographyRender(props, 'overline')
         }
       },
@@ -212,7 +217,7 @@ export const blockContentConfig = {
         title: 'Light',
         value: 'light',
         blockEditor: {
-          icon: () => lightIcon(theme.palette.primary.main),
+          icon: () => lightIcon(AftTheme.palette.primary.main),
           render: LightRender
         }
       },
@@ -220,23 +225,31 @@ export const blockContentConfig = {
         title: 'Primary Text Color',
         value: 'primaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(theme.palette.primary.main),
-          render: (props) => (TextColorRender(props, theme.palette.primary.main))
+          icon: () => highlightIcon(AftTheme.palette.primary.main),
+          render: (props) => (TextColorRender(props, AftTheme.palette.primary.main))
+        }
+      },
+      {
+        title: 'Secondary Text Color',
+        value: 'secondaryTextColor',
+        blockEditor: {
+          icon: () => highlightIcon(AftTheme.palette.secondary.main),
+          render: (props) => (TextColorRender(props, AftTheme.palette.secondary.main))
         }
       },
       {
         title: 'Underline Primary Color',
         value: 'underlinePrimaryColor',
         blockEditor: {
-          icon: () => underlineIcon(theme.palette.primary.main),
-          render: (props) => UnderlineRender(props, theme.palette.primary.main)
+          icon: () => underlineIcon(AftTheme.palette.primary.main),
+          render: (props) => UnderlineRender(props, AftTheme.palette.primary.main)
         }
       },
       {
         title: 'Drop Cap',
         value: 'dropCap',
         blockEditor: {
-          // icon: dropCapIcon,
+          icon: () => <>Dc</>,
           render: DropCapRender
         }
       },
@@ -244,7 +257,7 @@ export const blockContentConfig = {
         title: 'Key Stroke',
         value: 'keyStroke',
         blockEditor: {
-          // icon: dropCapIcon,
+          icon: () => <>Ks</>,
           render: KeystrokeRender
         }
       },
@@ -267,8 +280,7 @@ export const blockContentConfig = {
             name: 'item',
             type: 'reference',
             to: [
-              {type: 'abHomePage'},
-              {type: 'landingPage'}
+              {type: 'homePage'},
             ]
           }
         ],
@@ -287,12 +299,56 @@ export const blockContentConfig = {
             description: 'utm params will be appended to this URL',
             name: 'href',
             type: 'url'
-          },
+          }
         ],
         blockEditor: {
           icon: utmIcon,
           render: UtmLinkRender
         }
+      },
+      {
+        title: 'Button',
+        value: 'button',
+        blockEditor: {
+          icon: utmIcon,
+          render: ButtonRender
+        },
+        name: 'button',
+        type: 'object',
+        fields: [
+          {
+            title: 'Variant',
+            description: 'The type of Button(Only Text, Contained, Outlined)',
+            name: 'variant',
+            type: 'string',
+            options: {
+              list: [
+                {title: 'Text', value: 'text'},
+                {title: 'Contained', value: 'contained'},
+                {title: 'Outlined', value: 'outlined'}
+              ]
+            }
+          },
+          {
+            title: 'Color',
+            description: 'Color of the Button(Primary, Secondary, Blue)',
+            name: 'color',
+            type: 'string',
+            options: {
+              list: [
+                {title: 'Primary', value: 'primary'},
+                {title: 'Secondary', value: 'secondary'},
+                {title: 'Mint', value: 'mint'}
+              ]
+            }
+          },
+          {
+            title: 'Button Link',
+            description: 'Url',
+            name: 'buttonLink',
+            type: 'url'
+          }
+        ]
       }
     ]
   }
@@ -310,14 +366,7 @@ export default {
       }
     },
     {
-      type: "lineBreak"
-    },
-    {
-      type: "code"
-    },
-    {
-      type: "reference",
-      to: {type: 'sourceCode'},
-    },
+      type: 'lineBreak'
+    }
   ]
 }

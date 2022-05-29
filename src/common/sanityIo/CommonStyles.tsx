@@ -29,6 +29,11 @@ export const useCommonStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     padding: theme.spacing(3, 0),
   },
+  root: {
+    width: '1050px',
+    padding: '40px',
+    overflow: 'visible'
+  },
   homePageH3: {
     fontWeight: 300,
   },

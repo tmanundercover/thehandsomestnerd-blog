@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Fade, Grid, Hidden, IconButton, Link, Modal, Typography} from '@material-ui/core'
+import {Button, Fade, Grid, Hidden, IconButton, Link, Modal, Typography} from '@material-ui/core'
 import HeaderMenuGroup from './HeaderMenuGroup'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
@@ -7,11 +7,12 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import Backdrop from '@material-ui/core/Backdrop'
 import cmsClient, {SanityMenuContainer, SanityMenuGroup} from '../cmsClient'
 import abTheme from '../common/Theme'
+import { SanityMenuItem } from '../../../sanity/Menu'
 
 
 const useStyles = makeStyles((theme: Theme) => ({
   headerModal: {
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     height: '100%',
     padding: theme.spacing(3),
   },
@@ -53,6 +54,7 @@ const HeaderMenuContainer: FunctionComponent = () => {
 
   const getMenuData = async (): Promise<void> => {
     const data = await cmsClient.fetchLandingPageHeaderMenu()
+    console.log("MenuData", data)
     setMenu(data)
   }
   React.useEffect(() => {
@@ -119,13 +121,16 @@ const HeaderMenuContainer: FunctionComponent = () => {
                       </Grid>
                     }
                     {
-                      menuItem?.links?.map((link, index) => {
+                      menuItem?.links?.map((link:SanityMenuItem, index) => {
                         if (link) {
                           return <Grid item key={index}>
+                            <Button href={link.url} color='secondary' variant={link.isContainedButton? 'contained': (link.isOutlinedButton?'outlined':'text')}>
+
                             <Typography variant="subtitle2"
                                         className={linkCount > 1 ? classes.hamburgerMenuLink : classes.hamburgerMenuItem}>
-                              <Link key={link.displayText} href={link.url}>{link.displayText}</Link>
+                              {link.displayText}
                             </Typography>
+                            </Button>
                           </Grid>
                         }
 

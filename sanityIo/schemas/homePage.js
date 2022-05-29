@@ -4,9 +4,35 @@ export default {
     type: 'document',
     fields: [
         {
+            name: 'metaImage',
+            title: 'An Image for the meta tags',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
             name: 'title',
-            title: 'Title',
+            title: 'Title(Title in Browser Tab)',
             type: 'string',
+        },
+        {
+            name: 'description',
+            title: 'Description(Meta tag description)',
+            type: 'string',
+        },
+        {
+            name: 'structuredData',
+            title: 'Structured Data(For this page)',
+            type: "array",
+            of: [{type: "structuredDataProduct"},
+                {type:"structuredDataEvent"},
+              ]
+        },
+        {
+            name: 'pageContent',
+            title: 'Page Content',
+            type: 'contentContainer',
         },
         {
             name: 'slug',
@@ -17,109 +43,84 @@ export default {
                 maxLength: 96,
             },
         },
-        {
-            name: 'clientName',
-            title: 'Your Full Name',
-            type: 'string'
-        },
-        {
-            name: 'occupation',
-            title: 'Your Occupation',
-            type: 'string'
-        },
-        {
-            name: 'heroImage',
-            title: 'A Picture of you',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'aboutMeBody',
-            title: 'About Me Body',
-            type: 'blockContent',
-        },
-        {
-            name: 'profileImage',
-            title: 'About Me Image',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'skillsHeading',
-            title: 'Skills Heading',
-            type: 'string'
-        },
-        {
-            name: 'skillsText',
-            title: 'Skills Text',
-            type: 'blockContent',
-        },
-        {
-            name: 'skills',
-            title: 'Skills',
-            type: 'array',
-            of: [{type: 'skill'}],
-        },
-        {
-            name: 'specialties',
-            title: 'Specialties',
-            type: 'array',
-            of: [{type: 'string'}],
-        },
-        {
-            name: 'portfolioItems',
-            title: 'Portfolio Items',
-            type: 'array',
-            of: [{type: 'reference', to: {type: 'portfolioItem'}}],
-        },
-        {
-            name: 'freelancePrompt',
-            title: 'Freelance Prompt text',
-            type: 'string'
-        },
-        {
-            name: 'address',
-            title: 'Address',
-            type: 'string'
-        },
-        {
-            name: 'phone',
-            title: 'Phone',
-            type: 'string'
-        },
-        {
-            name: 'email',
-            title: 'Email',
-            type: 'string'
-        },
+
         {
             name: 'facebook',
             title: 'Facebook Handle',
-            type: 'string'
+            type: 'string',
+        },
+        {
+            name: 'facebookIconSrc',
+            title: 'Facebook Icon',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
         },
         {
             name: 'twitter',
             title: 'Twitter Handle',
-            type: 'string'
+            type: 'string',
         },
         {
-            name: 'linkedIn',
-            title: 'LinkedIn Handle',
-            type: 'string'
+            name: 'twitterIconSrc',
+            title: 'Twitter Icon',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
         },
         {
-            name: 'youtube',
-            title: 'Youtube Handle',
-            type: 'string'
+            name: 'instagram',
+            title: 'Instagram Handle',
+            type: 'string',
         },
         {
-            name: 'pageContent',
-            title: 'Page Content',
-            type: 'contentContainer'
-        }
+            name: 'instagramIconSrc',
+            title: 'Instagram Icon',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'androidPlayStoreLink',
+            title: 'Android Play Store Link',
+            type: 'string',
+        },
+        {
+            name: 'androidPlayStoreIconSrc',
+            title: 'Android Play Store Icon',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'appStoreLink',
+            title: 'iOS App Store Link',
+            type: 'string',
+        },
+        {
+            name: 'appStoreIconSrc',
+            title: 'iOS App Store Icon',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'fdicImage',
+            title: 'FDIC Logo',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'fdicDisclaimer',
+            title: 'FDIC Disclaimer',
+            type: 'string',
+        },
     ]
 }

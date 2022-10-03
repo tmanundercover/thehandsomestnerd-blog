@@ -1,23 +1,17 @@
 import './App.css'
 import theme from './common/Theme'
-import { Grid } from '@material-ui/core'
-import KingDermDemo from './components/layout/KingDermDemo'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import {Grid} from '@material-ui/core'
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
 import React from 'react'
-import Step1 from './components/pre-signup/step-1/Step1'
-import Step2 from './components/pre-signup/step-2/Step2'
-import Step3 from './components/pre-signup/step-3/Step3'
-import NextSteps from './components/pre-signup/next-steps/NextSteps'
-import { ColdLead, useStyles } from './components/pre-signup/PreSignup'
-import MainLayout from './components/abReplica/MainLayout'
-import TerrellsRealPortfolio from './components/layout/TerrellsRealPortfolio'
-import AftMarketing from './components/layout/AftMarketing'
+import {ColdLead, useStyles} from './components/pre-signup/PreSignup'
+import TransformHW from "./components/layout/TransformHW";
 
 enum RoutesEnum {
   LANDING="/SW",
   KING_DERM_AB="/DAndA",
   MY_PORTFOLIO="/realTerrell",
   AFT_MARKETING="/marketing/:pageSlug",
+  TRANSFORM_HW="/transformHW/:pageSlug",
   BOLDLY_ADDING_LAYERS="/BAL",
 }
 
@@ -40,23 +34,8 @@ function App() {
       <Grid container item direction="column" alignItems="center">
         <Grid item style={{overflow: 'hidden'}}>
           <Switch>
-            <Route exact path={RoutesEnum.LANDING} component={KingDermDemo}/>
-            <Route exact path={RoutesEnum.KING_DERM_AB} component={MainLayout}/>
-            <Route exact path={RoutesEnum.MY_PORTFOLIO} component={TerrellsRealPortfolio}/>
-            <Route exact path={RoutesEnum.AFT_MARKETING} component={AftMarketing}/>
-            {/*<Route exact path="/abReplica" component={() => {*/}
-            {/*  window.location.href = 'http://assembledbrands.com';*/}
-            {/*  return null;*/}
-            {/*}}/>*/}
-            {/*<Route exact path="/BAL" render={(): ReactElement => <Redirect to="/BAL"/>}/>*/}
-            <Route exact path={RoutesEnum.BOLDLY_ADDING_LAYERS} render={() => <Step1 lead={coldLead} setLead={setColdLead}/>}/>
-            <Route exact path="/BAL/boldy" render={() => <Step2 lead={coldLead} setLead={setColdLead}/>}/>
-            <Route exact path="/BAL/boldy/adding" render={() => <Step3 lead={coldLead} setLead={setColdLead}/>}/>
-            <Route exact path="/BAL/boldy/adding/layers"
-                   render={() => <NextSteps lead={coldLead} setLead={setColdLead}/>}/>
-
-            <Route exact path={RoutesEnum.AFT_MARKETING} component={AftMarketing}/>
-            <Redirect to={"/marketing/aft-marketing"}/>
+            <Route exact path={RoutesEnum.TRANSFORM_HW} component={TransformHW}/>
+            <Redirect to={'/transformHW/home'}/>
           </Switch>
         </Grid>
       </Grid>

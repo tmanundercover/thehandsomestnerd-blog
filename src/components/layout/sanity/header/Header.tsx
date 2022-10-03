@@ -59,12 +59,12 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
   }, [])
 
   return (
-    <Grid container justifyContent="space-between" className={classes.root} alignItems='center'>
+    menu?.title ? <Grid container justifyContent="space-between" className={classes.root} alignItems='center'>
       <Grid item>
         <img
           alt="logo"
           style={{height: "43px"}}
-          src={urlFor(menu.logoImage).url()??""}
+          src={urlFor(menu?.logoImage).url()??""}
           // src={urlFor(menu?.logoImage).height(50).url()??""}
         />
       </Grid>
@@ -85,7 +85,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
           }
         </Grid>
       </Grid>
-    </Grid>
+    </Grid>:<></>
   )
 }
 

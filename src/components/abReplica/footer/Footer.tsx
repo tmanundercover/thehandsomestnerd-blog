@@ -47,7 +47,7 @@ const Footer: FunctionComponent<IProps> = (props:IProps) => {
   const classes = useStyles(abTheme)
 
   return (
-    <Grid container className={classes.root}>
+    props.homePage ? <Grid container className={classes.root}>
       <Grid container justifyContent="flex-start">
         <Grid item xs={12}>
           <FooterMenuContainer homePage={props.homePage} menuContainerSlug={props.footerMenuSlug}/>
@@ -81,7 +81,7 @@ const Footer: FunctionComponent<IProps> = (props:IProps) => {
         {/*    </Grid>*/}
         {/*  </Grid>*/}
       </Grid>
-    </Grid>
+    </Grid>:<></>
 
 
   )

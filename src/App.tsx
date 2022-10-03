@@ -11,16 +11,17 @@ import NextSteps from './components/pre-signup/next-steps/NextSteps'
 import { ColdLead, useStyles } from './components/pre-signup/PreSignup'
 import MainLayout from './components/abReplica/MainLayout'
 import TerrellsRealPortfolio from './components/layout/TerrellsRealPortfolio'
+import AftMarketing from './components/layout/AftMarketing'
 
 enum RoutesEnum {
   LANDING="/SW",
   KING_DERM_AB="/DAndA",
   MY_PORTFOLIO="/realTerrell",
-  BOLDLY_ADDING_LAYERS="/BAL"
+  AFT_MARKETING="/marketing/:pageSlug",
+  BOLDLY_ADDING_LAYERS="/BAL",
 }
 
 function App() {
-
   const classes = useStyles(theme)
 
   const [coldLead, setColdLead] = React.useState<ColdLead>({
@@ -42,6 +43,7 @@ function App() {
             <Route exact path={RoutesEnum.LANDING} component={KingDermDemo}/>
             <Route exact path={RoutesEnum.KING_DERM_AB} component={MainLayout}/>
             <Route exact path={RoutesEnum.MY_PORTFOLIO} component={TerrellsRealPortfolio}/>
+            <Route exact path={RoutesEnum.AFT_MARKETING} component={AftMarketing}/>
             {/*<Route exact path="/abReplica" component={() => {*/}
             {/*  window.location.href = 'http://assembledbrands.com';*/}
             {/*  return null;*/}
@@ -52,7 +54,9 @@ function App() {
             <Route exact path="/BAL/boldy/adding" render={() => <Step3 lead={coldLead} setLead={setColdLead}/>}/>
             <Route exact path="/BAL/boldy/adding/layers"
                    render={() => <NextSteps lead={coldLead} setLead={setColdLead}/>}/>
-            <Redirect to={RoutesEnum.MY_PORTFOLIO}/>
+
+            <Route exact path={RoutesEnum.AFT_MARKETING} component={AftMarketing}/>
+            <Redirect to={"/marketing/aft-marketing"}/>
           </Switch>
         </Grid>
       </Grid>

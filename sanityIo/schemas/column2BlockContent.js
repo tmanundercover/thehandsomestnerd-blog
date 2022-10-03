@@ -3,7 +3,7 @@ import * as React from 'react'
 export default {
   name: 'column2BlockContent',
   title: '2 Column Block Content',
-  type: 'object',
+  type: 'document',
   fields: [
     {
       title: 'Section Title',

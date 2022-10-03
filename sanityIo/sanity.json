@@ -1,14 +1,14 @@
 {
   "root": true,
   "project": {
-    "name": "theHandsomestNerdBlog"
+    "name": "Assembled Financial Marketing POC"
   },
   "__experimental_spaces": [
     {
       "name": "production",
       "title": "Production",
       "api": {
-        "projectId": "gaz8gy1w",
+        "projectId": "u5x1k2us",
         "dataset": "production"
       }
     },
@@ -17,13 +17,13 @@
       "title": "Development",
       "default": true,
       "api": {
-        "projectId": "gaz8gy1w",
+        "projectId": "u5x1k2us",
         "dataset": "development"
       }
     }
   ],
   "api": {
-    "projectId": "gaz8gy1w",
+    "projectId": "u5x1k2us",
     "dataset": "production"
   },
   "plugins": [
@@ -33,7 +33,9 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "color-list",
-    "@sanity/code-input"
+    "@sanity/code-input",
+    "json-input",
+    "media"
   ],
   "env": {
     "development": {
@@ -46,6 +48,18 @@
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./parts/deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.js"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/file/asset-sources",
+      "path": "./parts/assetSources.js"
     }
   ]
 }

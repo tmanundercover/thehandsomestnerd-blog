@@ -51,7 +51,7 @@ const HeaderMenuGroup: FunctionComponent<AbMenuItemListProps> = (props) => {
   return (
     <>
       {props.menuGroup.links?.length == 1 ?
-        <Button variant={isContained() ? 'contained' : 'text'} color={isContained() ? 'primary' : 'secondary'}>
+        <Button href={props.menuGroup.links[0].url} variant={isContained() ? 'contained' : 'text'} color={isContained() ? 'primary' : 'secondary'}>
           <Link href={props.menuGroup.links[0].url} className={classes.footerLink}>
             {isContained() ?
               <Typography variant="button" className={classes.menuTitleContained}>

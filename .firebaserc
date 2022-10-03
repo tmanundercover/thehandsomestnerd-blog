@@ -1,15 +1,12 @@
 {
   "projects": {
-    "default": "the-handsomest-nerd"
+    "default": "af-marketing-poc"
   },
   "targets": {
     "the-handsomest-nerd": {
       "hosting": {
         "the-handsomest-nerd": [
           "the-handsomest-nerd"
-        ],
-        "thehandsomestnerd": [
-          "thehandsomestnerd"
         ]
       }
     }

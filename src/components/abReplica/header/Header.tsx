@@ -23,7 +23,7 @@ const Header: FunctionComponent = () => {
   const classes = useHeaderStyles(abTheme)
 
   return (
-    <Grid container item xs={12} justify={'space-between'} alignItems={'stretch'} className={classes.root}>
+    <Grid container item xs={12} justifyContent={'space-between'} alignItems={'stretch'} className={classes.root}>
       <Grid container item xs={10} md={6} alignItems='center'>
         <Logo/>
       </Grid>

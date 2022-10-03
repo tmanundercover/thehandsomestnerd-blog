@@ -18,6 +18,8 @@ import BlockContent from '@sanity/block-content-to-react'
 import {ListItemRender, ListRender, UtmLinkRender} from './BlockContentAnnotations'
 import {SanityImage} from '../../cmsClient'
 import {urlFor} from '../../static-pages/cmsStaticPagesClient'
+import { TypographyVariantType } from '../../../../common/sanityIo/BlockContentMarkRenderers'
+import AftTheme from '../../../../theme/aft-theme/AftTheme'
 
 export type HeaderVariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type LinkType = { href: string, isAddUtm: boolean, color: { title: string, value: string } }
@@ -28,10 +30,34 @@ export type BlockContentPropsType<T> = { mark?: T }
 export const HeaderRender = (props: any, variant: HeaderVariantType) => {
   const classes = useCommonStyles(theme)
 
-  return <Typography className={classes.headerRender} color="textPrimary" style={{...theme.typography[variant]}}
-                     component="span">
-    {props.children}
-  </Typography>
+  const wrapWithHTag = (children: any) => {
+    switch (variant) {
+      case 'h1':
+        return <h1>{children}</h1>
+        break
+      case 'h6':
+        return <h6>{children}</h6>
+        break
+      case 'h2':
+        return <h2>{children}</h2>
+        break
+      case 'h3':
+        return <h3>{children}</h3>
+        break
+      case 'h4':
+        return <h4>{children}</h4>
+        break
+      case 'h5':
+        return <h5>{children}</h5>
+        break
+      default:
+        return <Typography display='inline'  className={classes.headerRender} color="inherit" variant={variant as TypographyVariantType}
+                           component="span">{children}</Typography>
+    }
+
+  }
+
+  return wrapWithHTag(props.children)
 }
 
 export const ImageAssetRender = (image?: SanityImage, caption?: string, className?: any) => {

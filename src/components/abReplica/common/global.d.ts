@@ -17,6 +17,9 @@ declare module '*.otf' {
     const value: string
     export default value
 }
+
+declare module '*.ttf'
+
 //
 // declare module '*.svg' {
 //     const value: string

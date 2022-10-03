@@ -1,6 +1,7 @@
-import {SanityImage, SanityMenuGroup, SanitySlug} from '../cmsClient'
+import cmsClient, {SanityImage, SanityMenuGroup, SanitySlug} from '../cmsClient'
 import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from '../../../sanityClient'
+import { getAssetDocumentId, getFile, getFileAsset, getImage, getImageAsset } from '@sanity/asset-utils'
 
 const builder = imageUrlBuilder(sanityClient)
 
@@ -306,6 +307,25 @@ const fetchEvergreenPage = (slug: string): Promise<SanityEvergreenPage> => {
 export const urlFor = (source: any) => {
   return builder.image(source)
 }
+
+// const sanityCredentials = {projectId: "", dataset: "production"}
+//
+// export const metaDataFor = (source: any)=>{
+//   console.log("get metaDataFor", source)
+//   const step:any = getImageAsset(source, sanityCredentials)
+//
+//
+//   // console.log("got metaDataFor", step)
+//   // console.log("docId metaDataFor", docId)
+//   //
+//   //
+//   // return step.toString()
+//   return sanityClient
+//     .getDocument(step.assetId).then((data: any) => {
+//       console.log("metadataFor", data, step.assetId)
+//       return data
+//     })
+// }
 
 export default {
   fetchHomePage,

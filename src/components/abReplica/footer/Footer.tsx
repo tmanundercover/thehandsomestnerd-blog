@@ -3,14 +3,15 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography} from '@material-ui/core'
 import FooterMenuContainer from './FooterMenuContainer'
 import abTheme from '../common/Theme'
+import { SanityHomePage } from '../static-pages/cmsStaticPagesClient'
+import { SanityAftHomePage } from '../../layout/AftMarketing'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: '#3D3D3D',
-    color: '#FDF3EB',
-    marginLeft: -1 * theme.spacing(1),
-    width: `calc(100vw + ${theme.spacing(1)}px)`,
-    zIndex: 1000,
+    // backgroundColor: '#3D3D3D',
+    // color: '#FDF3EB',
+    // marginLeft: -1 * theme.spacing(1),
+    // zIndex: 1000,
     padding: theme.spacing(4),
     '& .MuiFormLabel-root': {
       color: 'white',
@@ -36,15 +37,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const Footer: FunctionComponent = (props) => {
+interface IProps {
+  footerMenuSlug?:string
+  homePage?: SanityAftHomePage
+}
+
+const Footer: FunctionComponent<IProps> = (props:IProps) => {
   // const [email, setEmail] = React.useState('')
   const classes = useStyles(abTheme)
 
   return (
     <Grid container className={classes.root}>
-      <Grid container justify="flex-start">
+      <Grid container justifyContent="flex-start">
         <Grid item xs={12}>
-          <FooterMenuContainer/>
+          <FooterMenuContainer homePage={props.homePage} menuContainerSlug={props.footerMenuSlug}/>
         </Grid>
         {/*  <Grid container direction="column" alignItems="flex-end" item xs={6}>*/}
         {/*    <Grid container spacing={2} direction="column" item className={classes.newsletterForm}>*/}

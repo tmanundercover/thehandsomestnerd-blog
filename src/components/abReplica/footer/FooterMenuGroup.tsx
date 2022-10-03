@@ -4,6 +4,8 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Link, Typography} from '@material-ui/core'
 import {SanityMenuGroup, SanityMenuItem} from '../cmsClient'
 import abTheme from '../common/Theme'
+import logo from '../common/assets/crown-logo.png'
+import { SanityHomePage } from '../static-pages/cmsStaticPagesClient'
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root:{
@@ -12,7 +14,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   footerLink: {
     marginBottom: '8px',
     textDecoration: 'none',
-    color: '#FDF3EB',
+    // color: '#FDF3EB',
     '&:hover': {
       textDecoration: 'none',
     },
@@ -23,7 +25,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     paddingRight: '32px',
   },
   menuTitle: {
-    color: '#FDF3EB',
+    // color: '#FDF3EB',
     marginBottom: theme.spacing(1),
   },
   popover: {
@@ -37,7 +39,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export type LandingPagesFooterMenuGroupProps = {
-  menuGroup: SanityMenuGroup
+  menuGroup: SanityMenuGroup,
 }
 
 const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
@@ -46,19 +48,23 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
   return (
     <Grid container direction="column" spacing={2} className={classes.root}>
       <Grid container item>
-        <Typography variant="overline" className={classes.menuTitle}>{menuGroup.displayText}</Typography>
+        <Typography color='textSecondary' variant="body2" className={classes.menuTitle}>{menuGroup.menuGroupTitle}</Typography>
       </Grid>
-      {menuGroup.links?.map((menuLink: SanityMenuItem, index) => {
-        return (
-          <Grid key={index} item>
-            <Link href={menuLink.url} className={classes.footerLink}>
-              <Typography variant="subtitle2">
-                {menuLink.displayText}
-              </Typography>
-            </Link>
-          </Grid>
-        )
-      })}
+      <Grid item container >
+        <Grid container item xs={8} direction='column' spacing={2}>
+          {menuGroup.links?.map((menuLink: SanityMenuItem, index) => {
+          return (
+            <Grid key={index} item style={{borderLeft:"1px solid #383838", paddingLeft:'8px', marginLeft: '8px'}}>
+              <Link href={menuLink.url} className={classes.footerLink}>
+                <Typography variant="body1" color='textSecondary'>
+                  {menuLink.displayText}
+                </Typography>
+              </Link>
+            </Grid>
+          )
+        })}</Grid>
+
+      </Grid>
     </Grid>
 
   )

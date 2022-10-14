@@ -14,7 +14,7 @@ import purpleDiamond from './purpleDiamond.png'
 import { urlFor } from '../abReplica/static-pages/cmsStaticPagesClient'
 import Footer from '../abReplica/footer/Footer'
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import UnderConstruction from "./UnderConstruction";
+import UnderConstruction from "./under-construction/UnderConstruction";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -147,18 +147,18 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
       <CssBaseline/>
       <MetaTagsComponent structuredData={homePage?.structuredData[0]} title={homePage?.title ?? ''}
                          description={homePage?.description ?? ''} imgSrc={homePage?.imgSrc}/>
-      <Grid container direction='column' className={classes.root}>
+      {homePage? <Grid container direction='column' className={classes.root}>
         <Grid item>
           <Header menuSlug='transform-hw-header'/>
         </Grid>
         <Grid item style={{marginBottom: '80px'}}>
-          {homePage ?<BlockContentLayoutContainer
-            content={realizedContent}/>:<UnderConstruction></UnderConstruction>}
+          <BlockContentLayoutContainer
+              content={realizedContent}/>
         </Grid>
         <Grid item>
           <Footer footerMenuSlug='transform-hw-footer' homePage={homePage}/>
         </Grid>
-      </Grid>
+      </Grid> : <UnderConstruction/>}
     </MuiThemeProvider>
 
   )

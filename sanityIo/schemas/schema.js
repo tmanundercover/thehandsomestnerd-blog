@@ -32,6 +32,7 @@ import structuredDataProduct from './sections/aft/structured-data/StructuredData
 import structuredDataOffer from './sections/aft/structured-data/StructuredDataOffer'
 import structuredDataSeller from './sections/aft/structured-data/StructuredDataSeller'
 import structuredDataEvent from './sections/aft/structured-data/StructuredDataEvent'
+import coldLead from "./coldLead";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -63,6 +64,7 @@ export default createSchema({
     structuredDataProduct,
     structuredDataOffer,
     structuredDataSeller,
-    structuredDataEvent
+    structuredDataEvent,
+    coldLead
   ]),
 })

@@ -12,24 +12,19 @@
   "engines": {
     "node": "14"
   },
-  "main": "lib/index.js",
+  "main": "lib/functions/src/index.js",
   "dependencies": {
     "@sanity/client": "^2.23.2",
     "@shopify/shopify-api": "^2.0.0",
     "@types/ws": "^8.2.2",
     "axios": "^0.24.0",
-    "convertapi": "^1.11.1",
+    "dotenv": "^16.0.3",
     "es6-promise": "^4.2.8",
     "express": "^4.17.2",
     "firebase-admin": "^9.8.0",
-    "firebase-functions": "^3.14.1",
-    "get-csv": "^3.0.3",
+    "firebase-functions": "^3.24.1",
     "json-bigint": "^1.0.0",
     "node-fetch": "^2.6.6",
-    "p-queue": "^7.1.0",
-    "queue-promise": "^2.2.1",
-    "shipengine": "^1.0.0",
-    "square": "^17.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

@@ -7,46 +7,49 @@ import {createSuperPane} from 'sanity-super-pane'
 import S from '@sanity/desk-tool/structure-builder'
 
 export default () =>
-  S.list()
-    .title('Base')
-    .items([
-      S.listItem()
-        .title('Page')
-        .child(createSuperPane('homePage', S)),
-      S.listItem()
-        .title('Menu Container')
-        .child(createSuperPane('menuContainer', S)),
-      S.listItem()
-        .title('Menu Group')
-        .child(createSuperPane('menuGroup', S)),
-      S.listItem()
-        .title('Menu Item')
-        .child(createSuperPane('menuItem', S)),
-      S.listItem()
-        .title('Page Section: Custom 1 column')
-        .child(createSuperPane('column1BlockContent', S)),
-      S.listItem()
-        .title('Page Section: Custom 2 column')
-        .child(createSuperPane('column2BlockContent', S)),
-      S.listItem()
-        .title('Page Section: Hero + Content')
-        .child(createSuperPane('heroContentSection', S)),
-      S.listItem()
-        .title('Page Section: Image + 6 Bullets')
-        .child(createSuperPane('whySwitchSection', S)),
-      S.listItem()
-        .title('Page Section: Pink Image + Content')
-        .child(createSuperPane('aboutAndaCardSection', S)),
-      S.listItem()
-        .title('Page Section: Image + 3 Bullets + Banner w/CTA')
-        .child(createSuperPane('cryptoInYourPocketSection', S)),
-      S.listItem()
-        .title('Structured Data Product')
-        .child(createSuperPane('structuredDataProduct', S)),
-      S.listItem()
-        .title('Structured Data Event')
-        .child(createSuperPane('structuredDataEvent', S)),
-      S.listItem()
-        .title('Media Tags')
-        .child(createSuperPane('media.tag', S))
-    ]);
+    S.list()
+        .title('Base')
+        .items([
+            S.listItem()
+                .title('Page')
+                .child(createSuperPane('homePage', S)),
+            S.listItem()
+                .title('Menu Container')
+                .child(createSuperPane('menuContainer', S)),
+            S.listItem()
+                .title('Menu Group')
+                .child(createSuperPane('menuGroup', S)),
+            S.listItem()
+                .title('Menu Item')
+                .child(createSuperPane('menuItem', S)),
+            S.listItem()
+                .title('Page Section: Custom 1 column')
+                .child(createSuperPane('column1BlockContent', S)),
+            S.listItem()
+                .title('Page Section: Custom 2 column')
+                .child(createSuperPane('column2BlockContent', S)),
+            S.listItem()
+                .title('Page Section: Hero + Content')
+                .child(createSuperPane('heroContentSection', S)),
+            S.listItem()
+                .title('Page Section: Image + 6 Bullets')
+                .child(createSuperPane('whySwitchSection', S)),
+            S.listItem()
+                .title('Page Section: Pink Image + Content')
+                .child(createSuperPane('aboutAndaCardSection', S)),
+            S.listItem()
+                .title('Page Section: Image + 3 Bullets + Banner w/CTA')
+                .child(createSuperPane('cryptoInYourPocketSection', S)),
+            S.listItem()
+                .title('Structured Data Product')
+                .child(createSuperPane('structuredDataProduct', S)),
+            S.listItem()
+                .title('Structured Data Event')
+                .child(createSuperPane('structuredDataEvent', S)),
+            S.listItem()
+                .title('Cold Lead')
+                .child(createSuperPane('coldLead', S)),
+            S.listItem()
+                .title('Media Tags')
+                .child(createSuperPane('media.tag', S))
+        ]);

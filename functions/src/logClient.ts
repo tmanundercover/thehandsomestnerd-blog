@@ -12,7 +12,7 @@ const createLogger = function(req:any, res:any, next:any) {
       ] = `projects/${project}/traces/${trace}`;
     }
   }
-  log("firebase-functions", "NOTICE", "Jameelahs Print Shop Backend Logger Created by Req:", req.body);
+  log("firebase-functions", "NOTICE", "Logger Created by Req:", req.body);
 };
 
 export const globalLogFields:any = {};

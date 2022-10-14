@@ -1,14 +1,18 @@
 {
   "root": true,
+  "api": {
+    "projectId": "4u89wsbx",
+    "dataset": "production"
+  },
   "project": {
-    "name": "Assembled Financial Marketing POC"
+    "name": "Transformative Healing and Wellness"
   },
   "__experimental_spaces": [
     {
       "name": "production",
       "title": "Production",
       "api": {
-        "projectId": "u5x1k2us",
+        "projectId": "4u89wsbx",
         "dataset": "production"
       }
     },
@@ -17,15 +21,11 @@
       "title": "Development",
       "default": true,
       "api": {
-        "projectId": "u5x1k2us",
+        "projectId": "4u89wsbx",
         "dataset": "development"
       }
     }
   ],
-  "api": {
-    "projectId": "u5x1k2us",
-    "dataset": "production"
-  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",

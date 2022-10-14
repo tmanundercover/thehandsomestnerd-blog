@@ -1,5 +1,3 @@
-import {SanityImageSource} from '@sanity/image-url/lib/types/types'
-
 export type SanityRepositoryType = {
   _type: string,
   service: string,
@@ -31,3 +29,9 @@ export declare type SanityRef = {
   _ref: string;
   _key?: string;
 };
+
+
+export declare type SanityColdLead = {
+  email: string,
+  source: string
+}

@@ -6,15 +6,9 @@ import TransformHWTheme, {montserratBold} from "../../../theme/transform-hw/Tran
 import theme from "../../abReplica/common/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        width: '1050px',
-        minHeight: '480px',
-        padding: '40px',
-        overflow: 'visible'
-    },
     counterSection: {
-        height: "170px",
-        width: "170px",
+        height: "155px",
+        width: "155px",
         borderRadius: "85px",
         border: `4px solid ${theme.palette.primary.main}`
     }
@@ -27,13 +21,17 @@ const CountdownToLaunch: FunctionComponent = () => {
 
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
+    const pluralize = (subject: string) => {
+        return subject + 's'
+    }
+
     const CounterNumberRender = (props: { value: number, units: string }) => {
         return <Grid container item alignItems='center' justifyContent='center' direction='column'
                      className={classes.counterSection}>
             <Grid item><Typography variant='h1' color='primary'
-                                   style={{textTransform: "uppercase", ...montserratBold}}>{props.value}</Typography></Grid>
+                                   style={{textTransform: "uppercase"}}>{props.value}</Typography></Grid>
             <Grid item><Typography variant='h6' color='primary'
-                                   style={{textTransform: "uppercase"}}>{props.units}</Typography></Grid>
+                                   style={{textTransform: "uppercase"}}>{props.value != 1 ? pluralize(props.units) : props.units}</Typography></Grid>
         </Grid>
     }
 
@@ -46,18 +44,18 @@ const CountdownToLaunch: FunctionComponent = () => {
             return (
                 <Grid container item spacing={smDown ? 1 : 6} justifyContent='center'>
                     <Grid item xs={6} md={3} container justifyContent='center'>
-                        <CounterNumberRender value={date.days} units={'days'}/>
+                        <CounterNumberRender value={date.days} units={'day'}/>
                     </Grid>
                     <Grid item xs={6} md={3} container justifyContent='center'>
-                        <CounterNumberRender value={date.hours} units={'hours'}/>
+                        <CounterNumberRender value={date.hours} units={'hour'}/>
                     </Grid>
                     <Grid item xs={6} md={3} container justifyContent='center'>
                         <CounterNumberRender value={date.minutes}
-                                             units={'minutes'}/>
+                                             units={'minute'}/>
                     </Grid>
                     <Grid item xs={6} md={3} container justifyContent='center'>
                         <CounterNumberRender
-                            value={date.seconds} units={'seconds'}/>
+                            value={date.seconds} units={'second'}/>
                     </Grid>
                 </Grid>
             );
@@ -65,8 +63,8 @@ const CountdownToLaunch: FunctionComponent = () => {
     };
 
     return (
-        <Grid item>
-            <Countdown date={new Date(process.env.REACT_APP_RELEASEDATE ?? Date.now())} renderer={renderer}/>
+        <Grid item container justifyContent='center'>
+                <Countdown date={new Date(process.env.REACT_APP_RELEASEDATE ?? Date.now())} renderer={renderer}/>
         </Grid>
     )
 }

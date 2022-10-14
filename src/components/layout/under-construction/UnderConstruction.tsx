@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         position: "relative",
         backgroundImage: `url(${therapistHoldingHand})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        backgroundColor: theme.palette.background.default
     },
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
@@ -38,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) => ({
         "& .MuiOutlinedInput-adornedEnd": {
             paddingRight: 0
         }
+    },
+    spacer: {
+        marginBottom: "40px"
     }
 }))
 
@@ -46,6 +50,7 @@ const UnderConstruction: FunctionComponent = (props) => {
     const underConstructionClasses = useStyles(TransformHWTheme)
 
     const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
+    const xsDown = useMediaQuery(TransformHWTheme.breakpoints.down('xs'))
 
     const [email, setEmail] = useState("")
 
@@ -76,38 +81,52 @@ const UnderConstruction: FunctionComponent = (props) => {
         }
         if (isError) {
             return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>Please Try your
-                submission again later.</Typography>
+                submission again later or contact jgreene@transformHW.org.</Typography>
         }
 
         return <Typography variant='subtitle1'>&nbsp;</Typography>
     }
 
     return (
-        <Grid container className={clsx(classes.fullscreen, underConstructionClasses.fullScreenImage)}>
-            <Grid container className={clsx(classes.fullscreen, underConstructionClasses.fullscreenOverlay)}
+        <Grid container className={clsx(xsDown?classes.fullscreenPlus: classes.fullscreen, underConstructionClasses.fullScreenImage)}
+              style={{position: "relative"}}>
+            <Grid container item className={xsDown?classes.fullscreenPlus: classes.fullscreen} style={{position: 'relative'}}>
+                <Grid container item style={{
+                    position: "absolute",
+                    bottom: 0,
+                    height: '120px',
+                    backgroundImage: smDown ? `linear-gradient(180deg, transparent, rgba(111,111,111,1)` : 'transparent'
+                }}>
+                </Grid>
+            </Grid>
+            <Grid container item className={clsx(xsDown?classes.fullscreenPlus: classes.fullscreen, underConstructionClasses.fullscreenOverlay)} style={{position: 'absolute'}}>
+            </Grid>
+            <Grid item container className={clsx(classes.fullscreen)}
                   style={{
-                      paddingBottom: smDown?0:TransformHWTheme.spacing(10)
+                      position: 'absolute',
+                      paddingBottom: smDown ? 0 : TransformHWTheme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
-                <Grid container item xs={11}>
+                <Grid container item xs={11} className={underConstructionClasses.spacer} justifyContent='center'>
                     <Typography variant={smDown ? 'h2' : 'h1'} align='center' color='textSecondary'>Transformative
                         Healing and Wellness is
                         Coming Soon...</Typography>
                 </Grid>
-                <Grid container item justifyContent='center'>
+                <Grid xs={10} container item justifyContent='center' className={underConstructionClasses.spacer}>
                     <CountdownToLaunch/>
                 </Grid>
-                <Grid container item justifyContent='center'>
+                <Grid container item justifyContent='center' className={underConstructionClasses.spacer}>
                     <Grid item xs={10} md={8}>
-                        <Typography variant='body1' color='textSecondary' align='center'>The Transformative Healing and
-                            Wellness
-                            Website is under
-                            construction by the Handsomest Nerd. We will
-                            be here soon
-                            with exciting alternative psychology concepts, Subscribe to be notified.</Typography>
+                        <Typography gutterBottom  variant='body1' color='textSecondary' align='center'> We will provide innovative and
+                            alternative services in an effort to help those seeking change to live a meaningful and
+                            fulfilling life</Typography>
+
+                        <Typography color='primary' gutterBottom variant='body1' align='center'>Subscribe to be
+                            notified.</Typography>
                     </Grid>
                 </Grid>
-                <Grid container item justifyContent='center'>
+                <Grid container item justifyContent='center' style={{marginTop: "24px"}}
+                      className={underConstructionClasses.spacer}>
                     <Grid item container xs={11} md={5}>
                         <TextField fullWidth
                                    label={'Please Enter your Email'}
@@ -137,6 +156,22 @@ const UnderConstruction: FunctionComponent = (props) => {
                     </Grid>
                     <Grid item container justifyContent='center'>
                         {getHelperText()}
+                    </Grid>
+                    <Grid item container style={{
+                        backgroundColor: xsDown ? TransformHWTheme.palette.background.default : "transparent",
+                        position: 'static',
+                        bottom: 0,
+                        marginTop: "24px",
+                        height: "84px"
+                    }}>
+                        <Grid item xs={12} container justifyContent='center'>
+                            <Typography align='center' color='textSecondary' variant='body1'>
+                                Matters of the Mind<br/>Embracing Mental Wellness while healing Mental Illness
+                            </Typography>
+                        </Grid>
+                        <Grid item container justifyContent='center'>
+                            <Typography color='primary' variant='h6'>jgreene@transformHW.org</Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

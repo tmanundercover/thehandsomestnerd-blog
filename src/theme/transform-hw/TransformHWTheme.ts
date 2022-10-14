@@ -4,6 +4,7 @@ import GrotescoLight from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-L
 import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
 import Poppins from '../common/fonts/Poppins/Poppins-Medium.ttf'
 import MontserratBold from '../common/fonts/Montserrat/Montserrat-Bold.ttf'
+import MontserratBold2 from '../common/fonts/Montserrat/Montserrat-Bold.otf'
 import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
 import PlexSans from '../common/fonts/IBM Plex/OpenType/IBM-Plex-Sans/IBMPlexSans-Regular.otf'
 
@@ -65,7 +66,9 @@ export const montserratBold: FontFace = {
     fontWeight: 700,
     src: `
     local('Montserrat'),
-    url(${MontserratBold}) format('opentype')
+    url(${MontserratBold}) format('truetype'),
+    url(${MontserratBold2}) format('opentype'),
+    'sans-serif'
   `
 }
 
@@ -91,7 +94,7 @@ const plexSans: FontFace = {
   `
 }
 
-const fonts = ['Poppins', 'Montserrat'].join(',')
+const fonts = ['Poppins', 'Montserrat', 'sans-serif'].join(',')
 
 // New Registration flow colors
 export const PINK = '#FFA9E7'
@@ -109,16 +112,16 @@ const TransformHWTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
-            sm: 600,
-            md: 960,
-            lg: 1280,
-            xl: 1920
+            sm: 640,
+            md: 980,
+            lg: 1160,
+            xl: 1320,
         }
     },
 // @ts-ignore
     palette: {
         background: {
-            default: '#FAFAFA',
+            default: '#383838',
             paper: '#FAFAFA'
         },
         primary: {
@@ -154,7 +157,7 @@ const TransformHWTheme = createTheme({
         fontFamily: fonts,
         h1: {
             // Title1
-            fontSize: '70px',
+            fontSize: '66px',
             fontStyle: 'normal',
             fontWeight: "bold",
             lineHeight: 1.3,
@@ -162,7 +165,7 @@ const TransformHWTheme = createTheme({
         },
         h2: {
             // Title2
-            fontSize: '55px',
+            fontSize: '53px',
             fontStyle: 'normal',
             fontWeight: 700,
             lineHeight: 1.25,
@@ -185,7 +188,7 @@ const TransformHWTheme = createTheme({
         h6: {
             fontWeight: 'bold',
             fontStyle: 'normal',
-            fontSize: '24px',
+            fontSize: '20px',
             lineHeight: 1.5
         },
         body1: {

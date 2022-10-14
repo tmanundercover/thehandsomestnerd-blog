@@ -125,7 +125,7 @@ const UnderConstruction: FunctionComponent = (props) => {
                             notified.</Typography>
                     </Grid>
                 </Grid>
-                <Grid container item justifyContent='center' style={{marginTop: "24px"}}
+                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(3)}}
                       className={underConstructionClasses.spacer}>
                     <Grid item container xs={11} md={5}>
                         <TextField fullWidth
@@ -140,28 +140,26 @@ const UnderConstruction: FunctionComponent = (props) => {
                                    InputProps={{
                                        endAdornment:
                                            <Button
-                                               disabled={data || isError || (email && (email.length > 0) && !isEmail(email))}
-
+                                               disabled={ !!(data || isError || (email && (email.length > 0) && !isEmail(email))) }
                                                onClick={createLead}
                                                style={{height: "100%", width: "200px", borderRadius: " 0 5px 5px 0"}}
                                                color='primary'
                                                variant='contained'>{isLoading || isRefetching ?
                                                <CircularProgress style={{
-                                                   color: "black",
+                                                   color: TransformHWTheme.palette.text.primary,
                                                    width: "25px",
                                                    height: "25px"
                                                }}/> : "Subscribe"}</Button>
                                        ,
                                    }}/>
                     </Grid>
-                    <Grid item container justifyContent='center'>
+                    <Grid item container justifyContent='center' className={underConstructionClasses.spacer}>
                         {getHelperText()}
                     </Grid>
                     <Grid item container style={{
                         backgroundColor: xsDown ? TransformHWTheme.palette.background.default : "transparent",
                         position: 'static',
                         bottom: 0,
-                        marginTop: "24px",
                         height: "84px"
                     }}>
                         <Grid item xs={12} container justifyContent='center'>

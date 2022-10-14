@@ -145,7 +145,7 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
   return (
     <MuiThemeProvider theme={TransformHWTheme}>
       <CssBaseline/>
-      <MetaTagsComponent structuredData={homePage?.structuredData[0]} title={homePage?.title ?? ''}
+      <MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]} title={homePage?.title ?? ''}
                          description={homePage?.description ?? ''} imgSrc={homePage?.imgSrc}/>
       {homePage? <Grid container direction='column' className={classes.root}>
         <Grid item>

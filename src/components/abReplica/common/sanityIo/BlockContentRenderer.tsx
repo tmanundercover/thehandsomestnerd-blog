@@ -16,10 +16,9 @@ import {
 } from './BlockContentMarkRenderers'
 import BlockContent from '@sanity/block-content-to-react'
 import {ListItemRender, ListRender, UtmLinkRender} from './BlockContentAnnotations'
-import {SanityImage} from '../../cmsClient'
 import {urlFor} from '../../static-pages/cmsStaticPagesClient'
-import { TypographyVariantType } from '../../../../common/sanityIo/BlockContentMarkRenderers'
-import AftTheme from '../../../../theme/aft-theme/AftTheme'
+import {TypographyVariantType} from '../../../../common/sanityIo/BlockContentMarkRenderers'
+import {SanityImageSource} from "@sanity/asset-utils";
 
 export type HeaderVariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type LinkType = { href: string, isAddUtm: boolean, color: { title: string, value: string } }
@@ -60,7 +59,7 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
   return wrapWithHTag(props.children)
 }
 
-export const ImageAssetRender = (image?: SanityImage, caption?: string, className?: any) => {
+export const ImageAssetRender = (image?: SanityImageSource, caption?: string, className?: any) => {
   return image ?
     <figure style={{overflow: 'hidden'}}>
       <img className={className ?? ''} src={urlFor(image).url() ?? ''}/>

@@ -2,10 +2,8 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 
 import {Grid, Link, Typography} from '@material-ui/core'
-import {SanityMenuGroup, SanityMenuItem} from '../cmsClient'
 import abTheme from '../common/Theme'
-import logo from '../common/assets/crown-logo.png'
-import { SanityHomePage } from '../static-pages/cmsStaticPagesClient'
+import {SanityMenuGroup, SanityMenuItem} from "../cmsClientTypes";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root:{
@@ -52,7 +50,7 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
       </Grid>
       <Grid item container >
         <Grid container item xs={8} direction='column' spacing={2}>
-          {menuGroup.links?.map((menuLink: SanityMenuItem, index) => {
+          {menuGroup.links?.map((menuLink: SanityMenuItem, index:any) => {
           return (
             <Grid key={index} item style={{borderLeft:"1px solid #383838", paddingLeft:'8px', marginLeft: '8px'}}>
               <Link href={menuLink.url} className={classes.footerLink}>

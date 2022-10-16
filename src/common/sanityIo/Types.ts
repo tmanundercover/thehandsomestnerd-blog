@@ -1,3 +1,5 @@
+import {SanityImageSource} from "@sanity/asset-utils";
+
 export type SanityRepositoryType = {
   _type: string,
   service: string,
@@ -34,4 +36,28 @@ export declare type SanityRef = {
 export declare type SanityColdLead = {
   email: string,
   source: string
+}
+
+export type SanityTransformHwHomePage = {
+  title?: string
+  description?: string
+  imgSrc?: SanityImageSource
+  metaImage?: SanityImageSource
+  slug?: any
+  pageContent?: any
+  structuredData?: any
+  facebook?: string
+  facebookIconSrc?: SanityImageSource
+  twitter?: string
+  twitterIconSrc?: SanityImageSource
+  instagram?: string
+  instagramIconSrc?: SanityImageSource
+  androidPlayStoreLink?: string
+  androidPlayStoreIconSrc?: string
+  appStoreLink?: string
+  appStoreIconSrc?: string
+  fdicDisclaimer?: string
+  fdicImage?: string
+  isUnderConstruction?: boolean
+  releaseDate?: Date
 }

@@ -5,9 +5,10 @@ import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import Backdrop from '@material-ui/core/Backdrop'
-import cmsClient, {SanityMenuContainer, SanityMenuGroup} from '../cmsClient'
 import abTheme from '../common/Theme'
 import { SanityMenuItem } from '../../../sanity/Menu'
+import {SanityMenuContainer, SanityMenuGroup} from "../cmsClientTypes";
+import cmsClient from "../cmsClient";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -73,9 +74,9 @@ const HeaderMenuContainer: FunctionComponent = () => {
   return (
     <Grid container justify="flex-end">
       <Hidden smDown>
-        <Grid container item alignItems="center" justify="flex-end" spacing={6}>
+        <Grid container item alignItems="center" justifyContent="flex-end" spacing={6}>
           {
-            menu?.menuItems?.map((menuGroup: SanityMenuGroup, index) => {
+            menu?.menuItems?.map((menuGroup: SanityMenuGroup, index:number) => {
               return (
                 <Grid key={index} item>
                   <HeaderMenuGroup menuGroup={menuGroup} isLightTheme/>
@@ -121,7 +122,7 @@ const HeaderMenuContainer: FunctionComponent = () => {
                       </Grid>
                     }
                     {
-                      menuItem?.links?.map((link:SanityMenuItem, index) => {
+                      menuItem?.links?.map((link:SanityMenuItem, index:number) => {
                         if (link) {
                           return <Grid item key={index}>
                             <Button href={link.url} color='secondary' variant={link.isContainedButton? 'contained': (link.isOutlinedButton?'outlined':'text')}>

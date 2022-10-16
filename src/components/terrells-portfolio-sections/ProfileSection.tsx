@@ -7,6 +7,7 @@ import sanityClient from '../../sanityClient'
 import BlockContent from '@sanity/block-content-to-react'
 import {SanityImageAssetDocument} from '@sanity/client'
 import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
+import {SanityImageSource} from "@sanity/asset-utils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -60,7 +61,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 export type ProfileSectionProps = {
   aboutMeBody?: string,
   specialties?: string[],
-  profileImage?: SanityImageAssetDocument
+  profileImage?: SanityImageSource
 }
 
 const ProfileSection: FunctionComponent<ProfileSectionProps> = (props) => {
@@ -68,12 +69,12 @@ const ProfileSection: FunctionComponent<ProfileSectionProps> = (props) => {
 
   return (
     <Grid container item className={classes.root} xs={12} alignItems="center">
-      <Grid container item xs={12} md={5} justify="center" alignItems="center">
+      <Grid container item xs={12} md={5} justifyContent="center" alignItems="center">
 
         <Grid container item style={{
           width: '400px',
           height: '540px',
-          backgroundImage: `url('${urlFor(props.profileImage).width(500).url() ?? ''}')`,
+          backgroundImage: `url('${(props.profileImage && urlFor(props.profileImage).width(500).url()) ?? ''}')`,
           // backgroundPosition: 'center', /* Center the image */
           backgroundRepeat: 'no-repeat', /* Do not repeat the image */
           // backgroundSize: 'cover' /* Resize the background image to cover the entire container */

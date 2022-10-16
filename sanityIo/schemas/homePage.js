@@ -122,5 +122,15 @@ export default {
             title: 'FDIC Disclaimer',
             type: 'string',
         },
+        {
+            name: 'isUnderConstruction',
+            title: 'Is Under Construction',
+            type: 'boolean',
+        },
+        {
+            name: 'releaseDate',
+            title: 'What is the release date?',
+            type: 'date',
+        },
     ]
 }

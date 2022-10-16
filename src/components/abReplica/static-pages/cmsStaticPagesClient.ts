@@ -1,7 +1,7 @@
-import cmsClient, {SanityImage, SanityMenuGroup, SanitySlug} from '../cmsClient'
 import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from '../../../sanityClient'
-import { getAssetDocumentId, getFile, getFileAsset, getImage, getImageAsset } from '@sanity/asset-utils'
+import {SanityMenuGroup, SanitySlug} from "../cmsClientTypes";
+import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
 
 const builder = imageUrlBuilder(sanityClient)
 
@@ -24,7 +24,7 @@ export type SanityWeWorkWith = {
   title?: string,
   sectionHeader?: string,
   description?: string,
-  companyPartnerLogos?: SanityImage[]
+  companyPartnerLogos?: SanityImageAssetProj[]
 }
 
 export type ListItemType = {
@@ -45,34 +45,34 @@ export type SanityGradient = {
 
 export type SanityHeroImageWithText = {
   slug?: SanitySlug
-  mainImage?: SanityImage
+  mainImage?: SanityImageAsset
   gradient?: SanityGradient
 }
 
 export type SanitySimpleHeroImage = {
   slug?: SanitySlug
   text?: string
-  mainImage?: SanityImage
+  mainImage?: SanityImageAsset
   gradient?: SanityGradient
 }
 
 export type SanityBrandQuoteItem = {
   title?: string
   description?: string
-  image?: SanityImage
+  image?: SanityImageAsset
 }
 
 export type SanityOurStoryPage = {
   slug?: SanitySlug
   titleText?: string
-  mainImage?: SanityImage
+  mainImage?: SanityImageAsset
   gradient?: SanityGradient
   introduction?: string
   storyStartTitle?: string
   storyStartLeft1?: string
   storyStartLeft2?: string
   storyStartLeft3?: string
-  storyStartRightImage?: SanityImage
+  storyStartRightImage?: SanityImageAsset
   brandQuotesTitle?: string
   brandQuotesList?: SanityBrandQuoteItem[]
   howWeGrowBrandsTitle?: string
@@ -82,7 +82,7 @@ export type SanityOurStoryPage = {
 export type SanityCommunityPage = {
   slug?: SanitySlug
   titleText?: string
-  mainImage?: SanityImage
+  mainImage?: SanityImageAsset
   gradient?: SanityGradient
   introduction?: string
   howWeGrowBrandsTitle?: string
@@ -91,17 +91,17 @@ export type SanityCommunityPage = {
   callToAction?: string
 }
 
-export type SanityImageAsset = {
+export type SanityImageAssetProj = {
   title?: string
   slug?: SanitySlug
-  mainImage?: SanityImage
+  mainImage?: SanityImageSource
   caption?: string
 }
 
 export type SanityImageCarousel = {
   title?: string
   slug?: SanitySlug
-  images?: SanityImageAsset[]
+  images?: SanityImageAssetProj[]
 }
 
 export type SanityStaticPage = {
@@ -111,7 +111,7 @@ export type SanityStaticPage = {
 }
 
 export type SanityEvergreenPage = {
-  mainImage?: SanityImage
+  mainImage?: SanityImageAsset
   title?: string
   pageContent?: any
 }
@@ -304,7 +304,8 @@ const fetchEvergreenPage = (slug: string): Promise<SanityEvergreenPage> => {
     })
 }
 
-export const urlFor = (source: any) => {
+export const urlFor = (source: SanityImageSource) => {
+
   return builder.image(source)
 }
 

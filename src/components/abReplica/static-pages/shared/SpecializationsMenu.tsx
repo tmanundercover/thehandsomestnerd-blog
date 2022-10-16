@@ -1,9 +1,9 @@
 import React, {FunctionComponent} from 'react'
 import {Grid, Link, Typography} from '@material-ui/core'
-import {SanityMenuGroup, SanityMenuItem} from '../../cmsClient'
 import {useHistory} from 'react-router-dom'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import abTheme from '../../common/Theme'
+import {SanityMenuGroup, SanityMenuItem} from "../../cmsClientTypes";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   plexH4: {

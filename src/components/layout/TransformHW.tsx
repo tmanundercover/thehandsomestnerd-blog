@@ -1,167 +1,124 @@
-import { CssBaseline, Grid, makeStyles, MuiThemeProvider, Theme } from '@material-ui/core'
-import React, { FunctionComponent } from 'react'
+import {CircularProgress, CssBaseline, Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
+import React, {FunctionComponent} from 'react'
 import theme from '../../common/Theme'
 import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
-import { SanityImageAssetDocument } from '@sanity/client'
 import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
-import AndaTheme from '../../theme/aft-theme/AftTheme'
-import { useLocation, useParams } from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import MetaTagsComponent from '../aft-marketing/MetaTags'
-import cmsClient, { SanityImage } from '../abReplica/cmsClient'
-import { PRIMARY_MINT } from '../aft-marketing/AboutAndaCardSection'
-import purpleDiamond from './purpleDiamond.png'
-import { urlFor } from '../abReplica/static-pages/cmsStaticPagesClient'
+import cmsClient from '../abReplica/cmsClient'
 import Footer from '../abReplica/footer/Footer'
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import UnderConstruction from "./under-construction/UnderConstruction";
+import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
+import groqQueries from "../../utils/groqQueries";
+import {useQuery} from "react-query";
+import leadClient from "./under-construction/leadClient";
+import {useThwStyles} from "./Styles";
+import FourOhFour from "./error/FourOhFour";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    width: '100vw',
-    //
-    // backgroundImage: `url('${purpleDiamond}')`,
-    // backgroundRepeat: 'repeat',
-    backgroundColor: '#F3FFFC'
-  }
+    root: {
+        width: '100vw',
+        //
+        // backgroundImage: `url('${purpleDiamond}')`,
+        // backgroundRepeat: 'repeat',
+        backgroundColor: '#F3FFFC'
+    }
 }))
-
-
-export type SanityAftHomePage = {
-  title?: string
-  description?: string
-  imgSrc?: SanityImage
-  slug?: any
-  pageContent?: any
-  structuredData?: any
-  facebook?: string
-  facebookIconSrc?: SanityImage
-  twitter?: string
-  twitterIconSrc?: SanityImage
-  instagram?: string
-  instagramIconSrc?: SanityImage
-  androidPlayStoreLink?: string
-  androidPlayStoreIconSrc?: string
-  appStoreLink?: string
-  appStoreIconSrc?: string
-  fdicDisclaimer?:string
-  fdicImage?:string
-}
 
 export type AppLayoutProps = {}
 
 const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
-  const classes = useStyles(theme)
-  const [homePage, setHomePage] = React.useState<SanityAftHomePage|undefined>()
+    const classes = useStyles(TransformHWTheme)
+    const globalClasses = useThwStyles(TransformHWTheme)
+    const [homePage, setHomePage] = React.useState<SanityTransformHwHomePage | undefined>()
 
-  const urlParams:{pageSlug:string} = useParams()
+    const urlParams: { pageSlug: string } = useParams()
 
-  React.useEffect(() => {
-    const pageSlug = urlParams.pageSlug
-    if(pageSlug){
-      sanityClient
-        .fetch(
-          `*[slug.current == $pageSlug]{
-          title,
-          slug,
-          description,
-          metaImage,
-          pageContent,
-          structuredData,
-          facebook,
-          facebookIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          twitter,
-          twitterIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          instagram,
-          instagramIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          androidPlayStoreLink,
-          androidPlayStoreIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          appStoreLink,
-          appStoreIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          fdicImage{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          fdicDisclaimer
-       }`,{pageSlug})
-        .then((data: SanityAftHomePage[]) => {
-          console.log('transform hw homepage fetched', data[0])
+    const {isLoading, isError, data, isRefetching} = useQuery(
+        ['fetchPageBySlug'],
+        async () => {
+            const pageSlug = urlParams.pageSlug
+            if (pageSlug) {
+                return sanityClient
+                    .fetch(
+                        `*[slug.current == $pageSlug]{
+          ${groqQueries.HOMEPAGE}
+       }`, {pageSlug})
+                    .catch(console.error)
+            }
+        }
+    );
 
-          setHomePage(data[0])
+    React.useEffect(() => {
+        console.log("the data is ", data)
+
+        if (data)
+            setHomePage(data[0])
+    }, [data])
+
+    const [realizedContent, setRealizedContent] = React.useState<any[]>([])
+
+    React.useEffect(() => {
+        // These Content sections are references and must be retrieved from Sanity
+        homePage?.pageContent?.content?.map && Promise.all(homePage?.pageContent?.content.map((contentBlock: any) => {
+            return cmsClient.fetchRef(contentBlock).then((response) => {
+                return response
+            })
+        })).then(contentRealized => {
+            setRealizedContent(contentRealized)
         })
-        .catch(console.error)
+    }, [homePage])
+
+    const PageLayout = () => {
+        return <Grid container direction='column' className={classes.root}>
+            <Grid item>
+                <Header menuSlug='transform-hw-header'/>
+            </Grid>
+            <Grid item style={{marginBottom: '80px'}}>
+                <BlockContentLayoutContainer
+                    content={realizedContent}/>
+            </Grid>
+            <Grid item>
+                <Footer footerMenuSlug='transform-hw-footer' homePage={homePage}/>
+            </Grid>
+        </Grid>
     }
-  }, [])
-
-  const [realizedContent, setRealizedContent] = React.useState<any[]>([])
 
 
-  React.useEffect(() => {
+    const PageContents = () => {
+        if (isLoading || isRefetching)
+            return <Grid container item justifyContent='center' alignItems='center'
+                         alignContent='center' className={globalClasses.fullscreen}><CircularProgress/></Grid>
 
-    // These Content sections are references and must be retrieved from Sanity
-    homePage?.pageContent?.content?.map && Promise.all(homePage?.pageContent?.content.map((contentBlock: any) => {
-      return cmsClient.fetchRef(contentBlock).then((response) => {
-        return response
-      })
-    })).then(contentRealized => {
-      setRealizedContent(contentRealized)
-    })
-  }, [homePage])
+        if (isError) {
+            return <FourOhFour/>
+        }
 
-  return (
-    <MuiThemeProvider theme={TransformHWTheme}>
-      <CssBaseline/>
-      <MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]} title={homePage?.title ?? ''}
-                         description={homePage?.description ?? ''} imgSrc={homePage?.imgSrc}/>
-      {homePage? <Grid container direction='column' className={classes.root}>
-        <Grid item>
-          <Header menuSlug='transform-hw-header'/>
-        </Grid>
-        <Grid item style={{marginBottom: '80px'}}>
-          <BlockContentLayoutContainer
-              content={realizedContent}/>
-        </Grid>
-        <Grid item>
-          <Footer footerMenuSlug='transform-hw-footer' homePage={homePage}/>
-        </Grid>
-      </Grid> : <UnderConstruction/>}
-    </MuiThemeProvider>
+        if (!homePage?.isUnderConstruction) {
+            return <PageLayout></PageLayout>
+        } else {
+            let releaseDate = new Date(Date.now() + 2000000000)
+            if (homePage && homePage.releaseDate) {
+                releaseDate = homePage.releaseDate
+            }
 
-  )
+            return <UnderConstruction releaseDate={homePage?.releaseDate ?? new Date(Date.now() + 2000000000)}/>
+        }
+    }
+
+    return (
+        <MuiThemeProvider theme={TransformHWTheme}>
+            <CssBaseline/>
+            <MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]}
+                               title={homePage?.title ?? ''}
+                               description={homePage?.description ?? ''} imgSrc={homePage?.metaImage}/>
+            <PageContents/>
+        </MuiThemeProvider>
+
+    )
 }
 
 export default TransformHW

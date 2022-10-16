@@ -1,15 +1,5 @@
 import React, {ChangeEvent, FunctionComponent, useState} from 'react'
-import {
-    Box,
-    Button,
-    CircularProgress,
-    Grid,
-    InputAdornment,
-    makeStyles,
-    TextField,
-    Theme,
-    Typography, useMediaQuery
-} from '@material-ui/core'
+import {Grid, TextField, Typography, useMediaQuery} from '@material-ui/core'
 import {useThwStyles} from "../Styles";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
@@ -18,36 +8,16 @@ import clsx from "clsx";
 import leadClient from "./leadClient";
 import {useQuery} from "react-query";
 import isEmail from 'validator/lib/isEmail';
+import LoadingButton from "../../loading-button/LoadingButton";
+import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
 
 
-const useStyles = makeStyles((theme: Theme) => ({
-    fullscreenOverlay: {
-        position: "absolute",
-        backgroundColor: `rgba(0, 0, 0, .5)`
-    },
-    fullScreenImage: {
-        position: "relative",
-        backgroundImage: `url(${therapistHoldingHand})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundColor: theme.palette.background.default
-    },
-    endAdornedInput: {
-        "& .MuiFilledInput-adornedEnd": {
-            paddingRight: 0
-        },
-        "& .MuiOutlinedInput-adornedEnd": {
-            paddingRight: 0
-        }
-    },
-    spacer: {
-        marginBottom: "40px"
-    }
-}))
+interface IProps {
+    releaseDate: Date
+}
 
-const UnderConstruction: FunctionComponent = (props) => {
-    const classes = useThwStyles(TransformHWTheme)
-    const underConstructionClasses = useStyles(TransformHWTheme)
+const UnderConstruction: FunctionComponent<IProps> = (props) => {
+    const classes = useThwStyles({bgImage: therapistHoldingHand})
 
     const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
     const xsDown = useMediaQuery(TransformHWTheme.breakpoints.down('xs'))
@@ -65,8 +35,8 @@ const UnderConstruction: FunctionComponent = (props) => {
     );
 
 
-    const createLead = async () => {
-        refetch()
+    const createLead = async (e: any): Promise<any> => {
+        return refetch()
     }
 
     const getHelperText = () => {
@@ -88,9 +58,10 @@ const UnderConstruction: FunctionComponent = (props) => {
     }
 
     return (
-        <Grid container className={clsx(xsDown?classes.fullscreenPlus: classes.fullscreen, underConstructionClasses.fullScreenImage)}
+        <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
               style={{position: "relative"}}>
-            <Grid container item className={xsDown?classes.fullscreenPlus: classes.fullscreen} style={{position: 'relative'}}>
+            <Grid container item className={xsDown ? classes.fullscreenPlus : classes.fullscreen}
+                  style={{position: 'relative'}}>
                 <Grid container item style={{
                     position: "absolute",
                     bottom: 0,
@@ -99,7 +70,9 @@ const UnderConstruction: FunctionComponent = (props) => {
                 }}>
                 </Grid>
             </Grid>
-            <Grid container item className={clsx(xsDown?classes.fullscreenPlus: classes.fullscreen, underConstructionClasses.fullscreenOverlay)} style={{position: 'absolute'}}>
+            <Grid container item
+                  className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}
+                  style={{position: 'absolute'}}>
             </Grid>
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
@@ -107,17 +80,18 @@ const UnderConstruction: FunctionComponent = (props) => {
                       paddingBottom: smDown ? 0 : TransformHWTheme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
-                <Grid container item xs={11} className={underConstructionClasses.spacer} justifyContent='center'>
+                <Grid container item xs={11} className={classes.spacer} justifyContent='center'>
                     <Typography variant={smDown ? 'h2' : 'h1'} align='center' color='textSecondary'>Transformative
                         Healing and Wellness is
                         Coming Soon...</Typography>
                 </Grid>
-                <Grid xs={10} container item justifyContent='center' className={underConstructionClasses.spacer}>
-                    <CountdownToLaunch/>
+                <Grid xs={10} container item justifyContent='center' className={classes.spacer}>
+                    <CountdownToLaunch launchDate={props.releaseDate}/>
                 </Grid>
-                <Grid container item justifyContent='center' className={underConstructionClasses.spacer}>
+                <Grid container item justifyContent='center' className={classes.spacer}>
                     <Grid item xs={10} md={8}>
-                        <Typography gutterBottom  variant='body1' color='textSecondary' align='center'> We will provide innovative and
+                        <Typography gutterBottom variant='body1' color='textSecondary' align='center'> We will provide
+                            innovative and
                             alternative services in an effort to help those seeking change to live a meaningful and
                             fulfilling life</Typography>
 
@@ -126,7 +100,7 @@ const UnderConstruction: FunctionComponent = (props) => {
                     </Grid>
                 </Grid>
                 <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(3)}}
-                      className={underConstructionClasses.spacer}>
+                      className={classes.spacer}>
                     <Grid item container xs={11} md={5}>
                         <TextField fullWidth
                                    label={'Please Enter your Email'}
@@ -139,21 +113,18 @@ const UnderConstruction: FunctionComponent = (props) => {
                                    className={classes.endAdornedInput}
                                    InputProps={{
                                        endAdornment:
-                                           <Button
-                                               disabled={ !!(data || isError || (email && (email.length > 0) && !isEmail(email))) }
-                                               onClick={createLead}
-                                               style={{height: "100%", width: "200px", borderRadius: " 0 5px 5px 0"}}
+                                           <LoadingButton
+                                               width={200}
+                                               isLoading={isLoading}
+                                               groupiness={ButtonGroupMemberEnum.RIGHT}
+                                               disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
+                                               clickHandler={createLead}
                                                color='primary'
-                                               variant='contained'>{isLoading || isRefetching ?
-                                               <CircularProgress style={{
-                                                   color: TransformHWTheme.palette.text.primary,
-                                                   width: "25px",
-                                                   height: "25px"
-                                               }}/> : "Subscribe"}</Button>
+                                               variant='contained'>Subscribe</LoadingButton>
                                        ,
                                    }}/>
                     </Grid>
-                    <Grid item container justifyContent='center' className={underConstructionClasses.spacer}>
+                    <Grid item container justifyContent='center' className={classes.spacer}>
                         {getHelperText()}
                     </Grid>
                     <Grid item container style={{

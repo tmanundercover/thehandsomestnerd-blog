@@ -1,24 +1,21 @@
-import React, { FunctionComponent } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import React, {FunctionComponent} from 'react'
+import {makeStyles, Theme} from '@material-ui/core/styles'
 import MetaTags from 'react-meta-tags'
-import { SanityImage } from '../abReplica/cmsClient'
-import { urlFor } from '../abReplica/static-pages/cmsStaticPagesClient'
-import { useLocation } from 'react-router-dom'
+import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
+import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
 
 interface IProps {
   title: string
   description: string
-  imgSrc?: SanityImage
+  imgSrc?: SanityImageSource
   structuredData?: any
 }
 
 
 const MetaTagsComponent: FunctionComponent<IProps> = (props) => {
   const [structuredJSONObj, setStructuredJSONObj] = React.useState<any>()
-
-  const location = useLocation()
 
   React.useEffect(() => {
     console.log("Structured data", props.structuredData)
@@ -28,7 +25,7 @@ const MetaTagsComponent: FunctionComponent<IProps> = (props) => {
         '@context': 'http://schema.org/',
         '@type': props.structuredData.type ? props.structuredData.type : 'Product',
         "name": `${props.structuredData.name}`,
-        "image": props.structuredData.image?.map((image:SanityImage) => urlFor(image).url()),
+        "image": props.structuredData.image?.map((image:SanityImageSource) => urlFor(image).url()),
         "description": props.structuredData.description,
         "url": props.structuredData.url,
         "offers": {
@@ -54,9 +51,9 @@ console.log("structured data", data)
         <script type='application/ld+json'     dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredJSONObj) }}
         />
 
-        <meta name='description' content={props.description}/>
-        <meta property='og:title' content={props.title}/>
-        <meta property='og:image' content={urlFor(props.imgSrc).url() ?? ''}/>
+        {/*<meta name='description' content={props.description}/>*/}
+        {/*<meta property='og:title' content={props.title}/>*/}
+        {/*{props.imgSrc && <meta property='og:image' content={urlFor(props.imgSrc).url() ?? ''}/>}*/}
       </MetaTags>
     </div>
   )

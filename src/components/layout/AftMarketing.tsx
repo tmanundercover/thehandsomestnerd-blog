@@ -1,18 +1,16 @@
-import { CssBaseline, Grid, makeStyles, MuiThemeProvider, Theme } from '@material-ui/core'
-import React, { FunctionComponent } from 'react'
+import {CssBaseline, Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
+import React, {FunctionComponent} from 'react'
 import theme from '../../common/Theme'
 import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
-import { SanityImageAssetDocument } from '@sanity/client'
 import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
 import AndaTheme from '../../theme/aft-theme/AftTheme'
-import { useLocation, useParams } from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import MetaTagsComponent from '../aft-marketing/MetaTags'
-import cmsClient, { SanityImage } from '../abReplica/cmsClient'
-import { PRIMARY_MINT } from '../aft-marketing/AboutAndaCardSection'
+import cmsClient from '../abReplica/cmsClient'
 import purpleDiamond from './purpleDiamond.png'
-import { urlFor } from '../abReplica/static-pages/cmsStaticPagesClient'
 import Footer from '../abReplica/footer/Footer'
+import {SanityImageAsset} from "@sanity/asset-utils";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -29,16 +27,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
 export type SanityAftHomePage = {
   title?: string
   description?: string
-  imgSrc?: SanityImage
+  imgSrc?: SanityImageAsset
   slug?: any
   pageContent?: any
   structuredData?: any
   facebook?: string
-  facebookIconSrc?: SanityImage
+  facebookIconSrc?: SanityImageAsset
   twitter?: string
-  twitterIconSrc?: SanityImage
+  twitterIconSrc?: SanityImageAsset
   instagram?: string
-  instagramIconSrc?: SanityImage
+  instagramIconSrc?: SanityImageAsset
   androidPlayStoreLink?: string
   androidPlayStoreIconSrc?: string
   appStoreLink?: string

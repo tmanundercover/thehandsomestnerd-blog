@@ -15,7 +15,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 
-const CountdownToLaunch: FunctionComponent = () => {
+interface IProps {
+    launchDate: Date
+}
+
+const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
     const Completionist = () => <span>Site should be launched!</span>
 
@@ -64,7 +68,7 @@ const CountdownToLaunch: FunctionComponent = () => {
 
     return (
         <Grid item container justifyContent='center'>
-                <Countdown date={new Date(process.env.REACT_APP_RELEASEDATE ?? Date.now())} renderer={renderer}/>
+                <Countdown date={props.launchDate} renderer={renderer}/>
         </Grid>
     )
 }

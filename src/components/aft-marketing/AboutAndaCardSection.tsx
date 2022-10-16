@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { AboutAndaCardSectionType, HeroContentSectionType } from '../BlockContentLayoutContainer'
 import { Button, Card, Grid, Typography } from '@material-ui/core'
 import { urlFor } from '../abReplica/static-pages/cmsStaticPagesClient'
+import {AboutAndaCardSectionType} from "../BlockContentTypes";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   marketingBackground: (props: { cardBaseImageUrl: string, cardOverlay: string }) => ({

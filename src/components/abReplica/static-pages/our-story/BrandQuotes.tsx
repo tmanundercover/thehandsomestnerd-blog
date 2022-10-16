@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography} from '@material-ui/core'
-import {SanityBrandQuoteItem} from '../cmsStaticPagesClient'
+import {SanityBrandQuoteItem, urlFor} from '../cmsStaticPagesClient'
 import BlockContentContainer from '../../BlockContentContainer'
 import abTheme from '../../common/Theme'
 
@@ -33,7 +33,7 @@ const BrandQuotes: FunctionComponent<BrandQuotesProps> = (props) => {
           {props?.quotes?.map((quoteItem) => <Grid item xs={12} md={6}>
             <Grid container direction="column" alignItems="center" spacing={2}>
               <Grid item>
-                <img src={quoteItem?.image?.asset?.url} className={classes.logo}/>
+                  {quoteItem.image && <img src={urlFor(quoteItem.image).url() ?? ""} className={classes.logo}/>}
               </Grid>
               <Grid item><Typography variant="body1">{quoteItem?.description}</Typography></Grid>
             </Grid>

@@ -5,6 +5,7 @@ import FooterMenuContainer from './FooterMenuContainer'
 import abTheme from '../common/Theme'
 import { SanityHomePage } from '../static-pages/cmsStaticPagesClient'
 import { SanityAftHomePage } from '../../layout/AftMarketing'
+import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -39,7 +40,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 interface IProps {
   footerMenuSlug?:string
-  homePage?: SanityAftHomePage
+  homePage?: SanityAftHomePage | SanityTransformHwHomePage
 }
 
 const Footer: FunctionComponent<IProps> = (props:IProps) => {

@@ -6,6 +6,7 @@ import Poppins from '../common/fonts/Poppins/Poppins-Medium.ttf'
 import MontserratBold from '../common/fonts/Montserrat/Montserrat-Bold.ttf'
 import MontserratBold2 from '../common/fonts/Montserrat/Montserrat-Bold.otf'
 import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
+import PoppinsXBold from '../common/fonts/Poppins/Poppins-ExtraBold.ttf'
 import PlexSans from '../common/fonts/IBM Plex/OpenType/IBM-Plex-Sans/IBMPlexSans-Regular.otf'
 
 type FontFace = {
@@ -59,6 +60,7 @@ const poppins: FontFace = {
     url(${Poppins}) format('opentype')
   `
 }
+
 export const montserratBold: FontFace = {
     fontFamily: 'Montserrat',
     fontStyle: 'bold',
@@ -80,6 +82,16 @@ const poppinsBold: FontFace = {
     src: `
     local('Poppins'),
     url(${PoppinsBold}) format('opentype')
+  `
+}
+export const poppinsXBold: FontFace = {
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+    fontWeight: 900,
+    src: `
+    local('Poppins'),
+    url(${PoppinsXBold}) format('opentype')
   `
 }
 
@@ -122,7 +134,7 @@ const TransformHWTheme = createTheme({
     palette: {
         background: {
             default: '#383838',
-            paper: '#FAFAFA'
+            paper: '#383838'
         },
         primary: {
             main: COLORS.MAIN,
@@ -236,7 +248,7 @@ const TransformHWTheme = createTheme({
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [poppins]
+                '@font-face': [poppins, poppinsXBold]
             },
         },
         MuiInputBase: {
@@ -281,7 +293,9 @@ const TransformHWTheme = createTheme({
                 // color: '#FFFFFF',
                 // height: '35px',
                 // padding: '8px 16px 8px 16px',
-                // borderRadius: '0px'
+                borderRadius: '5px',
+                paddingTop: "16px",
+                paddingBottom: "16px"
             },
             contained: {
                 boxShadow: "none"

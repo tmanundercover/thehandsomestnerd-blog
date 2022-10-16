@@ -1,9 +1,10 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {SanityImage} from '../../cmsClient'
 import {Grid, Typography} from '@material-ui/core'
 import BlockContentContainer from '../../BlockContentContainer'
 import abTheme from '../../common/Theme'
+import {SanityImageSource} from "@sanity/asset-utils";
+import {urlFor} from "../cmsStaticPagesClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   left3: {
@@ -20,7 +21,7 @@ export type StoryStartProps = {
   left1?: string
   left2?: string
   left3?: string
-  rightImage?: SanityImage
+  rightImage?: SanityImageSource
 }
 
 const StoryStart: FunctionComponent<StoryStartProps> = (props) => {
@@ -49,7 +50,7 @@ const StoryStart: FunctionComponent<StoryStartProps> = (props) => {
         </Grid>
         <Grid container item xs={12} md={6} direction="column" alignItems="center">
           <Grid item xs={12}>
-            <img className={classes.rightImage} src={props?.rightImage?.asset.url} width="100%"/>
+            {props.rightImage && <img className={classes.rightImage} src={urlFor(props.rightImage).url() ?? ""} width="100%"/>}
           </Grid>
         </Grid>
       </Grid>

@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import {Button, Link, Menu, Typography} from '@material-ui/core'
 import {bindMenu, bindTrigger, usePopupState} from 'material-ui-popup-state/hooks'
 import {ArrowDropDown} from '@material-ui/icons'
-import {SanityMenuGroup} from '../cmsClient'
+import {SanityMenuGroup} from "../cmsClientTypes";
 
 export const useStyles = makeStyles<Theme, AbMenuItemListProps>((theme: Theme) => ({
   footerLink: props => ({
@@ -75,7 +75,7 @@ const HeaderMenuGroup: FunctionComponent<AbMenuItemListProps> = (props) => {
                 anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
                 transformOrigin={{vertical: 'top', horizontal: 'left'}}
           >
-            {props.menuGroup.links?.map((menuLink, index) => {
+            {props.menuGroup.links?.map((menuLink:any, index:number) => {
               return (<MenuItem key={index} className={classes.menuItem}>
                 <Link href={menuLink.url} className={classes.footerLink}>{menuLink.displayText}</Link>
               </MenuItem>)

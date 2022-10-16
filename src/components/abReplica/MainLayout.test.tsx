@@ -2,8 +2,8 @@ import {fireEvent, render, screen, waitFor} from '@testing-library/react'
 import React from 'react'
 import {MemoryRouter} from 'react-router-dom'
 import MainLayout from './MainLayout'
-import {SanityLandingPage, SanityMenuContainer} from './cmsClient'
 import cmsClient from './cmsClient'
+import {SanityLandingPage, SanityMenuContainer} from "./cmsClientTypes";
 
 jest.mock('./cmsClient')
 

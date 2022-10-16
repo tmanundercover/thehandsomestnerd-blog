@@ -1,10 +1,9 @@
-import React, { FunctionComponent } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Button, Card, Grid, Typography } from '@material-ui/core'
-import { SanityImage } from '../abReplica/cmsClient'
-import { urlFor } from '../abReplica/static-pages/cmsStaticPagesClient'
+import React, {FunctionComponent} from 'react'
+import {makeStyles, Theme} from '@material-ui/core/styles'
+import {Button, Card, Grid, Typography} from '@material-ui/core'
+import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
 import AndaTheme from '../../theme/aft-theme/AftTheme'
-import { CryptoInYourPocketSectionType, WhySwitchReasonType } from '../BlockContentLayoutContainer'
+import {CryptoInYourPocketSectionType, WhySwitchReasonType} from "../BlockContentTypes";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

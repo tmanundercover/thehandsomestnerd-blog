@@ -1,12 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import { Button, Card, Grid, Typography } from '@material-ui/core'
 import FooterMenuGroup from './FooterMenuGroup'
-import cmsClient, { SanityMenuContainer, SanityMenuGroup } from '../cmsClient'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import AndaTheme from '../../../theme/aft-theme/AftTheme'
 import { SanityHomePage, urlFor } from '../static-pages/cmsStaticPagesClient'
 import { SanityAftHomePage } from '../../layout/AftMarketing'
 import { Link } from 'react-router-dom'
+import {SanityMenuContainer, SanityMenuGroup} from "../cmsClientTypes";
+import cmsClient from "../cmsClient";
+import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -21,7 +23,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 interface IProps {
   menuContainerSlug?: string
-  homePage?: SanityAftHomePage
+  homePage?: SanityAftHomePage | SanityTransformHwHomePage
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
@@ -42,7 +44,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
       <Card className={classes.root}>
         <Grid container direction='column'>
           <Grid item container style={{marginBottom: '80px'}}>
-            <img alt={menu?.logoImageAltText} src={urlFor(menu?.logoImageSrc).url() ?? ''}/>
+            {menu?.logoImageSrc && <img alt={menu?.logoImageAltText} src={urlFor(menu.logoImageSrc).url() ?? ''}/>}
           </Grid>
           <Grid container item>
             <Grid container item xs={8}>

@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { HeroContentSectionType } from '../BlockContentLayoutContainer'
 import { Button, Card, Grid, Typography } from '@material-ui/core'
 import { urlFor } from '../abReplica/static-pages/cmsStaticPagesClient'
 import { PRIMARY_MINT } from './AboutAndaCardSection'
+import {HeroContentSectionType} from "../BlockContentTypes";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   marketingBackground: (props: { heroBaseImageUrl: string, heroOverlay: string }) => ({
@@ -58,7 +58,7 @@ const HeroContentSection: FunctionComponent<IProps> = (props) => {
                     <Typography variant='h2' color={'secondary'}>{props.sectionData.contentTitle}</Typography>
                   </Grid>
                   <Grid container item className={classes.contentBullets} style={{marginBottom:"40px"}}>
-                    {props.sectionData.contentBullets.map((bullet,index) => {
+                    {props.sectionData.contentBullets.map((bullet:string,index:number) => {
                       return <Grid key={index} item style={{marginBottom:"16px"}}>
                         <Typography variant='body1' color='secondary'>{bullet}</Typography>
                       </Grid>

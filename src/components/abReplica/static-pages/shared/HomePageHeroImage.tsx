@@ -1,13 +1,13 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {SanityHeroImageWithText} from '../cmsStaticPagesClient'
+import {SanityHeroImageWithText, urlFor} from '../cmsStaticPagesClient'
 import {Grid, Hidden, Typography, useMediaQuery} from '@material-ui/core'
 import abTheme from '../../common/Theme'
 
 export const useStyles = makeStyles<Theme, HeroImageWithTextProps>((theme: Theme) => ({
   heroImageContainer: props => ({
     backgroundSize: 'contain',
-    backgroundImage: `url(${props.heroImage?.mainImage?.asset?.url}), linear-gradient(103deg, ${props.heroImage?.gradient?.color1?.value}, ${props.heroImage?.gradient?.color2?.value})`,
+    backgroundImage: `url(${(props.heroImage?.mainImage && urlFor(props.heroImage.mainImage).url())}), linear-gradient(103deg, ${props.heroImage?.gradient?.color1?.value}, ${props.heroImage?.gradient?.color2?.value})`,
     backgroundRepeat: 'no-repeat',
     [theme.breakpoints.up('md')]: {
       minHeight: '604px',

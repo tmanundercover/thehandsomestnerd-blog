@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React, {FunctionComponent} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import { Card, Grid } from '@material-ui/core'
+import {Card, Grid} from '@material-ui/core'
 import sanityClient from '../sanityClient'
-import { blockSerializers } from '../common/sanityIo/BlockContentRenderer'
-import { useCommonStyles } from '../common/sanityIo/CommonStyles'
+import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
+import {useCommonStyles} from '../common/sanityIo/CommonStyles'
 import theme from '../common/Theme'
 import IntroSection from './terrells-portfolio-sections/IntroSection'
 import ProfileSection from './terrells-portfolio-sections/ProfileSection'
@@ -17,65 +17,17 @@ import SourceCode from './SourceCode'
 import ModernServiceSection from './derm-sections/ModernServiceSection'
 import SelectedWorksMockupsSectionTerrell from './terrells-portfolio-sections/SelectedWorksMockupsSectionTerrell'
 import HeroContentSection from './aft-marketing/HeroContentSection'
-import cmsClient, { SanityImage } from './abReplica/cmsClient'
 import WhySwitchSection from './aft-marketing/WhySwitchSection'
 import AboutAndaCardSection from './aft-marketing/AboutAndaCardSection'
 import CryptoInYourPocketSection from './aft-marketing/CryptoInYourPocketSection'
-import { SanityImageAsset } from './abReplica/static-pages/cmsStaticPagesClient'
-import { SanityImageAssetDocument } from '@sanity/client'
+import {
+  AboutAndaCardSectionType,
+  CryptoInYourPocketSectionType,
+  HeroContentSectionType,
+  WhySwitchSectionType
+} from "./BlockContentTypes";
 
 export type BlockContentLayoutContainerProps = { content?: any }
-
-export type HeroContentSectionType = {
-  name: string
-  title: string
-  heroImage: SanityImage
-  heroImageAltText: string
-  heroImageBackground: SanityImage
-  contentTitle: string
-  contentBullets: string[]
-  ctaButtonTitle: string
-  ctaButtonLink: string
-}
-
-
-export type AboutAndaCardSectionType = {
-  name: string
-  title: string
-  cardImage: SanityImage
-  cardImageAltText: string
-  cardImageBackground: SanityImage
-  contentTitle: string
-  contentLeft: string
-  contentRight: string
-  ctaButtonTitle: string
-  ctaButtonLink: string
-}
-
-export type WhySwitchReasonType = {
-  icon: SanityImage
-  iconAlt: string
-  text: string
-}
-
-export type WhySwitchSectionType = {
-  _id:string
-  imageSrc: SanityImage
-  imageAlt: string
-  reasons: WhySwitchReasonType[]
-}
-
-export type CryptoInYourPocketSectionType = {
-  name: string
-  title: string
-  imageSrc: SanityImage
-  imageSrcAltText: string
-  bullets: WhySwitchReasonType[]
-  ctaHeader1: string
-  ctaText: string
-  ctaButtonText: string
-  ctaButtonLink: string
-}
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
   const classes = useCommonStyles(theme)

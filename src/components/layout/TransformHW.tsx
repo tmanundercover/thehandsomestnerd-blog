@@ -21,7 +21,6 @@ import FourOhFour from "./error/FourOhFour";
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '100vw',
-        backgroundColor: 'red'
     }
 }))
 

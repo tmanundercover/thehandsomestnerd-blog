@@ -22,12 +22,13 @@ import CryptoInYourPocketSection from './aft-marketing/CryptoInYourPocketSection
 import {
   AboutAndaCardSectionType,
   CryptoInYourPocketSectionType,
-  HeroContentSectionType, ThwHeroContentSectionType,
+  HeroContentSectionType, ThwHeroContentSectionType, ThwPositivePsychologySectionType,
   WhySwitchSectionType
 } from "./BlockContentTypes";
 import TransformHWTheme from "../theme/transform-hw/TransformHWTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
+import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
 
 export type BlockContentLayoutContainerProps = { content?: any }
 
@@ -153,6 +154,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
             return <Grid key={index} container item xs={12}>
               <ThwHeroContentSection
                   sectionData={thwHeroSection}
+              />
+            </Grid>
+          case 'transformPositivePsychologySection':
+            const thwPositivePsychologySection: ThwPositivePsychologySectionType = columnLayoutContainer
+
+            return <Grid key={index} container item xs={12} justifyContent='center' style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+              <ThwPositivePsychology
+                  sectionData={thwPositivePsychologySection}
               />
             </Grid>
           default:

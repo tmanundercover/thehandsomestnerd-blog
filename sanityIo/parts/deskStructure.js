@@ -5,6 +5,7 @@
 import {createSuperPane} from 'sanity-super-pane'
 // eslint-disable-next-line import/no-unresolved
 import S from '@sanity/desk-tool/structure-builder'
+import {SanitySectionTitlesEnum} from "../schemas/sections/transform-hw/sectionTitles";
 
 export default () =>
     S.list()
@@ -29,8 +30,11 @@ export default () =>
                 .title('Page Section: Custom 2 column')
                 .child(createSuperPane('column2BlockContent', S)),
             S.listItem()
-                .title('THW Section: Hero + Content')
+                .title(SanitySectionTitlesEnum.HERO_CONTENT)
                 .child(createSuperPane('transformHeroContentSection', S)),
+            S.listItem()
+                .title(SanitySectionTitlesEnum.POSITIVE_PSYCHOLOGY)
+                .child(createSuperPane('transformPositivePsychologySection', S)),
             S.listItem()
                 .title('Page Section: Hero + Content')
                 .child(createSuperPane('heroContentSection', S)),

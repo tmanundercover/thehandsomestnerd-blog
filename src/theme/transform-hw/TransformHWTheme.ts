@@ -192,7 +192,7 @@ const TransformHWTheme = createTheme({
         h4: {
             fontWeight: 'bold',
             fontStyle: 'normal',
-            fontSize: '17px',
+            fontSize: '34px',
             lineHeight: 1.5
         },
         h6: {
@@ -205,7 +205,7 @@ const TransformHWTheme = createTheme({
             // Body
             fontSize: '18px',
             fontStyle: 'normal',
-            fontWeight: 400,
+            fontWeight: 350,
             lineHeight: 1.5,
             letterSpacing: '-0.03em'
         },

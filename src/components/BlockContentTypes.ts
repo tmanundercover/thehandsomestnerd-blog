@@ -72,3 +72,15 @@ export type ThwHeroContentSectionType = {
     ctaButtonTitle: string
     ctaButtonLink: string
 }
+
+export type ThwPositivePsychologySectionType = {
+    name: string
+    superTitle:string
+    contentTitle: string
+    contentText: string
+    contentBullets: string[]
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+}

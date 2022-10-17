@@ -21,14 +21,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backgroundRepeat: 'no-repeat',
         backgroundImage: `url('${props.heroBaseImageUrl}'), url('${props.heroOverlay}')`,
         backgroundSize: 'cover, contain',
-        // backgroundPosition: 'left bottom',
         minHeight: '521px',
         backgroundColor: 'transparent',
         position: "relative"
     }),
     contentSection: {
-        // maxWidth: '50%',
-        // minWidth: "360px",
         height: '510px',
         marginTop: '16px',
         backgroundColor: 'transparent',

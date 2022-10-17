@@ -4,7 +4,6 @@ import {Card, Grid} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {useCommonStyles} from '../common/sanityIo/CommonStyles'
-import theme from '../common/Theme'
 import IntroSection from './terrells-portfolio-sections/IntroSection'
 import ProfileSection from './terrells-portfolio-sections/ProfileSection'
 import SelectedWorksSection from './terrells-portfolio-sections/SelectedWorksSection'
@@ -23,18 +22,20 @@ import CryptoInYourPocketSection from './aft-marketing/CryptoInYourPocketSection
 import {
   AboutAndaCardSectionType,
   CryptoInYourPocketSectionType,
-  HeroContentSectionType,
+  HeroContentSectionType, ThwHeroContentSectionType,
   WhySwitchSectionType
 } from "./BlockContentTypes";
+import TransformHWTheme from "../theme/transform-hw/TransformHWTheme";
+import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
+import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
 
 export type BlockContentLayoutContainerProps = { content?: any }
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
-  const classes = useCommonStyles(theme)
+  const classes = useThwCommonStyles(TransformHWTheme)
 
-  return <Grid container>
+  return <Grid container item>
     {props?.content?.map((columnLayoutContainer: any, index: number) => {
-
         switch (columnLayoutContainer._type) {
           case 'column1BlockContent':
             return <Grid key={index} container justifyContent='center' alignItems='stretch'>
@@ -143,6 +144,15 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
             return <Grid key={index} container item xs={12}>
               <CryptoInYourPocketSection
                 sectionData={cryptoInYourPocket}
+              />
+            </Grid>
+            //HW SECTIONS
+          case 'transformHeroContentSection':
+            const thwHeroSection: ThwHeroContentSectionType = columnLayoutContainer
+
+            return <Grid key={index} container item xs={12}>
+              <ThwHeroContentSection
+                  sectionData={thwHeroSection}
               />
             </Grid>
           default:

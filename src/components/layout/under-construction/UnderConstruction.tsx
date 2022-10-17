@@ -71,8 +71,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
             <Grid container item
-                  className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}
-                  style={{position: 'absolute'}}>
+                  className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}>
             </Grid>
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{

@@ -21,10 +21,7 @@ import FourOhFour from "./error/FourOhFour";
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '100vw',
-        //
-        // backgroundImage: `url('${purpleDiamond}')`,
-        // backgroundRepeat: 'repeat',
-        backgroundColor: '#F3FFFC'
+        backgroundColor: 'red'
     }
 }))
 
@@ -77,7 +74,7 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
             <Grid item>
                 <Header menuSlug='transform-hw-header'/>
             </Grid>
-            <Grid item style={{marginBottom: '80px'}}>
+            <Grid container item style={{marginBottom: '80px'}}>
                 <BlockContentLayoutContainer
                     content={realizedContent}/>
             </Grid>

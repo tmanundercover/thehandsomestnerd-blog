@@ -1,4 +1,4 @@
-import {SanityImageAsset} from "@sanity/asset-utils";
+import {SanityImageSource} from "@sanity/asset-utils";
 
 export type HeroContentSectionType = {
     name: string
@@ -48,5 +48,27 @@ export type CryptoInYourPocketSectionType = {
     ctaHeader1: string
     ctaText: string
     ctaButtonText: string
+    ctaButtonLink: string
+}
+
+export type SanityImageAsset = SanityImageSource | {
+    _type:string,
+    asset: {
+        _ref:string,
+        _type:"reference"
+    }
+}
+
+// Transform Types
+export type ThwHeroContentSectionType = {
+    name: string
+    title: string
+    heroImage: SanityImageAsset
+    heroImageAltText: string
+    heroImageBackground?: SanityImageAsset
+    contentWelcomeMessage: string
+    contentTitle: string
+    contentText: string
+    ctaButtonTitle: string
     ctaButtonLink: string
 }

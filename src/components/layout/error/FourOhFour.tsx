@@ -6,6 +6,7 @@ import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../loading-button/LoadingButton";
 import {useHistory} from "react-router-dom";
+import MediaQueries from "../MediaQueries";
 
 
 export type AppLayoutProps = {}
@@ -13,10 +14,8 @@ export type AppLayoutProps = {}
 const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useThwStyles({bgImage: speakingWithTherapist})
     const history = useHistory()
-
-    const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
-    const xsDown = useMediaQuery(TransformHWTheme.breakpoints.down('xs'))
-
+    const xsDown = useMediaQuery(MediaQueries.xsDown)
+    const smDown = useMediaQuery(MediaQueries.smDown)
 
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
@@ -32,8 +31,7 @@ const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
                 </Grid>
             </Grid>
             <Grid container item
-                  className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}
-                  style={{position: 'absolute'}}>
+                  className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}>
             </Grid>
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{

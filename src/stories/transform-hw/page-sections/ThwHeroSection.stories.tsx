@@ -1,13 +1,11 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import LoadingButton from "../../components/loading-button/LoadingButton";
-import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import UnderConstruction from "../../components/layout/under-construction/UnderConstruction";
 import {rest} from "msw";
+import ThwHeroContentSection from "../../../components/transform-hw/ThwHeroContentSection";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Pages/Under Construction',
+    title: 'Sections/Hero Section',
     parameters: {
         msw: [
             rest.get("/*", (req, res, ctx) => {
@@ -33,7 +31,7 @@ export default {
                             }
                         },
                         "pageContent": null,
-                        "releaseDate": "",
+                        "releaseDate": new Date("2022-11-10"),
                         "slug": {
                             "_type": "slug",
                             "current": "coming-soon"
@@ -47,18 +45,33 @@ export default {
             }),
         ],
     },
-    component: UnderConstruction,
+    component: ThwHeroContentSection,
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {},
-} as ComponentMeta<typeof UnderConstruction>;
+} as ComponentMeta<typeof ThwHeroContentSection>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof UnderConstruction> = (args) => <UnderConstruction {...args} />;
+const Template: ComponentStory<typeof ThwHeroContentSection> = (args) => <ThwHeroContentSection {...args} />;
 
-export const UnderConstructionPageUnderConstruction = Template.bind({});
+export const ThwHeroSection = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-UnderConstructionPageUnderConstruction.args = {
-    releaseDate: new Date(Date.now() + 100000000)
-    // releaseDate: new Date("2022-11-01")
+ThwHeroSection.args = {
+    sectionData: {
+        "contentWelcomeMessage": "Welcome to Transformative Healing & Wellness",
+        "contentTitle": "Matters of the Mind",
+        "contentText": `We provide innovative and alternative services to help those seeking change to live a meaningful and fulfilling life.`,
+        "ctaButtonLink": "https://www.therapyportal.com/p/transformative21117/appointments/availability/",
+        "ctaButtonTitle": "Get an Appointment",
+        "heroImage": {
+            "_type": "image",
+            "asset": {
+                "_ref": "image-24e72f756a6ff5bac767c1fdab89c26c4118b067-5017x2822-jpg",
+                "_type": "reference"
+            }
+        },
+        "heroImageAltText": "Let's talk about Positive Psychology",
+        "name": "homepage draft hero",
+        "title": "Transformative Healing and Wellness Homepage Hero"
+    }
 };
 

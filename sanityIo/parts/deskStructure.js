@@ -29,6 +29,9 @@ export default () =>
                 .title('Page Section: Custom 2 column')
                 .child(createSuperPane('column2BlockContent', S)),
             S.listItem()
+                .title('THW Section: Hero + Content')
+                .child(createSuperPane('transformHeroContentSection', S)),
+            S.listItem()
                 .title('Page Section: Hero + Content')
                 .child(createSuperPane('heroContentSection', S)),
             S.listItem()

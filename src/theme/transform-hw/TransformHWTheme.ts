@@ -134,15 +134,13 @@ const TransformHWTheme = createTheme({
     palette: {
         background: {
             default: '#383838',
-            paper: '#383838'
+            paper: '#FAFAFA'
         },
         primary: {
             main: COLORS.MAIN,
         },
         secondary: {
-            main: '#4C2FCD',
-            light: '#A697E6',
-            dark: '#2412AE'
+            main: '#000000',
         },
         error: {
             main: '#840E0E',
@@ -185,7 +183,7 @@ const TransformHWTheme = createTheme({
         },
         h3: {
             // Title3
-            fontSize: '24px',
+            fontSize: '44px',
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.4,
@@ -230,9 +228,9 @@ const TransformHWTheme = createTheme({
         },
         subtitle1: {
             // Small
-            fontSize: '12px',
+            fontSize: '14px',
             fontStyle: 'normal',
-            fontWeight: 400,
+            fontWeight: 750,
             lineHeight: 1.45,
             letterSpacing: '-0.03em'
         },

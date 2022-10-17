@@ -26,6 +26,7 @@ export default {
         {name: 'transformHeroContentSection', title: SanitySectionTitlesEnum.HERO_CONTENT,type: 'reference', to: [{type: 'transformHeroContentSection'}]},
         {name: 'transformPositivePsychologySection', title: SanitySectionTitlesEnum.POSITIVE_PSYCHOLOGY,type: 'reference', to: [{type: 'transformPositivePsychologySection'}]},
         {name: 'transformMottoSection', title: SanitySectionTitlesEnum.MOTTO,type: 'reference', to: [{type: 'transformMottoSection'}]},
+        {name: 'transformAboutProprietorSection', title: SanitySectionTitlesEnum.ABOUT_PROPRIETOR,type: 'reference', to: [{type: 'transformAboutProprietorSection'}]},
         {name: 'whySwitchSection', title: 'Image + 6 Bullets Section',type: 'reference', to: [{type: 'whySwitchSection'}]},
         {name: 'aboutAndaCardSection', title: 'Pink Image + Content',type: 'reference', to: [{type: 'aboutAndaCardSection'}]},
         {name: 'cryptoInYourPocketSection', title: 'Image + 3 Bullets + Banner w/CTA',type: 'reference', to: [{type: 'cryptoInYourPocketSection'}]}

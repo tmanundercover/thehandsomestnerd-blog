@@ -10,6 +10,7 @@ import {useQuery} from "react-query";
 import isEmail from 'validator/lib/isEmail';
 import LoadingButton from "../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
+import CssFadeToColor from "../../css-fade-to-color/CssFadeToColor";
 
 
 interface IProps {
@@ -60,16 +61,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
               style={{position: "relative"}}>
-            <Grid container item className={xsDown ? classes.fullscreenPlus : classes.fullscreen}
-                  style={{position: 'relative'}}>
-                <Grid container item style={{
-                    position: "absolute",
-                    bottom: 0,
-                    height: '120px',
-                    backgroundImage: smDown ? `linear-gradient(180deg, transparent, rgba(111,111,111,1)` : 'transparent'
-                }}>
-                </Grid>
-            </Grid>
+            <CssFadeToColor toColor='rgba(111,111,111,1)' isResponsive/>
             <Grid container item
                   className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}>
             </Grid>

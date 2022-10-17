@@ -22,7 +22,11 @@ import CryptoInYourPocketSection from './aft-marketing/CryptoInYourPocketSection
 import {
   AboutAndaCardSectionType,
   CryptoInYourPocketSectionType,
-  HeroContentSectionType, ThwHeroContentSectionType, ThwMottoSectionType, ThwPositivePsychologySectionType,
+  HeroContentSectionType,
+  ThwAboutProprietorSectionType,
+  ThwHeroContentSectionType,
+  ThwMottoSectionType,
+  ThwPositivePsychologySectionType,
   WhySwitchSectionType
 } from "./BlockContentTypes";
 import TransformHWTheme from "../theme/transform-hw/TransformHWTheme";
@@ -30,6 +34,7 @@ import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
 import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
 import ThwMottoSection from "./transform-hw/ThwMottoSection";
+import AboutTheProprietorSection from "./transform-hw/AboutTheProprietorSection";
 
 export type BlockContentLayoutContainerProps = { content?: any }
 
@@ -171,6 +176,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
             return <Grid key={index} container item xs={12} justifyContent='center' style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
               <ThwMottoSection
                   sectionData={thwMottoSection}
+              />
+            </Grid>
+          case 'transformAboutProprietorSection':
+            const thwProprietorSection: ThwAboutProprietorSectionType = columnLayoutContainer
+
+            return <Grid key={index} container item xs={12} justifyContent='center' style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+              <AboutTheProprietorSection
+                  sectionData={thwProprietorSection}
               />
             </Grid>
           default:

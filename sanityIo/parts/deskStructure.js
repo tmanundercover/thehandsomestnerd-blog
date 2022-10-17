@@ -39,6 +39,9 @@ export default () =>
                 .title(SanitySectionTitlesEnum.MOTTO)
                 .child(createSuperPane('transformMottoSection', S)),
             S.listItem()
+                .title(SanitySectionTitlesEnum.ABOUT_PROPRIETOR)
+                .child(createSuperPane('transformAboutProprietorSection', S)),
+            S.listItem()
                 .title('Page Section: Hero + Content')
                 .child(createSuperPane('heroContentSection', S)),
             S.listItem()

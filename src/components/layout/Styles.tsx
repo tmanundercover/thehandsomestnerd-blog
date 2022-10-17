@@ -48,6 +48,10 @@ export const useThwStyles = makeStyles({
         width: "100%",
         zIndex:1
     },
+    fullContainer: {
+        width: '100%',
+        height: '100%'
+    }
 })
 
 export default {useThwStyles}

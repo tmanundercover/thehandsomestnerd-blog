@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import LoadingButton from "../../components/loading-button/LoadingButton";
-import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
+import LoadingButton from "../../../components/loading-button/LoadingButton";
+import {ButtonGroupMemberEnum} from "../../../components/loading-button/ButtonGroupMemberEnum";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

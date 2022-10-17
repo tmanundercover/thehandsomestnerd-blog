@@ -84,6 +84,20 @@ export type ThwPositivePsychologySectionType = {
     ctaButtonText: string
     ctaButtonLink: string
 }
+
+export type ThwAboutProprietorSectionType = {
+    name: string
+    proprietorName:string
+    proprietorTitle: string
+    contentText: string
+    proprietorImage: SanityImageAsset
+    proprietorImageAltText: string
+    proprietorSignatureImage: SanityImageAsset
+    proprietorSignatureImageAltText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+}
+
 export type ThwMottoSectionType = {
     name: string
     contentText: string

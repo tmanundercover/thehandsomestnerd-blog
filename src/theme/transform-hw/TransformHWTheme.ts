@@ -331,7 +331,11 @@ const TransformHWTheme = createTheme({
                 // }
             },
             outlinedPrimary: {
-                // borderWidth: '2px',
+                borderWidth: '3px',
+                paddingTop: "16px",
+                paddingBottom: "16px",
+                paddingLeft: "64px",
+                paddingRight: "64px"
                 // color: '#FF4122',
                 // borderColor: '#FF4122',
                 // '&:hover': {
@@ -349,7 +353,11 @@ const TransformHWTheme = createTheme({
                 // }
             },
             outlinedSecondary: {
-                // borderWidth: '2px'
+                borderWidth: '3px',
+                paddingTop: "16px",
+                paddingBottom: "16px",
+                paddingLeft: "64px",
+                paddingRight: "64px"
             }
         },
         MuiCircularProgress: {

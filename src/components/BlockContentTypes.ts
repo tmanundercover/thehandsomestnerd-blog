@@ -84,3 +84,9 @@ export type ThwPositivePsychologySectionType = {
     ctaButtonText: string
     ctaButtonLink: string
 }
+export type ThwMottoSectionType = {
+    name: string
+    contentText: string
+    parallaxImage: SanityImageAsset
+    contentSuperTitle:string
+}

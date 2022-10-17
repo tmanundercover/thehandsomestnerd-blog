@@ -35,6 +35,7 @@ import structuredDataEvent from './sections/aft/structured-data/StructuredDataEv
 import coldLead from "./coldLead";
 import ThwHeroContentSection from "./sections/transform-hw/ThwHeroContentSection";
 import ThwPositivePsychology from "./sections/transform-hw/ThwPositivePsychology";
+import ThwMottoSection from "./sections/transform-hw/ThwMottoSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -71,5 +72,6 @@ export default createSchema({
         // transform hw sections
         ThwHeroContentSection,
         ThwPositivePsychology,
+        ThwMottoSection
     ]),
 })

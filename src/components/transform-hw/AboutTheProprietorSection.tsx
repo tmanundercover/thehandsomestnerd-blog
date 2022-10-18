@@ -7,6 +7,7 @@ import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import MediaQueries from "../layout/MediaQueries";
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
+import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -34,29 +35,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                 <Grid item xs={12} md={5} lg={4} container justifyContent='center' alignContent='center'
                       alignItems='center' style={{minWidth: "max-content"}}>
                     <Grid item style={{overflow: "hidden", position: "relative"}} container justifyContent='center'>
-                        <Grid item container style={{position: "relative"}} justifyContent='center'>
-                            <CssFadeToColor toColor={"rgba(255,255,255,.94)"}
-                                            direction={CssFadeToColorDirectionEnum.RIGHT} isResponsive/>
-                            <img alt={props.sectionData.proprietorImageAltText}
-                                 src={urlFor(props.sectionData.proprietorImage).height(545).url() ?? ''}/>
-
-                            <Grid justifyContent='center' container item style={{
-                                position: "absolute",
-                                bottom: 32,
-                                left: 0
-                            }}>
-                                <Grid item>
-                                    <Button variant='outlined' color='primary'
-                                            href={props.sectionData.ctaButtonLink ?? ''}
-                                            style={{
-                                                color: "#FAFAFA"
-                                            }}
-                                    >
-                                        {props.sectionData.ctaButtonText}
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Grid>
+                        <ImageWIthButtonOverlay ctaButtonText={props.sectionData.ctaButtonText} ctaButtonLink={props.sectionData.ctaButtonLink} toColor={"rgba(255,255,255,.94)"} imageSrc={props.sectionData.proprietorImage} height={545} direction={CssFadeToColorDirectionEnum.RIGHT} isResponsive/>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between' spacing={2}>

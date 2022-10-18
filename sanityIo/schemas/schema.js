@@ -37,6 +37,8 @@ import ThwHeroContentSection from "./sections/transform-hw/ThwHeroContentSection
 import ThwPositivePsychology from "./sections/transform-hw/ThwPositivePsychology";
 import ThwMottoSection from "./sections/transform-hw/ThwMottoSection";
 import ThwAboutProprietor from "./sections/transform-hw/ThwAboutProprietor";
+import ThwServicesSection from "./sections/transform-hw/services/ThwServicesSection";
+import transformServiceItem from "./sections/transform-hw/services/transformServiceItem";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -75,5 +77,7 @@ export default createSchema({
         ThwPositivePsychology,
         ThwMottoSection,
         ThwAboutProprietor,
+        ThwServicesSection,
+        transformServiceItem
     ]),
 })

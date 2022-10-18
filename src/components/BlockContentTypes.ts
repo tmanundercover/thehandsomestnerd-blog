@@ -1,4 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
+import {SanityRef} from "../common/sanityIo/Types";
 
 export type HeroContentSectionType = {
     name: string
@@ -103,4 +104,22 @@ export type ThwMottoSectionType = {
     contentText: string
     parallaxImage: SanityImageAsset
     contentSuperTitle:string
+}
+
+export type ThwServiceItemType = {
+    name: string
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+}
+
+
+export type ThwServicesSectionType = {
+    name: string
+    contentTitle: string
+    contentText: string
+    servicesList: SanityRef[]
 }

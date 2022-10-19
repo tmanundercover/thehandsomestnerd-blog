@@ -26,7 +26,7 @@ import {
   ThwAboutProprietorSectionType,
   ThwHeroContentSectionType,
   ThwMottoSectionType,
-  ThwPositivePsychologySectionType, ThwServicesSectionType,
+  ThwPositivePsychologySectionType, ThwServicesSectionType, ThwWhyChooseUsSectionType,
   WhySwitchSectionType
 } from "./BlockContentTypes";
 import TransformHWTheme from "../theme/transform-hw/TransformHWTheme";
@@ -36,6 +36,7 @@ import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
 import ThwMottoSection from "./transform-hw/ThwMottoSection";
 import AboutTheProprietorSection from "./transform-hw/AboutTheProprietorSection";
 import ThwServicesSection from "./transform-hw/ThwServicesSection";
+import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
 
 export type BlockContentLayoutContainerProps = { content?: any }
 
@@ -193,6 +194,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
             return <Grid key={index} container item xs={12} justifyContent='center' style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
               <ThwServicesSection
                   sectionData={thwServicesSection}
+              />
+            </Grid>
+          case 'transformWhyChooseUsSection':
+            const thwWCUSection: ThwWhyChooseUsSectionType = columnLayoutContainer
+
+            return <Grid key={index} container item xs={12} justifyContent='center' style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+              <ThwWhyChooseUsSection
+                  sectionData={thwWCUSection}
               />
             </Grid>
           default:

@@ -47,6 +47,7 @@ const Logger = function(req: any, res: any, next: any) {
 
 
 app.use(Logger);
+// https://blog.logrocket.com/adding-dynamic-meta-tags-react-app-without-ssr/
 app.get("/*", (req, res, next) => {
   logClient.log("server-side", "NOTICE",
       "Hello from the Server Siiiiiide", req.params);

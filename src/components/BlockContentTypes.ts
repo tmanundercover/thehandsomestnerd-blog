@@ -140,3 +140,18 @@ export type ThwWhyChooseUsItemType = {
     contentTitle: string
     contentText: string
 }
+
+export type ThwContactUsSectionType = {
+    name: string
+    bgImageSrc: SanityImageAsset
+    lhsTitle: string
+    lhsContentText: string
+    phone?: string
+    email?: string,
+    facebook?: string,
+    twitter?: string,
+    linkedIn?: string,
+    youtube?: string,
+    rhsTitle:string,
+    formSubmitButtonText: string
+}

@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Divider, Grid, Typography, useMediaQuery} from '@material-ui/core'
-import {ThwServiceItemType, ThwWhyChooseUsSectionType} from "../BlockContentTypes";
+import {ThwServiceItemType, ThwWhyChooseUsItemType, ThwWhyChooseUsSectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import transformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import cmsClient from "../abReplica/cmsClient";
@@ -28,7 +28,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
     console.log(props.sectionData)
 
-    const [prosList, setProsList] = useState<ThwServiceItemType[]>()
+    const [prosList, setProsList] = useState<ThwWhyChooseUsItemType[]>()
 
     React.useEffect(() => {
         const realizedPros = props.sectionData?.prosList?.map((pro) => {
@@ -61,7 +61,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                                     color='textPrimary' display='inline' style={{letterSpacing:"-.25em"}}>____</Typography>
                     </Grid>
                     <Grid item container spacing={2} xs={11}>
-                        {prosList?.map((service: ThwServiceItemType, index: number) => {
+                        {prosList?.map((service, index: number) => {
                             return <Grid key={index} container item spacing={2}>
                                 <Grid container item>
                                     <Grid item container xs={3} style={{

@@ -45,11 +45,17 @@ export default () =>
                 .title(SanitySectionTitlesEnum.SERVICES)
                 .child(createSuperPane('transformServicesSection', S)),
             S.listItem()
+                .title("THW Service Item")
+                .child(createSuperPane('transformServiceItem', S)),
+            S.listItem()
                 .title(SanitySectionTitlesEnum.WHY_CHOOSE_US)
                 .child(createSuperPane('transformWhyChooseUsSection', S)),
             S.listItem()
-                .title("THW Service Item")
-                .child(createSuperPane('transformServiceItem', S)),
+                .title("THW Why Choose Us Item")
+                .child(createSuperPane('transformWhyChooseUsItem', S)),
+            S.listItem()
+                .title(SanitySectionTitlesEnum.CONTACT_US)
+                .child(createSuperPane('transformContactUsSection', S)),
             S.listItem()
                 .title('Page Section: Hero + Content')
                 .child(createSuperPane('heroContentSection', S)),

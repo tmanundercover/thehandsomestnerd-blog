@@ -1,11 +1,9 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, Typography, useMediaQuery} from '@material-ui/core'
+import {Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
 import {ThwAboutProprietorSectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import MediaQueries from "../layout/MediaQueries";
-import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 

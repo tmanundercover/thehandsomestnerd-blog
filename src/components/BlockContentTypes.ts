@@ -123,3 +123,20 @@ export type ThwServicesSectionType = {
     contentText: string
     servicesList: SanityRef[]
 }
+export type ThwWhyChooseUsSectionType = {
+    name: string
+    sectionTitle: string
+    prosList: SanityRef[]
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+}
+
+export type ThwWhyChooseUsItemType = {
+    name: string
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+}

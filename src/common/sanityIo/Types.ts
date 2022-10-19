@@ -35,7 +35,10 @@ export declare type SanityRef = {
 
 export declare type SanityColdLead = {
   email: string,
-  source: string
+  leadName?:string,
+  leadPhone?:string,
+  leadMessage?:string,
+  source?: string
 }
 
 export type SanityTransformHwHomePage = {

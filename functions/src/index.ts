@@ -8,7 +8,7 @@ import * as cmsClient from "./cmsClient";
 import * as Promise from "es6-promise";
 import * as path from "path";
 import * as fs from "fs";
-import {SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
+import {SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
 import {urlFor} from "../../src/components/abReplica/static-pages/cmsStaticPagesClient";
 // To Throttle requests to sanity
 
@@ -83,7 +83,7 @@ const indexPath = path.resolve(__dirname, ...indexPathParts, "index.html");
 
 console.log(path.resolve(__dirname, ...indexPathParts), files);
 
-const serveIndexFile = (req:any, res:any) =>{
+const serveIndexFile = (req: any, res: any) => {
   fs.readFile(indexPath, "utf8", async (err, htmlData) => {
     if (err) {
       console.error("Error during file reading", err);
@@ -136,14 +136,14 @@ const serveIndexFile = (req:any, res:any) =>{
 
 app.post("/collect-email-address",
     async (req: any, functionRes: any) => {
-      const reqBody: { email: string } = req.body;
+      const reqBody: SanityColdLead = JSON.parse(req.body);
       const {dataset} = req.headers;
 
       logClient.log(`collect-email-address-${dataset}`, "NOTICE",
           "Request to collect an email address", reqBody.email);
 
       try {
-        const response = await cmsClient.createColdLead(reqBody.email);
+        const response = await cmsClient.createColdLead({email: reqBody.email});
         functionRes.send({status: "200", response, email: reqBody.email});
       } catch (e) {
         logClient.log(`collect-email-address-${dataset}`, "ERROR",

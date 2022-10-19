@@ -9,6 +9,21 @@ export default {
       type: 'string',
     },
     {
+      name: 'leadName',
+      title: 'Email',
+      type: 'string',
+    },
+    {
+      name: 'leadPhone',
+      title: 'Phone',
+      type: 'string',
+    },
+    {
+      name: 'leadMessage',
+      title: 'Message from Lead',
+      type: 'string',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',

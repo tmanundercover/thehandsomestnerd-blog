@@ -29,7 +29,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
         ['createLead'],
         () => {
             if ((!data && !isError) && email && email.length > 0) {
-                return leadClient.createLead(email);
+                return leadClient.createLead({email,source:"Coming Soon Page"});
             }
             return undefined
         }

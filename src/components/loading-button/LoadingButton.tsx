@@ -21,7 +21,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return 'inherit'
+                    return TransformHWTheme.shape.borderRadius
             }
         },
         borderTopRightRadius: (props: CssProps) => {
@@ -32,7 +32,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return 'inherit'
+                    return TransformHWTheme.shape.borderRadius
             }
         },
         borderBottomRightRadius: (props: CssProps) => {
@@ -43,7 +43,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return 'inherit'
+                    return TransformHWTheme.shape.borderRadius
 
             }
         },
@@ -55,7 +55,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return 'inherit'
+                    return TransformHWTheme.shape.borderRadius
             }
         },
     }

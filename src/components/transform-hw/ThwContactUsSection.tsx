@@ -8,6 +8,11 @@ import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "../layout/Styles";
 import MediaQueries from "../layout/MediaQueries";
+import {ButtonGroupMemberEnum} from "../loading-button/ButtonGroupMemberEnum";
+import isEmail from "validator/lib/isEmail";
+import LoadingButton from "../loading-button/LoadingButton";
+import {useQuery} from "react-query";
+import leadClient from "../layout/under-construction/leadClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -111,14 +116,18 @@ export type ContactUsProps = {
 const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
     const globalClasses = useThwStyles({})
-    const mdDown = useMediaQuery(MediaQueries.smDown)
+    const smDown = useMediaQuery(MediaQueries.smDown)
     console.log("contact", props.sectionData)
 
+    const [leadName, setleadName] = useState<string>()
+    const [email, setEmail] = useState<string>()
+    const [leadPhone, setLeadPhone] = useState<string>()
+    const [leadMessage, setLeadMessage] = useState<string>()
     const [alignment, setAlignment] = useState<any>('right')
     const [justifyContent, setJustifyContent] = useState<any>('flex-end')
 
-    useEffect(()=>{
-        if(mdDown){
+    useEffect(() => {
+        if (smDown) {
             setAlignment('center')
             setJustifyContent('center')
         } else {
@@ -126,6 +135,27 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
             setJustifyContent('flex-end')
         }
     })
+
+    const {isLoading, isError, data, refetch, isRefetching} = useQuery(
+        ['createLead'],
+        () => {
+            if (email && email.length > 0 && (!data && !isError)) {
+                return leadClient.createLead({
+                    email,
+                    leadName,
+                    leadMessage,
+                    leadPhone,
+                    source:"Contact Us"
+                });
+            }
+            return undefined
+        }
+    );
+
+
+    const createLead = async (e: any): Promise<any> => {
+        return refetch()
+    }
 
     return (
         <Grid container item className={classes.root} style={{
@@ -139,181 +169,206 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         }}>
             <Grid container item
                   className={clsx(globalClasses.fullSectionOverlay)}/>
-                <Grid spacing={mdDown?0:4} container item style={{        padding: TransformHWTheme.spacing(0, 8,6)
-                }}>
-                    <Grid container item md={6}>
-                        <Grid container direction="column" item className={classes.lhsContainer}
-                              justifyContent='center' style={{zIndex: 2}}>
-                            <Grid container item justifyContent={justifyContent}>
-                                <Typography variant="h2" align={alignment}> {props.sectionData.lhsTitle}</Typography>
-                            </Grid>
-                            <Grid container item justifyContent={justifyContent}>
-                                <Typography gutterBottom variant='h4'
-                                            color='primary' display='inline'
-                                            style={{
-                                                letterSpacing: "-.25em",
-                                                paddingBottom: "16px",
-                                                lineHeight: .2
-                                            }}>________</Typography>
-                            </Grid>
-                            <Grid container item justifyContent={justifyContent}>
-                                <Grid item xs={8}>
-                                    <Typography style={{wordWrap: "break-word"}} align={alignment}>
-                                        {props.sectionData.lhsContentText}</Typography>
-                                </Grid>
-                            </Grid>
-                            {/*<Grid container item spacing={1}>*/}
-                            {/*  <Grid item>*/}
-                            {/*    <Typography ><MailOutline/></Typography>*/}
-                            {/*  </Grid>*/}
-                            {/*  <Grid item>*/}
-                            {/*    <Typography className={classes.sectionTitle}>Address:</Typography>*/}
-                            {/*    <Typography >{props.address}</Typography>*/}
-                            {/*  </Grid>*/}
-                            {/*</Grid>*/}
-                            {/*<Grid container item spacing={1}>*/}
-                            {/*  <Grid item>*/}
-                            {/*    <Typography ><PhoneOutlined/></Typography>*/}
-                            {/*  </Grid>*/}
-                            {/*  <Grid item>*/}
-                            {/*    <Typography  className={classes.sectionTitle}>Phone:</Typography>*/}
-                            {/*    <Typography >{props.phone}</Typography>*/}
-                            {/*  </Grid>*/}
-                            {/*</Grid>*/}
-                            {/*<Grid item>*/}
-                            {/*  <Typography ><EmailOutlined/></Typography>*/}
-                            {/*</Grid>*/}
-                            {/*    <Grid container item>*/}
-
-                            {/*      <Typography  className={classes.sectionTitle}>Email:</Typography>*/}
-                            {/*      <Typography >{props.email}</Typography>*/}
-                            {/*    </Grid>*/}
-                            <Grid container item>
-                                <Grid container item justifyContent={justifyContent} className={classes.socialMediaContainer}
-                                      spacing={1}>
-                                    {props.sectionData?.facebook && <Grid item>
-                                        <Typography>
-                                            <Link href={"http://facebook.com/" + props.sectionData.facebook}><Facebook
-                                                fontSize="large"/></Link>
-                                        </Typography>
-                                    </Grid>}
-                                    {props.sectionData?.twitter && <Grid item>
-                                        <Typography>
-                                            <Link href={"http://twitter.com/" + props.sectionData.twitter}><Twitter
-                                                fontSize="large"/></Link>
-                                        </Typography>
-                                    </Grid>}
-                                    {props.sectionData?.linkedIn && <Grid item>
-                                        <Typography>
-                                            <Link href={"http://linkedIn.com/" + props.sectionData.linkedIn}><LinkedIn
-                                                fontSize="large"/></Link>
-                                        </Typography>
-                                    </Grid>}
-                                    {props.sectionData?.youtube && <Grid item>
-                                        <Typography>
-                                            <Link href={"http://youtube.com/" + props.sectionData.youtube}><YouTube
-                                                fontSize="large"/></Link>
-                                        </Typography>
-                                    </Grid>}
-                                </Grid>
-                            </Grid>
-
+            <Grid spacing={smDown ? 0 : 4} container item style={{
+                padding: TransformHWTheme.spacing(0, 8, 6)
+            }}>
+                <Grid container item md={6}>
+                    <Grid container direction="column" item className={classes.lhsContainer}
+                          justifyContent='center' style={{zIndex: 2}}>
+                        <Grid container item justifyContent={justifyContent}>
+                            <Typography variant="h2" align={alignment}> {props.sectionData.lhsTitle}</Typography>
                         </Grid>
-                    </Grid>
-                    <Grid container item xs={11} md={6} justifyContent="center">
-                        <Grid container item className={classes.formContainer} spacing={1}>
-                            {/*<Grid container item justifyContent="center" className={classes.formTitle}>*/}
-                            {/*    <Typography variant="h3" className={classes.header}>*/}
-                            {/*        Get in*/}
-                            {/*        <Typography component="span" variant="h3"*/}
-                            {/*                    className={`${classes.header} ${classes.headerAccent}`}*/}
-                            {/*                    color="primary">*/}
-                            {/*            Touch*/}
-                            {/*        </Typography>*/}
-                            {/*    </Typography>*/}
-                            {/*</Grid>*/}
-                            <Grid container item style={{marginTop:TransformHWTheme.spacing(8)}}>
-                                <StyledTextField
-                                    fullWidth
-                                    id="contact-name-input"
-                                    label={<Typography variant='body2' style={{color: "white"}}>Name</Typography>}
-                                    variant="outlined"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Typography className={classes.inputAdornmentContainer}>
-                                                    <AccountCircle/>
-                                                </Typography>
-                                            </InputAdornment>
-                                        ),
-                                        className: classes.formInput
-                                    }}
-                                />
+                        <Grid container item justifyContent={justifyContent}>
+                            <Typography gutterBottom variant='h4'
+                                        color='primary' display='inline'
+                                        style={{
+                                            letterSpacing: "-.25em",
+                                            paddingBottom: "16px",
+                                            lineHeight: .2
+                                        }}>________</Typography>
+                        </Grid>
+                        <Grid container item justifyContent={justifyContent}>
+                            <Grid item xs={8}>
+                                <Typography style={{wordWrap: "break-word"}} align={alignment}>
+                                    {props.sectionData.lhsContentText}</Typography>
                             </Grid>
-                            <Grid container item>
-                                <StyledTextField
-                                    fullWidth
-                                    id="contact-email-input"
-                                    label={<Typography variant='body2' style={{color: "white"}}>Email</Typography>}
-                                    variant="outlined"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Typography className={classes.inputAdornmentContainer}>
-                                                    <Email/>
-                                                </Typography>
-                                            </InputAdornment>
-                                        ),
-                                        className: classes.formInput
-                                    }}
-                                />
-                            </Grid>
-                            <Grid container item>
-                                <StyledTextField
-                                    fullWidth
-                                    id="contact-phone-input"
-                                    label={<Typography variant='body2' style={{color: "white"}}>Phone</Typography>}
-                                    variant="outlined"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Typography
-                                                    className={classes.inputAdornmentContainer}><Phone/></Typography>
-                                            </InputAdornment>
-                                        ),
-                                        className: classes.formInput
-                                    }}
-                                />
-                            </Grid>
-                            <Grid container item>
-                                <StyledTextField
-                                    fullWidth
-                                    id="contact-message-input"
-                                    label={<Typography variant='body2' style={{color: "white"}}>Message</Typography>}
-                                    variant="outlined"
-                                    multiline
-                                    rows="4"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Typography
+                        </Grid>
+                        {/*<Grid container item spacing={1}>*/}
+                        {/*  <Grid item>*/}
+                        {/*    <Typography ><MailOutline/></Typography>*/}
+                        {/*  </Grid>*/}
+                        {/*  <Grid item>*/}
+                        {/*    <Typography className={classes.sectionTitle}>Address:</Typography>*/}
+                        {/*    <Typography >{props.address}</Typography>*/}
+                        {/*  </Grid>*/}
+                        {/*</Grid>*/}
+                        {/*<Grid container item spacing={1}>*/}
+                        {/*  <Grid item>*/}
+                        {/*    <Typography ><PhoneOutlined/></Typography>*/}
+                        {/*  </Grid>*/}
+                        {/*  <Grid item>*/}
+                        {/*    <Typography  className={classes.sectionTitle}>Phone:</Typography>*/}
+                        {/*    <Typography >{props.leadPhone}</Typography>*/}
+                        {/*  </Grid>*/}
+                        {/*</Grid>*/}
+                        {/*<Grid item>*/}
+                        {/*  <Typography ><EmailOutlined/></Typography>*/}
+                        {/*</Grid>*/}
+                        {/*    <Grid container item>*/}
 
-                                                    className={classes.inputAdornmentTextBlockContainer}>
-                                                    <Message/>
-                                                </Typography>
-                                            </InputAdornment>
-                                        ),
-                                        className: classes.formInput
-                                    }}
-                                />
+                        {/*      <Typography  className={classes.sectionTitle}>Email:</Typography>*/}
+                        {/*      <Typography >{props.email}</Typography>*/}
+                        {/*    </Grid>*/}
+                        <Grid container item>
+                            <Grid container item justifyContent={justifyContent}
+                                  className={classes.socialMediaContainer}
+                                  spacing={1}>
+                                {props.sectionData?.facebook && <Grid item>
+                                    <Typography>
+                                        <Link href={"http://facebook.com/" + props.sectionData.facebook}><Facebook
+                                            fontSize="large"/></Link>
+                                    </Typography>
+                                </Grid>}
+                                {props.sectionData?.twitter && <Grid item>
+                                    <Typography>
+                                        <Link href={"http://twitter.com/" + props.sectionData.twitter}><Twitter
+                                            fontSize="large"/></Link>
+                                    </Typography>
+                                </Grid>}
+                                {props.sectionData?.linkedIn && <Grid item>
+                                    <Typography>
+                                        <Link href={"http://linkedIn.com/" + props.sectionData.linkedIn}><LinkedIn
+                                            fontSize="large"/></Link>
+                                    </Typography>
+                                </Grid>}
+                                {props.sectionData?.youtube && <Grid item>
+                                    <Typography>
+                                        <Link href={"http://youtube.com/" + props.sectionData.youtube}><YouTube
+                                            fontSize="large"/></Link>
+                                    </Typography>
+                                </Grid>}
                             </Grid>
-                            <Grid container item alignItems="center" justifyContent="center" style={{marginTop: TransformHWTheme.spacing(4)}}>
-                                <Button color="primary" variant="contained"><Typography variant="button">Send
-                                    Button</Typography></Button>
-                            </Grid>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+                <Grid container item xs={11} md={6} justifyContent="center">
+                    <Grid container item className={classes.formContainer} spacing={1}>
+                        {/*<Grid container item justifyContent="center" className={classes.formTitle}>*/}
+                        {/*    <Typography variant="h3" className={classes.header}>*/}
+                        {/*        Get in*/}
+                        {/*        <Typography component="span" variant="h3"*/}
+                        {/*                    className={`${classes.header} ${classes.headerAccent}`}*/}
+                        {/*                    color="primary">*/}
+                        {/*            Touch*/}
+                        {/*        </Typography>*/}
+                        {/*    </Typography>*/}
+                        {/*</Grid>*/}
+                        <Grid container item style={{marginTop: TransformHWTheme.spacing(8)}}>
+                            <StyledTextField
+                                fullWidth
+                                id="contact-name-input"
+                                value={leadName}
+                                onChange={(e) => {
+                                    setleadName(e.target.value)
+                                }}
+                                label={<Typography variant='body2' style={{color: "white"}}>Name</Typography>}
+                                variant="outlined"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <Typography className={classes.inputAdornmentContainer}>
+                                                <AccountCircle/>
+                                            </Typography>
+                                        </InputAdornment>
+                                    ),
+                                    className: classes.formInput
+                                }}
+                            />
+                        </Grid>
+                        <Grid container item>
+                            <StyledTextField
+                                fullWidth
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value)
+                                }}
+                                id="contact-email-input"
+                                label={<Typography variant='body2' style={{color: "white"}}>Email</Typography>}
+                                variant="outlined"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <Typography className={classes.inputAdornmentContainer}>
+                                                <Email/>
+                                            </Typography>
+                                        </InputAdornment>
+                                    ),
+                                    className: classes.formInput
+                                }}
+                            />
+                        </Grid>
+                        <Grid container item>
+                            <StyledTextField
+                                fullWidth
+                                value={leadPhone}
+                                onChange={(e) => {
+                                    setLeadPhone(e.target.value)
+                                }}
+                                id="contact-phone-input"
+                                label={<Typography variant='body2' style={{color: "white"}}>Phone</Typography>}
+                                variant="outlined"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <Typography
+                                                className={classes.inputAdornmentContainer}><Phone/></Typography>
+                                        </InputAdornment>
+                                    ),
+                                    className: classes.formInput
+                                }}
+                            />
+                        </Grid>
+                        <Grid container item>
+                            <StyledTextField
+                                fullWidth
+                                id="contact-message-input"
+                                value={leadMessage}
+                                onChange={(e) => {
+                                    setLeadMessage(e.target.value)
+                                }}
+                                label={<Typography variant='body2' style={{color: "white"}}>Message</Typography>}
+                                variant="outlined"
+                                multiline
+                                rows="4"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <Typography
+
+                                                className={classes.inputAdornmentTextBlockContainer}>
+                                                <Message/>
+                                            </Typography>
+                                        </InputAdornment>
+                                    ),
+                                    className: classes.formInput
+                                }}
+                            />
+                        </Grid>
+                        <Grid container item alignItems="center" justifyContent="center"
+                              style={{marginTop: TransformHWTheme.spacing(4)}}>
+                            {/*<Button color="primary" variant="contained"><Typography variant="button">Send*/}
+                            {/*    Button</Typography></Button>*/}
+                            <LoadingButton
+                                width={200}
+                                isLoading={isLoading || isRefetching}
+                                disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
+                                clickHandler={createLead}
+                                color="primary" variant="contained">Send Message</LoadingButton>
                         </Grid>
                     </Grid>
                 </Grid>
+            </Grid>
         </Grid>
     )
 }

@@ -159,6 +159,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
 
     return (
         <Grid container item className={classes.root} style={{
+
             backgroundSize: "cover",
             position: "relative",
             minHeight: "145px",
@@ -174,7 +175,9 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
             }}>
                 <Grid container item md={6}>
                     <Grid container direction="column" item className={classes.lhsContainer}
-                          justifyContent='center' style={{zIndex: 2}}>
+                          justifyContent='center' style={{zIndex: 2,
+                        paddingTop: "64px",
+                    }}>
                         <Grid container item justifyContent={justifyContent}>
                             <Typography variant="h2" align={alignment}> {props.sectionData.lhsTitle}</Typography>
                         </Grid>

@@ -2,8 +2,8 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 
 import {Grid, Link, Typography} from '@material-ui/core'
-import abTheme from '../common/Theme'
 import {SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
+import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root:{
@@ -40,21 +40,21 @@ export type LandingPagesFooterMenuGroupProps = {
   menuGroup: SanityMenuGroup,
 }
 
-const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-  const classes = useStyles(abTheme)
+const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
+  const classes = useStyles(TransformHWTheme)
 
   return (
     <Grid container direction="column" spacing={2} className={classes.root}>
       <Grid container item>
-        <Typography color='textSecondary' variant="body2" className={classes.menuTitle}>{menuGroup.menuGroupTitle}</Typography>
+        <Typography color='primary' variant="body2" className={classes.menuTitle}>{menuGroup.menuGroupTitle}</Typography>
       </Grid>
       <Grid item container >
         <Grid container item xs={8} direction='column' spacing={2}>
           {menuGroup.links?.map((menuLink: SanityMenuItem, index:any) => {
           return (
-            <Grid key={index} item style={{borderLeft:"1px solid #383838", paddingLeft:'8px', marginLeft: '8px'}}>
+            <Grid key={index} item style={{marginLeft: '8px'}}>
               <Link href={menuLink.url} className={classes.footerLink}>
-                <Typography variant="body1" color='textSecondary'>
+                <Typography variant="body1" color='textPrimary' noWrap>
                   {menuLink.displayText}
                 </Typography>
               </Link>
@@ -68,4 +68,4 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
   )
 }
 
-export default FooterMenuGroup
+export default ThwFooterMenuGroup

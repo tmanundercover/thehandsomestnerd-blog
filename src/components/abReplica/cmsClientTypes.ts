@@ -1,34 +1,7 @@
 import {SanityImageAsset} from "@sanity/asset-utils";
+import {SanityMenuGroup} from "../../sanity/Menu";
+import {SanitySlug} from "../../common/sanityIo/Types";
 
-export type SanityMenuItem = {
-    title?: string,
-    displayText?: string,
-    url?: string
-    isOutlinedButton?: boolean
-    isContainedButton?: boolean
-}
-
-export type SanitySlug = {
-    _type: string,
-    current: string
-}
-
-export type SanityMenuGroup = {
-    title?: string,
-    menuGroupTitle?: string,
-    slug?: SanitySlug,
-    displayText?: string,
-    links?: SanityMenuItem[]
-}
-
-export type SanityMenuContainer = {
-    title?: string,
-    slug?: SanitySlug,
-    displayText?: string,
-    menuItems?: SanityMenuGroup[]
-    logoImageAltText?: string
-    logoImageSrc?: SanityImageAsset
-}
 
 export type SanityBlogCategory = {
     title: string

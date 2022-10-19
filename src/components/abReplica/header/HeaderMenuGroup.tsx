@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import {Button, Link, Menu, Typography} from '@material-ui/core'
 import {bindMenu, bindTrigger, usePopupState} from 'material-ui-popup-state/hooks'
 import {ArrowDropDown} from '@material-ui/icons'
-import {SanityMenuGroup} from "../cmsClientTypes";
+import {SanityMenuGroup} from "../../../sanity/Menu";
 
 export const useStyles = makeStyles<Theme, AbMenuItemListProps>((theme: Theme) => ({
   footerLink: props => ({

@@ -6,8 +6,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import Backdrop from '@material-ui/core/Backdrop'
 import abTheme from '../common/Theme'
-import { SanityMenuItem } from '../../../sanity/Menu'
-import {SanityMenuContainer, SanityMenuGroup} from "../cmsClientTypes";
+import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from '../../../sanity/Menu'
 import cmsClient from "../cmsClient";
 
 

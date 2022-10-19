@@ -16,11 +16,13 @@ import {useQuery} from "react-query";
 import leadClient from "./under-construction/leadClient";
 import {useThwStyles} from "./Styles";
 import FourOhFour from "./error/FourOhFour";
+import ThwFooter from "../transform-hw/footer/ThwFooter";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '100vw',
+        backgroundColor: "whitesmoke"
     }
 }))
 
@@ -73,12 +75,12 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
             <Grid item>
                 <Header menuSlug='transform-hw-header'/>
             </Grid>
-            <Grid container item style={{marginBottom: '80px'}}>
+            <Grid container item>
                 <BlockContentLayoutContainer
                     content={realizedContent}/>
             </Grid>
             <Grid item>
-                <Footer footerMenuSlug='transform-hw-footer' homePage={homePage}/>
+                <ThwFooter footerMenuSlug='transform-hw-footer' homePage={homePage}/>
             </Grid>
         </Grid>
     }

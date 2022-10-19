@@ -51,7 +51,6 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                                 direction={props.direction}
                                 isResponsive={props.isResponsive}/>}
             <Grid item container style={{
-                backgroundColor: "blue",
                 backgroundImage: `url(${urlFor(props.imageSrc).height(props.height).url() ?? ''})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",

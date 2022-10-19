@@ -3,7 +3,8 @@ import React from 'react'
 import {MemoryRouter} from 'react-router-dom'
 import MainLayout from './MainLayout'
 import cmsClient from './cmsClient'
-import {SanityLandingPage, SanityMenuContainer} from "./cmsClientTypes";
+import {SanityLandingPage} from "./cmsClientTypes";
+import {SanityMenuContainer} from "../../sanity/Menu";
 
 jest.mock('./cmsClient')
 

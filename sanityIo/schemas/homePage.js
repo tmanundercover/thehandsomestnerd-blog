@@ -43,7 +43,21 @@ export default {
                 maxLength: 96,
             },
         },
-
+        {
+            name: 'address',
+            title: 'Physical Address',
+            type: 'string',
+        },
+        {
+            name: 'email',
+            title: 'email',
+            type: 'string',
+        },
+        {
+            name: 'phone',
+            title: 'Phone',
+            type: 'string',
+        },
         {
             name: 'facebook',
             title: 'Facebook Handle',

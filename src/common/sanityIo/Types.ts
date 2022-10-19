@@ -49,6 +49,9 @@ export type SanityTransformHwHomePage = {
   slug?: any
   pageContent?: any
   structuredData?: any
+  address?: string
+  email?: string
+  phone?: string
   facebook?: string
   facebookIconSrc?: SanityImageSource
   twitter?: string

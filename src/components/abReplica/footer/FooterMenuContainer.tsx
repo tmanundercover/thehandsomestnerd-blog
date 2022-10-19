@@ -6,9 +6,9 @@ import AndaTheme from '../../../theme/aft-theme/AftTheme'
 import { SanityHomePage, urlFor } from '../static-pages/cmsStaticPagesClient'
 import { SanityAftHomePage } from '../../layout/AftMarketing'
 import { Link } from 'react-router-dom'
-import {SanityMenuContainer, SanityMenuGroup} from "../cmsClientTypes";
 import cmsClient from "../cmsClient";
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
+import {SanityMenuContainer, SanityMenuGroup} from "../../../sanity/Menu";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({

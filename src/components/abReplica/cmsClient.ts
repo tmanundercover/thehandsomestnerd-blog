@@ -1,13 +1,14 @@
 import sanityClient from '../../sanityClient'
-import { SanityRef } from '../../common/sanityIo/Types'
+import {SanityRef} from '../../common/sanityIo/Types'
 import {
   SanityBlog,
   SanityBlogCategory,
-  SanityBlogGroup, SanityBlogPreview,
+  SanityBlogGroup,
+  SanityBlogPreview,
   SanityLandingPage,
-  SanityMenuContainer
 } from "./cmsClientTypes";
 import {WhySwitchSectionType} from "../BlockContentTypes";
+import {SanityMenuContainer} from "../../sanity/Menu";
 
 const fetchLandingPage = (slug: string): Promise<SanityLandingPage> => {
   return sanityClient

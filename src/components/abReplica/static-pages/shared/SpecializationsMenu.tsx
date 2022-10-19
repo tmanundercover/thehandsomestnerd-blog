@@ -3,7 +3,7 @@ import {Grid, Link, Typography} from '@material-ui/core'
 import {useHistory} from 'react-router-dom'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import abTheme from '../../common/Theme'
-import {SanityMenuGroup, SanityMenuItem} from "../../cmsClientTypes";
+import {SanityMenuGroup, SanityMenuItem} from "../../../../sanity/Menu";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   plexH4: {

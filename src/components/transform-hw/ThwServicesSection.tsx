@@ -60,11 +60,13 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                             <Grid item container>
 
                                 <ImageWIthButtonOverlay
-                                    buttonAlignment={mdDown? ImageWithButtonOverlayAligmentEnum.CENTER:ImageWithButtonOverlayAligmentEnum.RIGHT}
+                                    buttonAlignment={mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
                                     imageAltText={service.imageSrcAltText}
-                                                        variant='contained'
-                                                        imageSrc={service.imageSrc} height={352}
-                                                        ctaButtonText={service.ctaButtonText}/>
+                                    variant='contained'
+                                    imageSrc={service.imageSrc} height={352}
+                                    ctaButtonText={service.ctaButtonText}
+                                    ctaButtonLink={service.ctaButtonLink}
+                                />
                             </Grid>
                             <Grid item container justifyContent='center'
                                   style={{marginTop: "16px", marginBottom: "16px"}}>

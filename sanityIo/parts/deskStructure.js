@@ -57,6 +57,9 @@ export default () =>
                 .title(SanitySectionTitlesEnum.CONTACT_US)
                 .child(createSuperPane('transformContactUsSection', S)),
             S.listItem()
+                .title(SanitySectionTitlesEnum.UNDER_CONSTRUCTION)
+                .child(createSuperPane('transformUnderConstructionPage', S)),
+            S.listItem()
                 .title('Page Section: Hero + Content')
                 .child(createSuperPane('heroContentSection', S)),
             S.listItem()

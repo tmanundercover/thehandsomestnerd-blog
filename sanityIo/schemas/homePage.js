@@ -98,53 +98,15 @@ export default {
             },
         },
         {
-            name: 'androidPlayStoreLink',
-            title: 'Android Play Store Link',
-            type: 'string',
-        },
-        {
-            name: 'androidPlayStoreIconSrc',
-            title: 'Android Play Store Icon',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'appStoreLink',
-            title: 'iOS App Store Link',
-            type: 'string',
-        },
-        {
-            name: 'appStoreIconSrc',
-            title: 'iOS App Store Icon',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'fdicImage',
-            title: 'FDIC Logo',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'fdicDisclaimer',
-            title: 'FDIC Disclaimer',
-            type: 'string',
-        },
-        {
             name: 'isUnderConstruction',
             title: 'Is Under Construction',
             type: 'boolean',
         },
         {
-            name: 'releaseDate',
-            title: 'What is the release date?',
-            type: 'date',
+            name: 'underConstructionPageRef',
+            title: 'Under Construction Page',
+            type: 'reference',
+            to:[{type: 'transformUnderConstructionPage'}]
         },
     ]
 }

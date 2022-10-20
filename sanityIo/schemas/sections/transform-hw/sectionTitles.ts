@@ -5,5 +5,6 @@ export enum SanitySectionTitlesEnum {
     ABOUT_PROPRIETOR="THW 1/3 Image + 2/3 Content",
     SERVICES="THW Centered List Content",
     WHY_CHOOSE_US="THW 1/3 Image + List Content",
-    CONTACT_US="THW Content + Contact Form"
+    CONTACT_US="THW Content + Contact Form",
+    UNDER_CONSTRUCTION="Under Construction Page"
 }

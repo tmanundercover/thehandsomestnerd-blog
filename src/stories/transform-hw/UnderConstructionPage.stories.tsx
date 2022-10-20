@@ -60,7 +60,6 @@ const Template: ComponentStory<typeof UnderConstruction> = (args) => <Grid item 
 export const UnderConstructionPageUnderConstruction = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 UnderConstructionPageUnderConstruction.args = {
-    releaseDate: new Date(Date.now() + 100000000)
     // releaseDate: new Date("2022-11-01")
 };
 

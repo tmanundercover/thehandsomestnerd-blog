@@ -1,4 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
+import {SanityImageAsset} from "../../components/BlockContentTypes";
 
 export type SanityRepositoryType = {
   _type: string,
@@ -65,5 +66,17 @@ export type SanityTransformHwHomePage = {
   fdicDisclaimer?: string
   fdicImage?: string
   isUnderConstruction?: boolean
-  releaseDate?: Date
+  underConstructionPageRef?: SanityRef
+}
+
+export type SanityUnderConstructionPageType = {
+  name: string
+  bgImage: SanityImageAsset
+  contentTitle: string
+  releaseDate: Date
+  contentText: string
+  subscribeText: string
+  emailFieldText: string
+  emailButtonText: string
+  footerTextLines: string[]
 }

@@ -9,6 +9,7 @@ const HOMEPAGE = `
           description,
           metaImage,
           pageContent,
+          underConstructionPageRef,
           structuredData,
           facebook,
           facebookIconSrc{
@@ -33,30 +34,6 @@ const HOMEPAGE = `
               url,
               altText
              }
-          },
-          androidPlayStoreLink,
-          androidPlayStoreIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          appStoreLink,
-          appStoreIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          fdicImage{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          fdicDisclaimer
+          }
 `
 export default {HOMEPAGE}

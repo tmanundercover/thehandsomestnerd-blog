@@ -1,11 +1,9 @@
 import React, {FunctionComponent, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Divider, Grid, Typography, useMediaQuery} from '@material-ui/core'
-import {ThwServiceItemType, ThwWhyChooseUsItemType, ThwWhyChooseUsSectionType} from "../BlockContentTypes";
+import {Divider, Grid, Typography} from '@material-ui/core'
+import {ThwWhyChooseUsItemType, ThwWhyChooseUsSectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import transformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import cmsClient from "../abReplica/cmsClient";
-import MediaQueries from "../layout/MediaQueries";
 import {urlFor} from "../abReplica/static-pages/cmsStaticPagesClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -58,7 +56,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                         <Typography display='inline'  gutterBottom color='secondary' variant='h4'
                                     align='center'>{props.sectionData.sectionTitle}</Typography>
                         <Typography variant='h4'
-                                    color='textPrimary' display='inline' style={{letterSpacing:"-.25em"}}>____</Typography>
+                                    color='secondary' display='inline' style={{letterSpacing:"-.25em"}}>____</Typography>
                     </Grid>
                     <Grid item container spacing={2} xs={11}>
                         {prosList?.map((service, index: number) => {
@@ -81,7 +79,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                                             </Grid>
                                             <Grid item container>
                                                 <Typography variant='body1'
-                                                            style={{color: transformHWTheme.palette.text.secondary}}>{service.contentText}</Typography>
+                                                            color='secondary'>{service.contentText}</Typography>
                                             </Grid>
                                         </Grid>
                                     </Grid>

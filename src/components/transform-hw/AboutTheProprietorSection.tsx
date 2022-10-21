@@ -33,7 +33,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                 <Grid item xs={12} md={5} lg={4} container justifyContent='center' alignContent='center'
                       alignItems='center' style={{minWidth: "max-content"}}>
                     <Grid item style={{overflow: "hidden", position: "relative"}} container justifyContent='center'>
-                        <ImageWIthButtonOverlay ctaButtonText={props.sectionData.ctaButtonText} ctaButtonLink={props.sectionData.ctaButtonLink} toColor={"rgba(255,255,255,.94)"} imageSrc={props.sectionData.proprietorImage} height={545} direction={CssFadeToColorDirectionEnum.RIGHT} isResponsive/>
+                        <ImageWIthButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText} ctaButtonLink={props.sectionData.ctaButtonLink} toColor={"rgba(255,255,255,.94)"} imageSrc={props.sectionData.proprietorImage} height={545} direction={CssFadeToColorDirectionEnum.RIGHT} isResponsive/>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between' spacing={2}>
@@ -47,7 +47,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                             </Grid>
                             <Grid item>
 
-                                <Typography variant='body1' color='primary'
+                                <Typography variant='body1' color='textPrimary'
                                             style={{fontStyle: "italic"}}>{props.sectionData.proprietorTitle}</Typography>
                             </Grid>
                         </Grid>

@@ -47,20 +47,20 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                         <Grid item>
                             <Typography variant='h3'
-                                        color='primary' display='inline' style={{letterSpacing:"-.25em"}}>____</Typography>
+                                        color='primary' display='inline' style={{color: "rgba(117,117,121)",letterSpacing:"-.25em"}}>____</Typography>
                         </Grid>
                         </Grid>
                     </Grid>
                     <Grid item container>
                         <Typography variant='body1'
-                                    color='secondary'>{props.sectionData.contentText}</Typography>
+                                    color='textPrimary'>{props.sectionData.contentText}</Typography>
                     </Grid>
                     <Grid container item>
-                        <Grid item container className={classes.contentBullets} spacing={1}>
+                        <Grid item container className={classes.contentBullets} spacing={3}>
                             {props.sectionData.contentBullets.map((reason: string, index: number) => {
-                                return <Grid key={index} container item xs={6}>
-                                    <Grid container item>
-                                        <Grid item xs={2}><Check color='primary'/></Grid>
+                                return <Grid key={index} container item sm={6} alignItems='center'>
+                                    <Grid container item spacing={2}>
+                                        <Grid item xs={2} container justifyContent='flex-end'><Check color='secondary'/></Grid>
                                         <Grid item xs={10}>
                                             <Typography>{reason}</Typography>
                                         </Grid>
@@ -70,8 +70,9 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                     <Grid container item>
-                        <Button variant='contained' color='primary'
-                                href={props.sectionData.ctaButtonLink ?? ''} style={{color: "white"}}>
+                        <Button variant='contained' color='secondary'
+                                style={{backgroundColor: TransformHWTheme.palette.secondary.main}}
+                                href={props.sectionData.ctaButtonLink ?? ''}>
                             {props.sectionData.ctaButtonText}
                         </Button>
                     </Grid>

@@ -19,7 +19,7 @@ import ThwFooter from "../transform-hw/footer/ThwFooter";
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '100vw',
-        backgroundColor: "whitesmoke"
+        // backgroundColor: "whitesmoke"
     }
 }))
 

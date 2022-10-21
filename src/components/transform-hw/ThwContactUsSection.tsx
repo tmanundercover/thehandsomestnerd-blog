@@ -2,7 +2,7 @@ import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, Grid, InputAdornment, Link, TextField, Typography, useMediaQuery, withStyles} from "@material-ui/core";
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme, {COLORS} from "../../theme/transform-hw/TransformHWTheme";
 import {urlFor} from "../abReplica/static-pages/cmsStaticPagesClient";
 import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
@@ -159,7 +159,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
 
     return (
         <Grid container item className={classes.root} style={{
-
             backgroundSize: "cover",
             position: "relative",
             minHeight: "145px",
@@ -183,8 +182,9 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                         </Grid>
                         <Grid container item justifyContent={justifyContent}>
                             <Typography gutterBottom variant='h4'
-                                        color='primary' display='inline'
+                                        display='inline'
                                         style={{
+                                            color: "rgba(117,117,121)",
                                             letterSpacing: "-.25em",
                                             paddingBottom: "16px",
                                             lineHeight: .2
@@ -367,7 +367,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                 isLoading={isLoading || isRefetching}
                                 disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                 clickHandler={createLead}
-                                color="primary" variant="contained">Send Message</LoadingButton>
+                                color="secondary" variant="contained">Send Message</LoadingButton>
                         </Grid>
                     </Grid>
                 </Grid>

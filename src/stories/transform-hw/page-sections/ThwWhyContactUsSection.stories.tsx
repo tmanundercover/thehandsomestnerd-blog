@@ -1,11 +1,6 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {rest} from "msw";
-import ThwHeroContentSection from "../../../components/transform-hw/ThwHeroContentSection";
-import ThwPositivePsychology from "../../../components/transform-hw/ThwPositivePsychology";
-import AboutTheProprietorSection from "../../../components/transform-hw/AboutTheProprietorSection";
-import ThwServicesSection from "../../../components/transform-hw/ThwServicesSection";
-import ThwWhyChooseUsSection from "../../../components/transform-hw/ThwWhyChooseUsSection";
 import ThwContactUsSection from "../../../components/transform-hw/ThwContactUsSection";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

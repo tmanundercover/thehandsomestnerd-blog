@@ -54,7 +54,7 @@ const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = 
           return (
             <Grid key={index} item style={{marginLeft: '8px'}}>
               <Link href={menuLink.url} className={classes.footerLink}>
-                <Typography variant="body1" color='textPrimary' noWrap>
+                <Typography variant="body1" color='textSecondary' noWrap>
                   {menuLink.displayText}
                 </Typography>
               </Link>

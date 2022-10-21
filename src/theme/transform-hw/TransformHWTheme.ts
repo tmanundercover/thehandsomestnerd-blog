@@ -110,14 +110,15 @@ const fonts = ['Poppins', 'Montserrat', 'sans-serif'].join(',')
 
 // New Registration flow colors
 export const PINK = '#FFA9E7'
-export const MINT = '#70FBE0'
 
 // Marketplace colors
-export const MARKETPLACEMINT = '#0FF7CA'
-export const LIGHT_MINT = '#E2FEF9'
 
 export enum COLORS {
-    MAIN = '#e5ae58'
+    DARKBLUE = '#000035',
+    BLUE= 'rgba(16, 43, 136, 1)',
+    DARK_GRAY= '#A8A9AC',
+    GRAY='rgba(207, 207, 207, 1)',
+    LIGHT_GRAY='#E3E3E3'
 }
 
 const TransformHWTheme = createTheme({
@@ -133,14 +134,14 @@ const TransformHWTheme = createTheme({
 // @ts-ignore
     palette: {
         background: {
-            default: '#383838',
-            paper: '#FAFAFA'
+            default: COLORS.DARKBLUE,
+            paper: COLORS.LIGHT_GRAY
         },
         primary: {
-            main: COLORS.MAIN,
+            main: COLORS.GRAY,
         },
         secondary: {
-            main: '#000000',
+            main: COLORS.BLUE,
         },
         error: {
             main: '#840E0E',
@@ -158,9 +159,9 @@ const TransformHWTheme = createTheme({
             dark: '#CF800A'
         },
         text: {
-            primary: '#383838',
-            secondary: '#FAFAFA',
-            disabled: '#E7E7E7'
+            primary: COLORS.DARKBLUE,
+            secondary: COLORS.LIGHT_GRAY,
+            disabled: COLORS.DARK_GRAY
         }
     },
     typography: {
@@ -228,7 +229,7 @@ const TransformHWTheme = createTheme({
         },
         subtitle1: {
             // Small
-            fontSize: '14px',
+            fontSize: '16px',
             fontStyle: 'normal',
             fontWeight: 750,
             lineHeight: 1.45,
@@ -299,6 +300,8 @@ const TransformHWTheme = createTheme({
                 boxShadow: "none"
             },
             containedPrimary: {
+                border: '1px solid white',
+                backgroundColor: "rgba(207, 207, 207, .8)",
                 // color: '#FCE3CC',
                 // backgroundColor: '#FF4122',
                 // '&:hover': {
@@ -315,8 +318,9 @@ const TransformHWTheme = createTheme({
                 // }
             },
             containedSecondary: {
+                border: '1px solid white',
                 // color: '#FEF1E6',
-                // backgroundColor: '#4C2FCD',
+                backgroundColor: 'rgba(16, 43, 136, .7)',
                 // '&:hover': {
                 //   backgroundColor: '#2412AE',
                 //   color: '#FCE3CC'
@@ -357,7 +361,7 @@ const TransformHWTheme = createTheme({
                 paddingTop: "16px",
                 paddingBottom: "16px",
                 paddingLeft: "64px",
-                paddingRight: "64px"
+                paddingRight: "64px",
             }
         },
         MuiCircularProgress: {

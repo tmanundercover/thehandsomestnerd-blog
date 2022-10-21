@@ -7,15 +7,14 @@ import {urlFor} from "../../abReplica/static-pages/cmsStaticPagesClient";
 import {SanityMenuContainer, SanityMenuGroup} from "../../../sanity/Menu";
 import cmsClient from '../../abReplica/cmsClient'
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
-import {AlternateEmail, MailOutline, PhoneOutlined} from "@material-ui/icons";
 import MediaQueries from "../../layout/MediaQueries";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         // width: '100vw',
-        color: theme.palette.text.primary,
-        backgroundColor:"whitesmoke"
+        color: theme.palette.text.secondary,
+
     }
 }))
 
@@ -30,6 +29,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
 
     const [menu, setMenu] = React.useState<SanityMenuContainer>()
     const xsOnly = useMediaQuery(MediaQueries.xsOnly)
+    const smDown = useMediaQuery(MediaQueries.smDown)
 
     const getMenuData = (): Promise<any> => {
         return cmsClient.fetchLandingPageFooterMenu(props.menuContainerSlug)
@@ -41,9 +41,9 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
 
     return (
         <Grid container item className={classes.root} spacing={5}>
-            <Grid container item xs={12} sm={6} md={4} style={xsOnly?{
+            <Grid container item xs={12} md={4} style={smDown?{
                 borderLeft: `4px solid ${TransformHWTheme.palette.primary.main}`,
-                backgroundColor: "#e8e8e8",
+                backgroundColor: "rgba(117,117,117,.5)",
                 borderRight: `4px solid ${TransformHWTheme.palette.primary.main}`,
             }:{}}>
                 {
@@ -56,19 +56,20 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     })
                 }
             </Grid>
-            <Grid item container xs={12} sm={6} md={4} justifyContent='flex-start'>
+            <Grid item container xs={12} md={4} justifyContent='flex-start'>
                 {menu?.logoImageSrc &&<Grid item container style={{
                     backgroundImage: `url(${urlFor(menu.logoImageSrc).url() ?? ''})`,
                     backgroundSize: "contain",
-                    backgroundPosition: true?"center":'left',
+                    backgroundPosition: "center",
                     backgroundRepeat:'no-repeat',
-                    height: 150
+                    height: 200
                 }}/>}
                 <Grid item container justifyContent='center' style={{paddingBottom: "16px",
-                    marginTop: "-12px",}}>
+                    marginTop: "12px",}}>
 
                     <Grid item><Divider style={{
                         width:"70px",
+                        backgroundColor:"white"
                     }}></Divider></Grid>
 
                 </Grid>
@@ -112,7 +113,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                             <Typography variant='subtitle1' color='inherit'>8pm-9pm</Typography>
                         </Grid>
                     </Grid>
-                    <Grid container item><Divider style={{width:"100%"}}></Divider></Grid>
+                    <Grid container item><Divider style={{width:"100%", backgroundColor:"white"}}></Divider></Grid>
                     <Grid container item>
                         <Grid item xs={6}>
                             <Typography variant='subtitle1' color='inherit'>Th-F</Typography>
@@ -121,7 +122,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                             <Typography variant='subtitle1' color='inherit'>8pm-10pm</Typography>
                         </Grid>
                     </Grid>
-                    <Grid container item><Divider style={{width:"100%"}}></Divider></Grid>
+                    <Grid container item><Divider style={{width:"100%",backgroundColor:"white"}}></Divider></Grid>
                     <Grid container item>
                         <Grid item xs={6}>
                             <Typography variant='subtitle1' color='inherit'>Sunday</Typography>

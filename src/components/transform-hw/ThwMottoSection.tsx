@@ -41,7 +41,7 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
             </Grid>
             <Grid container justifyContent='center' alignItems='center' alignContent='center' item
                   style={{zIndex: 2, padding: "40px"}}>
-                <Typography variant='body2' style={{color: '#FAFAFA'}} align='center'>
+                <Typography variant='subtitle1' style={{color: '#FAFAFA'}} align='center'>
                     {props.sectionData.contentSuperTitle}
                 </Typography>
                 <Typography variant={smDown?'h3':'h2'} style={{color: '#FAFAFA'}} align='center'>

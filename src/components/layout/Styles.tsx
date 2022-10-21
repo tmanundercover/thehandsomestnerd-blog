@@ -42,7 +42,7 @@ export const useThwStyles = makeStyles({
     },
     fullSectionOverlay: {
         position: "absolute",
-        backgroundColor: `rgba(0, 0, 0, .3)`,
+        backgroundColor: `rgba(0, 0, 0, .4)`,
         minHeight: '512px',
         height: '100%',
         width: "100%",

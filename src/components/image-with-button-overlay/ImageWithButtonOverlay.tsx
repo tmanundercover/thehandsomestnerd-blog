@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid} from '@material-ui/core'
+import {Button, Grid, PropTypes, Typography} from '@material-ui/core'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import {urlFor} from "../abReplica/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
@@ -26,6 +26,7 @@ interface IProps {
     variant?: 'text' | 'contained' | 'outlined'
     height: number
     buttonAlignment?: ImageWithButtonOverlayAligmentEnum
+    buttonColor?: PropTypes.Color
 }
 
 
@@ -63,13 +64,14 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 left: 0,
                 paddingRight: "32px"
             }} justifyContent={getButtonAlignment()}>
-                <Button variant={props.variant ? props.variant : 'outlined'} color='primary'
+                <Button variant={props.variant ? props.variant : 'outlined'} color={props.buttonColor?props.buttonColor:'primary'}
                         href={props.ctaButtonLink ?? ''}
                         style={{
                             color: "#FAFAFA"
                         }}
                 >
-                    {props.ctaButtonText}
+                    <Typography variant='button'
+                                color='secondary'>{props.ctaButtonText}</Typography>
                 </Button>
             </Grid>
         </Grid>

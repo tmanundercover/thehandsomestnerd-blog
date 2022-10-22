@@ -8,6 +8,7 @@ import {SanityMenuContainer, SanityMenuGroup} from "../../../sanity/Menu";
 import cmsClient from '../../abReplica/cmsClient'
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import MediaQueries from "../../layout/MediaQueries";
+import Logo from "../logo/Logo";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -36,7 +37,9 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     React.useEffect(() => {
-        getMenuData().then((data) => setMenu(data))
+        getMenuData().then((data) => {
+            setMenu(data)
+        })
     }, [])
 
     return (
@@ -47,7 +50,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 borderRight: `4px solid ${TransformHWTheme.palette.primary.main}`,
             }:{}}>
                 {
-                    menu?.menuItems?.map((menuGroup: SanityMenuGroup, index: number) => {
+                    menu?.subMenus?.map((menuGroup, index: number) => {
                         return (
                             <Grid key={index} item>
                                 <ThwFooterMenuGroup menuGroup={menuGroup}/>
@@ -57,13 +60,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 }
             </Grid>
             <Grid item container xs={12} md={4} justifyContent='flex-start'>
-                {menu?.logoImageSrc &&<Grid item container style={{
-                    backgroundImage: `url(${urlFor(menu.logoImageSrc).url() ?? ''})`,
-                    backgroundSize: "contain",
-                    backgroundPosition: "center",
-                    backgroundRepeat:'no-repeat',
-                    height: 200
-                }}/>}
+                {menu?.logoImageSrc && <Logo logoImageSrc={menu.logoImageSrc} height={108}/>}
                 <Grid item container justifyContent='center' style={{paddingBottom: "16px",
                     marginTop: "12px",}}>
 

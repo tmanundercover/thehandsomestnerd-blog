@@ -34,7 +34,7 @@ export default {
     },
     {
       name: 'ctaHeader1',
-      title: 'CTA Header',
+      title: 'CTA ThwHeader',
       type: 'string'
     },
     {

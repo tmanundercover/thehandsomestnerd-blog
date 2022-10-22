@@ -71,7 +71,7 @@ app.get("/index.html", (req, res, next) => {
 
   serveIndexFile(req, res);
 });
-console.log("FROM THE SERVER?!?!");
+
 console.log(__dirname + " " + "../../../../" + "build");
 
 const devIndexPath: string[] = [];
@@ -105,7 +105,7 @@ const serveIndexFile = (req: any, res: any) => {
     try {
       const pageFromSanity: SanityTransformHwHomePage = await cmsClient.fetchPage(pageSlug);
 
-      console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
+      // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
       const page = {
         ogTitle: pageFromSanity.title,
         description: pageFromSanity.description,

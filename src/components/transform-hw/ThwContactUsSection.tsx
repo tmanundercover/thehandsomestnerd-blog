@@ -117,7 +117,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
     const globalClasses = useThwStyles({})
     const smDown = useMediaQuery(MediaQueries.smDown)
-    console.log("contact", props.sectionData)
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()

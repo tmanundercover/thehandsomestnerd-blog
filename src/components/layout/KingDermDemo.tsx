@@ -1,7 +1,6 @@
 import {Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import theme from '../../common/Theme'
-import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
 import {SanityImageAssetDocument} from '@sanity/client'
 import SelectedWorksMockupsSection from '../terrells-portfolio-sections/SelectedWorksMockupsSection'
@@ -82,7 +81,6 @@ const KingDermDemo: FunctionComponent<AppLayoutProps> = (props) => {
 
       <Grid container direction="column" className={classes.root}>
         <Grid item>
-          <Header/>
         </Grid>
         <Grid item>
           <SelectedWorksMockupsSection/>

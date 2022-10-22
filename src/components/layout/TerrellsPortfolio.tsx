@@ -1,7 +1,6 @@
 import {Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import theme from '../../common/Theme'
-import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
 import {SanityImageAssetDocument} from '@sanity/client'
 import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
@@ -81,7 +80,7 @@ const TerrellsPortfolio: FunctionComponent<AppLayoutProps> = (props) => {
     <MuiThemeProvider theme={theme}>
     <Grid container direction="column" className={classes.root}>
       <Grid item>
-        <Header/>
+        {/*<Header/>*/}
       </Grid>
       <Grid item>
         <BlockContentLayoutContainer

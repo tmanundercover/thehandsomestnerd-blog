@@ -1,8 +1,6 @@
 import {Grid, useMediaQuery} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import Header from './header/Header'
-import Footer from './footer/Footer'
 import abTheme from './common/Theme'
 import theme from './common/Theme'
 import HomePageHeroImage from './static-pages/shared/HomePageHeroImage'
@@ -82,7 +80,6 @@ const MainLayout: FunctionComponent = () => {
       <Grid container direction="column" className={classes.root}>
         <Grid container item direction="column" alignItems="center" className={classes.contentContainer}>
           <Grid container item className={classes.headerSectionContainer}>
-            <Header/>
           </Grid>
           <Grid container direction="column" item className={classes.sectionContainer} alignItems="center"
                 justify="center">
@@ -129,7 +126,6 @@ const MainLayout: FunctionComponent = () => {
           <ModernServiceSection/>
         </Grid>
         <Grid container item>
-          <Footer/>
         </Grid>
       </Grid>
     </Grid>

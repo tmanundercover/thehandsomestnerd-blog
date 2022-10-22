@@ -1,7 +1,6 @@
 import {CssBaseline, Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import theme from '../../common/Theme'
-import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
 import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
 import AndaTheme from '../../theme/aft-theme/AftTheme'
@@ -9,7 +8,6 @@ import {useParams} from 'react-router-dom'
 import MetaTagsComponent from '../aft-marketing/MetaTags'
 import cmsClient from '../abReplica/cmsClient'
 import purpleDiamond from './purpleDiamond.png'
-import Footer from '../abReplica/footer/Footer'
 import {SanityImageAsset} from "@sanity/asset-utils";
 
 
@@ -145,14 +143,12 @@ const AftMarketing: FunctionComponent<AppLayoutProps> = (props) => {
                          description={homePage?.description ?? ''} imgSrc={homePage?.imgSrc}/>
       <Grid container direction='column' className={classes.root}>
         <Grid item>
-          <Header menuSlug='aft-header'/>
         </Grid>
         <Grid item style={{marginBottom: '80px'}}>
           <BlockContentLayoutContainer
             content={realizedContent}/>
         </Grid>
         <Grid item>
-          <Footer footerMenuSlug='aft-footer' homePage={homePage}/>
         </Grid>
       </Grid>
     </MuiThemeProvider>

@@ -39,7 +39,7 @@ const MetaTagsComponent: FunctionComponent<IProps> = (props) => {
           }
         }
       }
-console.log("structured data", data)
+// console.log("structured data", data)
       setStructuredJSONObj(data)
     }
   }, [props.structuredData])

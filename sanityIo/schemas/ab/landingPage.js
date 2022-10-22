@@ -37,7 +37,7 @@ export default {
         },
         {
             name: 'headerText',
-            title: 'Header Text',
+            title: 'ThwHeader Text',
             type: 'string'
         },
         {

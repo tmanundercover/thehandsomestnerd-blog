@@ -189,7 +189,7 @@ const ModernServiceSection: FunctionComponent<ModernServiceProps> = (props) => {
   const [showLinks, setShowLinks] = React.useState<boolean[]>([false, false, false, false])
 
   React.useEffect(() => {
-    console.log('SHowlinks', showLinks)
+    // console.log('SHowlinks', showLinks)
     if (showLinks && showLinks.length) {
       showLinks.map((serviceStatus, index) => {
         if (serviceStatus) {

@@ -37,8 +37,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
-    console.log(props.sectionData)
-
     let classParameters: CSSProps = {
         heroBaseImageUrl: urlFor(props.sectionData.heroImage).url() ?? '',
     }

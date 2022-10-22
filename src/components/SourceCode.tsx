@@ -13,9 +13,7 @@ const SourceCode: FunctionComponent<SourceCodeProps> = (props) => {
   const [sourceCode, setSourceCode] = React.useState<SanitySourceCodeType<SanityRepositoryType>>()
 
   React.useEffect(() => {
-    console.log('sourceCode render', sourceCode)
     cmsClient.fetchSourceCode(props.reference).then((sanitySourceCode: SanitySourceCodeType<SanityRepositoryType>) => {
-      console.log('sanitysourcedoe object', sanitySourceCode)
       setSourceCode(sanitySourceCode)
     })
   }, [])

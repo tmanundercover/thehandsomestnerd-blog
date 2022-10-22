@@ -27,7 +27,6 @@ interface IProps {
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
-    console.log(props.sectionData)
 
     const [servicesList, setServicesList] = useState<ThwServiceItemType[]>()
 

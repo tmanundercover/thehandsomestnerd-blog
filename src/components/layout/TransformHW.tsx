@@ -1,6 +1,5 @@
 import {CircularProgress, CssBaseline, Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
-import Header from './sanity/header/Header'
 import sanityClient from '../../sanityClient'
 import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
 import {useParams} from 'react-router-dom'
@@ -14,6 +13,7 @@ import {useQuery} from "react-query";
 import {useThwStyles} from "./Styles";
 import FourOhFour from "./error/FourOhFour";
 import ThwFooter from "../transform-hw/footer/ThwFooter";
+import ThwHeader from "../transform-hw/header/ThwHeader";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -48,7 +48,7 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
     );
 
     React.useEffect(() => {
-        console.log("the data is ", data)
+        // console.log("the data is ", data)
 
         if (data)
             setHomePage(data[0])
@@ -70,7 +70,7 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
     const PageLayout = () => {
         return <Grid container direction='column' className={classes.root}>
             <Grid item>
-                <Header menuSlug='transform-hw-header'/>
+                <ThwHeader menuSlug='transform-hw-header'/>
             </Grid>
             <Grid container item>
                 <BlockContentLayoutContainer

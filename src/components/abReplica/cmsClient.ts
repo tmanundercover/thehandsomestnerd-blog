@@ -9,6 +9,7 @@ import {
 } from "./cmsClientTypes";
 import {WhySwitchSectionType} from "../BlockContentTypes";
 import {SanityMenuContainer} from "../../sanity/Menu";
+import GroqQueries from "../../utils/groqQueries";
 
 const fetchLandingPage = (slug: string): Promise<SanityLandingPage> => {
   return sanityClient
@@ -188,16 +189,7 @@ const fetchLandingPageFooterMenu = (footerSlug: string | undefined): Promise<San
   return sanityClient
     .fetch(
       `*[_type=="menuContainer" && slug.current == $slug]{
-          title,
-          slug,
-          logoImageSrc,
-          logoImageAltText,
-         "menuItems": subMenus[]->{slug, title, logoImage{
-            asset->{
-              _id,
-              url
-             }
-           }, menuGroupTitle, links[] ->}
+          ${GroqQueries.MENUGROUPCONTAINER}
        }`, {slug}
     )
     .then((data: SanityMenuContainer[]) => {

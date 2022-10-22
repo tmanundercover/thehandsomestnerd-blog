@@ -52,7 +52,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 {
                     menu?.subMenus?.map((menuGroup, index: number) => {
                         return (
-                            <Grid key={index} item>
+                            <Grid key={index} item xs={6}>
                                 <ThwFooterMenuGroup menuGroup={menuGroup}/>
                             </Grid>
                         )

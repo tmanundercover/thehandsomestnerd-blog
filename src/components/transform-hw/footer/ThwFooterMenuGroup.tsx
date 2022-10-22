@@ -79,7 +79,7 @@ const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = 
                     {
                         menuGroupContents && realizedLinks?.map( (menuLink, index: any) => {
                             return (
-                                <Grid key={index} item style={{marginLeft: '8px'}}>
+                                <Grid key={index} item>
                                     <Link href={menuLink.url} className={classes.footerLink}>
                                         <Typography variant="body1" color='textSecondary' noWrap>
                                             {menuLink.displayText}
@@ -90,7 +90,7 @@ const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = 
                         })
                     }
                     {
-                        menuItemContents && <Grid item style={{marginLeft: '8px'}}>
+                        menuItemContents && <Grid item>
                             <Link href={menuItemContents.url} className={classes.footerLink}>
                                 <Typography variant="body1" color='textSecondary' noWrap>
                                     {menuItemContents.displayText}

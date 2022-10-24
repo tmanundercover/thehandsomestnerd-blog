@@ -5,7 +5,8 @@ import {urlFor} from "../../abReplica/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import {SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
 import cmsClient from "../../abReplica/cmsClient";
-
+import subMenu from "./SubMenu";
+import {v4 as uuidv4} from 'uuid'
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
 
@@ -30,11 +31,11 @@ const SubMenu: FunctionComponent<LogoProps> = (props) => {
         }
     }, [])
 
-    return (<Grid item container>
+    return (<Grid item container key={uuidv4()}>
         <List style={{padding:0}}>
             {
                 links.map((theLink: SanityMenuItem, index: number) => {
-                    return <ListItem key={index} button component="a" style={{height: "48px"}}>
+                    return <ListItem key={uuidv4()+index} button component="a" style={{height: "48px"}}>
                         <Typography variant='body1' style={{color: "#1a1a1a", fontSize:"18px"}}>{theLink.displayText}</Typography>
                     </ListItem>
                 })

@@ -60,7 +60,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 }
             </Grid>
             <Grid item container xs={12} md={4} justifyContent='flex-start'>
-                {menu?.logoImageSrc && <Logo logoImageSrc={menu.logoImageSrc} height={108}/>}
+                {menu?.logoImageSrc && <Logo isResponsive logoImageSrc={menu.logoImageSrc} height={108}/>}
                 <Grid item container justifyContent='center' style={{paddingBottom: "16px",
                     marginTop: "12px",}}>
 

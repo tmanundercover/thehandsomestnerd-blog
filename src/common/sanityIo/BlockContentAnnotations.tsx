@@ -13,8 +13,7 @@ import {
 } from '@material-ui/core'
 import { FiberManualRecord } from '@material-ui/icons'
 import { useCommonStyles } from './CommonStyles'
-import AftTheme from '../../theme/aft-theme/AftTheme'
-import { PRIMARY_MINT } from '../../components/aft-marketing/AboutAndaCardSection'
+import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
 
@@ -28,13 +27,13 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
     case 'outlined':
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = AftTheme.palette.secondary.main
+          textColor = TransformHWTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = AftTheme.palette.primary.main
+          textColor = TransformHWTheme.palette.primary.main
           break;
         case 'mint':
-          textColor = PRIMARY_MINT
+          textColor = ""
           break;
         default:
           textColor = "whitesmoke"
@@ -49,32 +48,32 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
           textColor = "whitesmoke"
           break;
         case 'mint':
-          textColor = AftTheme.palette.secondary.main
+          textColor = TransformHWTheme.palette.secondary.main
           break;
         default:
-          textColor = AftTheme.palette.background.paper
+          textColor = TransformHWTheme.palette.background.paper
       }
       break
     case 'text':
     default:
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = AftTheme.palette.secondary.main
+          textColor = TransformHWTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = AftTheme.palette.primary.main
+          textColor = TransformHWTheme.palette.primary.main
           break;
         case 'mint':
-          textColor = PRIMARY_MINT
+          textColor = ""
           break;
         default:
-          textColor = AftTheme.palette.text.primary
+          textColor = TransformHWTheme.palette.text.primary
       }
       break
   }
 
   return <Grid container item>
-    <Button style={props?.mark?.color === 'mint' ? props?.mark?.variant === 'contained' ? {backgroundColor:PRIMARY_MINT,borderRadius: "20px"}:{backgroundColor:'transparent', borderColor:PRIMARY_MINT ,borderRadius: "20px"}:{borderRadius: "20px"}}
+    <Button style={props?.mark?.color === 'mint' ? props?.mark?.variant === 'contained' ? {backgroundColor:"",borderRadius: "20px"}:{backgroundColor:'transparent', borderColor:"" ,borderRadius: "20px"}:{borderRadius: "20px"}}
             variant={props?.mark?.variant as 'text' | 'outlined' | 'contained'}
             color={props?.mark?.color != 'mint' ? props?.mark?.color as PropTypes.Color : 'inherit'}
             href={props?.mark?.buttonLink}>

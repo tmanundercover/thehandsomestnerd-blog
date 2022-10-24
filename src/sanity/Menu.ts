@@ -5,7 +5,7 @@
 //   menuItems?: SanityMenuGroup[]
 // }
 //
-import {SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {SanitySlug} from "../common/sanityIo/Types";
 import {SanityImageAsset} from "@sanity/asset-utils";
 
 export type SanityMenuItem = {
@@ -22,7 +22,7 @@ export type SanityMenuGroup = {
   title?: string,
   slug?: SanitySlug,
   menuGroupTitle?: string,
-  links?: SanityRef[],
+  links?: SanityMenuItem[],
   logoImage?: any
   displayText?: string
 }
@@ -31,7 +31,7 @@ export type SanityMenuContainer = {
   title?: string,
   slug?: SanitySlug,
   displayText?: string,
-  subMenus?: SanityRef[]
+  subMenus?: SanityMenuGroup & SanityMenuItem[]
   logoImageAltText?: string
   logoImageSrc?: SanityImageAsset
 }

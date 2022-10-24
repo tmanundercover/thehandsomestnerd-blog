@@ -3,8 +3,8 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Divider, Grid, Typography} from '@material-ui/core'
 import {ThwWhyChooseUsItemType, ThwWhyChooseUsSectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import cmsClient from "../abReplica/cmsClient";
-import {urlFor} from "../abReplica/static-pages/cmsStaticPagesClient";
+import cmsClient from "../block-content-ui/cmsClient";
+import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {

@@ -2,14 +2,14 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import Countdown from "react-countdown";
-import TransformHWTheme, {montserratBold} from "../../../theme/transform-hw/TransformHWTheme";
-import theme from "../../abReplica/common/Theme";
+import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     counterSection: {
         height: "155px",
         width: "155px",
         borderRadius: "85px",
+        backgroundColor: "rgba(16, 43, 136, .7)",
         border: `4px solid ${theme.palette.primary.main}`
     }
 }))
@@ -23,7 +23,7 @@ const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
     const Completionist = () => <span>Site should be launched!</span>
 
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+    const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
 
     const pluralize = (subject: string) => {
         return subject + 's'
@@ -35,7 +35,7 @@ const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
             <Grid item><Typography variant='h1' color='primary'
                                    style={{textTransform: "uppercase"}}>{props.value}</Typography></Grid>
             <Grid item><Typography variant='h6' color='primary'
-                                   style={{textTransform: "uppercase"}}>{props.value != 1 ? pluralize(props.units) : props.units}</Typography></Grid>
+                                   style={{textTransform: "uppercase"}}>{props.value !== 1 ? pluralize(props.units) : props.units}</Typography></Grid>
         </Grid>
     }
 

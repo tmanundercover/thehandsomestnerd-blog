@@ -1,17 +1,19 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography} from '@material-ui/core'
-import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
+import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwAboutProprietorSectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
+import PsychologyTodaySeal from "./psychology-today-stamp/PsychologyToday";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         minHeight: '521px',
         backgroundColor: theme.palette.background.paper,
         paddingTop: theme.spacing(5),
+        // paddingLeft: -theme.spacing(-5),
         paddingBottom: theme.spacing(5)
     },
     contentBullets: {
@@ -32,18 +34,25 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
             <Grid container item justifyContent='space-around'>
                 <Grid item xs={12} md={5} lg={4} container justifyContent='center' alignContent='center'
                       alignItems='center' style={{minWidth: "max-content"}}>
-                    <Grid item style={{overflow: "hidden", position: "relative"}} container justifyContent='center'>
-                        <ImageWIthButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText} ctaButtonLink={props.sectionData.ctaButtonLink} toColor={"rgba(255,255,255,.94)"} imageSrc={props.sectionData.proprietorImage} height={545} direction={CssFadeToColorDirectionEnum.RIGHT} isResponsive/>
+                    <Grid item style={{overflow: "hidden", position: "relative", backgroundColor:"white"}} container justifyContent='center'>
+                        <ImageWIthButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText} ctaButtonLink={props.sectionData.ctaButtonLink} toColor={"rgba(232,232,232,0.9)"} imageSrc={props.sectionData.proprietorImage} height={545} direction={CssFadeToColorDirectionEnum.RIGHT} isResponsive/>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between' spacing={2}>
                     <Grid container item style={{minHeight: "549px"}} direction='column' spacing={4}>
                         <Grid container item direction='column'>
-                            <Grid item>
+                            <Grid item container>
+                                <Grid item>
+
                                 <Typography variant='h4'
                                             color='secondary'
                                             noWrap
                                             style={{fontWeight: 550}}>{props.sectionData.proprietorName}</Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Typography variant='h3'
+                                                color='secondary' display='inline' style={{letterSpacing:"-.25em"}}>____</Typography>
+                                </Grid>
                             </Grid>
                             <Grid item>
 
@@ -51,7 +60,12 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                             style={{fontStyle: "italic"}}>{props.sectionData.proprietorTitle}</Typography>
                             </Grid>
                         </Grid>
-                        <Grid item container>
+                        <Grid item container spacing={2}>
+                            <Grid item>
+                                <Typography variant='body2' color='secondary'
+                                            >{props.sectionData.contentTitle}</Typography>
+
+                            </Grid>
                             <Grid item>
                                 <Typography variant='body1'
                                             color='secondary' gutterBottom>{props.sectionData.contentText}</Typography>
@@ -60,6 +74,10 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                   style={{marginTop: TransformHWTheme.spacing(2.5)}}>
                                 <img alt={props.sectionData.proprietorSignatureImageAltText}
                                      src={urlFor(props.sectionData.proprietorSignatureImage).height(70).url() ?? ''}/>
+                            </Grid>
+                            <Grid item container justifyContent='flex-end'
+                                  style={{marginTop: TransformHWTheme.spacing(2.5)}}>
+                                <PsychologyTodaySeal />
                             </Grid>
                         </Grid>
                     </Grid>

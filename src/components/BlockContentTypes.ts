@@ -90,6 +90,7 @@ export type ThwAboutProprietorSectionType = {
     name: string
     proprietorName:string
     proprietorTitle: string
+    contentTitle: string
     contentText: string
     proprietorImage: SanityImageAsset
     proprietorImageAltText: string
@@ -120,6 +121,7 @@ export type ThwServiceItemType = {
 export type ThwServicesSectionType = {
     name: string
     contentTitle: string
+    contentPreTitle: string
     contentText: string
     servicesList: SanityRef[]
 }

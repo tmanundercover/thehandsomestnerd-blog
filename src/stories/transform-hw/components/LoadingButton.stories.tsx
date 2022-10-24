@@ -22,6 +22,6 @@ ContainedRightEndCapButton.args = {
   clickHandler: () => {alert("The Button was clicked")},
   width: 200,
   groupiness: ButtonGroupMemberEnum.RIGHT,
-  children: "Subscribe"
+  // children: "Subscribe"
 };
 

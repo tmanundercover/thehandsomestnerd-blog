@@ -63,6 +63,7 @@ ThwPositivePsychologySection.args = {
         "proprietorTitle": "MSW, LCSW-C",
         "ctaButtonLink": "",
         "ctaButtonText": "Talk with Me",
+        "contentTitle":"Therapeutic Services",
         proprietorImage: {
             "_type": "image",
             "asset": {

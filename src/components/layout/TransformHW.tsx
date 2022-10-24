@@ -1,10 +1,19 @@
-import {CircularProgress, CssBaseline, Grid, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
-import React, {FunctionComponent} from 'react'
+import {
+    CircularProgress,
+    CssBaseline,
+    Grid,
+    Link,
+    makeStyles,
+    MuiThemeProvider,
+    Theme,
+    Typography
+} from '@material-ui/core'
+import React, {FunctionComponent, Suspense, useState} from 'react'
 import sanityClient from '../../sanityClient'
 import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
 import {useParams} from 'react-router-dom'
 import MetaTagsComponent from '../aft-marketing/MetaTags'
-import cmsClient from '../abReplica/cmsClient'
+import cmsClient from '../block-content-ui/cmsClient'
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import UnderConstruction from "./under-construction/UnderConstruction";
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
@@ -14,6 +23,13 @@ import {useThwStyles} from "./Styles";
 import FourOhFour from "./error/FourOhFour";
 import ThwFooter from "../transform-hw/footer/ThwFooter";
 import ThwHeader from "../transform-hw/header/ThwHeader";
+import {useScrollPosition} from "../../utils/useScrollPosition";
+import {redirect} from "react-router";
+import {RoutesEnum} from "../../App";
+import Logo from "../transform-hw/logo/Logo";
+import LoadingPage from "./loading-page/LoadingPage";
+import PsychologyTodaySeal from "../transform-hw/psychology-today-stamp/PsychologyToday";
+import transformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -30,7 +46,7 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
     const globalClasses = useThwStyles(TransformHWTheme)
     const [homePage, setHomePage] = React.useState<SanityTransformHwHomePage | undefined>()
 
-    const urlParams: { pageSlug: string } = useParams()
+    const urlParams: { pageSlug?: string } = useParams()
 
     const {isLoading, isError, data, isRefetching} = useQuery(
         ['fetchPageBySlug'],
@@ -42,14 +58,21 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
                         `*[slug.current == $pageSlug]{
           ${groqQueries.HOMEPAGE}
        }`, {pageSlug})
-                    .catch(console.error)
+                    .then((result) => {
+                        if (result.length === 0) {
+                            redirect(RoutesEnum.ERROR)
+                        }
+                        return result
+                    }).catch(() => {
+                        redirect(RoutesEnum.ERROR)
+                    })
+            } else {
+                redirect(RoutesEnum.COMING_SOON)
             }
         }
     );
 
     React.useEffect(() => {
-        // console.log("the data is ", data)
-
         if (data)
             setHomePage(data[0])
     }, [data])
@@ -66,12 +89,21 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
             setRealizedContent(contentRealized)
         })
     }, [homePage])
+    const [hideOnScroll, setHideOnScroll] = useState(true)
+
+    useScrollPosition(({prevPos, currPos}: any) => {
+        const isShow = currPos.y > -100
+        if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+    }, [hideOnScroll])
+
+    const [isHeaderOrFooterLoading, setIsHeaderOrFooterLoading] = useState(false)
 
     const PageLayout = () => {
         return <Grid container direction='column' className={classes.root}>
             <Grid item>
-                <ThwHeader menuSlug='transform-hw-header'/>
+                <ThwHeader  menuSlug='transform-hw-header' isOpaque={hideOnScroll}/>
             </Grid>
+
             <Grid container item>
                 <BlockContentLayoutContainer
                     content={realizedContent}/>
@@ -79,19 +111,29 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
             <Grid item>
                 <ThwFooter footerMenuSlug='transform-hw-footer' homePage={homePage}/>
             </Grid>
+            <Grid container item
+                  alignContent='center'
+                  alignItems='center'
+                  style={{backgroundColor: "white", position: "static", bottom: 0, padding: transformHWTheme.spacing(2, 2, 1,2 )}}
+                  justifyContent='space-between'>
+                <Grid item xs={8}>
+                    <Link href='https://thehandsomestnerd.com' color='textPrimary'><Typography variant='body1'>© 2022 TheHandsomestNerd, LLC. </Typography></Link>
+                </Grid>
+                    <PsychologyTodaySeal />
+            </Grid>
         </Grid>
     }
 
 
     const PageContents = () => {
-        if (isLoading || isRefetching)
-            return <Grid container item justifyContent='center' alignItems='center'
-                         alignContent='center' className={globalClasses.fullscreen}><CircularProgress/></Grid>
+        if (isLoading || (realizedContent.length < 7 && !homePage?.underConstructionPageRef) || isRefetching)
+            return <LoadingPage/>
 
         if (!homePage?.isUnderConstruction) {
             return <PageLayout></PageLayout>
-        } else if(homePage.underConstructionPageRef) {
-            return <UnderConstruction underConstructionPageRef={homePage.underConstructionPageRef} email={homePage?.email}/>
+        } else if (homePage.underConstructionPageRef) {
+            return <UnderConstruction underConstructionPageRef={homePage.underConstructionPageRef}
+                                      email={homePage?.email}/>
         }
 
         if (isError) {
@@ -101,16 +143,13 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
         return <FourOhFour/>
     }
 
-    return (
-        <MuiThemeProvider theme={TransformHWTheme}>
+    return (<MuiThemeProvider theme={TransformHWTheme}>
             <CssBaseline/>
             <MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]}
                                title={homePage?.title ?? ''}
                                description={homePage?.description ?? ''} imgSrc={homePage?.metaImage}/>
             <PageContents/>
-        </MuiThemeProvider>
-
-    )
+        </MuiThemeProvider>)
 }
 
 export default TransformHW

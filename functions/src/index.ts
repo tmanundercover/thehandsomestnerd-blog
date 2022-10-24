@@ -9,7 +9,7 @@ import * as Promise from "es6-promise";
 import * as path from "path";
 import * as fs from "fs";
 import {SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
-import {urlFor} from "../../src/components/abReplica/static-pages/cmsStaticPagesClient";
+import {urlFor} from "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -137,16 +137,15 @@ const serveIndexFile = (req: any, res: any) => {
 app.post("/collect-email-address",
     async (req: any, functionRes: any) => {
       const reqBody: SanityColdLead = JSON.parse(req.body);
-      const {dataset} = req.headers;
 
-      logClient.log(`collect-email-address-${dataset}`, "NOTICE",
+      logClient.log("collect-email-address", "NOTICE",
           "Request to collect an email address", reqBody.email);
 
       try {
-        const response = await cmsClient.createColdLead({email: reqBody.email});
+        const response = await cmsClient.createColdLead({email: reqBody.email, leadPhone: reqBody.leadPhone, leadMessage: reqBody.leadMessage, leadName: reqBody.leadName, source: reqBody.source});
         functionRes.send({status: "200", response, email: reqBody.email});
       } catch (e) {
-        logClient.log(`collect-email-address-${dataset}`, "ERROR",
+        logClient.log("collect-email-address", "ERROR",
             "Could not create Lead", {email: reqBody.email});
         functionRes.error({status: "400", e});
       }

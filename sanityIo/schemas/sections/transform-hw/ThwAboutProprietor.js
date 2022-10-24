@@ -21,6 +21,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'contentTitle',
+      title: 'Content Title',
+      type: 'string',
+    },
+    {
       name: 'contentText',
       title: 'Content Text',
       type: 'string',

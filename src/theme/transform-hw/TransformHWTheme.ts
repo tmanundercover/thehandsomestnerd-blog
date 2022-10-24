@@ -1,13 +1,12 @@
 import {createTheme} from '@material-ui/core'
-import Grotesco from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-Medium.ttf'
-import GrotescoLight from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-Light.ttf'
-import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
+// import GrotescoLight from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-Light.ttf'
+// import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
 import Poppins from '../common/fonts/Poppins/Poppins-Medium.ttf'
 import MontserratBold from '../common/fonts/Montserrat/Montserrat-Bold.ttf'
 import MontserratBold2 from '../common/fonts/Montserrat/Montserrat-Bold.otf'
-import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
+// import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
 import PoppinsXBold from '../common/fonts/Poppins/Poppins-ExtraBold.ttf'
-import PlexSans from '../common/fonts/IBM Plex/OpenType/IBM-Plex-Sans/IBMPlexSans-Regular.otf'
+// import PlexSans from '../common/fonts/IBM Plex/OpenType/IBM-Plex-Sans/IBMPlexSans-Regular.otf'
 
 type FontFace = {
     fontDisplay?: any
@@ -17,38 +16,38 @@ type FontFace = {
     src?: string
 }
 
-export const grotesco: FontFace = {
-    fontFamily: 'Grotesco',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Grotesco'),
-    url(${Grotesco}) format('truetype')
-  `
-}
+// export const grotesco: FontFace = {
+//     fontFamily: 'Grotesco',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Grotesco'),
+//     url(${Grotesco}) format('truetype')
+//   `
+// }
 
-const grotescoLight: FontFace = {
-    fontFamily: 'Grotesco Light',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Grotesco Light'),
-    url(${GrotescoLight}) format('truetype')
-  `
-}
+// const grotescoLight: FontFace = {
+//     fontFamily: 'Grotesco Light',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Grotesco Light'),
+//     url(${GrotescoLight}) format('truetype')
+//   `
+// }
 
-const feixen: FontFace = {
-    fontFamily: 'Feixen',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Feixen'),
-    url(${Feixen}) format('opentype')
-  `
-}
+// const feixen: FontFace = {
+//     fontFamily: 'Feixen',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Feixen'),
+//     url(${Feixen}) format('opentype')
+//   `
+// }
 
 const poppins: FontFace = {
     fontFamily: 'Poppins',
@@ -74,16 +73,16 @@ export const montserratBold: FontFace = {
   `
 }
 
-const poppinsBold: FontFace = {
-    fontFamily: 'Poppins',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 700,
-    src: `
-    local('Poppins'),
-    url(${PoppinsBold}) format('opentype')
-  `
-}
+// const poppinsBold: FontFace = {
+//     fontFamily: 'Poppins',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 700,
+//     src: `
+//     local('Poppins'),
+//     url(${PoppinsBold}) format('opentype')
+//   `
+// }
 export const poppinsXBold: FontFace = {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
@@ -95,16 +94,16 @@ export const poppinsXBold: FontFace = {
   `
 }
 
-const plexSans: FontFace = {
-    fontFamily: 'Plex Sans',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Plex Sans'),
-    url(${PlexSans}) format('opentype')
-  `
-}
+// const plexSans: FontFace = {
+//     fontFamily: 'Plex Sans',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Plex Sans'),
+//     url(${PlexSans}) format('opentype')
+//   `
+// }
 
 const fonts = ['Poppins', 'Montserrat', 'sans-serif'].join(',')
 
@@ -115,10 +114,10 @@ export const PINK = '#FFA9E7'
 
 export enum COLORS {
     DARKBLUE = '#000035',
-    BLUE= 'rgba(16, 43, 136, 1)',
-    DARK_GRAY= '#A8A9AC',
-    GRAY='rgba(207, 207, 207, 1)',
-    LIGHT_GRAY='#E3E3E3'
+    BLUE = 'rgba(16, 43, 136, 1)',
+    DARK_GRAY = '#A8A9AC',
+    GRAY = 'rgba(207, 207, 207, 1)',
+    LIGHT_GRAY = '#E3E3E3'
 }
 
 const TransformHWTheme = createTheme({
@@ -161,7 +160,7 @@ const TransformHWTheme = createTheme({
         text: {
             primary: COLORS.DARKBLUE,
             secondary: COLORS.LIGHT_GRAY,
-            disabled: COLORS.DARK_GRAY
+            disabled: COLORS.LIGHT_GRAY
         }
     },
     typography: {
@@ -253,9 +252,9 @@ const TransformHWTheme = createTheme({
         MuiInputBase: {
             root: {
                 color: "#FAFAFA",
-                    "&:focus": {
-                        borderBottom: 0
-                    }
+                "&:focus": {
+                    borderBottom: 0
+                }
             },
             input: {
                 // borderBottom: "4px solid " + COLORS.MAIN,
@@ -265,11 +264,11 @@ const TransformHWTheme = createTheme({
             }
         },
         MuiFilledInput: {
-            root:{
+            root: {
                 backgroundColor: "rgba(0,0,0,.3)",
-                    // borderBottom: "1px solid "+ COLORS.MAIN,
-                "& .Mui-focused":{
-                        borderBottomWidth: '0px solid black'
+                // borderBottom: "1px solid "+ COLORS.MAIN,
+                "& .Mui-focused": {
+                    borderBottomWidth: '0px solid black'
                 }
             },
             // notchedOutline: {
@@ -297,7 +296,7 @@ const TransformHWTheme = createTheme({
                 paddingBottom: "16px"
             },
             contained: {
-                boxShadow: "none"
+                boxShadow: "none",
             },
             containedPrimary: {
                 border: '1px solid white',
@@ -309,8 +308,8 @@ const TransformHWTheme = createTheme({
                 //   color: '#FCE3CC'
                 // },
                 '&$disabled': {
-                  backgroundColor: '#79582d',
-                  color: '#969284'
+                    backgroundColor: '#79582d',
+                    color: '#969284'
                 },
                 // '&:focus': {
                 //   color: '#FCE3CC',
@@ -318,17 +317,17 @@ const TransformHWTheme = createTheme({
                 // }
             },
             containedSecondary: {
-                border: '1px solid white',
+                border: '1px solid whitesmoke',
                 // color: '#FEF1E6',
                 backgroundColor: 'rgba(16, 43, 136, .7)',
                 // '&:hover': {
                 //   backgroundColor: '#2412AE',
                 //   color: '#FCE3CC'
                 // },
-                // '&$disabled': {
-                //   color: '#FEF1E6',
-                //   backgroundColor: '#A697E6'
-                // },
+                '&$disabled': {
+                    color: 'rgba(207, 207, 207, .5)',
+                    backgroundColor: 'rgba(16, 43, 136, .5)'
+                },
                 // '&:focus': {
                 //   color: '#FCE3CC',
                 //   backgroundColor: '#4C2FCD'

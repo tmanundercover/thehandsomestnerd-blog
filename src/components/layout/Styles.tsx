@@ -1,4 +1,4 @@
-import {makeStyles, Theme} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 
 export const useThwStyles = makeStyles({
@@ -14,10 +14,26 @@ export const useThwStyles = makeStyles({
     },
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
-                paddingRight: 0
-            },
+            border: "1px solid white",
+            paddingRight: 0,
+            borderTopRightRadius: TransformHWTheme.shape.borderRadius,
+            borderBottomRightRadius: TransformHWTheme.shape.borderRadius
+        },
         "& .MuiOutlinedInput-adornedEnd": {
-            paddingRight: 0
+            border: "1px solid white",
+            paddingRight: 0,
+            borderTopRightRadius: TransformHWTheme.shape.borderRadius,
+            borderBottomRightRadius: TransformHWTheme.shape.borderRadius
+        },
+        "& .MuiInputBase-input": {
+            borderRightWidth: 0,
+            "&:hover": {
+                borderBottomColor: "white"
+            },
+        },
+        "& .MuiButton-containedSecondary":{
+            border: 0,
+            borderLeft: '1px solid white'
         }
     },
     spacer: {
@@ -29,7 +45,7 @@ export const useThwStyles = makeStyles({
     },
     fullScreenImage: {
         position: "relative",
-        backgroundImage: (props:any)=>`url(${props.bgImage})`,
+        backgroundImage: (props: any) => `url(${props.bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: TransformHWTheme.palette.background.default
@@ -46,7 +62,7 @@ export const useThwStyles = makeStyles({
         minHeight: '512px',
         height: '100%',
         width: "100%",
-        zIndex:1
+        zIndex: 1
     },
     fullContainer: {
         width: '100%',

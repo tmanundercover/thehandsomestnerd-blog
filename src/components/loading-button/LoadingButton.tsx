@@ -1,5 +1,5 @@
 import {Button, CircularProgress, makeStyles, PropTypes} from '@material-ui/core'
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, PropsWithChildren} from 'react'
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
 
@@ -72,8 +72,18 @@ interface LoadingButtonProps {
     variant?: 'text' | 'outlined' | 'contained'
 }
 
-const LoadingButton: FunctionComponent<LoadingButtonProps> = (props) => {
+const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = (props) => {
     const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width})
+    const getProgressContrastColor = ()=>{
+        switch (props.color) {
+            case 'primary':
+                return  TransformHWTheme.palette.primary.main
+            case 'secondary':
+                return TransformHWTheme.palette.secondary.main
+            default:
+                return '#FFFFFF'
+        }
+    }
     return (
         <Button
             disabled={props.disabled}
@@ -85,9 +95,9 @@ const LoadingButton: FunctionComponent<LoadingButtonProps> = (props) => {
             {
                 props.isLoading ?
                     <CircularProgress style={{
-                        color: TransformHWTheme.palette.text.primary,
-                        width: "25px",
-                        height: "25px"
+                        color: TransformHWTheme.palette.getContrastText(getProgressContrastColor()),
+                        width: "22px",
+                        height: "22px"
                     }}/>
                     : props.children
             }</Button>

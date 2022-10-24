@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Card, Grid, Typography} from '@material-ui/core'
-import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
+import {Button, Grid, Typography} from '@material-ui/core'
+import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "../layout/Styles";

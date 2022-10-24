@@ -1,18 +1,18 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, Grid, InputAdornment, Link, TextField, Typography, useMediaQuery, withStyles} from "@material-ui/core";
+import {Grid, InputAdornment, Link, TextField, Typography, useMediaQuery, withStyles} from "@material-ui/core";
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
-import TransformHWTheme, {COLORS} from "../../theme/transform-hw/TransformHWTheme";
-import {urlFor} from "../abReplica/static-pages/cmsStaticPagesClient";
+import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "../layout/Styles";
 import MediaQueries from "../layout/MediaQueries";
-import {ButtonGroupMemberEnum} from "../loading-button/ButtonGroupMemberEnum";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
 import leadClient from "../layout/under-construction/leadClient";
+import therapistHoldingHand from "../layout/under-construction/assets/therapistHoldingHand.jpg";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -115,6 +115,7 @@ export type ContactUsProps = {
 
 const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
+
     const globalClasses = useThwStyles({})
     const smDown = useMediaQuery(MediaQueries.smDown)
 
@@ -133,24 +134,42 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
             setAlignment('right')
             setJustifyContent('flex-end')
         }
-    })
+    },[smDown])
 
     const {isLoading, isError, data, refetch, isRefetching} = useQuery(
-        ['createLead'],
+        ['submitContactUsForm'],
         () => {
             if (email && email.length > 0 && (!data && !isError)) {
-                return leadClient.createLead({
+                return  leadClient.createLead({
                     email,
                     leadName,
                     leadMessage,
                     leadPhone,
                     source:"Contact Us"
+                }).then((response)=>{
+                    return response.response
                 });
             }
             return undefined
         }
     );
 
+    useEffect(()=>{
+        console.log("data", data)
+    },[data])
+
+    const getHelperText = () => {
+        if (data) {
+            return <Typography style={{color: TransformHWTheme.palette.success.main}} variant='subtitle1'>Thank you for
+                your submission!</Typography>
+        }
+        if (isError) {
+            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>Please Try your
+                submission again later or contact jgreene@transformHW.org.</Typography>
+        }
+
+        return <Typography variant='subtitle1'>&nbsp;</Typography>
+    }
 
     const createLead = async (e: any): Promise<any> => {
         return refetch()
@@ -169,8 +188,8 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
             <Grid container item
                   className={clsx(globalClasses.fullSectionOverlay)}/>
             <Grid spacing={smDown ? 0 : 4} container item style={{
-                padding: TransformHWTheme.spacing(0, 8, 6)
-            }}>
+                padding: TransformHWTheme.spacing(0, smDown?2:8, 6)
+            }} justifyContent={"center"}>
                 <Grid container item md={6}>
                     <Grid container direction="column" item className={classes.lhsContainer}
                           justifyContent='center' style={{zIndex: 2,
@@ -182,8 +201,8 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                         <Grid container item justifyContent={justifyContent}>
                             <Typography gutterBottom variant='h4'
                                         display='inline'
+                                        color='secondary'
                                         style={{
-                                            color: "rgba(117,117,121)",
                                             letterSpacing: "-.25em",
                                             paddingBottom: "16px",
                                             lineHeight: .2
@@ -254,7 +273,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
 
                     </Grid>
                 </Grid>
-                <Grid container item xs={11} md={6} justifyContent="center">
+                <Grid container item xs={12} sm={11} md={6} justifyContent="center">
                     <Grid container item className={classes.formContainer} spacing={1}>
                         {/*<Grid container item justifyContent="center" className={classes.formTitle}>*/}
                         {/*    <Typography variant="h3" className={classes.header}>*/}
@@ -342,7 +361,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                 label={<Typography variant='body2' style={{color: "white"}}>Message</Typography>}
                                 variant="outlined"
                                 multiline
-                                rows="4"
+                                minRows="4"
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -367,6 +386,9 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                 disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                 clickHandler={createLead}
                                 color="secondary" variant="contained">Send Message</LoadingButton>
+                        </Grid>
+                        <Grid item container justifyContent='center'>
+                            {getHelperText()}
                         </Grid>
                     </Grid>
                 </Grid>

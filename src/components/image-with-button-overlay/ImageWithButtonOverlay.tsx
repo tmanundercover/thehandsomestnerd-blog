@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Button, Grid, PropTypes, Typography} from '@material-ui/core'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
-import {urlFor} from "../abReplica/static-pages/cmsStaticPagesClient";
+import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
@@ -45,9 +45,9 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
 
     return (
         <Grid item container direction='column'
-              style={{position: "relative", backgroundColor: "green"}}>
+              style={{position: "relative"}}>
             {props.toColor &&
-                props.direction != undefined &&
+                props.direction !== undefined &&
                 <CssFadeToColor toColor={props.toColor}
                                 direction={props.direction}
                                 isResponsive={props.isResponsive}/>}

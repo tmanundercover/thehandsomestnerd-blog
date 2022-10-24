@@ -1,19 +1,19 @@
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
-import {useThwStyles} from "../Styles";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../loading-button/LoadingButton";
-import {useHistory} from "react-router-dom";
 import MediaQueries from "../MediaQueries";
+import {useThwStyles} from "../Styles";
+import {useNavigate} from "react-router-dom";
 
 
 export type AppLayoutProps = {}
 
 const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useThwStyles({bgImage: speakingWithTherapist})
-    const history = useHistory()
+    const history = useNavigate()
     const xsDown = useMediaQuery(MediaQueries.xsDown)
     const smDown = useMediaQuery(MediaQueries.smDown)
 
@@ -61,7 +61,7 @@ const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
                         // width={200}
                         // isLoading={isLoading}
                         // groupiness={ButtonGroupMemberEnum.RIGHT}
-                        clickHandler={() => history.push('/')}
+                        clickHandler={() => history('/')}
                         color='primary'
                         variant='contained'><Typography align='center' color='textSecondary' variant='button'>Go to Homepage</Typography></LoadingButton>
                 </Grid>

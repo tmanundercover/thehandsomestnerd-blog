@@ -11,6 +11,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'contentPreTitle',
+            title: 'Pre Title',
+            type: 'string',
+        },
+        {
             name: 'contentTitle',
             title: 'Large Title',
             type: 'string',

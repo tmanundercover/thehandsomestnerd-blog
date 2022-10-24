@@ -5,7 +5,7 @@ import {Grid, Link, Typography} from '@material-ui/core'
 import {SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import {SanityRef} from "../../../common/sanityIo/Types";
-import cmsClient from "../../abReplica/cmsClient";
+import cmsClient from "../../block-content-ui/cmsClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export type LandingPagesFooterMenuGroupProps = {
-    menuGroup: SanityRef,
+    menuGroup: SanityMenuGroup,
 }
 
 const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
@@ -47,26 +47,26 @@ const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = 
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()
-    const [realizedLinks, setRealizedLinks] = useState<SanityMenuItem[]>()
+    // const [realizedLinks, setRealizedLinks] = useState<SanityMenuItem[]>()
 
-    useEffect(() => {
-        const realizedLinkPromises = menuGroupContents?.links?.map(async (linkRef) => {
-            return await cmsClient.fetchRef(linkRef)
-        }) ?? []
-
-        Promise.all(realizedLinkPromises).then((realizedLinks) => {
-            setRealizedLinks(realizedLinks)
-        })
-    }, [menuGroupContents])
+    // useEffect(() => {
+    //     const realizedLinkPromises = menuGroupContents?.links?.map(async (linkRef) => {
+    //         return await cmsClient.fetchRef(linkRef)
+    //     }) ?? []
+    //
+    //     Promise.all(realizedLinkPromises).then((realizedLinks) => {
+    //         setRealizedLinks(realizedLinks)
+    //     })
+    //
+    // }, [menuGroupContents])
 
     useEffect(() => {
         if (menuGroup._type === "menuGroup") {
-            console.log("Menu group contents", menuGroup)
             setMenuGroupContents(menuGroup)
         } else if (menuGroup._type === "menuItem") {
             setMenuItemContents(menuGroup)
         }
-    })
+    },[])
 
     return (
         <Grid container direction="column" spacing={2} className={classes.root}>
@@ -77,7 +77,7 @@ const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = 
             <Grid item container>
                 <Grid container item xs={8} direction='column' spacing={2}>
                     {
-                        menuGroupContents && realizedLinks?.map( (menuLink, index: any) => {
+                        menuGroup?.links && menuGroup.links.map( (menuLink, index: any) => {
                             return (
                                 <Grid key={index} item>
                                     <Link href={menuLink.url} className={classes.footerLink}>

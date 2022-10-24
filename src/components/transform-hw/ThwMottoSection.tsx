@@ -1,14 +1,10 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, Typography, useMediaQuery} from '@material-ui/core'
-import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
-import {ThwMottoSectionType, ThwPositivePsychologySectionType} from "../BlockContentTypes";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import {Check} from "@material-ui/icons";
+import {Grid, Typography, useMediaQuery} from '@material-ui/core'
+import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
+import {ThwMottoSectionType} from "../BlockContentTypes";
 import MediaQueries from "../layout/MediaQueries";
 import {useThwStyles} from "../layout/Styles";
-import speakingWithTherapist from "../layout/error/assets/speakingWithTherapist.jpg";
-import {useHistory} from "react-router-dom";
 import clsx from "clsx";
 
 export const useStyles = makeStyles((theme: Theme) => ({

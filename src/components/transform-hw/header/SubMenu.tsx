@@ -1,40 +1,22 @@
 import React, {FunctionComponent, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, Divider, Grid, List, ListItem, Typography} from '@material-ui/core'
-import {urlFor} from "../../abReplica/static-pages/cmsStaticPagesClient";
-import {SanityImageSource} from "@sanity/asset-utils";
+import {Grid, List, ListItem, Typography} from '@material-ui/core'
 import {SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
-import cmsClient from "../../abReplica/cmsClient";
+import cmsClient from "../../block-content-ui/cmsClient";
+import {v4 as uuidv4} from 'uuid'
 
 
-export const useStyles = makeStyles((theme: Theme) => ({}))
-
-interface LogoProps {
+interface SubMenuProps {
     subMenu: SanityMenuGroup
+    handleClose:(e:any)=>void
 }
 
-const SubMenu: FunctionComponent<LogoProps> = (props) => {
-    const classes = useStyles()
-
-    const [links, setLinks] = useState<any[]>([])
-
-    React.useEffect(() => {
-        const potentialLinks = props.subMenu.links?.map(async (potentialLink) => {
-            return cmsClient.fetchRef(potentialLink)
-        })
-        if (potentialLinks) {
-
-            Promise.all(potentialLinks).then((realizedLinks: SanityMenuItem[]) => {
-                setLinks(realizedLinks)
-            })
-        }
-    }, [])
-
-    return (<Grid item container>
+const SubMenu: FunctionComponent<SubMenuProps> = (props) => {
+    return (<Grid item container key={uuidv4()}>
         <List style={{padding:0}}>
             {
-                links.map((theLink: SanityMenuItem, index: number) => {
-                    return <ListItem key={index} button component="a" style={{height: "48px"}}>
+                props.subMenu?.links?.map((theLink: SanityMenuItem, index: number) => {
+                    console.log("submenu link", theLink)
+                    return <ListItem href={'/'} onClick={props.handleClose} key={uuidv4()+index} button style={{height: "48px"}}>
                         <Typography variant='body1' style={{color: "#1a1a1a", fontSize:"18px"}}>{theLink.displayText}</Typography>
                     </ListItem>
                 })

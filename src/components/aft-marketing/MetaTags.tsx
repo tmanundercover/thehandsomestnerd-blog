@@ -1,8 +1,8 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import MetaTags from 'react-meta-tags'
-import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
-import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
+import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
+import {SanityImageSource} from "@sanity/asset-utils";
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
 

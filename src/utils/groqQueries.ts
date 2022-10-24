@@ -43,12 +43,38 @@ const HOMEPAGE = `
 //           menuGroupTitle,
 //           "links": links[]->{title, displayText, url, isOutlinedButton, isContainedButton}
 // `
+
+const MENUGROUP = `
+          title,
+          _type,
+          slug,
+          menuGroupTitle,
+          "links":links[]->{
+            _type,
+            displayText,
+            url,
+            isOutlinedButton,
+            isContainedButton,
+          },
+          displayText,
+          url,
+          isOutlinedButton,
+          isContainedButton,
+`
+
 const MENUGROUPCONTAINER = `
           title,
           slug,
           displayText,
-          "subMenus":subMenus[]->,
+          "subMenus":subMenus[]->{
+            ${MENUGROUP}
+          },
           logoImageSrc,
           logoImageAltText
 `
-export default {HOMEPAGE, MENUGROUPCONTAINER}
+
+
+const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP}
+
+
+export default defaultObj

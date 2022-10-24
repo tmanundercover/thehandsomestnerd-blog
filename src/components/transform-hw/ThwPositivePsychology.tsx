@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Button, Grid, Typography, useMediaQuery} from '@material-ui/core'
-import {urlFor} from '../abReplica/static-pages/cmsStaticPagesClient'
+import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {Check} from "@material-ui/icons";
@@ -47,7 +47,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                         <Grid item>
                             <Typography variant='h3'
-                                        color='primary' display='inline' style={{color: "rgba(117,117,121)",letterSpacing:"-.25em"}}>____</Typography>
+                                        color='secondary' display='inline' style={{letterSpacing:"-.25em"}}>____</Typography>
                         </Grid>
                         </Grid>
                     </Grid>

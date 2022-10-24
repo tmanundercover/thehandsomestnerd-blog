@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FunctionComponent, useEffect, useState} from 'react'
 import {Grid, TextField, Typography, useMediaQuery} from '@material-ui/core'
 import {useThwStyles} from "../Styles";
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
 import therapistHoldingHand from "./assets/therapistHoldingHand.jpg"
 import clsx from "clsx";
@@ -12,7 +12,8 @@ import LoadingButton from "../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
 import CssFadeToColor from "../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../common/sanityIo/Types";
-import cmsClient from "../../abReplica/cmsClient";
+import cmsClient from "../../block-content-ui/cmsClient";
+import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 
 
 interface IProps {
@@ -31,7 +32,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
     const [cmsPageData, setCmsPageData] = useState<SanityUnderConstructionPageType>()
 
 
-    const {isLoading, isError, data, refetch, isRefetching} = useQuery(
+    const {isLoading, isError, data, refetch} = useQuery(
         ['createLead'],
         () => {
             if ((!data && !isError) && email && email.length > 0) {
@@ -89,7 +90,9 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
               style={{position: "relative"}}>
-            <CssFadeToColor toColor='rgba(111,111,111,1)' isResponsive/>
+            <CssFadeToColor
+                toColor='rgba(0,0,90,.9)'
+                isResponsive/>
             <Grid container item
                   className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}>
             </Grid>
@@ -106,17 +109,18 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                 <Grid xs={10} container item justifyContent='center' className={classes.spacer}>
                     <CountdownToLaunch launchDate={releaseDate ?? new Date(Date.now() + 2000000000)}/>
                 </Grid>
-                <Grid container item justifyContent='center' className={classes.spacer}>
+                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(2.5)}}>
                     <Grid item xs={10} md={8}>
-                        <Typography gutterBottom variant='body1' color='textSecondary'
+                        <Typography variant='body1' color='textSecondary'
                                     align='center'>{cmsPageData?.contentText}</Typography>
 
-                        <Typography color='primary' gutterBottom variant='body1'
-                                    align='center'>{cmsPageData?.subscribeText}</Typography>
                     </Grid>
                 </Grid>
-                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(3)}}
-                      className={classes.spacer}>
+                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(5.75)}}>
+                    <Grid item container justifyContent='center'>
+                        <Typography color='primary' gutterBottom variant='body2'
+                                    align='center' style={{marginBottom: transformHWTheme.spacing(2)}}>{cmsPageData?.subscribeText}</Typography>
+                    </Grid>
                     <Grid item container xs={11} md={5}>
                         <TextField fullWidth
                                    label={cmsPageData?.emailFieldText}
@@ -135,7 +139,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                                                groupiness={ButtonGroupMemberEnum.RIGHT}
                                                disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                                clickHandler={createLead}
-                                               color='primary'
+                                               color='secondary'
                                                variant='contained'>{cmsPageData?.emailButtonText}</LoadingButton>
                                        ,
                                    }}/>
@@ -152,13 +156,13 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                         <Grid item xs={12} container justifyContent='center' direction='column' alignItems='center'>
                             {
                                 cmsPageData?.footerTextLines.map(
-                                    (footerLine) => <Grid item><Typography align='center' color='textSecondary' variant='body1'>
+                                    (footerLine, index) => <Grid item key={index}><Typography align='center' color='textSecondary' variant='body1'>
                                         {footerLine}
                                     </Typography></Grid>)
                             }
                         </Grid>
-                        <Grid item container justifyContent='center'>
-                            <Typography color='primary' variant='h6'>{props.email}</Typography>
+                        <Grid item container justifyContent='center' style={{color: COLORS.DARK_GRAY}}>
+                            <Typography color='inherit' variant='h6'>{props.email}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>

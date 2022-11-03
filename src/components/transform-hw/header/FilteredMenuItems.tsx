@@ -1,27 +1,12 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {
-    Button,
-    Divider,
-    Drawer,
-    Grid,
-    List,
-    ListItem,
-    ListItemText,
-    Popover,
-    Typography,
-    useMediaQuery
-} from '@material-ui/core'
-import {urlFor} from "../../abReplica/static-pages/cmsStaticPagesClient";
-import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
-import cmsClient from "../../abReplica/cmsClient";
-import {ArrowDropDown, Close, Menu} from "@material-ui/icons";
+import {Button, Grid, Popover, Typography, useMediaQuery} from '@material-ui/core'
+import {ArrowDropDown} from "@material-ui/icons";
 import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
-import Logo from "../logo/Logo";
 import SubMenu from "./SubMenu";
 import MediaQueries from "../../layout/MediaQueries";
+import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))

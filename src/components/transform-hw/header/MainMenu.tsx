@@ -1,11 +1,11 @@
 import React, {FunctionComponent, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
 import {Close, Menu} from "@material-ui/icons";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import Logo from "../logo/Logo";
 import MainMenuSubMenu from "./MainMenuSubMenu";
+import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -35,7 +35,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu}) => {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <Divider/>
-            {menu?.subMenus?.map((subMenu, index: number) => {
+            {menu?.subMenus?.map((subMenu:any, index: number) => {
                 switch (subMenu._type) {
                     case 'menuGroup':
                         const menuGroup: SanityMenuGroup = subMenu

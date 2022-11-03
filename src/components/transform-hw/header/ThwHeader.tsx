@@ -2,7 +2,6 @@ import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {AppBar, Grid, Hidden, useMediaQuery, withWidth} from '@material-ui/core'
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
-import {SanityMenuContainer} from "../../../sanity/Menu";
 import GroqQueries from "../../../utils/groqQueries";
 import sanityClient from "../../../sanityClient";
 import Logo from "../logo/Logo";
@@ -11,6 +10,7 @@ import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import {useQuery} from "react-query";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 
 const TRANSPARENTWHITE = 'rgba(255,255,255,0.75)'
 

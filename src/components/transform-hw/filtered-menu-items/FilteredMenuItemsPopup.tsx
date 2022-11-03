@@ -2,10 +2,10 @@ import React, {FunctionComponent, RefObject, useState} from 'react'
 import {Grid, Popover, PropTypes} from '@material-ui/core'
 import {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import SubMenu from "../header/SubMenu";
-import {SanityMenuGroup} from "../../../sanity/Menu";
 
 import {v4 as uuidv4} from 'uuid'
 import {bindPopover} from "material-ui-popup-state";
+import {SanityMenuGroup} from "../../../common/sanityIo/Types";
 interface FilteredMenuItemsPopupProps {
     // uuid:any
     menuGroup: SanityMenuGroup

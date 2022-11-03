@@ -1,13 +1,12 @@
 import React, {FunctionComponent, useState} from 'react'
 import {Grid, List, ListItem, Typography} from '@material-ui/core'
-import {SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
-import cmsClient from "../../block-content-ui/cmsClient";
 import {v4 as uuidv4} from 'uuid'
+import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 
 interface SubMenuProps {
     subMenu: SanityMenuGroup
-    handleClose:(e:any)=>void
+    handleClose?:(e:any)=>void
 }
 
 const SubMenu: FunctionComponent<SubMenuProps> = (props) => {

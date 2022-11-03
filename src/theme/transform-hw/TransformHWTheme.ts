@@ -236,10 +236,10 @@ const TransformHWTheme = createTheme({
         },
         subtitle2: {
             // Micro
-            fontSize: '8px',
+            fontSize: '10px',
             fontStyle: 'normal',
-            fontWeight: 850,
-            lineHeight: 1.35,
+            fontWeight: 600,
+            lineHeight: 1.45,
             letterSpacing: '-0.03em'
         }
     },

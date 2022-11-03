@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useRef} from 'react'
-import {Grid, Link} from "@material-ui/core";
+import {Button, Grid, Link} from "@material-ui/core";
 import verifiedStamp from "./psychology-today-verified.png"
+import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 
 
 const PsychologyTodaySeal: FunctionComponent = (props) => {
@@ -25,13 +26,22 @@ const PsychologyTodaySeal: FunctionComponent = (props) => {
     // }, [])
 
     return (
-        <Grid item>
-                <Link
-                    // ref={sealRef}
-                    href="https://www.psychologytoday.com/profile/863772" className="sx-verified-seal">
-                    <img src={verifiedStamp} alt="verified by psychology today"/>
-                </Link>
-        </Grid>
+            <Button
+                style={{
+                    backgroundImage: `url(${verifiedStamp})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    width: "133px",
+                    borderColor: "rgba(56,56,56,0.41)"
+                    // height: "30px"
+                }}
+                variant='contained'
+                color='primary'
+                // ref={sealRef}
+                href="https://www.psychologytoday.com/profile/863772"
+                className="sx-verified-seal">
+                {/*<img src={verifiedStamp} alt="verified by psychology today"/>*/}
+            </Button>
 
     )
 }

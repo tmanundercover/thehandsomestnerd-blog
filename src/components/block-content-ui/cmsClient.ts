@@ -1,14 +1,13 @@
 import sanityClient from '../../sanityClient'
-import {SanityRef} from '../../common/sanityIo/Types'
 import {
   SanityBlog,
   SanityBlogCategory,
-  SanityBlogGroup,
-  SanityBlogPreview,
-  SanityLandingPage,
-} from "./cmsClientTypes";
+  SanityBlogGroup, SanityBlogPreview,
+  SanityLandingPage, SanityMenuContainer,
+  SanityRef
+} from '../../common/sanityIo/Types'
+
 import {WhySwitchSectionType} from "../BlockContentTypes";
-import {SanityMenuContainer} from "../../sanity/Menu";
 import GroqQueries from "../../utils/groqQueries";
 
 const fetchLandingPage = (slug: string): Promise<SanityLandingPage> => {

@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useState} from 'react'
 import {Button, Typography} from '@material-ui/core'
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import {SanityMenuItem} from "../../sanity/Menu";
+import {SanityMenuItem} from "../../common/sanityIo/Types";
 
 
 interface HeaderMenuItemButtonProps {

@@ -60,24 +60,24 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                             style={{fontStyle: "italic"}}>{props.sectionData.proprietorTitle}</Typography>
                             </Grid>
                         </Grid>
-                        <Grid item container spacing={2}>
-                            <Grid item>
+                        <Grid item container spacing={2} justifyContent='flex-end'>
+                            <Grid item container>
                                 <Typography variant='body2' color='secondary'
                                             >{props.sectionData.contentTitle}</Typography>
 
                             </Grid>
-                            <Grid item>
+                            <Grid item container>
                                 <Typography variant='body1'
                                             color='secondary' gutterBottom>{props.sectionData.contentText}</Typography>
                             </Grid>
-                            <Grid item container justifyContent='flex-end'
-                                  style={{marginTop: TransformHWTheme.spacing(2.5)}}>
-                                <img alt={props.sectionData.proprietorSignatureImageAltText}
-                                     src={urlFor(props.sectionData.proprietorSignatureImage).height(70).url() ?? ''}/>
-                            </Grid>
-                            <Grid item container justifyContent='flex-end'
-                                  style={{marginTop: TransformHWTheme.spacing(2.5)}}>
-                                <PsychologyTodaySeal />
+                            <Grid container item direction='column'  alignItems='flex-end'>
+                                <Grid item>
+                                    <img alt={props.sectionData.proprietorSignatureImageAltText}
+                                         src={urlFor(props.sectionData.proprietorSignatureImage).height(70).url() ?? ''}/>
+                                </Grid>
+                                <Grid item>
+                                    <PsychologyTodaySeal/>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>

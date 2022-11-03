@@ -2,22 +2,17 @@ import React, {FunctionComponent, useEffect} from 'react'
 import {Divider, Grid, Typography, useMediaQuery} from '@material-ui/core'
 import ThwFooterMenuGroup from './ThwFooterMenuGroup'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import {SanityMenuContainer} from "../../../sanity/Menu";
+import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import cmsClient from '../../block-content-ui/cmsClient'
 import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import MediaQueries from "../../layout/MediaQueries";
 import Logo from "../logo/Logo";
 import {useQuery} from "react-query";
-import sanityClient from "../../../sanityClient";
-import GroqQueries from "../../../utils/groqQueries";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        // width: '100vw',
         color: theme.palette.text.secondary,
-
     }
 }))
 
@@ -35,10 +30,10 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     const smDown = useMediaQuery(MediaQueries.smDown)
 
 
-    const {data, isLoading, isRefetching, refetch} = useQuery(
+    const {data} = useQuery(
         ['getFooter'],
         () => {
-                return cmsClient.fetchLandingPageFooterMenu(props.menuContainerSlug)
+            return cmsClient.fetchLandingPageFooterMenu(props.menuContainerSlug)
         }
     );
 
@@ -47,7 +42,6 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     }, [data])
 
     useEffect(() => {
-        console.log("footer menu done", data)
         props.updateIsLoading && props.updateIsLoading(!menu)
     }, [menu])
 
@@ -59,7 +53,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 borderRight: `4px solid ${TransformHWTheme.palette.primary.main}`,
             } : {}}>
                 {
-                    menu?.subMenus?.map((menuGroup, index: number) => {
+                    menu?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
                             <Grid key={index} item xs={6}>
                                 <ThwFooterMenuGroup menuGroup={menuGroup}/>

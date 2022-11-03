@@ -113,13 +113,15 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
             </Grid>
             <Grid container item
                   alignContent='center'
-                  alignItems='center'
-                  style={{backgroundColor: "white", position: "static", bottom: 0, padding: transformHWTheme.spacing(2, 2, 1,2 )}}
+                  alignItems='stretch'
+                  style={{backgroundColor: "white", position: "static", bottom: 0, padding: transformHWTheme.spacing(1)}}
                   justifyContent='space-between'>
-                <Grid item xs={8}>
-                    <Link href='https://thehandsomestnerd.com' color='textPrimary'><Typography variant='body1'>© 2022 TheHandsomestNerd, LLC. </Typography></Link>
+                <Grid item xs={8} container alignContent='center' style={{paddingTop: transformHWTheme.spacing(.75)}}>
+                    <Link href='https://thehandsomestnerd.com' color='textPrimary' variant='subtitle2'>© 2022 TheHandsomestNerd, LLC.</Link>
                 </Grid>
+                <Grid item justifyContent='flex-end' xs={4} container alignContent='center'>
                     <PsychologyTodaySeal />
+                </Grid>
             </Grid>
         </Grid>
     }

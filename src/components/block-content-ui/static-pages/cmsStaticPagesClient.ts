@@ -1,8 +1,7 @@
 import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from '../../../sanityClient'
 import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
-import {SanityMenuGroup} from "../../../sanity/Menu";
-import {SanitySlug} from "../../../common/sanityIo/Types";
+import {SanityMenuGroup, SanitySlug} from "../../../common/sanityIo/Types";
 
 const builder = imageUrlBuilder(sanityClient)
 

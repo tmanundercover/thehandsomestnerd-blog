@@ -1,14 +1,11 @@
-import React, {FunctionComponent, useEffect, useRef, useState} from 'react'
+import React, {FunctionComponent, useRef} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Box, Button, Grid, Popover, Typography, useMediaQuery} from '@material-ui/core'
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
+import {Grid, useMediaQuery} from '@material-ui/core'
 import MediaQueries from "../../layout/MediaQueries";
-import FilteredMenuItemsPopup from "./FilteredMenuItemsPopup";
 import HeaderMenuItemButton from "../HeaderMenuItemButton";
-import HeaderMenuGroupButton from "../HeaderMenuGroupButton";
-import PopupState, {bindPopover, bindTrigger} from "material-ui-popup-state";
 import PopupStateWrapper from "./PopupStateWrapper";
+import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))

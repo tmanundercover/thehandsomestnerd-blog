@@ -2,10 +2,8 @@ import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 
 import {Grid, Link, Typography} from '@material-ui/core'
-import {SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
-import {SanityRef} from "../../../common/sanityIo/Types";
-import cmsClient from "../../block-content-ui/cmsClient";
+import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -77,7 +75,7 @@ const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = 
             <Grid item container>
                 <Grid container item xs={8} direction='column' spacing={2}>
                     {
-                        menuGroup?.links && menuGroup.links.map( (menuLink, index: any) => {
+                        menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
                             return (
                                 <Grid key={index} item>
                                     <Link href={menuLink.url} className={classes.footerLink}>

@@ -1,22 +1,6 @@
 import {SanityImageSource} from "@sanity/asset-utils";
 import {SanityImageAsset} from "../../components/BlockContentTypes";
 
-export type SanityRepositoryType = {
-  _type: string,
-  service: string,
-  slug: SanitySlug,
-  repoLink: SanityUrl,
-  author: {name: string, image: any, _id: string}
-}
-
-export type SanitySourceCodeType<T> = {
-  filename?: string,
-  slug?: SanitySlug,
-  repoLink?: T,
-  theCode?: any,
-  links?: {url:string, text:string}[]
-}
-
 export type SanitySlug = {
   _type: string,
   current: string
@@ -80,3 +64,110 @@ export type SanityUnderConstructionPageType = {
   emailButtonText: string
   footerTextLines: string[]
 }
+
+export type SanityBlogCategory = {
+  title: string
+  description?: string | null
+  color: { title: string, value: string }
+}
+
+// export type SanityImage = {
+//     asset: {
+//         _id: string,
+//         url: string,
+//         altText: string,
+//         metadata: {
+//             hasAlpha: boolean
+//             isOpaque: boolean
+//             lqip?: string
+//             blurHash?: string
+//             dimensions: {
+//                 _type: 'sanity.imageDimensions'
+//                 aspectRatio: number
+//                 height: number
+//                 width: number
+//             }
+//         },
+//     }
+// }
+
+export type SanityLandingPage = {
+  welcomeMessage?: string,
+  mainImage?: SanityImageAsset,
+  headerText?: string,
+  body?: string,
+  form?: { abFormType: { title: string }, instructionBlock: string },
+  utmSource?: string,
+  utmMedium?: string,
+  utmCampaign?: string
+}
+
+export type SanityBlog = {
+  title?: string
+  slug?: SanitySlug
+  mainImage?: SanityImageAsset
+  mainImageCaption?: string
+  category?: SanityBlogCategory
+  body?: string
+  _createdAt?: string
+}
+
+export type SanityBlogGroup = {
+  title?: string
+  posts?: SanityBlogPreview[]
+}
+
+export type SanityBlogPreview = {
+  title?: string
+  slug?: SanitySlug
+  mainImage?: SanityImageAsset
+  mainImageCaption?: string
+  category?: SanityBlogCategory
+  snippet?: string
+  _createdAt?: string
+}
+
+export type BlockContentElement = {
+  _key: string
+  children: BlockContentElementChild[]
+}
+
+export type BlockContentElementChild = {
+  _key: string
+  text?: string
+}
+
+export type SanityMenuItem = {
+  _type: string
+  title?: string,
+  displayText?: string,
+  url?: string,
+  isContainedButton?: boolean,
+  isOutlinedButton?: boolean
+}
+
+export type SanityMenuGroup = {
+  _type:string
+  title?: string,
+  slug?: SanitySlug,
+  menuGroupTitle?: string,
+  links?: SanityMenuItem[],
+  logoImage?: any
+  displayText?: string
+}
+
+export type SanityMenuContainer = {
+  title?: string,
+  slug?: SanitySlug,
+  displayText?: string,
+  subMenus?: SanityMenuGroup & SanityMenuItem[]
+  logoImageAltText?: string
+  logoImageSrc?: SanityImageAsset
+}
+
+// export type SanityMenuContainer = {
+//   title?: string,
+//   slug?: any,
+//   menuTitle?: string,
+//   menuLinks?: SanityMenuItem[]
+// }

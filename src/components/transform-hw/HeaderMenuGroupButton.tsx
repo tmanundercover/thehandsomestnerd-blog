@@ -1,9 +1,9 @@
 import React, {FunctionComponent, useState} from 'react'
 import {Button, Typography} from '@material-ui/core'
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import {SanityMenuGroup} from "../../sanity/Menu";
 import {ArrowDropDown} from "@material-ui/icons";
 import {bindTrigger} from "material-ui-popup-state";
+import {SanityMenuGroup} from "../../common/sanityIo/Types";
 
 
 interface HeaderMenuItemButtonProps {

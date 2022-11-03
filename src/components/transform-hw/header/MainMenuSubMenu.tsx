@@ -1,21 +1,9 @@
-import React, {FunctionComponent, useState} from 'react'
-import {
-    Collapse,
-    createStyles, Divider,
-    Grid,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    ListSubheader,
-    Typography
-} from '@material-ui/core'
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../sanity/Menu";
-import cmsClient from "../../block-content-ui/cmsClient";
-import {v4 as uuidv4} from 'uuid'
+import React, {FunctionComponent} from 'react'
+import {Collapse, createStyles, Divider, List, ListItem, ListItemText} from '@material-ui/core'
 import {makeStyles, Theme} from "@material-ui/core/styles";
-import {ExpandLess, ExpandMore, StarBorder} from "@material-ui/icons";
+import {ExpandLess, ExpandMore} from "@material-ui/icons";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import {SanityMenuGroup} from "../../../common/sanityIo/Types";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -60,7 +48,7 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {
-                        menuGroup.links?.map((menuLink,index) => (
+                        menuGroup.links?.map((menuLink:any,index:number) => (
                             <ListItem key={index} button style={{
                                 paddingTop: TransformHWTheme.spacing(2.25),
                                 paddingLeft: TransformHWTheme.spacing(6),

@@ -5,8 +5,9 @@ import {Button, Grid, Popover, Typography, useMediaQuery} from '@material-ui/cor
 import {ArrowDropDown} from "@material-ui/icons";
 import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import SubMenu from "./SubMenu";
-import MediaQueries from "../../layout/MediaQueries";
+import MediaQueries from "../../../utils/mediaQueries";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
+import mediaQueries from "../../../utils/mediaQueries";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -36,7 +37,7 @@ const FilteredMenuItems: FunctionComponent<MainMenuProps> = ({
         setAnchorEl(null);
     };
 
-    const mdDown = useMediaQuery(MediaQueries.mdDown)
+    const mdDown = mediaQueries.useMdDown()
 
     return (<Grid item container justifyContent={mdDown?'flex-start':'flex-end'}>{
             subMenus?.map(

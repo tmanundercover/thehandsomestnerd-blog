@@ -7,12 +7,13 @@ import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "../layout/Styles";
-import MediaQueries from "../layout/MediaQueries";
+import MediaQueries from "../../utils/mediaQueries";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
 import leadClient from "../layout/under-construction/leadClient";
 import therapistHoldingHand from "../layout/under-construction/assets/therapistHoldingHand.jpg";
+import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -117,7 +118,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
 
     const globalClasses = useThwStyles({})
-    const smDown = useMediaQuery(MediaQueries.smDown)
+    const smDown = mediaQueries.useSmDown()
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()

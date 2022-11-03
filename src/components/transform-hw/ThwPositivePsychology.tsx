@@ -1,11 +1,11 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, Typography, useMediaQuery} from '@material-ui/core'
+import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {Check} from "@material-ui/icons";
-import MediaQueries from "../layout/MediaQueries";
+import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -27,7 +27,8 @@ interface IProps {
 
 const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
-    const mdUp = useMediaQuery(MediaQueries.mdUp)
+    const mdUp = mediaQueries.useMdUp()
+
     return (
         <Grid container item className={classes.root} xs={11}>
             <Grid container item justifyContent='space-between' spacing={4}>

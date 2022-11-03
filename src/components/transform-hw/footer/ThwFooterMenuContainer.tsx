@@ -5,9 +5,10 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import cmsClient from '../../block-content-ui/cmsClient'
 import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
-import MediaQueries from "../../layout/MediaQueries";
+import MediaQueries from "../../../utils/mediaQueries";
 import Logo from "../logo/Logo";
 import {useQuery} from "react-query";
+import mediaQueries from "../../../utils/mediaQueries";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -27,7 +28,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles(TransformHWTheme)
 
     const [menu, setMenu] = React.useState<SanityMenuContainer>()
-    const smDown = useMediaQuery(MediaQueries.smDown)
+    const smDown = mediaQueries.useSmDown()
 
 
     const {data} = useQuery(

@@ -3,9 +3,10 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../BlockContentTypes";
-import MediaQueries from "../layout/MediaQueries";
+import MediaQueries from "../../utils/mediaQueries";
 import {useThwStyles} from "../layout/Styles";
 import clsx from "clsx";
+import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,7 +29,8 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
     const globalClasses = useThwStyles({bgImage: urlFor(props.sectionData.parallaxImage)})
     const classes = useStyles()
 
-    const smDown = useMediaQuery(MediaQueries.smDown)
+    const smDown = mediaQueries.useSmDown()
+
     return (
         <Grid container item className={clsx([globalClasses.fullSection, globalClasses.fullScreenImage, classes.root])}
               style={{position: "relative", overflow: "hidden", backgroundAttachment: "fixed"}}>

@@ -5,12 +5,13 @@ import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import GroqQueries from "../../../utils/groqQueries";
 import sanityClient from "../../../sanityClient";
 import Logo from "../logo/Logo";
-import MediaQueries from "../../layout/MediaQueries";
+import MediaQueries from "../../../utils/mediaQueries";
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import {useQuery} from "react-query";
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
+import mediaQueries from "../../../utils/mediaQueries";
 
 const TRANSPARENTWHITE = 'rgba(255,255,255,0.75)'
 
@@ -61,7 +62,7 @@ const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
         data && data[0] && setMenu(data[0])
     }, [data])
 
-    const mdDown = useMediaQuery(MediaQueries.mdDown)
+    const mdDown = mediaQueries.useMdDown()
 
     return (
         <AppBar className={clsx({[classes.opaque]: !props.isOpaque && !mdDown}, classes.root)}>{menu?.title ?

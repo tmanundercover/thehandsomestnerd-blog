@@ -2,8 +2,9 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, useMediaQuery} from '@material-ui/core'
 import {useThwStyles} from "../layout/Styles";
-import MediaQueries from "../layout/MediaQueries";
+import MediaQueries from "../../utils/mediaQueries";
 import {CssFadeToColorDirectionEnum} from "./CssFadeToColorDirectionEnum";
+import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,7 +29,7 @@ interface IProps {
 const CssFadeToColor: FunctionComponent<IProps> = (props) => {
     const globalClasses = useThwStyles({})
 
-    const smDown = useMediaQuery(MediaQueries.smDown)
+    const smDown = mediaQueries.useSmDown()
 
     const getStyle = () => {
         const getRotationAngle = () =>{

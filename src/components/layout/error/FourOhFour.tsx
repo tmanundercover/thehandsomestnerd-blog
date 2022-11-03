@@ -4,9 +4,10 @@ import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../loading-button/LoadingButton";
-import MediaQueries from "../MediaQueries";
+import MediaQueries from "../../../utils/mediaQueries";
 import {useThwStyles} from "../Styles";
 import {useNavigate} from "react-router-dom";
+import mediaQueries from "../../../utils/mediaQueries";
 
 
 export type AppLayoutProps = {}
@@ -14,8 +15,8 @@ export type AppLayoutProps = {}
 const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useThwStyles({bgImage: speakingWithTherapist})
     const history = useNavigate()
-    const xsDown = useMediaQuery(MediaQueries.xsDown)
-    const smDown = useMediaQuery(MediaQueries.smDown)
+    const xsDown = mediaQueries.useXsDown()
+    const smDown = mediaQueries.useSmDown()
 
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}

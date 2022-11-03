@@ -5,7 +5,8 @@ import {ThwServiceItemType, ThwServicesSectionType} from "../BlockContentTypes";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import cmsClient from "../block-content-ui/cmsClient";
 import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
-import MediaQueries from "../layout/MediaQueries";
+import MediaQueries from "../../utils/mediaQueries";
+import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -25,12 +26,11 @@ interface IProps {
 }
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
-    const xsDown = useMediaQuery(MediaQueries.xsDown)
+    const xsDown = mediaQueries.useXsDown()
+    const mdDown = mediaQueries.useMdDown()
     const classes = useStyles({xsDown})
 
     const [servicesList, setServicesList] = useState<ThwServiceItemType[]>()
-
-    const mdDown = useMediaQuery(MediaQueries.mdDown)
 
     React.useEffect(() => {
         const realizedServices = props.sectionData?.servicesList?.map((service) => {
@@ -43,6 +43,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
             setServicesList(response)
         }).catch(console.log)
     }, [props.sectionData])
+
     return (
 
         <Grid container item className={classes.root} xs={12} direction='column' spacing={2} alignItems='center'>

@@ -1,15 +1,8 @@
 import {SanityImageSource} from "@sanity/asset-utils";
 import {SanityImageAsset} from "../../components/BlockContentTypes";
+import {Slug} from "@sanity/types";
 
-export type SanitySlug = {
-  _type: string,
-  current: string
-}
-
-export type SanityUrl = {
-  url: string,
-  text: string
-}
+export type SanitySlug = Slug
 
 export declare type SanityRef = {
   _type: string;
@@ -71,26 +64,6 @@ export type SanityBlogCategory = {
   color: { title: string, value: string }
 }
 
-// export type SanityImage = {
-//     asset: {
-//         _id: string,
-//         url: string,
-//         altText: string,
-//         metadata: {
-//             hasAlpha: boolean
-//             isOpaque: boolean
-//             lqip?: string
-//             blurHash?: string
-//             dimensions: {
-//                 _type: 'sanity.imageDimensions'
-//                 aspectRatio: number
-//                 height: number
-//                 width: number
-//             }
-//         },
-//     }
-// }
-
 export type SanityLandingPage = {
   welcomeMessage?: string,
   mainImage?: SanityImageAsset,
@@ -126,16 +99,16 @@ export type SanityBlogPreview = {
   snippet?: string
   _createdAt?: string
 }
+//
+// export type BlockContentElement = {
+//   _key: string
+//   children: BlockContentElementChild[]
+// }
 
-export type BlockContentElement = {
-  _key: string
-  children: BlockContentElementChild[]
-}
-
-export type BlockContentElementChild = {
-  _key: string
-  text?: string
-}
+// export type BlockContentElementChild = {
+//   _key: string
+//   text?: string
+// }
 
 export type SanityMenuItem = {
   _type: string
@@ -165,9 +138,4 @@ export type SanityMenuContainer = {
   logoImageSrc?: SanityImageAsset
 }
 
-// export type SanityMenuContainer = {
-//   title?: string,
-//   slug?: any,
-//   menuTitle?: string,
-//   menuLinks?: SanityMenuItem[]
-// }
+export type MainMenuAnchorType = 'left' | 'top' | 'right' | 'bottom'

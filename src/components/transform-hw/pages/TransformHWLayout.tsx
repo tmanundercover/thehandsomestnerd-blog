@@ -30,6 +30,7 @@ import Logo from "../logo/Logo";
 import LoadingPage from "./loading-page/LoadingPage";
 import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
 import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import thwClient from "../thwClient";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -43,41 +44,15 @@ export type AppLayoutProps = {}
 
 const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
-    const globalClasses = useThwStyles(TransformHWTheme)
     const [homePage, setHomePage] = React.useState<SanityTransformHwHomePage | undefined>()
+    const [realizedContent, setRealizedContent] = React.useState<any[]>([])
 
-    const urlParams: { pageSlug?: string } = useParams()
-
-    const {isLoading, isError, data, isRefetching} = useQuery(
-        ['fetchPageBySlug'],
-        async () => {
-            const pageSlug = urlParams.pageSlug
-            if (pageSlug) {
-                return sanityClient
-                    .fetch(
-                        `*[slug.current == $pageSlug]{
-          ${groqQueries.HOMEPAGE}
-       }`, {pageSlug})
-                    .then((result) => {
-                        if (result.length === 0) {
-                            redirect(RoutesEnum.ERROR)
-                        }
-                        return result
-                    }).catch(() => {
-                        redirect(RoutesEnum.ERROR)
-                    })
-            } else {
-                redirect(RoutesEnum.COMING_SOON)
-            }
-        }
-    );
+    const {isLoading, isError, data, isRefetching} = thwClient.useFetchPageBySlugQuery()
 
     React.useEffect(() => {
         if (data)
             setHomePage(data[0])
     }, [data])
-
-    const [realizedContent, setRealizedContent] = React.useState<any[]>([])
 
     React.useEffect(() => {
         // These Content sections are references and must be retrieved from Sanity
@@ -97,7 +72,6 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
         if (isShow !== hideOnScroll) setHideOnScroll(isShow)
     }, [hideOnScroll])
 
-
     const PageLayout = () => {
         return <Grid container direction='column' className={classes.root}>
             <Grid container item>
@@ -109,13 +83,19 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
             <Grid container item
                   alignContent='center'
                   alignItems='stretch'
-                  style={{backgroundColor: "white", position: "static", bottom: 0, padding: transformHWTheme.spacing(1)}}
+                  style={{
+                      backgroundColor: "white",
+                      position: "static",
+                      bottom: 0,
+                      padding: transformHWTheme.spacing(1)
+                  }}
                   justifyContent='space-between'>
                 <Grid item xs={8} container alignContent='center' style={{paddingTop: transformHWTheme.spacing(.75)}}>
-                    <Link href='https://thehandsomestnerd.com' color='textPrimary' variant='subtitle2'>© 2022 TheHandsomestNerd, LLC.</Link>
+                    <Link href='https://thehandsomestnerd.com' color='textPrimary' variant='subtitle2'>© 2022
+                        TheHandsomestNerd, LLC.</Link>
                 </Grid>
                 <Grid item justifyContent='flex-end' xs={4} container alignContent='center'>
-                    <PsychologyTodaySeal />
+                    <PsychologyTodaySeal/>
                 </Grid>
             </Grid>
         </Grid>
@@ -141,12 +121,12 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     }
 
     return (<MuiThemeProvider theme={TransformHWTheme}>
-            <CssBaseline/>
-            <MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]}
-                               title={homePage?.title ?? ''}
-                               description={homePage?.description ?? ''} imgSrc={homePage?.metaImage}/>
-            <PageContents/>
-        </MuiThemeProvider>)
+        <CssBaseline/>
+        {/*<MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]}*/}
+        {/*                   title={homePage?.title ?? ''}*/}
+        {/*                   description={homePage?.description ?? ''} imgSrc={homePage?.metaImage}/>*/}
+        <PageContents/>
+    </MuiThemeProvider>)
 }
 
 export default TransformHWLayout

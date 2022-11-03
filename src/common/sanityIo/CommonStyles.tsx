@@ -83,7 +83,6 @@ export const useCommonStyles = makeStyles((theme: Theme) => ({
   },
   orderedListIndex: {
     marginTop: theme.spacing(-1.25),
-    // fontFamily: 'DTL Documenta ST Regular',
     fontWeight: 400,
     fontStyle: 'normal',
     fontSize: '16px',

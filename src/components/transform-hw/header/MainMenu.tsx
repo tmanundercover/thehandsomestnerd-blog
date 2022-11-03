@@ -5,20 +5,19 @@ import {Close, Menu} from "@material-ui/icons";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import Logo from "../logo/Logo";
 import MainMenuSubMenu from "./MainMenuSubMenu";
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
+import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
 
 interface MainMenuProps {
     menu: SanityMenuContainer
+    anchor: MainMenuAnchorType
 }
 
-const MainMenu: FunctionComponent<MainMenuProps> = ({menu}) => {
-
-
+const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>()
-    const toggleDrawer = (anchor: any, open: boolean) => (event: any) => {
+    const toggleDrawer = (anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
@@ -27,9 +26,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu}) => {
     };
 
 
-    const list = (anchor: string) => (
+    const list = (anchor: MainMenuAnchorType) => (
         <Grid item
-            // style={{width: "300px"}}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
@@ -59,12 +57,12 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu}) => {
     );
 
     return (<Grid item>
-            <Button onClick={toggleDrawer('top', true)}>
+            <Button onClick={toggleDrawer(anchor, true)}>
                 <Menu color='secondary'
                       fontSize='large'/>
             </Button>
-            <Drawer anchor='top' open={isDrawerOpen}
-                    onClose={toggleDrawer('top', false)}
+            <Drawer anchor={anchor} open={isDrawerOpen}
+                    onClose={toggleDrawer(anchor, false)}
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
@@ -80,7 +78,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu}) => {
                         setIsDrawerOpen(false)
                     }}><Close color='primary' fontSize='large'/></Button></Grid>
                 </Grid>
-                {list('top')}
+                {list(anchor)}
             </Drawer></Grid>
     )
 }

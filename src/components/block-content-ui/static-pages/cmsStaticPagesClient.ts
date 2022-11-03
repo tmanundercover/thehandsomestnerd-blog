@@ -305,7 +305,6 @@ const fetchEvergreenPage = (slug: string): Promise<SanityEvergreenPage> => {
 }
 
 export const urlFor = (source: SanityImageSource) => {
-
   return builder.image(source)
 }
 

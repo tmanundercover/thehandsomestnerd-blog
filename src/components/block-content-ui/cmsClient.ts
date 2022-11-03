@@ -182,7 +182,7 @@ const fetchLandingPageHeaderMenu = (): Promise<SanityMenuContainer> => {
     })
 }
 
-const fetchLandingPageFooterMenu = (footerSlug: string | undefined): Promise<SanityMenuContainer> => {
+const fetchLandingPageFooterMenu = (footerSlug?: string): Promise<SanityMenuContainer> => {
   const slug = footerSlug ?? 'footer-menu'
 
   return sanityClient

@@ -117,7 +117,8 @@ export enum COLORS {
     BLUE = 'rgba(16, 43, 136, 1)',
     DARK_GRAY = '#A8A9AC',
     GRAY = 'rgba(207, 207, 207, 1)',
-    LIGHT_GRAY = '#E3E3E3'
+    LIGHT_GRAY = '#E3E3E3',
+    TRANSPARENTWHITE = 'rgba(255,255,255,0.75)'
 }
 
 const TransformHWTheme = createTheme({

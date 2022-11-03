@@ -1,23 +1,19 @@
 import React, {FunctionComponent, useEffect} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {AppBar, Grid, Hidden, withWidth} from '@material-ui/core'
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import Logo from "../logo/Logo";
 import mediaQueries from "../../../utils/mediaQueries";
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
-import {useQuery} from "react-query";
-import GroqQueries from "../../../utils/groqQueries";
-import sanityClient from "../../../sanityClient";
-
-const TRANSPARENTWHITE = 'rgba(255,255,255,0.75)'
+import thwClient from "../thwClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: 'max-content',
-        backgroundColor: TRANSPARENTWHITE,
+        backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
         paddingLeft: theme.spacing(4)
     },
@@ -35,40 +31,20 @@ export type HeaderProps = {
 const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
     const classes = useStyles()
 
-    const [menu, setMenu] = React.useState<SanityMenuContainer>()
-
-    const { data, isLoading, isRefetching} = useQuery(
-        ['getHeader'],
-        () => {
-            // if ((!data && !isError)) {
-            return sanityClient
-                .fetch(
-                    `*[slug.current == $menuSlug]{
-          ${GroqQueries.MENUGROUPCONTAINER}
-       }`, {menuSlug: props.menuSlug ?? 'header-menu'}
-                )
-        }
-        // }
-    );
+    const { data } = thwClient.useFetchMenuBySlugQuery(props.menuSlug ?? "")
 
     useEffect(()=>{
-        console.log("header done", menu)
-        props.updateIsLoading && props.updateIsLoading(!menu)
-    }, [menu])
-
-    React.useEffect(() => {
-        // console.log("data", data)
-        data && data[0] && setMenu(data[0])
+        props.updateIsLoading && props.updateIsLoading(!data)
     }, [data])
 
     const mdDown = mediaQueries.useMdDown()
 
     return (
-        <AppBar className={clsx({[classes.opaque]: !props.isOpaque && !mdDown}, classes.root)}>{menu?.title ?
+        <AppBar className={clsx({[classes.opaque]: !props.isOpaque && !mdDown}, classes.root)}>{data?.title ?
             <Grid item xs={12} container justifyContent="space-between" spacing={mdDown ? 3 : 0}>
                 <Grid item container xs={2} md={2} lg={4} justifyContent='flex-start'>
                     {
-                        menu?.logoImageSrc && <Logo logoImageSrc={menu.logoImageSrc}/>
+                        data?.logoImageSrc && <Logo logoImageSrc={data.logoImageSrc}/>
                     }
                 </Grid>
                 <Grid item container xs={10} md={10} lg={8} justifyContent='space-between'>
@@ -81,8 +57,8 @@ const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
                                   paddingRight: mdDown ? TransformHWTheme.spacing(0) : TransformHWTheme.spacing(4)
                               }}>
                             <FilteredMenuItems
-                                bgColor={!props.isOpaque && !mdDown ? TransformHWTheme.palette.primary.main : TRANSPARENTWHITE}
-                                 subMenus={menu.subMenus ?? []} onlyButtons={mdDown}
+                                bgColor={!props.isOpaque && !mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
+                                 subMenus={data.subMenus ?? []} onlyButtons={mdDown}
                                 includeMenuItems={!mdDown} includeMenuGroups={!mdDown}/>
                         </Grid>
                     </Hidden>
@@ -92,10 +68,9 @@ const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
                             <Grid container item
                                   justifyContent='flex-end'
                                   alignItems='center'
-                                // style={{paddingRight: TransformHWTheme.spacing(4)}}
                             >
                                 <Grid item>
-                                    <MainMenu menu={menu}/>
+                                    <MainMenu menu={data} anchor='top'/>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -107,4 +82,4 @@ const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
     )
 }
 
-export default withWidth()(ThwHeader)
+export default ThwHeader

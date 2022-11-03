@@ -9,27 +9,27 @@ import {
     Typography
 } from '@material-ui/core'
 import React, {FunctionComponent, Suspense, useState} from 'react'
-import sanityClient from '../../sanityClient'
-import BlockContentLayoutContainer from '../BlockContentLayoutContainer'
+import sanityClient from '../../../sanityClient'
+import BlockContentLayoutContainer from '../../BlockContentLayoutContainer'
 import {useParams} from 'react-router-dom'
-import MetaTagsComponent from '../aft-marketing/MetaTags'
-import cmsClient from '../block-content-ui/cmsClient'
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import UnderConstruction from "./under-construction/UnderConstruction";
-import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import groqQueries from "../../utils/groqQueries";
+import MetaTagsComponent from '../../meta-tags/MetaTagsComponent'
+import cmsClient from '../../block-content-ui/cmsClient'
+import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import UnderConstruction from "./under-construction-page/UnderConstruction";
+import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
+import groqQueries from "../../../utils/groqQueries";
 import {useQuery} from "react-query";
 import {useThwStyles} from "./Styles";
-import FourOhFour from "./error/FourOhFour";
-import ThwFooter from "../transform-hw/footer/ThwFooter";
-import ThwHeader from "../transform-hw/header/ThwHeader";
-import {useScrollPosition} from "../../utils/useScrollPosition";
+import FourOhFour from "./error-page/FourOhFour";
+import ThwFooter from "../footer/ThwFooter";
+import ThwHeader from "../header/ThwHeader";
+import {useScrollPosition} from "../../../utils/useScrollPosition";
 import {redirect} from "react-router";
-import {RoutesEnum} from "../../App";
-import Logo from "../transform-hw/logo/Logo";
+import {RoutesEnum} from "../../../App";
+import Logo from "../logo/Logo";
 import LoadingPage from "./loading-page/LoadingPage";
-import PsychologyTodaySeal from "../transform-hw/psychology-today-stamp/PsychologyToday";
-import transformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
+import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 export type AppLayoutProps = {}
 
-const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
+const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
     const globalClasses = useThwStyles(TransformHWTheme)
     const [homePage, setHomePage] = React.useState<SanityTransformHwHomePage | undefined>()
@@ -89,6 +89,7 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
             setRealizedContent(contentRealized)
         })
     }, [homePage])
+
     const [hideOnScroll, setHideOnScroll] = useState(true)
 
     useScrollPosition(({prevPos, currPos}: any) => {
@@ -96,20 +97,14 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
         if (isShow !== hideOnScroll) setHideOnScroll(isShow)
     }, [hideOnScroll])
 
-    const [isHeaderOrFooterLoading, setIsHeaderOrFooterLoading] = useState(false)
 
     const PageLayout = () => {
         return <Grid container direction='column' className={classes.root}>
-            <Grid item>
-                <ThwHeader  menuSlug='transform-hw-header' isOpaque={hideOnScroll}/>
-            </Grid>
-
             <Grid container item>
                 <BlockContentLayoutContainer
+                    isOpaque={hideOnScroll}
+                    homePage={homePage}
                     content={realizedContent}/>
-            </Grid>
-            <Grid item>
-                <ThwFooter footerMenuSlug='transform-hw-footer' homePage={homePage}/>
             </Grid>
             <Grid container item
                   alignContent='center'
@@ -154,4 +149,4 @@ const TransformHW: FunctionComponent<AppLayoutProps> = (props) => {
         </MuiThemeProvider>)
 }
 
-export default TransformHW
+export default TransformHWLayout

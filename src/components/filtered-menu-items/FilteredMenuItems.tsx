@@ -2,11 +2,11 @@ import React, {FunctionComponent, useRef} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid, useMediaQuery} from '@material-ui/core'
-import MediaQueries from "../../../utils/mediaQueries";
-import HeaderMenuItemButton from "../HeaderMenuItemButton";
+import MediaQueries from "../../utils/mediaQueries";
+import HeaderMenuItemButton from "../transform-hw/HeaderMenuItemButton";
 import PopupStateWrapper from "./PopupStateWrapper";
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
-import mediaQueries from "../../../utils/mediaQueries";
+import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../common/sanityIo/Types";
+import mediaQueries from "../../utils/mediaQueries";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))

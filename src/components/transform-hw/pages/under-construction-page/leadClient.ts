@@ -1,5 +1,5 @@
 import clientUtils from "./clientUtils";
-import {SanityColdLead} from "../../../common/sanityIo/Types";
+import {SanityColdLead} from "../../../../common/sanityIo/Types";
 
 const createLead = (lead: SanityColdLead) => {
     return fetch("/collect-email-address" ?? "",

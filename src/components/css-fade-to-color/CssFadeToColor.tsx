@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, useMediaQuery} from '@material-ui/core'
-import {useThwStyles} from "../layout/Styles";
+import {useThwStyles} from "../transform-hw/pages/Styles";
 import MediaQueries from "../../utils/mediaQueries";
 import {CssFadeToColorDirectionEnum} from "./CssFadeToColorDirectionEnum";
 import mediaQueries from "../../utils/mediaQueries";

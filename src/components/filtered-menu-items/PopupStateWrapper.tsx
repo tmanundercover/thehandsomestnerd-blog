@@ -1,12 +1,12 @@
 import React, {FunctionComponent, RefObject, useState} from 'react'
 import {Button, Grid, Popover, PropTypes, Typography} from '@material-ui/core'
-import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
-import SubMenu from "../header/SubMenu";
+import TransformHWTheme, {COLORS} from "../../theme/transform-hw/TransformHWTheme";
+import SubMenu from "../transform-hw/header/SubMenu";
 
 import PopupState, {bindPopover} from "material-ui-popup-state";
 import {bindTrigger} from "material-ui-popup-state";
 import {ArrowDropDown} from "@material-ui/icons";
-import {SanityMenuGroup} from "../../../common/sanityIo/Types";
+import {SanityMenuGroup} from "../../common/sanityIo/Types";
 
 interface FilteredMenuItemsPopupProps {
     menuGroup: SanityMenuGroup

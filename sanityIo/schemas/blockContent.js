@@ -14,7 +14,7 @@ import {
 } from '../../src/common/sanityIo/BlockContentMarkRenderers'
 import {ButtonRender, CtaRender, HeaderRender, HrRender} from '../../src/common/sanityIo/BlockContentRenderer'
 import {ListRender, UtmLinkRender} from '../../src/common/sanityIo/BlockContentAnnotations'
-import TransformHW from "../../src/components/layout/TransformHW";
+import TransformHWLayout from "../../src/components/transform-hw/pages/TransformHWLayout";
 
 const highlightIcon = color => {
   console.log("highlightIcon color", color)
@@ -96,7 +96,7 @@ const internalLinkRender = props => {
   console.log('lik props', props)
   return <Link href={props.href}>
     <Typography
-      style={{display: 'inline-block', color: TransformHW.palette.primary.main}}>
+      style={{display: 'inline-block', color: TransformHWLayout.palette.primary.main}}>
       {props.children}
     </Typography>
   </Link>
@@ -217,7 +217,7 @@ export const blockContentConfig = {
         title: 'Light',
         value: 'light',
         blockEditor: {
-          icon: () => lightIcon(TransformHW.palette.primary.main),
+          icon: () => lightIcon(TransformHWLayout.palette.primary.main),
           render: LightRender
         }
       },
@@ -225,24 +225,24 @@ export const blockContentConfig = {
         title: 'Primary Text Color',
         value: 'primaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(TransformHW.palette.primary.main),
-          render: (props) => (TextColorRender(props, TransformHW.palette.primary.main))
+          icon: () => highlightIcon(TransformHWLayout.palette.primary.main),
+          render: (props) => (TextColorRender(props, TransformHWLayout.palette.primary.main))
         }
       },
       {
         title: 'Secondary Text Color',
         value: 'secondaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(TransformHW.palette.secondary.main),
-          render: (props) => (TextColorRender(props, TransformHW.palette.secondary.main))
+          icon: () => highlightIcon(TransformHWLayout.palette.secondary.main),
+          render: (props) => (TextColorRender(props, TransformHWLayout.palette.secondary.main))
         }
       },
       {
         title: 'Underline Primary Color',
         value: 'underlinePrimaryColor',
         blockEditor: {
-          icon: () => underlineIcon(TransformHW.palette.primary.main),
-          render: (props) => UnderlineRender(props, TransformHW.palette.primary.main)
+          icon: () => underlineIcon(TransformHWLayout.palette.primary.main),
+          render: (props) => UnderlineRender(props, TransformHWLayout.palette.primary.main)
         }
       },
       {

@@ -2,7 +2,7 @@ import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import UnderConstruction from "../../components/layout/under-construction/UnderConstruction";
+import UnderConstruction from "../../components/transform-hw/pages/under-construction-page/UnderConstruction";
 import {rest} from "msw";
 import {Grid} from "@material-ui/core";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";

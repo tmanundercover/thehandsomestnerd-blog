@@ -1,17 +1,16 @@
-import React, {FunctionComponent, useEffect, useState} from 'react'
+import React, {FunctionComponent, useEffect} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {AppBar, Grid, Hidden, useMediaQuery, withWidth} from '@material-ui/core'
+import {AppBar, Grid, Hidden, withWidth} from '@material-ui/core'
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import Logo from "../logo/Logo";
+import mediaQueries from "../../../utils/mediaQueries";
+import MainMenu from "./MainMenu";
+import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
+import clsx from "clsx";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
+import {useQuery} from "react-query";
 import GroqQueries from "../../../utils/groqQueries";
 import sanityClient from "../../../sanityClient";
-import Logo from "../logo/Logo";
-import MediaQueries from "../../../utils/mediaQueries";
-import MainMenu from "./MainMenu";
-import FilteredMenuItems from "../filtered-menu-items/FilteredMenuItems";
-import clsx from "clsx";
-import {useQuery} from "react-query";
-import {SanityMenuContainer} from "../../../common/sanityIo/Types";
-import mediaQueries from "../../../utils/mediaQueries";
 
 const TRANSPARENTWHITE = 'rgba(255,255,255,0.75)'
 

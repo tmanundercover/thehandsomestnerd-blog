@@ -1,13 +1,13 @@
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
-import LoadingButton from "../../loading-button/LoadingButton";
-import MediaQueries from "../../../utils/mediaQueries";
+import LoadingButton from "../../../loading-button/LoadingButton";
+import MediaQueries from "../../../../utils/mediaQueries";
 import {useThwStyles} from "../Styles";
 import {useNavigate} from "react-router-dom";
-import mediaQueries from "../../../utils/mediaQueries";
+import mediaQueries from "../../../../utils/mediaQueries";
 
 
 export type AppLayoutProps = {}

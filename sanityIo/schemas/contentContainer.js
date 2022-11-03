@@ -22,6 +22,8 @@ export default {
           to: [{type: 'column1BlockContent'}]
         },
         {name: 'column2BlockContent', title: 'Custom 2 Column Section',type: 'reference', to: [{type: 'column2BlockContent'}]},
+        {name: 'header', title: 'Header Menu',type: 'reference', to: [{type: 'menuContainer', name:"header"}]},
+        {name: 'footer', title: 'Footer Menu',type: 'reference', to: [{type: 'menuContainer', name: "footer"}]},
         {name: 'heroContentSection', title: 'Hero + Content Section',type: 'reference', to: [{type: 'heroContentSection'}]},
         {name: 'transformHeroContentSection', title: SanitySectionTitlesEnum.HERO_CONTENT,type: 'reference', to: [{type: 'transformHeroContentSection'}]},
         {name: 'transformPositivePsychologySection', title: SanitySectionTitlesEnum.POSITIVE_PSYCHOLOGY,type: 'reference', to: [{type: 'transformPositivePsychologySection'}]},

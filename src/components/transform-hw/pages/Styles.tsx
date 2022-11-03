@@ -1,5 +1,5 @@
 import {makeStyles} from "@material-ui/core";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 
 export const useThwStyles = makeStyles({
     fullscreen: {

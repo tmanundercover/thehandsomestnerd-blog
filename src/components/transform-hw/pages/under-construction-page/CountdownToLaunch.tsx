@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import Countdown from "react-countdown";
-import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme, {COLORS} from "../../../../theme/transform-hw/TransformHWTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     counterSection: {

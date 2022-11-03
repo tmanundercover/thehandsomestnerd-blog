@@ -1,8 +1,8 @@
 import {CircularProgress, Grid, makeStyles, Theme, Typography} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
 import {useThwStyles} from "../Styles";
-import Logo from "../../transform-hw/logo/Logo";
+import Logo from "../../logo/Logo";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({

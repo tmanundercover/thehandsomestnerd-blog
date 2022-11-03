@@ -1,19 +1,19 @@
 import React, {ChangeEvent, FunctionComponent, useEffect, useState} from 'react'
 import {Grid, TextField, Typography, useMediaQuery} from '@material-ui/core'
 import {useThwStyles} from "../Styles";
-import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme, {COLORS} from "../../../../theme/transform-hw/TransformHWTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
 import therapistHoldingHand from "./assets/therapistHoldingHand.jpg"
 import clsx from "clsx";
 import leadClient from "./leadClient";
 import {useQuery} from "react-query";
 import isEmail from 'validator/lib/isEmail';
-import LoadingButton from "../../loading-button/LoadingButton";
-import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
-import CssFadeToColor from "../../css-fade-to-color/CssFadeToColor";
-import {SanityRef, SanityUnderConstructionPageType} from "../../../common/sanityIo/Types";
-import cmsClient from "../../block-content-ui/cmsClient";
-import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import LoadingButton from "../../../loading-button/LoadingButton";
+import {ButtonGroupMemberEnum} from "../../../loading-button/ButtonGroupMemberEnum";
+import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
+import {SanityRef, SanityUnderConstructionPageType} from "../../../../common/sanityIo/Types";
+import cmsClient from "../../../block-content-ui/cmsClient";
+import transformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
 
 
 interface IProps {

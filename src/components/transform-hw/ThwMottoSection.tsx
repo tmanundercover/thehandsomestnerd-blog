@@ -4,7 +4,7 @@ import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../BlockContentTypes";
 import MediaQueries from "../../utils/mediaQueries";
-import {useThwStyles} from "../layout/Styles";
+import {useThwStyles} from "./pages/Styles";
 import clsx from "clsx";
 import mediaQueries from "../../utils/mediaQueries";
 

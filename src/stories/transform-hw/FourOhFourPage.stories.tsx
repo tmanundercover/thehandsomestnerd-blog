@@ -2,9 +2,9 @@ import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import UnderConstruction from "../../components/layout/under-construction/UnderConstruction";
+import UnderConstruction from "../../components/transform-hw/pages/under-construction-page/UnderConstruction";
 import {rest} from "msw";
-import FourOhFour from "../../components/layout/error/FourOhFour";
+import FourOhFour from "../../components/transform-hw/pages/error-page/FourOhFour";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

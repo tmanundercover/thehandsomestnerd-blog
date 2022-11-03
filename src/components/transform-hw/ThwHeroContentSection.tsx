@@ -4,7 +4,7 @@ import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
-import {useThwStyles} from "../layout/Styles";
+import {useThwStyles} from "./pages/Styles";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 
 interface IProps {

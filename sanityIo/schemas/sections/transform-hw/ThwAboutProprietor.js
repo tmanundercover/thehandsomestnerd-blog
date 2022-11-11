@@ -28,7 +28,8 @@ export default {
     {
       name: 'contentText',
       title: 'Content Text',
-      type: 'string',
+      type: 'array',
+      of:[{type: 'string'}]
     },
     {
       name: 'proprietorImage',

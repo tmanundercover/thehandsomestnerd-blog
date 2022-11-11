@@ -91,7 +91,7 @@ export type ThwAboutProprietorSectionType = {
     proprietorName:string
     proprietorTitle: string
     contentTitle: string
-    contentText: string
+    contentText: string[]
     proprietorImage: SanityImageAsset
     proprietorImageAltText: string
     proprietorSignatureImage: SanityImageAsset

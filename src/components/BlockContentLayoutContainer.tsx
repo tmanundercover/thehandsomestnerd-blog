@@ -112,6 +112,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                     return <Grid key={index} container item xs={12} justifyContent='center'
                                  style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+                        <Link id={"ABOUT_PROPRIETOR"} style={{position: "relative", top: -80}}><></>
+                        </Link>
                         <AboutTheProprietorSection
                             sectionData={thwProprietorSection}
                         />

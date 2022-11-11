@@ -32,8 +32,8 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
     return (
         <Grid container item className={classes.root} xs={11}>
             <Grid container item justifyContent='space-around'>
-                <Grid item xs={12} md={5} lg={4} container justifyContent='center' alignContent='center'
-                      alignItems='center' style={{minWidth: "max-content"}}>
+                <Grid item xs={12} md={5} lg={4} container justifyContent='center' alignContent='flex-start'
+                      alignItems='flex-start' style={{minWidth: "max-content"}}>
                     <Grid item style={{overflow: "hidden", position: "relative", backgroundColor:"white"}} container justifyContent='center'>
                         <ImageWIthButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText} ctaButtonLink={props.sectionData.ctaButtonLink} toColor={"rgba(232,232,232,0.9)"} imageSrc={props.sectionData.proprietorImage} height={545} direction={CssFadeToColorDirectionEnum.RIGHT} isResponsive/>
                     </Grid>
@@ -66,10 +66,12 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                             >{props.sectionData.contentTitle}</Typography>
 
                             </Grid>
-                            <Grid item container>
-                                <Typography variant='body1'
-                                            color='secondary' gutterBottom>{props.sectionData.contentText}</Typography>
-                            </Grid>
+                            {props.sectionData.contentText.map((text)=>{
+                                return <Grid item container>
+                                    <Typography variant='body1'
+                                                color='secondary' gutterBottom>{text}</Typography>
+                                </Grid>
+                            })}
                             <Grid container item direction='column'  alignItems='flex-end'>
                                 <Grid item>
                                     <img alt={props.sectionData.proprietorSignatureImageAltText}

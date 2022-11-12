@@ -72,9 +72,28 @@ const MENUGROUPCONTAINER = `
           logoImageSrc,
           logoImageAltText
 `
+const SERVICE =
+    `name,
+        imageSrc,
+        imageSrcAltText,
+        contentTitle,
+        contentText,
+        ctaButtonText,
+        ctaButtonLink,
+        learnMoreLink,
+        learnMoreText,
+        educationPageTitle,
+        educationPageSlimHeroImage,
+        extendedDescriptions,
+        benefitsOfServiceTitle,
+        benefitsOfServiceContents,
+        benefitsOfServiceBullets,
+        "serviceAmenities": serviceAmenities[]->,
+        slug,`
 
 
-const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP}
+
+const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP, SERVICE}
 
 
 export default defaultObj

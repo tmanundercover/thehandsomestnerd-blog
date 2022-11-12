@@ -21,9 +21,10 @@ export default {
             type: 'string',
         },
         {
-            name: 'contentText',
+            name: 'contentTexts',
             title: 'Content Text',
-            type: 'string',
+            type: 'array',
+            of: [{type: 'string'}]
         },
         {
             name: 'servicesList',

@@ -6,6 +6,7 @@ import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
+import {Navigate} from "react-router-dom";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     contentBullets: {
@@ -27,6 +28,7 @@ interface IProps {
     height: number
     buttonAlignment?: ImageWithButtonOverlayAligmentEnum
     buttonColor?: PropTypes.Color
+    learnMoreLink?: string
 }
 
 
@@ -44,8 +46,12 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
     }
 
     return (
-        <Grid item container direction='column'
-              style={{position: "relative"}}>
+        <Button fullWidth
+                variant='text'
+                href={props.learnMoreLink}
+                style={{padding: 0}}
+        ><Grid item container direction='column'
+              style={{position: "relative", cursor:"pointer"}}>
             {props.toColor &&
                 props.direction !== undefined &&
                 <CssFadeToColor toColor={props.toColor}
@@ -64,17 +70,18 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 left: 0,
                 paddingRight: "32px"
             }} justifyContent={getButtonAlignment()}>
-                <Button variant={props.variant ? props.variant : 'outlined'} color={props.buttonColor?props.buttonColor:'primary'}
-                        href={props.ctaButtonLink ?? ''}
-                        style={{
-                            color: "#FAFAFA"
-                        }}
+                {props.ctaButtonLink && <Button variant={props.variant ? props.variant : 'outlined'}
+                         color={props.buttonColor ? props.buttonColor : 'primary'}
+                         href={props.ctaButtonLink ?? ''}
+                         style={{
+                             color: "#FAFAFA"
+                         }}
                 >
                     <Typography variant='button'
                                 color='secondary'>{props.ctaButtonText}</Typography>
-                </Button>
+                </Button>}
             </Grid>
-        </Grid>
+        </Grid></Button>
     )
 }
 

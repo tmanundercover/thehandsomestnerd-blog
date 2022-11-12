@@ -6,6 +6,7 @@ import {ThwPositivePsychologySectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {Check} from "@material-ui/icons";
 import mediaQueries from "../../utils/mediaQueries";
+import ResponsiveBullet from "../ResponsiveBullet";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -58,15 +59,8 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     <Grid container item>
                         <Grid item container className={classes.contentBullets} spacing={3}>
-                            {props.sectionData.contentBullets.map((reason: string, index: number) => {
-                                return <Grid key={index} container item sm={6} alignItems='center'>
-                                    <Grid container item spacing={2}>
-                                        <Grid item xs={2} container justifyContent='flex-end'><Check color='secondary'/></Grid>
-                                        <Grid item xs={10}>
-                                            <Typography>{reason}</Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
+                            {props.sectionData.contentBullets.map((reason: string) => {
+                                return <ResponsiveBullet text={reason} color='secondary' />
                             })}
                         </Grid>
                     </Grid>

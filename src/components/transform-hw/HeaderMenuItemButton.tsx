@@ -27,8 +27,8 @@ const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({men
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                     style={{
                         borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.shape.borderRadius : 0,
-                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(4) : TransformHWTheme.spacing(2),
-                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(4) : TransformHWTheme.spacing(2),
+                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3.25) : TransformHWTheme.spacing(1.25),
+                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3.25) : TransformHWTheme.spacing(1.25),
                         marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3) : 0,
                         marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(2) : 0,
                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",

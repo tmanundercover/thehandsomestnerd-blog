@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
@@ -9,6 +9,7 @@ import {
     ThwHeroContentSectionType,
     ThwMottoSectionType,
     ThwPositivePsychologySectionType,
+    ThwServiceItemType,
     ThwServicesSectionType,
     ThwWhyChooseUsSectionType,
 } from "./BlockContentTypes";
@@ -23,9 +24,9 @@ import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
 import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
 import {SanityMenuContainer} from "../common/sanityIo/Types";
 import ThwHeader from "./transform-hw/header/ThwHeader";
-import {useScrollPosition} from "../utils/useScrollPosition";
 import ThwFooter from "./transform-hw/footer/ThwFooter";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
+import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
 
 export type BlockContentLayoutContainerProps = { content?: any, isOpaque?:boolean, homePage?: SanityHomePage }
 
@@ -76,7 +77,6 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 </Grid>
                             </Card></Grid>
                     </Grid>
-                //HW SECTIONS
                 case 'transformHeroContentSection':
                     const thwHeroSection: ThwHeroContentSectionType = columnLayoutContainer
 
@@ -85,6 +85,16 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         </Link>
                         <ThwHeroContentSection
                             sectionData={thwHeroSection}
+                        />
+                    </Grid>
+                case 'transformServiceItem':
+                    const thwServiceEducationPage: ThwServiceItemType = columnLayoutContainer
+
+                    return <Grid key={index} container item xs={12}>
+                        <Link id={"TOP_OF_PAGE"}><></>
+                        </Link>
+                        <ThwServicesEducationPage
+                            serviceData={thwServiceEducationPage}
                         />
                     </Grid>
                 case 'transformPositivePsychologySection':
@@ -148,18 +158,13 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         />
                     </Grid>
                 case 'menuContainer':
-                    console.log(" the menuContainer name is", columnLayoutContainer)
                     if (columnLayoutContainer.slug.current.includes('header')) {
                         const pageHeader: SanityMenuContainer = columnLayoutContainer
-                        console.log("before passing to header", pageHeader)
-
                         return <Grid container item xs={12} key='transform-hw-header'>
                             <ThwHeader menuSlug={pageHeader.slug?.current} isOpaque={props.isOpaque}/>
                         </Grid>
                     } else {
                         const pageFooter: SanityMenuContainer = columnLayoutContainer
-                        console.log("before passing to footer", pageFooter)
-
                         return <Grid container item xs={12} key='transform-hw-footer'>
                             <ThwFooter footerMenuSlug={pageFooter.slug?.current} homePage={props.homePage}/>
                         </Grid>

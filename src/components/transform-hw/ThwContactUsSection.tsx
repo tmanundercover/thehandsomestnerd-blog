@@ -1,19 +1,17 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, InputAdornment, Link, TextField, Typography, useMediaQuery, withStyles} from "@material-ui/core";
+import {Grid, InputAdornment, Link, TextField, Typography, withStyles} from "@material-ui/core";
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "./pages/Styles";
-import MediaQueries from "../../utils/mediaQueries";
+import mediaQueries from "../../utils/mediaQueries";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
-import therapistHoldingHand from "./pages/under-construction-page/assets/therapistHoldingHand.jpg";
-import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {

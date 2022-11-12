@@ -1,5 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityRef} from "../common/sanityIo/Types";
+import {SanityRef, SanitySlug} from "../common/sanityIo/Types";
 
 export type HeroContentSectionType = {
     name: string
@@ -74,6 +74,16 @@ export type ThwHeroContentSectionType = {
     ctaButtonLink: string
 }
 
+
+export type ServiceAmenityTypeRef = SanityRef
+export type ServiceAmenityType = {
+    name: string
+    imageSrc: SanityImageAsset
+    title: string
+    description: string
+}
+
+
 export type ThwPositivePsychologySectionType = {
     name: string
     superTitle:string
@@ -115,6 +125,36 @@ export type ThwServiceItemType = {
     contentText: string
     ctaButtonText: string
     ctaButtonLink: string
+    learnMoreLink: string
+    learnMoreText: string
+    educationPageTitle: string
+    educationPageSlimHeroImage: SanityImageAsset
+    extendedDescriptions: string[]
+    benefitsOfServiceTitle:string
+    benefitsOfServiceContents:string[]
+    benefitsOfServiceBullets:string[]
+    serviceAmenities: ServiceAmenityTypeRef[]
+    slug: SanitySlug
+}
+
+export type ThwServiceItemNoRefType = {
+    name: string
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    learnMoreLink: string
+    learnMoreText: string
+    educationPageTitle: string
+    educationPageSlimHeroImage: SanityImageAsset
+    extendedDescriptions: string[]
+    benefitsOfServiceTitle:string
+    benefitsOfServiceContents:string[]
+    benefitsOfServiceBullets:string[]
+    serviceAmenities: ServiceAmenityType[]
+    slug: SanitySlug
 }
 
 
@@ -123,6 +163,7 @@ export type ThwServicesSectionType = {
     contentTitle: string
     contentPreTitle: string
     contentText: string
+    contentTexts: string[]
     servicesList: SanityRef[]
 }
 export type ThwWhyChooseUsSectionType = {

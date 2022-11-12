@@ -1,35 +1,15 @@
-import {
-    CircularProgress,
-    CssBaseline,
-    Grid,
-    Link,
-    makeStyles,
-    MuiThemeProvider,
-    Theme,
-    Typography
-} from '@material-ui/core'
-import React, {FunctionComponent, Suspense, useState} from 'react'
-import sanityClient from '../../../sanityClient'
+import {CssBaseline, Grid, Link, makeStyles, MuiThemeProvider, Theme} from '@material-ui/core'
+import React, {FunctionComponent, useState} from 'react'
 import BlockContentLayoutContainer from '../../BlockContentLayoutContainer'
-import {useParams} from 'react-router-dom'
-import MetaTagsComponent from '../../meta-tags/MetaTagsComponent'
 import cmsClient from '../../block-content-ui/cmsClient'
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import UnderConstruction from "./under-construction-page/UnderConstruction";
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import groqQueries from "../../../utils/groqQueries";
-import {useQuery} from "react-query";
-import {useThwStyles} from "./Styles";
 import FourOhFour from "./error-page/FourOhFour";
-import ThwFooter from "../footer/ThwFooter";
-import ThwHeader from "../header/ThwHeader";
 import {useScrollPosition} from "../../../utils/useScrollPosition";
-import {redirect} from "react-router";
-import {RoutesEnum} from "../../../App";
-import Logo from "../logo/Logo";
 import LoadingPage from "./loading-page/LoadingPage";
 import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
-import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import thwClient from "../thwClient";
 
 
@@ -50,13 +30,14 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     const {isLoading, isError, data, isRefetching} = thwClient.useFetchPageBySlugQuery()
 
     React.useEffect(() => {
+        console.log("homepage data",data)
         if (data)
             setHomePage(data[0])
     }, [data])
 
     React.useEffect(() => {
         // These Content sections are references and must be retrieved from Sanity
-        homePage?.pageContent?.content?.map && Promise.all(homePage?.pageContent?.content.map((contentBlock: any) => {
+        homePage?.pageContent?.content?.map && Promise.all(homePage?.pageContent?.content?.map((contentBlock: any) => {
             return cmsClient.fetchRef(contentBlock).then((response) => {
                 return response
             })
@@ -103,7 +84,7 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
 
 
     const PageContents = () => {
-        if (isLoading || (realizedContent.length < 7 && !homePage?.underConstructionPageRef) || isRefetching)
+        if (isLoading || (realizedContent.length < homePage?.pageContent?.content?.length && !homePage?.underConstructionPageRef) || isRefetching)
             return <LoadingPage/>
 
         if (!homePage?.isUnderConstruction) {

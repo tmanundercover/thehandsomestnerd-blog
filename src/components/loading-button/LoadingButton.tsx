@@ -1,4 +1,4 @@
-import {Button, CircularProgress, makeStyles, PropTypes} from '@material-ui/core'
+import {Box, Button, CircularProgress, Grid, makeStyles, PropTypes} from '@material-ui/core'
 import React, {FunctionComponent, PropsWithChildren} from 'react'
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
@@ -64,11 +64,12 @@ export const useStyles = makeStyles((theme) => ({
 
 interface LoadingButtonProps {
     disabled?: boolean
-    clickHandler: (e: any) => void
+    clickHandler?: (e: any) => void
     isLoading?: boolean
     color?: PropTypes.Color
     groupiness?: ButtonGroupMemberEnum
     width?: number
+    href?: string
     variant?: 'text' | 'outlined' | 'contained'
 }
 
@@ -85,7 +86,11 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
         }
     }
     return (
+        <Grid container style={{height:"60px"}} alignContent='center' alignItems='center' justifyContent='center'>
+            <Grid item>
+
         <Button
+            href={props.href}
             disabled={props.disabled}
             onClick={props.clickHandler}
             className={classes.root}
@@ -101,6 +106,8 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
                     }}/>
                     : props.children
             }</Button>
+            </Grid>
+        </Grid>
 
     )
 }

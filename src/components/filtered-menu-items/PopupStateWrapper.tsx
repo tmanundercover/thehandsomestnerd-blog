@@ -16,6 +16,10 @@ interface FilteredMenuItemsPopupProps {
 const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menuGroup, bgColor}) => {
     return (<PopupState variant="popover" popupId={menuGroup.menuGroupTitle?.toLowerCase().replace(" ","-")}>
         {(popupState) => {
+            const handleClose = (e:any)=>{
+                // e.stopPropagation()
+                popupState.close()
+            }
             return <Grid item container style={{height: "100%"}}>
                 <Button
                     {...bindTrigger(popupState)}
@@ -52,7 +56,7 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                     }}
                 >
                     <Grid container item>
-                        <SubMenu subMenu={menuGroup} handleClose={popupState.close}/>
+                        <SubMenu subMenu={menuGroup} handleClose={handleClose}/>
                     </Grid>
                 </Popover>
             </Grid>

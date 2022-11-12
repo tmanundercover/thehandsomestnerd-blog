@@ -22,7 +22,6 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-
             <BrowserRouter>
                 <Grid container item direction="column" alignItems="center"
                       style={{backgroundColor: TransformHWTheme.palette.background.default, overflow: "scroll"}}>

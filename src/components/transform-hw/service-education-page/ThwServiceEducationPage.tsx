@@ -8,7 +8,6 @@ import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import ResponsiveBullet from "../../ResponsiveBullet";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import LoadingButton from "../../loading-button/LoadingButton";
-import {theme} from "@sanity/types/parts/part.@sanity/components/build-snapshot";
 import {ImageWithButtonOverlayAligmentEnum} from "../../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
 import OtherServices from "./OtherServices";
@@ -113,7 +112,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                             buttonAlignment={mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
                             imageAltText={"room with plants"}
                             variant='contained'
-                            imageSrc={urlFor(props.serviceData.imageSrc).url()??""} height={600}
+                            imageSrc={urlFor(props.serviceData.imageSrc).url() ?? ""} height={600}
                             ctaButtonText={props.serviceData.ctaButtonText}
                             ctaButtonLink={props.serviceData.ctaButtonLink}
                         />
@@ -124,7 +123,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                 display='inline'>{props.serviceData.contentTitle}</Typography>
                 </Grid>
                 {
-                    props.serviceData.extendedDescriptions?.map((descriptionSegment:string, index:number) => (
+                    props.serviceData.extendedDescriptions?.map((descriptionSegment: string, index: number) => (
                         <Grid item container key={uuidv4()}>
                             <Typography variant='body1'>{descriptionSegment}</Typography>
                         </Grid>
@@ -135,7 +134,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                 display='inline'>{props.serviceData.benefitsOfServiceTitle}</Typography>
                 </Grid>
                 {
-                    props.serviceData.benefitsOfServiceContents?.map((descriptionSegment:string, index:number) => (
+                    props.serviceData.benefitsOfServiceContents?.map((descriptionSegment: string, index: number) => (
                         <Grid item container key={uuidv4()}>
                             <Typography variant='body1'>{descriptionSegment}</Typography>
                         </Grid>
@@ -144,45 +143,58 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                 <Grid item container spacing={2}>
                     {
                         props.serviceData.benefitsOfServiceBullets?.map((contentSegment) => (
-                            <ResponsiveBullet text={contentSegment} color='secondary'/>
+                            <ResponsiveBullet key={uuidv4()} text={contentSegment} color='secondary'/>
                         ))
                     }
                 </Grid>
-                <Grid item container spacing={4} justifyContent='center'>
+                <Grid item container spacing={4} justifyContent='center' direction='column'>
                     <Grid item container justifyContent='center'>
                         <Typography variant='h4'>Room Amenities</Typography>
                     </Grid>
-                    <Grid item container justifyContent='center'>
+                    <Grid item container justifyContent='center' alignItems='stretch' alignContent='flex-start' spacing={2}>
                         {serviceAmenitiesList?.map((serviceAmenity: ServiceAmenityType) => {
-                            return <Grid key={uuidv4()} container item xs={8} sm={5} md={5} lg={3} xl={2} direction='column'
+                            return <Grid key={uuidv4()} container item xs={6} sm={5} md={4} lg={3} xl={3}
                                          style={{
-                                             padding:TransformHWTheme.spacing(6),
-                                             margin:TransformHWTheme.spacing(0,1.5,1.5,0,),
-                                             minWidth: "332px",
+                                             padding:xsDown?TransformHWTheme.spacing(4,0,4,0):TransformHWTheme.spacing(6,0,6,0),
+                                             margin:xsDown?TransformHWTheme.spacing(-.2,-.1,.05,-.1,):TransformHWTheme.spacing(-.1,-.1,-.1,-.1,),
+                                             maxWidth: "300px",
+                                             minWidth: "230px",
                                              border: `1px solid ${TransformHWTheme.palette.secondary.main}`,
                                              backgroundColor: TransformHWTheme.palette.background.paper
                                          }}>
-                                <Grid container item>
-                                    <Grid item container>
-                                        <Grid xs={12}
+                                <Grid container item justifyContent='center' alignContent='flex-start' spacing={1}>
+                                    <Grid item container xs={12}>
+                                        <Grid
                                               style={{
-                                                  minHeight: "64px",
+                                                  height: "42px",
                                                   backgroundSize: 'contain',
+                                                  // backgroundColor: "red",
                                                   backgroundRepeat: "no-repeat",
-                                                  backgroundPosition:"center",
+                                                  backgroundPosition: "center",
                                                   backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).url()})`
                                               }}
-                                              container item>
+                                              container>
 
                                         </Grid>
                                     </Grid>
-                                    <Grid item container justifyContent='center'
-                                          style={{marginTop: "16px", marginBottom: "16px"}}>
-                                        <Typography variant='body2' align='center' color='secondary'>{serviceAmenity.title}</Typography>
+                                    <Grid container item justifyContent='center'>
+                                    <Grid item container justifyContent='center' alignContent='center'
+                                          alignItems='center'
+                                          style={{
+                                              height: "2.1em",
+                                              // backgroundColor: "blue"
+                                          }}
+                                          xs={10}>
+                                        <Typography variant='body2' align='center'
+                                                    color='secondary'>{serviceAmenity.title}</Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid item xs={10} container style={{
+                                            minHeight: "5em",
+                                        // backgroundColor: "green"
+                                    }} justifyContent='center' alignContent='flex-start' alignItems='flex-start'>
                                         <Typography variant='body1'
                                                     align='center'>{serviceAmenity.description}</Typography>
+                                    </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -190,16 +202,16 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     </Grid>
                 </Grid>
                 <Grid container item alignItems="center" justifyContent="center"
-                      style={{marginTop: TransformHWTheme.spacing(4)}}>
-                    {/*<Button color="primary" variant="contained"><Typography variant="button">Send*/}
-                    {/*    Button</Typography></Button>*/}
+                      style={{margin: TransformHWTheme.spacing(8,0,6)}}>
                     <LoadingButton
-                        // width={200}
                         href={props.serviceData.ctaButtonLink}
-                        color="secondary" variant="contained"><Typography variant='button' noWrap>Book a {props.serviceData.contentTitle} Appointment</Typography></LoadingButton>
+                        color="secondary" variant="contained">
+                        <Typography variant='button' noWrap>Book
+                        a {props.serviceData.contentTitle} Appointment</Typography>
+                    </LoadingButton>
                 </Grid>
                 <Grid container item>
-                    <Divider style={{width: "100%", margin: TransformHWTheme.spacing(4,0,4,0)}}/>
+                    <Divider style={{width: "100%", margin: TransformHWTheme.spacing(4, 0, 2, 0)}}/>
                 </Grid>
                 <Grid container item>
                     <OtherServices thisServiceSlug={props.serviceData.slug?.current}/>

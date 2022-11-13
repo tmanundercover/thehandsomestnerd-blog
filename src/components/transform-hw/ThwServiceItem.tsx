@@ -9,6 +9,8 @@ import {v4 as uuidv4} from 'uuid'
 import mediaQueries from "../../utils/mediaQueries";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import {useIsOverflow} from "../../utils/useIsOverflow";
+import {ArrowLeft, ArrowRight} from "@material-ui/icons";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -24,85 +26,161 @@ interface IProps {
 const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
 
+    const [hasOverflow, setHasOverflow] = React.useState<boolean>()
+
+
     const mdDown = mediaQueries.useMdDown()
+    const ref = React.useRef(null);
+    const isOverflow = useIsOverflow(ref, (hasOverflow: boolean) => {
+        if (hasOverflow) {
+            console.log("THis one has overflow")
+            setHasOverflow(true)
+        } else {
+            console.log("THis one does not have overflow")
+        }
+    });
 
     React.useEffect(() => {
     }, [])
 
-    return (<Grid key={uuidv4()} container item xs={12} sm={6} md={4} style={{marginBottom: TransformHWTheme.spacing(4)}}>
-        <Grid container item direction='column' justifyContent='space-between' alignContent='center'
-              alignItems='center'>
-            <Grid container item>
-                <Grid item container>
-                    <ImageWIthButtonOverlay
-                        // hideCtaButton={prop.hideCtaButton}
-                        learnMoreLink={props.service.learnMoreLink}
-                        buttonAlignment={mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
-                        imageAltText={props.service.imageSrcAltText}
-                        variant='contained'
-                        imageSrc={props.service.imageSrc} height={352}
-                        ctaButtonText={props.service.ctaButtonText}
-                        ctaButtonLink={!props.hideCtaButton ? props.service.ctaButtonLink : undefined}
-                    />
+    return (
+        <Grid key={uuidv4()} container item xs={12} sm={6} md={4} style={{marginBottom: TransformHWTheme.spacing(4)}}>
+            <Grid container item direction='column' justifyContent='space-between' alignContent='center'
+                  alignItems='center'>
+                <Grid container item>
+                    <Grid item container>
+                        <ImageWIthButtonOverlay
+                            // hideCtaButton={prop.hideCtaButton}
+                            learnMoreLink={props.service.learnMoreLink}
+                            buttonAlignment={mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
+                            imageAltText={props.service.imageSrcAltText}
+                            variant='contained'
+                            imageSrc={props.service.imageSrc} height={352}
+                            ctaButtonText={props.service.ctaButtonText}
+                            ctaButtonLink={!props.hideCtaButton ? props.service.ctaButtonLink : undefined}
+                        />
+                    </Grid>
+                    <Grid item container justifyContent='center'
+                          style={{marginTop: "16px", marginBottom: "16px"}}>
+                        <Typography variant='body2'>{props.service.contentTitle}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant='body1' align='center'
+                                    style={{marginBottom: "48px"}}>{props.service.contentText}</Typography>
+                    </Grid>
                 </Grid>
-                <Grid item container justifyContent='center'
-                      style={{marginTop: "16px", marginBottom: "16px"}}>
-                    <Typography variant='body2'>{props.service.contentTitle}</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant='body1' align='center'
-                                style={{marginBottom: "48px"}}>{props.service.contentText}</Typography>
-                </Grid>
-            </Grid>
-            {!props.hideLearnMoreButton && <Grid item container justifyContent='center'>
-                {props.service.learnMoreText && props.service.learnMoreText.length > 0 &&
-                    <LoadingButton color='secondary' href={props.service.learnMoreLink}
-                                   variant='outlined'><Typography variant='button'
-                                                                  noWrap>{props.service.learnMoreText}</Typography></LoadingButton>}
-            </Grid>}
-            {props.showAmenities && <Grid xs={8} item container spacing={6} direction="column"  justifyContent='flex-start'
-                                          style={{overflowY: "hidden", overflowX: "scroll", maxHeight: "86px"}}>
-                {props.service.serviceAmenities?.map((serviceAmenity: ServiceAmenityType) => {
-                    return <Grid
-                        item
-                        xs={2}
-                    ><Tooltip title={
-                        <Grid container style={{maxWidth: "150px"}}>
-                            <Typography
-                                variant='subtitle1'>{serviceAmenity.title}</Typography>
-                            <Typography
-                                variant='subtitle2'>{serviceAmenity.description}</Typography>
-                        </Grid>
-                    }>
-                        <Grid container item direction='column' justifyContent='center' alignContent='center'
-                              alignItems='center' style={{
-                            marginBottom: "24px",
+                {!props.hideLearnMoreButton && <Grid item container justifyContent='center'>
+                    {props.service.learnMoreText && props.service.learnMoreText.length > 0 &&
+                        <LoadingButton color='secondary' href={props.service.learnMoreLink}
+                                       variant='outlined'><Typography variant='button'
+                                                                      noWrap>{props.service.learnMoreText}</Typography></LoadingButton>}
+                </Grid>}
+                {/*//ts-ignore*/}
+                {props.showAmenities &&
+                    <Grid container item justifyContent='center' style={{position: "relative"}} alignContent='center'
+                          alignItems='stretch'>
+                        {
+                            isOverflow &&
+                            <Grid
+                                // ref={ref}
+                                container
+                                xs={3}
+                                alignItems='center'
+                                alignContent='center'
+                                item
+                                style={{
+                                    backgroundImage: 'linear-gradient(to right, whitesmoke, transparent)',
+                                    position: "absolute",
+                                    left: 16,
+                                    height: "100%",
+                                    zIndex:"1000",
+                                    pointerEvents: 'none'
+                                    // opacity: 0
+                                }}
+                                >
+                                <ArrowLeft/>
+                            </Grid>
+                        }
+                        <Grid  xs={10} item container>
+                            <Grid
+                              direction="column"
+                              // justifyContent='flex-start'
+                              alignContent={isOverflow ? 'flex-start':'center'}
+                              ref={ref}
+                              style={{
+                                  paddingTop:TransformHWTheme.spacing(2),
+                                  overflowY: "hidden",
+                                  overflowX: "scroll",
+                                  maxHeight: "120px",
+                                  position: "relative",
+                                  // backgroundColor: "red"
+                              }}
+                                container
+                                item
+                            >
+                                {
+                                    props.service.serviceAmenities?.map((serviceAmenity: ServiceAmenityType) => {
+                                        return <Grid
+                                            key={uuidv4()}
+                                            item
+                                            xs={4}
+                                            style={{minWidth: "60px"}}
+                                        >
+                                            <Tooltip title={
+                                                <Grid container style={{maxWidth: "160px"}}>
+                                                    <Typography
+                                                        variant='subtitle1'>{serviceAmenity.title}</Typography>
+                                                    <Typography
+                                                        variant='subtitle2'>{serviceAmenity.description}</Typography>
+                                                </Grid>
+                                            }>
+                                                <Grid container item direction='column' justifyContent='center'
+                                                      alignContent='center'
+                                                      alignItems='center' style={{
+                                                    marginBottom: "24px",
 
-                        }} spacing={1}>
-                            <Grid key={uuidv4()} item
-                                  container xs={2}
-                                  style={{
-                                      minHeight: "32px",
-                                      minWidth: "32px",
-                                      backgroundSize: 'contain',
-                                      backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).url()})`,
-                                      backgroundRepeat: "no-repeat",
+                                                }} spacing={1}>
+                                                    <Grid key={uuidv4()} item
+                                                          container xs={2}
+                                                          style={{
+                                                              minHeight: "32px",
+                                                              minWidth: "32px",
+                                                              backgroundSize: 'contain',
+                                                              backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).url()})`,
+                                                              backgroundRepeat: "no-repeat",
 
-                                  }}
-                            ></Grid>
-                            <Grid item xs={6} container justifyContent='center'>
-                                <Typography
-                                    variant='subtitle2'
-                                    align='center'
-                                >{serviceAmenity.title}</Typography>
+                                                          }}
+                                                    ></Grid>
+                                                    <Grid item xs={6} container justifyContent='center'>
+                                                        <Typography
+                                                            variant='subtitle2'
+                                                            align='center'
+                                                        >{serviceAmenity.title}</Typography>
+                                                    </Grid>
+                                                </Grid>
+                                            </Tooltip>
+                                        </Grid>
+                                    })
+                                }
                             </Grid>
                         </Grid>
-                    </Tooltip></Grid>
-                })
-                }
-            </Grid>}
-        </Grid>
-    </Grid>)
+                        {
+                            isOverflow && <Grid container xs={3} item style={{
+                                backgroundImage: 'linear-gradient(to right,transparent, whitesmoke)',
+                                position: "absolute",
+                                right: 16,
+                                height: "100%",
+                                zIndex:"1000",
+                                pointerEvents: 'none'
+                                // opacity: 0
+                            }}
+                                                justifyContent='flex-end' alignContent='center'>
+                                <ArrowRight/>
+                            </Grid>
+                        }
+                    </Grid>}
+            </Grid>
+        </Grid>)
 }
 
 export default ThwServiceItem

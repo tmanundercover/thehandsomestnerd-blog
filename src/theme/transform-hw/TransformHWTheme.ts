@@ -237,7 +237,7 @@ const TransformHWTheme = createTheme({
         },
         subtitle2: {
             // Micro
-            fontSize: '10px',
+            fontSize: '11px',
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.45,
@@ -262,6 +262,11 @@ const TransformHWTheme = createTheme({
                 "& :before": {
                     // borderBottom: "1px solid "+ COLORS.MAIN,
                 }
+            }
+        },
+        MuiTooltip: {
+            tooltip: {
+                backgroundColor: 'rgba(16, 43, 136, .9)'
             }
         },
         MuiFilledInput: {

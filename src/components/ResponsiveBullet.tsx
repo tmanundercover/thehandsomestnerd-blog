@@ -1,20 +1,42 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, ReactNode} from 'react'
 import {Grid, Typography} from '@material-ui/core'
-import {Check} from "@material-ui/icons";
+import {Check, FormatListBulleted} from "@material-ui/icons";
 import {v4 as uuidv4} from 'uuid'
+import {Variant} from "@material-ui/core/styles/createTypography";
 
 
 interface IProps {
     text: string
-    color: 'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error'
+    textColor?: | 'initial'
+        | 'inherit'
+        | 'primary'
+        | 'secondary'
+        | 'textPrimary'
+        | 'textSecondary'
+        | 'error';
+    fontVariant?: Variant | 'inherit'
+    condensed?: boolean
+    bullet?: ReactNode
+    notResponsive?: boolean
+    bulletColor?: 'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error'
 }
 
 const ResponsiveBullet: FunctionComponent<IProps> = (props: IProps) => {
-    return (<Grid key={uuidv4()} container item sm={6} alignItems='center'>
-        <Grid container item spacing={2}>
-            <Grid item xs={2} container justifyContent='flex-end'><Check color={props.color}/></Grid>
+    const [bullet, setBullet] = React.useState<ReactNode>()
+    React.useEffect(() => {
+        if (props.bullet) {
+            setBullet(props.bullet)
+        }
+    }, [props.bullet])
+
+    return (<Grid key={uuidv4()} container item sm={props.notResponsive ? 12 : 6} alignItems='center'>
+        <Grid container item spacing={props.condensed ? 0 : 2} alignItems='flex-start' alignContent='flex-start'>
+            <Grid item xs={2} container justifyContent='center' alignItems='center' alignContent='center'
+                  style={{height: props.fontVariant === 'subtitle1' ? "1.2em" : "2em"}}>{props.bullet ? props.bullet :
+                <Check color={props.bulletColor}/>}</Grid>
             <Grid item xs={10}>
-                <Typography>{props.text}</Typography>
+                <Typography variant={props.fontVariant ? props.fontVariant : "body1"}
+                            color={props.textColor ? props.textColor : "textPrimary"}>{props.text}</Typography>
             </Grid>
         </Grid>
     </Grid>)

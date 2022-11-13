@@ -74,15 +74,15 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                         // backgroundImage: `url(${urlFor(props.serviceData.educationPageSlimHeroImage).height(200).url()})`
                     }}>
                         <Grid style={{
-                            maxHeight: "200px",
-                            minHeight: "200px",
+                            maxHeight: "100px",
+                            minHeight: "100px",
                         }} container alignItems='center' alignContent='center'>
-                            <Grid item container>
-                                <Typography variant='body1'
+                            <Grid item container justifyContent={xsDown?'center':"flex-start"}>
+                                <Typography align={xsDown?"center":"left"} variant='body1'
                                             style={{fontStyle: "italic"}}>Healing & Wellness</Typography>
                             </Grid>
-                            <Grid item>
-                                <Typography color='secondary' variant='h2' align='center'
+                            <Grid container item justifyContent={xsDown?'center':"flex-start"}>
+                                <Typography color='secondary' variant={xsDown?'h3':"h2"} align='center'
                                             display='inline'>{props.serviceData.educationPageTitle}</Typography>
 
                             </Grid>
@@ -92,7 +92,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
             <Grid container item direction='column' spacing={2}>
-                <Grid item container style={{marginTop: TransformHWTheme.spacing(25)}}>
+                <Grid item container style={{marginTop: TransformHWTheme.spacing(15)}}>
 
                 </Grid>
                 <Grid item container>
@@ -143,13 +143,13 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                 <Grid item container spacing={2}>
                     {
                         props.serviceData.benefitsOfServiceBullets?.map((contentSegment) => (
-                            <ResponsiveBullet key={uuidv4()} text={contentSegment} color='secondary'/>
+                            <ResponsiveBullet key={uuidv4()} text={contentSegment} bulletColor='secondary'/>
                         ))
                     }
                 </Grid>
                 <Grid item container spacing={4} justifyContent='center' direction='column'>
                     <Grid item container justifyContent='center'>
-                        <Typography variant='h4'>Room Amenities</Typography>
+                        <Typography variant='h4'>Amenities</Typography>
                     </Grid>
                     <Grid item container justifyContent='center' alignItems='stretch' alignContent='flex-start' spacing={2}>
                         {serviceAmenitiesList?.map((serviceAmenity: ServiceAmenityType) => {
@@ -163,11 +163,12 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                              backgroundColor: TransformHWTheme.palette.background.paper
                                          }}>
                                 <Grid container item justifyContent='center' alignContent='flex-start' spacing={1}>
-                                    <Grid item container xs={12}>
+                                    <Grid item container xs={12} justifyContent='center'>
                                         <Grid
                                               style={{
-                                                  height: "42px",
-                                                  backgroundSize: 'contain',
+                                                  height: "64px",
+                                                  width: "64px",
+                                                  backgroundSize: 'cover',
                                                   // backgroundColor: "red",
                                                   backgroundRepeat: "no-repeat",
                                                   backgroundPosition: "center",

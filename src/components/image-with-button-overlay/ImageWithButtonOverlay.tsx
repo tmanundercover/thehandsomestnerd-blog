@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, PropTypes, Typography} from '@material-ui/core'
+import {Button, Grid, PropTypes, Tooltip, Typography} from '@material-ui/core'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
@@ -20,7 +20,8 @@ interface IProps {
     toColor?: string
     isResponsive?: boolean
     direction?: CssFadeToColorDirectionEnum
-    imageSrc: SanityImageSource
+    imageSrc?: SanityImageSource
+    imageUrl?: string
     imageAltText?: string
     ctaButtonLink?: string
     ctaButtonText?: string
@@ -29,6 +30,7 @@ interface IProps {
     buttonAlignment?: ImageWithButtonOverlayAligmentEnum
     buttonColor?: PropTypes.Color
     learnMoreLink?: string
+    tooltip?: string
 }
 
 
@@ -57,13 +59,17 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 <CssFadeToColor toColor={props.toColor}
                                 direction={props.direction}
                                 isResponsive={props.isResponsive}/>}
-            <Grid item container style={{
-                backgroundImage: `url(${urlFor(props.imageSrc).height(props.height).url() ?? ''})`,
+            {
+                <Tooltip title={<Typography variant='subtitle1' style={{fontWeight:"normal"}}>{props.tooltip}</Typography>} >
+                <Grid item container style={{
+                backgroundImage: `url(${props.imageUrl? props.imageUrl:urlFor(props.imageSrc ?? "").height(props.height).url() ?? ''})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 height: props.height
             }}>
             </Grid>
+                </Tooltip>
+            }
             <Grid container item style={{
                 position: "absolute",
                 bottom: 32,

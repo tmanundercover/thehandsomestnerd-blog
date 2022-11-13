@@ -53,15 +53,6 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
                         return accumulated
                     }, [])
             }
-            {/*{*/}
-            {/*    menuButtons.reduce(*/}
-            {/*        (accumulated: JSX.Element[], menuButton: any) => {*/}
-            {/*            if (menuButton?.group && includeMenuGroups) {*/}
-            {/*                return accumulated.concat([<Grid item key={uuidv4()}>{menuButton.popup(anchorRef.current, open)}</Grid>])*/}
-            {/*            }*/}
-            {/*            return accumulated*/}
-            {/*        }, [])*/}
-            {/*}*/}
         </Grid>
     )
 }

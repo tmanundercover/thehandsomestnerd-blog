@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, Tooltip, Typography, useMediaQuery} from '@material-ui/core'
+import {Button, Grid, Link, Tooltip, Typography, useMediaQuery} from '@material-ui/core'
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import LoadingButton from "../loading-button/LoadingButton";
@@ -48,22 +48,26 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
             <Grid container item direction='column' justifyContent='space-between' alignContent='center'
                   alignItems='center'>
                 <Grid container item>
-                    <Grid item container>
-                        <ImageWIthButtonOverlay
-                            // hideCtaButton={prop.hideCtaButton}
-                            learnMoreLink={props.service.learnMoreLink}
-                            buttonAlignment={mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
-                            imageAltText={props.service.imageSrcAltText}
-                            variant='contained'
-                            imageSrc={props.service.imageSrc} height={352}
-                            ctaButtonText={props.service.ctaButtonText}
-                            ctaButtonLink={!props.hideCtaButton ? props.service.ctaButtonLink : undefined}
-                        />
-                    </Grid>
-                    <Grid item container justifyContent='center'
-                          style={{marginTop: "16px", marginBottom: "16px"}}>
-                        <Typography variant='body2'>{props.service.contentTitle}</Typography>
-                    </Grid>
+
+                        <Grid item container>
+                            <ImageWIthButtonOverlay
+                                // hideCtaButton={prop.hideCtaButton}
+                                tooltip={'Click to Learn More'}
+                                learnMoreLink={props.service.learnMoreLink}
+                                buttonAlignment={mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
+                                imageAltText={props.service.imageSrcAltText}
+                                variant='contained'
+                                imageSrc={props.service.imageSrc} height={352}
+                                ctaButtonText={props.service.ctaButtonText}
+                                ctaButtonLink={!props.hideCtaButton ? props.service.ctaButtonLink : undefined}
+                            />
+                        </Grid>
+                    <Tooltip title={<Typography variant='subtitle1' style={{fontWeight:"normal"}}>Click to Learn More</Typography>}>
+                            <Grid item container justifyContent='center'
+                                  style={{marginTop: "16px", marginBottom: "16px"}}>
+                                <Button variant='text' color='secondary' href={props.service.learnMoreLink}><Typography variant='body2' align='center'>{props.service.contentTitle}</Typography></Button>
+                            </Grid>
+                    </Tooltip>
                     <Grid item>
                         <Typography variant='body1' align='center'
                                     style={{marginBottom: "48px"}}>{props.service.contentText}</Typography>
@@ -93,28 +97,28 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                                     position: "absolute",
                                     left: 16,
                                     height: "100%",
-                                    zIndex:"1000",
+                                    zIndex: "1000",
                                     pointerEvents: 'none'
                                     // opacity: 0
                                 }}
-                                >
+                            >
                                 <ArrowLeft/>
                             </Grid>
                         }
-                        <Grid  xs={10} item container>
+                        <Grid xs={10} item container>
                             <Grid
-                              direction="column"
-                              // justifyContent='flex-start'
-                              alignContent={isOverflow ? 'flex-start':'center'}
-                              ref={ref}
-                              style={{
-                                  paddingTop:TransformHWTheme.spacing(2),
-                                  overflowY: "hidden",
-                                  overflowX: "scroll",
-                                  maxHeight: "120px",
-                                  position: "relative",
-                                  // backgroundColor: "red"
-                              }}
+                                direction="column"
+                                // justifyContent='flex-start'
+                                alignContent={isOverflow ? 'flex-start' : 'center'}
+                                ref={ref}
+                                style={{
+                                    paddingTop: TransformHWTheme.spacing(2),
+                                    overflowY: "hidden",
+                                    overflowX: "scroll",
+                                    maxHeight: "120px",
+                                    position: "relative",
+                                    // backgroundColor: "red"
+                                }}
                                 container
                                 item
                             >
@@ -170,7 +174,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                                 position: "absolute",
                                 right: 16,
                                 height: "100%",
-                                zIndex:"1000",
+                                zIndex: "1000",
                                 pointerEvents: 'none'
                                 // opacity: 0
                             }}

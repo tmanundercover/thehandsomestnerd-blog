@@ -7,6 +7,19 @@ import PopupState, {bindPopover} from "material-ui-popup-state";
 import {bindTrigger} from "material-ui-popup-state";
 import {ArrowDropDown} from "@material-ui/icons";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
+import {makeStyles, Theme} from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles((theme: Theme) => ({
+    hover: {
+        "&:hover": {
+            backgroundColor: 'rgba(16,43,136, 0.04)',
+            "& .MuiTypography-root": {
+                color: "#2828d3"
+            }
+        }
+    }
+}))
 
 interface FilteredMenuItemsPopupProps {
     menuGroup: SanityMenuGroup
@@ -14,14 +27,17 @@ interface FilteredMenuItemsPopupProps {
 }
 
 const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menuGroup, bgColor}) => {
-    return (<PopupState variant="popover" popupId={menuGroup.menuGroupTitle?.toLowerCase().replace(" ","-")}>
+    const classes = useStyles(TransformHWTheme)
+
+    return (<PopupState variant="popover" popupId={menuGroup.menuGroupTitle?.toLowerCase().replace(" ", "-")}>
         {(popupState) => {
-            const handleClose = (e:any)=>{
+            const handleClose = (e: any) => {
                 // e.stopPropagation()
                 popupState.close()
             }
             return <Grid item container style={{height: "100%"}}>
                 <Button
+                    className={classes.hover}
                     {...bindTrigger(popupState)}
                     color={"secondary"}
                     style={{

@@ -60,7 +60,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     <Grid container item>
                         <Grid item container className={classes.contentBullets} spacing={3}>
                             {props.sectionData.contentBullets.map((reason: string) => {
-                                return <ResponsiveBullet key={uuidv4()} text={reason} color='secondary'/>
+                                return <ResponsiveBullet key={uuidv4()} text={reason} bulletColor='secondary'/>
                             })}
                         </Grid>
                     </Grid>

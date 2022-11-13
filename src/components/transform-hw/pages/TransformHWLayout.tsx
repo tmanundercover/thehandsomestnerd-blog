@@ -54,7 +54,7 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     }, [hideOnScroll])
 
     const PageLayout = () => {
-        return <Grid container direction='column' className={classes.root}>
+        return <Grid container className={classes.root}>
             <Grid container item>
                 <BlockContentLayoutContainer
                     isOpaque={hideOnScroll}
@@ -63,19 +63,22 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
             </Grid>
             <Grid container item
                   alignContent='center'
-                  alignItems='stretch'
+                  alignItems='center'
                   style={{
                       backgroundColor: "white",
                       position: "static",
                       bottom: 0,
-                      padding: transformHWTheme.spacing(1)
+                      padding: transformHWTheme.spacing(1,3, 1.5)
                   }}
+                // xs={11}
                   justifyContent='space-between'>
-                <Grid item xs={8} container alignContent='center' style={{paddingTop: transformHWTheme.spacing(.75)}}>
-                    <Link href='https://thehandsomestnerd.com' color='textPrimary' variant='subtitle2'>© 2022
+                <Grid item xs={8} >
+                    <Grid item>
+                    <Link gutterBottom href='https://thehandsomestnerd.com' color='textPrimary' variant='subtitle2'>© 2022
                         TheHandsomestNerd, LLC.</Link>
+                    </Grid>
                 </Grid>
-                <Grid item justifyContent='flex-end' xs={4} container alignContent='center'>
+                <Grid item justifyContent='flex-end' xs={4} container alignContent='center' style={{paddingTop:"4px"}}>
                     <PsychologyTodaySeal/>
                 </Grid>
             </Grid>

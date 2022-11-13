@@ -6,6 +6,8 @@ import TransformHWLayout from "./components/transform-hw/pages/TransformHWLayout
 import {QueryClient, QueryClientProvider} from 'react-query';
 import TransformHWTheme from "./theme/transform-hw/TransformHWTheme";
 import FourOhFour from "./components/transform-hw/pages/error-page/FourOhFour";
+import SnackbarContext from "./components/snackbar-context/SnackbarContext";
+import SnackbarProvider from "./components/snackbar-context/SnackbarProvider";
 
 export enum RoutesEnum {
     TRANSFORM_HW = "/transformative-healing-and-wellness/:pageSlug",
@@ -21,20 +23,21 @@ function App() {
     // }, [])
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <BrowserRouter>
-                <Grid container item direction="column" alignItems="center"
-                      style={{backgroundColor: TransformHWTheme.palette.background.default, overflow: "scroll"}}>
-                    <Grid item>
-                        <Routes>
-                            <Route path={RoutesEnum.TRANSFORM_HW} element={<TransformHWLayout/>}/>
-                            <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
-                            <Route path={"/*"} element={<Navigate to={'/transformative-healing-and-wellness/coming-soon'} />}/>
-                        </Routes>
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                    <Grid container item direction="column" alignItems="center"
+                          style={{backgroundColor: TransformHWTheme.palette.background.default, overflow: "scroll"}}>
+                        <Grid item>
+                            <Routes>
+                                <Route path={RoutesEnum.TRANSFORM_HW} element={<TransformHWLayout/>}/>
+                                <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
+                                <Route path={"/*"}
+                                       element={<Navigate to={'/transformative-healing-and-wellness/coming-soon'}/>}/>
+                            </Routes>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </BrowserRouter>
-        </QueryClientProvider>
+                </BrowserRouter>
+            </QueryClientProvider>
     )
 }
 

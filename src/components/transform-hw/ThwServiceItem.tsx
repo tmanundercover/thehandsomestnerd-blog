@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, Grid, Link, Tooltip, Typography, useMediaQuery} from '@material-ui/core'
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
@@ -11,6 +11,7 @@ import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {useIsOverflow} from "../../utils/useIsOverflow";
 import {ArrowLeft, ArrowRight} from "@material-ui/icons";
+import SnackbarContext from "../snackbar-context/SnackbarContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -29,7 +30,10 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     const [hasOverflow, setHasOverflow] = React.useState<boolean>()
 
 
+
+
     const mdDown = mediaQueries.useMdDown()
+    const smDown = mediaQueries.useSmDown()
     const ref = React.useRef(null);
     const isOverflow = useIsOverflow(ref, (hasOverflow: boolean) => {
         if (hasOverflow) {
@@ -39,9 +43,33 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
             console.log("THis one does not have overflow")
         }
     });
+    const snackbarContext = useContext(SnackbarContext)
 
-    React.useEffect(() => {
-    }, [])
+   const TooltipWrap = (props:any) =>{
+        console.log("mdDown", mdDown)
+
+       const contents = <Grid container style={{maxWidth: "160px"}}>
+           <Typography
+               variant='subtitle1' color='textSecondary'>{props.title}</Typography>
+           <Typography
+               variant='subtitle2' color='textSecondary'>{props.description}</Typography>
+       </Grid>
+
+       if(!smDown){
+           return <Tooltip title={
+               contents
+           }>{props.children}</Tooltip>
+       } else {
+           return <Grid item onClick={()=>{
+               snackbarContext.openSnackbar && snackbarContext.openSnackbar(<Grid container style={{maxWidth: "160px"}}>
+                   {contents}
+               </Grid>)
+           }
+           }>{props.children}</Grid>
+       }
+
+
+   }
 
     return (
         <Grid key={uuidv4()} container item xs={12} sm={6} md={4} style={{marginBottom: TransformHWTheme.spacing(4)}}>
@@ -130,14 +158,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                                             xs={4}
                                             style={{minWidth: "60px"}}
                                         >
-                                            <Tooltip title={
-                                                <Grid container style={{maxWidth: "160px"}}>
-                                                    <Typography
-                                                        variant='subtitle1'>{serviceAmenity.title}</Typography>
-                                                    <Typography
-                                                        variant='subtitle2'>{serviceAmenity.description}</Typography>
-                                                </Grid>
-                                            }>
+                                            <TooltipWrap title={serviceAmenity.title} description={serviceAmenity.description}>
                                                 <Grid container item direction='column' justifyContent='center'
                                                       alignContent='center'
                                                       alignItems='center' style={{
@@ -162,7 +183,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                                                         >{serviceAmenity.title}</Typography>
                                                     </Grid>
                                                 </Grid>
-                                            </Tooltip>
+                                            </TooltipWrap>
                                         </Grid>
                                     })
                                 }

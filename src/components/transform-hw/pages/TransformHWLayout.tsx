@@ -11,6 +11,7 @@ import {useScrollPosition} from "../../../utils/useScrollPosition";
 import LoadingPage from "./loading-page/LoadingPage";
 import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
 import thwClient from "../thwClient";
+import SnackbarProvider from "../../snackbar-context/SnackbarProvider";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -109,7 +110,7 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
         {/*<MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]}*/}
         {/*                   title={homePage?.title ?? ''}*/}
         {/*                   description={homePage?.description ?? ''} imgSrc={homePage?.metaImage}/>*/}
-        <PageContents/>
+        <SnackbarProvider><PageContents/></SnackbarProvider>
     </MuiThemeProvider>)
 }
 

@@ -269,6 +269,11 @@ const TransformHWTheme = createTheme({
                 backgroundColor: 'rgba(16, 43, 136, .9)'
             }
         },
+        MuiSnackbarContent:{
+          root:{
+              backgroundColor: 'rgba(16, 43, 136, .9) !important'
+          }
+        },
         MuiFilledInput: {
             root: {
                 backgroundColor: "rgba(0,0,0,.3)",

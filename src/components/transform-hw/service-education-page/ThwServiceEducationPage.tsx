@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent, useContext, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Box, Divider, Grid, Typography} from '@material-ui/core'
 import {ServiceAmenityType, ThwServiceItemType} from "../../BlockContentTypes";
@@ -12,6 +12,7 @@ import {ImageWithButtonOverlayAligmentEnum} from "../../image-with-button-overla
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
 import OtherServices from "./OtherServices";
 import {v4 as uuidv4} from 'uuid'
+import SnackbarContext from "../../snackbar-context/SnackbarContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -38,6 +39,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
 
     const [serviceAmenitiesList, setServiceAmenitiesList] = useState<ServiceAmenityType[]>()
 
+    const snackbarContext = useContext(SnackbarContext)
     React.useEffect(() => {
         console.log("service data", props.serviceData)
     }, [])

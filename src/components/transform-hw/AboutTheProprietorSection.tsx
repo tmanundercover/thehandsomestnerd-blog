@@ -17,9 +17,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         minHeight: '521px',
         backgroundColor: theme.palette.background.paper,
-        paddingTop: theme.spacing(10),
         // paddingLeft: -theme.spacing(-5),
-        paddingBottom: theme.spacing(10)
     },
     contentBullets: {
         // border: "1px solid black"
@@ -33,15 +31,17 @@ interface IProps {
 }
 
 const ProprietorAtAGlance = () => {
+    const smDown = mediaQueries.useSmDown()
+
     return <Grid item container
                  justifyContent='center'
                  style={{
                      backgroundColor: transformHWTheme.palette.secondary.dark,
                      border: "1px solid white",
-                     margin: TransformHWTheme.spacing(0, .1, 0, .1),
-                     padding: TransformHWTheme.spacing(2, 0, 2, 0)
+                     margin: smDown?TransformHWTheme.spacing(0, 0, 0, 0):TransformHWTheme.spacing(2, 0, 0, 0),
+                     padding: TransformHWTheme.spacing(2, 0, smDown?6:2, 0)
                  }}
-                 spacing={3}
+                 spacing={6}
     >
         <Grid container item xs={11}>
             <Grid item container>
@@ -64,12 +64,15 @@ const ProprietorAtAGlance = () => {
             </Grid>
         </Grid>
 
-        <Grid item container xs={11} justifyContent='center'>
+        <Grid item container xs={11} justifyContent='center' style={{
+            // marginBottom: TransformHWTheme.spacing(5)
+        }}>
             <Grid item container style={{
                 WebkitMaskImage: `url(${mask})`,
                 maskImage: `url(${mask})`,
                 WebkitMaskRepeat: "none",
                 maskRepeat: "none",
+                opacity: .55555555555,
                 height: "100px",
                 width: "100px",
                 backgroundColor: "white",
@@ -110,8 +113,14 @@ const ProprietorAtAGlance = () => {
 const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
     const mdDown = mediaQueries.useSmDown()
+    const xsOnly = mediaQueries.useXsOnly()
+
+
     return (
-        <Grid container item className={classes.root} xs={11}>
+        <Grid container item className={classes.root} xs={xsOnly?12:11} style={xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
+            paddingBottom: TransformHWTheme.spacing(10),
+            paddingTop: TransformHWTheme.spacing(10),
+        }}>
             <Grid container item justifyContent='space-around'
             >
                 <Grid
@@ -133,6 +142,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         backgroundColor: "white",
                         marginBottom: TransformHWTheme.spacing(3)
                     }} container
+                          sm={8} md={12}
                           justifyContent='center'>
                         <ImageWIthButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText}
                                                 ctaButtonLink={props.sectionData.ctaButtonLink}
@@ -194,6 +204,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                 {mdDown && <Grid
                     item
                     xs={12}
+                    sm={8}
                     md={5}
                     lg={4}
                     container

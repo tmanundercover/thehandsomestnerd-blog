@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Collapse, createStyles, Divider, List, ListItem, ListItemText} from '@material-ui/core'
+import {Button, Collapse, createStyles, Divider, List, ListItem, ListItemText, MenuItemTypeMap} from '@material-ui/core'
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import {ExpandLess, ExpandMore} from "@material-ui/icons";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
@@ -13,6 +13,14 @@ const useStyles = makeStyles((theme: Theme) =>
         nested: {
             paddingLeft: theme.spacing(4),
         },
+        listItem: {
+            "&.MuiListItem-gutters" :{
+                paddingTop: 0,
+                paddingBottom: 0,
+                paddingLeft: 0,
+                paddingRight: 0
+            }
+        }
     }),
 );
 
@@ -43,18 +51,26 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                 paddingBottom: TransformHWTheme.spacing(2.25),
             }} onClick={handleClick}>
                 <ListItemText primary={menuGroup.menuGroupTitle}/>
-                {open ? <ExpandLess /> : <ExpandMore />}
+                {open ? <ExpandLess/> : <ExpandMore/>}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {
-                        menuGroup.links?.map((menuLink:any,index:number) => (
-                            <ListItem key={index} button style={{
+                        menuGroup.links?.map((menuLink: any, index: number) => (
+                            <ListItem href={menuLink.url} key={index} button className={ classes.listItem} style={{
+
+                            }}>
+                                <Button variant='text' href={menuLink.url} style={{
+
                                 paddingTop: TransformHWTheme.spacing(2.25),
                                 paddingLeft: TransformHWTheme.spacing(6),
                                 paddingBottom: TransformHWTheme.spacing(2.25),
-                            }}>
-                                <ListItemText primary={menuLink.displayText}/>
+                                    height: "100%",
+                                    margin:0
+                                }} fullWidth>
+
+                                    <ListItemText primary={menuLink.displayText}/>
+                                </Button>
                             </ListItem>
                         ))
                     }

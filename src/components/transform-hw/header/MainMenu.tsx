@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
+import {Button, createStyles, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
 import {Close, Menu} from "@material-ui/icons";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import Logo from "../logo/Logo";
@@ -8,7 +8,18 @@ import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 
-export const useStyles = makeStyles((theme: Theme) => ({}))
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        listItem: {
+            "&.MuiListItem-gutters": {
+                paddingTop: 0,
+                paddingBottom: 0,
+                paddingLeft: 0,
+                paddingRight: 0
+            }
+        }
+    }),
+);
 
 interface MainMenuProps {
     menu: SanityMenuContainer
@@ -25,15 +36,15 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
         setIsDrawerOpen(open);
     };
 
-
+    const classes = useStyles(TransformHWTheme)
     const list = (anchor: MainMenuAnchorType) => (
         <Grid item
-            role="presentation"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
+              role="presentation"
+              onClick={toggleDrawer(anchor, false)}
+              onKeyDown={toggleDrawer(anchor, false)}
         >
             <Divider/>
-            {menu?.subMenus?.map((subMenu:any, index: number) => {
+            {menu?.subMenus?.map((subMenu: any, index: number) => {
                 switch (subMenu._type) {
                     case 'menuGroup':
                         const menuGroup: SanityMenuGroup = subMenu
@@ -42,11 +53,17 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                     default:
                         const menuItem: SanityMenuItem = subMenu
                         return <List style={{padding: 0}} key={menuItem.displayText}>
-                            <ListItem button style={{
-                                paddingTop: TransformHWTheme.spacing(2.25),
-                                paddingBottom: TransformHWTheme.spacing(2.25),
-                            }}>
-                                <ListItemText primary={menuItem.displayText}/>
+                            <ListItem href={menuItem.url ?? ""} className={classes.listItem} button>
+                                <Button variant='text' href={menuItem.url} style={{
+                                    paddingTop: TransformHWTheme.spacing(2.25),
+                                    paddingLeft: TransformHWTheme.spacing(2),
+                                    paddingBottom: TransformHWTheme.spacing(2.25),
+                                    height: "100%",
+                                    margin: 0
+                                }} fullWidth>
+                                    <ListItemText primary={menuItem.displayText}/>
+                                </Button>
+
                             </ListItem>
                             <Divider/>
                         </List>

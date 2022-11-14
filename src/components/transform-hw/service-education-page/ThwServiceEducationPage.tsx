@@ -207,9 +207,10 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                 <Grid container item alignItems="center" justifyContent="center"
                       style={{margin: TransformHWTheme.spacing(8,0,6)}}>
                     <LoadingButton
+                        width={250}
                         href={props.serviceData.ctaButtonLink}
                         color="secondary" variant="contained">
-                        <Typography variant='button' noWrap>Book
+                        <Typography variant='button' align='center'>Book
                         a {props.serviceData.contentTitle} Appointment</Typography>
                     </LoadingButton>
                 </Grid>

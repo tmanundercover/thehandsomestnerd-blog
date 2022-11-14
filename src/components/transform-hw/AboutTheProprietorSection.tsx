@@ -97,7 +97,7 @@ const ProprietorAtAGlance = () => {
                 )}
             </Grid>
         </Grid>
-        <Grid container item>
+        <Grid item>
             <LoadingButton href={'/transformative-healing-and-wellness/therapeutic-services'} color={"primary"}
                            variant='outlined'>
                 Learn More

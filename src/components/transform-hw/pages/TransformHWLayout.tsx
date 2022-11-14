@@ -31,7 +31,7 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     const {isLoading, isError, data, isRefetching} = thwClient.useFetchPageBySlugQuery()
 
     React.useEffect(() => {
-        console.log("homepage data",data)
+        console.log("homepage data", data)
         if (data)
             setHomePage(data[0])
     }, [data])
@@ -69,17 +69,23 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
                       backgroundColor: "white",
                       position: "static",
                       bottom: 0,
-                      padding: transformHWTheme.spacing(1,3, 1.5)
+                      padding: transformHWTheme.spacing(1, 3, 1.5)
                   }}
                 // xs={11}
                   justifyContent='space-between'>
-                <Grid item xs={8} >
+                <Grid item xs={8}>
                     <Grid item>
-                    <Link gutterBottom href='https://thehandsomestnerd.com' color='textPrimary' variant='subtitle2'>© 2022
-                        TheHandsomestNerd, LLC.</Link>
+                        <Link
+                            gutterBottom
+                            href='https://thehandsomestnerd.com'
+                            color='textPrimary'
+                            variant='subtitle2'>
+                            © Copyright 2022
+                            TheHandsomestNerd, LLC. All Rights Reserved.
+                        </Link>
                     </Grid>
                 </Grid>
-                <Grid item justifyContent='flex-end' xs={4} container alignContent='center' style={{paddingTop:"4px"}}>
+                <Grid item justifyContent='flex-end' xs={4} container alignContent='center' style={{paddingTop: "4px"}}>
                     <PsychologyTodaySeal/>
                 </Grid>
             </Grid>

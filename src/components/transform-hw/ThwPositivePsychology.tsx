@@ -45,7 +45,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                         <Grid item>
                             <Typography variant='h4'
                                         color='secondary'
-                                        display='inline' noWrap>{props.sectionData.contentTitle}</Typography>
+                                        display='inline' >{props.sectionData.contentTitle}</Typography>
                         </Grid>
                         <Grid item>
                             <Typography variant='h3'

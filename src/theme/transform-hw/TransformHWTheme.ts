@@ -271,6 +271,7 @@ const TransformHWTheme = createTheme({
         },
         MuiSnackbarContent:{
           root:{
+              marginTop: "100px",
               backgroundColor: 'rgba(16, 43, 136, .9) !important'
           }
         },

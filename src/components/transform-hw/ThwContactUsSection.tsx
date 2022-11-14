@@ -12,12 +12,13 @@ import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
+import {Parallax} from "react-parallax";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '100vw',
         // minHeight: '100vh',
-        backgroundColor: '#1f1f1f',
+        // backgroundColor: '#1f1f1f',
         color: "#FAFAFA",
     },
     header: {
@@ -175,14 +176,14 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     }
 
     return (
+        <Parallax blur={1} bgImage={urlFor(props.sectionData.bgImageSrc).url() ?? undefined} bgImageAlt="the cat"
+    strength={600}
+        >
+
+
         <Grid container item className={classes.root} style={{
-            backgroundSize: "cover",
             position: "relative",
             minHeight: "145px",
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat',
-            backgroundImage: `url(${urlFor(props.sectionData.bgImageSrc).url()})`
         }}>
             <Grid container item
                   className={clsx(globalClasses.fullSectionOverlay)}/>
@@ -392,7 +393,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid></Parallax>
     )
 }
 

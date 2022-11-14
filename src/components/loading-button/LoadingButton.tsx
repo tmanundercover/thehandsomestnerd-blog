@@ -11,7 +11,7 @@ type CssProps = {
 export const useStyles = makeStyles((theme) => ({
     root: {
         height: "100%",
-        width: (props: any) => props.width ? `${props.width}px`: 'unset',
+        width: (props: any) => props.width ? `${props.width}px` : 'unset',
         borderRadius: "0 5px 5px 0",
         borderTopLeftRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
@@ -75,10 +75,10 @@ interface LoadingButtonProps {
 
 const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = (props) => {
     const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width})
-    const getProgressContrastColor = ()=>{
+    const getProgressContrastColor = () => {
         switch (props.color) {
             case 'primary':
-                return  TransformHWTheme.palette.primary.main
+                return TransformHWTheme.palette.primary.main
             case 'secondary':
                 return TransformHWTheme.palette.secondary.main
             default:
@@ -86,27 +86,24 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
         }
     }
     return (
-        <Grid container style={{height:"60px"}} alignContent='center' alignItems='center' justifyContent='center'>
-            <Grid item>
-
-        <Button
-            href={props.href}
-            disabled={props.disabled}
-            onClick={props.clickHandler}
-            className={classes.root}
-            fullWidth={!props.width}
-            color={props.color ?? 'primary'}
-            variant={props.variant ?? 'contained'}>
-            {
-                props.isLoading ?
-                    <CircularProgress style={{
-                        color: TransformHWTheme.palette.getContrastText(getProgressContrastColor()),
-                        width: "22px",
-                        height: "22px"
-                    }}/>
-                    : props.children
-            }</Button>
-            </Grid>
+        <Grid item style={{minHeight: "60px", height:"100%", maxWidth:"max-content"}}>
+            <Button
+                    href={props.href}
+                    disabled={props.disabled}
+                    onClick={props.clickHandler}
+                    className={classes.root}
+                    fullWidth={!props.width}
+                    color={props.color ?? 'primary'}
+                    variant={props.variant ?? 'contained'}>
+                    {
+                        props.isLoading ?
+                            <CircularProgress style={{
+                                color: TransformHWTheme.palette.getContrastText(getProgressContrastColor()),
+                                width: "22px",
+                                height: "22px"
+                            }}/>
+                            : props.children
+                    }</Button>
         </Grid>
 
     )

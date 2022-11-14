@@ -57,12 +57,20 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
 
        if(!smDown){
            return <Tooltip title={
-               contents
+               <Grid container style={{maxWidth: "160px"}}>
+                   <Typography
+                       variant='subtitle1' color='textSecondary'>{props.title}</Typography>
+                   <Typography
+                       variant='subtitle2' color='textSecondary'>{props.description}</Typography>
+               </Grid>
            }>{props.children}</Tooltip>
        } else {
            return <Grid item onClick={()=>{
-               snackbarContext.openSnackbar && snackbarContext.openSnackbar(<Grid container style={{maxWidth: "160px"}}>
-                   {contents}
+               snackbarContext.openSnackbar && snackbarContext.openSnackbar(<Grid container style={{minWidth: "160px"}}>
+                       <Typography
+                           variant='body2' color='textSecondary' gutterBottom>{props.title}</Typography>
+                       <Typography
+                           variant='body1' color='textSecondary' style={{fontWeight:"normal", borderLeft: "1px solid whitesmoke", paddingLeft: TransformHWTheme.spacing(1)}}>{props.description}</Typography>
                </Grid>)
            }
            }>{props.children}</Grid>

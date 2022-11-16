@@ -20,11 +20,14 @@ export declare type SanityColdLead = {
 }
 
 export type SanityTransformHwHomePage = {
+  _type?:string
   title?: string
   description?: string
   imgSrc?: SanityImageSource
   metaImage?: SanityImageSource
   slug?: any
+  headerMenuRef?: SanityRef
+  footerMenuRef?: SanityRef
   pageContent?: any
   structuredData?: any
   address?: string

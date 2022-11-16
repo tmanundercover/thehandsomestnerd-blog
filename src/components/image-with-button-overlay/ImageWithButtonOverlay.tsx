@@ -6,7 +6,6 @@ import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
-import {Navigate} from "react-router-dom";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     contentBullets: {
@@ -76,7 +75,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 left: 0,
                 paddingRight: "32px"
             }} justifyContent={getButtonAlignment()}>
-                {props.ctaButtonLink && <Button variant={props.variant ? props.variant : 'outlined'}
+                {props.ctaButtonLink && <Button component='div' variant={props.variant ? props.variant : 'outlined'}
                          color={props.buttonColor ? props.buttonColor : 'primary'}
                          href={props.ctaButtonLink ?? ''}
                          style={{

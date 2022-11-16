@@ -23,13 +23,13 @@ export default {
     {
       name: 'contentText',
       title: 'Content Text',
-      type: 'string',
+      type: 'text',
     },
     {
       name: 'contentBullets',
       title: 'Content Bullets',
       type: 'array',
-      of:[{type: 'string'}]
+      of:[{type: 'text'}]
     },
     {
       name: 'imageSrc',

@@ -45,18 +45,6 @@ const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = 
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()
-    // const [realizedLinks, setRealizedLinks] = useState<SanityMenuItem[]>()
-
-    // useEffect(() => {
-    //     const realizedLinkPromises = menuGroupContents?.links?.map(async (linkRef) => {
-    //         return await cmsClient.fetchRef(linkRef)
-    //     }) ?? []
-    //
-    //     Promise.all(realizedLinkPromises).then((realizedLinks) => {
-    //         setRealizedLinks(realizedLinks)
-    //     })
-    //
-    // }, [menuGroupContents])
 
     useEffect(() => {
         if (menuGroup._type === "menuGroup") {

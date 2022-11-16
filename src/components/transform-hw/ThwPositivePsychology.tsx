@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
@@ -7,6 +7,8 @@ import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {v4 as uuidv4} from 'uuid'
 import mediaQueries from "../../utils/mediaQueries";
 import ResponsiveBullet from "../ResponsiveBullet";
+import PageContext from "../page-context/PageContext";
+import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,7 +30,10 @@ interface IProps {
 
 const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
-    const mdUp = mediaQueries.useMdUp()
+
+    const pageContext = useContext(PageContext)
+    const mediaQueriesContext = useContext(MediaQueriesContext)
+
 
     return (
         <Grid container item className={classes.root} xs={11}>
@@ -64,19 +69,19 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                             })}
                         </Grid>
                     </Grid>
-                    <Grid container item>
+                    {props.sectionData.ctaButtonLink && props.sectionData.ctaButtonText && <Grid container item>
                         <Button variant='contained' color='secondary'
                                 style={{backgroundColor: TransformHWTheme.palette.secondary.main}}
                                 href={props.sectionData.ctaButtonLink ?? ''}>
                             {props.sectionData.ctaButtonText}
                         </Button>
-                    </Grid>
+                    </Grid>}
                 </Grid>
                 <Grid item xs={12} md={5} lg={4} container justifyContent='flex-end' alignContent='center' alignItems='center'>
                     <Grid item style={{overflow: "hidden"}}>
                         <img alt={props.sectionData.imageSrcAltText}
 
-                             src={urlFor(props.sectionData.imageSrc).width(mdUp ? 370 : 900).height(465).url() ?? ''}/>
+                             src={urlFor(props.sectionData.imageSrc).width(mediaQueriesContext.mdUp ? 370 : 900).height(465).url() ?? ''}/>
 
                     </Grid>
                 </Grid>

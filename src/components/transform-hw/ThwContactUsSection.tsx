@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useState} from 'react'
+import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid, InputAdornment, Link, TextField, Typography, withStyles} from "@material-ui/core";
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
@@ -7,12 +7,12 @@ import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "./pages/Styles";
-import mediaQueries from "../../utils/mediaQueries";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
 import {Parallax} from "react-parallax";
+import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -117,7 +117,8 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
 
     const globalClasses = useThwStyles({})
-    const smDown = mediaQueries.useSmDown()
+    const mediaQueriesContext = useContext(MediaQueriesContext)
+
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()
@@ -125,16 +126,15 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const [leadMessage, setLeadMessage] = useState<string>()
     const [alignment, setAlignment] = useState<any>('right')
     const [justifyContent, setJustifyContent] = useState<any>('flex-end')
-
     useEffect(() => {
-        if (smDown) {
+        if (mediaQueriesContext.smDown) {
             setAlignment('center')
             setJustifyContent('center')
         } else {
             setAlignment('right')
             setJustifyContent('flex-end')
         }
-    },[smDown])
+    },[mediaQueriesContext.smDown])
 
     const {isLoading, isError, data, refetch, isRefetching} = useQuery(
         ['submitContactUsForm'],
@@ -187,8 +187,8 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         }}>
             <Grid container item
                   className={clsx(globalClasses.fullSectionOverlay)}/>
-            <Grid spacing={smDown ? 0 : 4} container item style={{
-                padding: TransformHWTheme.spacing(0, smDown?2:8, 6)
+            <Grid spacing={mediaQueriesContext.smDown ? 0 : 4} container item style={{
+                padding: TransformHWTheme.spacing(0, mediaQueriesContext.smDown?2:8, 6)
             }} justifyContent={"center"}>
                 <Grid container item md={6}>
                     <Grid container direction="column" item className={classes.lhsContainer}

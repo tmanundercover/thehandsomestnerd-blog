@@ -36,7 +36,7 @@ export default {
     {
       name: 'lhsContentText',
       title: 'Left Side Content Text',
-      type: 'string'
+      type: 'text'
     },
     {
       name: 'phone',

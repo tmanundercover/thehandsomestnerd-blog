@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Chip, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
@@ -10,8 +10,9 @@ import PsychologyTodaySeal from "./psychology-today-stamp/PsychologyToday";
 import LoadingButton from "../loading-button/LoadingButton";
 import ResponsiveBullet from "../ResponsiveBullet";
 import {FiberManualRecord} from "@material-ui/icons";
-import mediaQueries from "../../utils/mediaQueries";
 import mask from "./PsychIcon.png"
+import ColoredPng from "../colored-png/ColoredPng";
+import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -31,17 +32,17 @@ interface IProps {
 }
 
 const ProprietorAtAGlance = () => {
-    const smDown = mediaQueries.useSmDown()
-
+    const mediaQueriesContext = useContext(MediaQueriesContext)
     return <Grid item container
                  justifyContent='center'
                  style={{
                      backgroundColor: transformHWTheme.palette.secondary.dark,
-                     border: "1px solid white",
-                     margin: smDown?TransformHWTheme.spacing(0, 0, 0, 0):TransformHWTheme.spacing(2, 0, 0, 0),
-                     padding: TransformHWTheme.spacing(2, 0, smDown?6:2, 0)
+                     border: mediaQueriesContext.smDown?"0px solid transparent":"1px solid white",
+                     margin: mediaQueriesContext.smDown?TransformHWTheme.spacing(0, 0, 0, 0):TransformHWTheme.spacing(2, 0, 0, 0),
+                     padding: TransformHWTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
                  }}
                  spacing={6}
+                 xs={12}
     >
         <Grid container item xs={11}>
             <Grid item container>
@@ -51,8 +52,9 @@ const ProprietorAtAGlance = () => {
             <Grid item container alignItems='flex-start' alignContent='flex-start'>
 
                 {["Individual, Couples, or Group", "Clinical Supervision", "Solution Focused Training"]
-                    .map(term =>
+                    .map((term:string, index:number) =>
                         <ResponsiveBullet
+                            key={index}
                             notResponsive
                             bullet={<FiberManualRecord color='primary' style={{fontSize: "8px"}}/>}
                             condensed
@@ -67,24 +69,7 @@ const ProprietorAtAGlance = () => {
         <Grid item container xs={11} justifyContent='center' style={{
             // marginBottom: TransformHWTheme.spacing(5)
         }}>
-            <Grid item container style={{
-                WebkitMaskImage: `url(${mask})`,
-                maskImage: `url(${mask})`,
-                WebkitMaskRepeat: "none",
-                maskRepeat: "none",
-                opacity: .55555555555,
-                height: "100px",
-                width: "100px",
-                backgroundColor: "white",
-                WebkitMaskSize: "cover",
-                maskSize: "cover",
-                marginBottom: TransformHWTheme.spacing(2)
-                // backgroundImage: `url(${PsychIcon})`,
-                // backgroundSize: "cover",
-                // backgroundRepeat: "no-repeat"
-            }}>
-                {/*<img alt={"how"} src={PsychIcon} width={300} style={{backgroundColor: "red"}}/>*/}
-            </Grid>
+            <ColoredPng maskUrl={mask} color={"white"} />
             <Grid item container justifyContent='center'>
 
                 <Typography variant='h6' color='primary' gutterBottom align='center'>Modalities</Typography>
@@ -92,8 +77,8 @@ const ProprietorAtAGlance = () => {
             <Grid item container spacing={1} justifyContent='center'>
 
                 {["Positive Psychology", "Cognitive Behavioral Therapy (CBT)", "Financial Mental Wellness", "Mindfulness", "Solution Focused",
-                    "Psychodynamic Therapy", "Humanistic Therapy (Person Centered)", "Integrative/holistic Therapy"].map((modality) =>
-                    <Grid item>
+                    "Psychodynamic Therapy", "Humanistic Therapy (Person Centered)", "Integrative/holistic Therapy"].map((modality,index) =>
+                    <Grid item key={index}>
                         <Chip variant={'default'} color='primary'
                               label={<Typography variant='inherit' color='secondary'>{modality}</Typography>}/>
                     </Grid>
@@ -112,12 +97,10 @@ const ProprietorAtAGlance = () => {
 
 const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
-    const mdDown = mediaQueries.useSmDown()
-    const xsOnly = mediaQueries.useXsOnly()
-
+    const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
-        <Grid container item className={classes.root} xs={xsOnly?12:11} style={xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
+        <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly?12:11} style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
             paddingBottom: TransformHWTheme.spacing(10),
             paddingTop: TransformHWTheme.spacing(10),
         }}>
@@ -152,7 +135,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                                 isResponsive
                         />
                     </Grid>
-                    {!mdDown && <Grid container item><ProprietorAtAGlance/></Grid>}
+                    {!mediaQueriesContext.mdDown && <Grid container item><ProprietorAtAGlance/></Grid>}
                 </Grid>
                 <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between' spacing={2}>
                     <Grid container item style={{minHeight: "549px"}} direction='column' spacing={4}>
@@ -183,8 +166,8 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                 >{props.sectionData.contentTitle}</Typography>
 
                             </Grid>
-                            {props.sectionData.contentText.map((text) => {
-                                return <Grid item container>
+                            {props.sectionData.contentText.map((text, index:number) => {
+                                return <Grid item container key={index}>
                                     <Typography variant='body1'
                                                 color='secondary' gutterBottom>{text}</Typography>
                                 </Grid>
@@ -201,7 +184,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-                {mdDown && <Grid
+                {mediaQueriesContext.mdDown && <Grid
                     item
                     xs={12}
                     sm={8}

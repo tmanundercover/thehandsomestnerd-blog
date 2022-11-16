@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
@@ -8,6 +8,8 @@ import {useThwStyles} from "./pages/Styles";
 import clsx from "clsx";
 import mediaQueries from "../../utils/mediaQueries";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import PageContext from "../page-context/PageContext";
+import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,8 +31,7 @@ interface IProps {
 const ThwMottoSection: FunctionComponent<IProps> = (props) => {
     const globalClasses = useThwStyles(TransformHWTheme)
     const classes = useStyles()
-
-    const smDown = mediaQueries.useSmDown()
+    const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
         <Parallax blur={1} bgImage={urlFor(props.sectionData.parallaxImage).url() ?? undefined} bgImageAlt="the cat"
@@ -46,7 +47,7 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
                     <Typography variant='subtitle1' style={{color: '#FAFAFA'}} align='center'>
                         {props.sectionData.contentSuperTitle}
                     </Typography>
-                    <Typography variant={smDown ? 'h3' : 'h2'} style={{color: '#FAFAFA'}} align='center'>
+                    <Typography variant={mediaQueriesContext.smDown ? 'h3' : 'h2'} style={{color: '#FAFAFA'}} align='center'>
                         {props.sectionData.contentText}
                     </Typography>
                 </Grid>

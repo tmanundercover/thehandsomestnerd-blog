@@ -1,35 +1,36 @@
-import {useMediaQuery} from "@material-ui/core";
-import TransformHWTheme from "../theme/transform-hw/TransformHWTheme";
+import {useMediaQuery, useTheme} from "@material-ui/core";
 
-const smDown = TransformHWTheme.breakpoints.down('sm')
-const xsDown = TransformHWTheme.breakpoints.down('xs')
-const mdUp = TransformHWTheme.breakpoints.up('md')
-const mdDown = TransformHWTheme.breakpoints.down('md')
-const xsOnly = TransformHWTheme.breakpoints.only('xs')
 
-const useSmDown = ()=>{
+const useSmDown = () => {
+    const theme = useTheme()
+    const smDown = theme.breakpoints.down('sm')
+
     const smDownQuery = useMediaQuery(smDown)
     return smDownQuery
 }
 
-const useXsDown = ()=>{
-    const xsDownQuery = useMediaQuery(xsDown)
-    return xsDownQuery
+const useXsDown = () => {
+    const theme = useTheme()
+    const xsDown = theme.breakpoints.down('xs')
+    return useMediaQuery(xsDown)
 }
 
-const useMdDown = ()=>{
-    const mdDownQuery = useMediaQuery(mdDown)
-    return mdDownQuery
+const useMdDown = () => {
+    const theme = useTheme()
+    const mdDown = theme.breakpoints.down('md')
+    return useMediaQuery(mdDown)
 }
 
-const useMdUp = ()=>{
-    const mdUpQuery = useMediaQuery(mdUp)
-    return mdUpQuery
+const useMdUp = () => {
+    const theme = useTheme()
+    const mdUp = theme.breakpoints.up('md')
+    return useMediaQuery(mdUp)
 }
 
-const useXsOnly = ()=>{
-    const xsQuery = useMediaQuery(xsOnly)
-    return xsQuery
+const useXsOnly = () => {
+    const theme = useTheme()
+    const xsOnly = theme.breakpoints.only('xs')
+    return useMediaQuery(xsOnly)
 }
 
 export default {useSmDown, useXsDown, useMdUp, useMdDown, useXsOnly}

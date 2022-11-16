@@ -1,26 +1,45 @@
 import React, {Ref} from "react";
 
-export const useIsOverflow = (ref:any, callback: (hasOverflow:boolean)=> any) => {
+export const useIsOverflow = (ref: any, callback: (hasOverflow?: boolean) => any) => {
     const [isOverflow, setIsOverflow] = React.useState<boolean | undefined>(undefined);
 
+    React.useEffect(() => {
+        if (callback) callback(isOverflow);
+        }, [isOverflow])
+
+
     React.useLayoutEffect(() => {
-        const { current } = ref;
+        const {current} = ref;
 
-        const trigger = () => {
-            const hasOverflow = current.scrollWidth > current.clientWidth;
+        const trigger = (entries?: any[]) => {
 
-            setIsOverflow(hasOverflow);
+            setIsOverflow((state) => {
+                const hasOverflow = entries ? entries[0].scrollWidth > entries[0].clientWidth : current.scrollWidth > current.clientWidth;
+                let newState = state
 
-            if (callback) callback(hasOverflow);
+                if (hasOverflow !== newState) {
+                    newState = hasOverflow
+                }
+
+                return newState
+            });
         };
 
+        let construct: ResizeObserver
         if (current) {
-            if ('ResizeObserver' in window) {
-                new ResizeObserver(trigger).observe(current);
-            }
+            // if ('ResizeObserver' in window) {
+            //     construct = new ResizeObserver(trigger)
+            //     construct.observe(current);
+            // }
             trigger();
         }
-    }, [callback, ref]);
+
+        return () => {
+            if (!!construct) {
+                construct.disconnect()
+            }
+        }
+    }, [ref]);
 
     return isOverflow;
 };

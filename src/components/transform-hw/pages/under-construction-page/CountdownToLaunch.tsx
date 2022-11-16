@@ -21,7 +21,7 @@ interface IProps {
 
 const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
-    const Completionist = () => <span>Site should be launched!</span>
+    const Completionist = () => <span>Congratulations! If your site is not already here please contact hello@thehandsomestnerd.com launched!</span>
 
     const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
 

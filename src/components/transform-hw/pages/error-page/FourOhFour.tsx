@@ -1,13 +1,12 @@
-import {Grid, Typography, useMediaQuery} from '@material-ui/core'
-import React, {FunctionComponent} from 'react'
+import {Grid, Typography} from '@material-ui/core'
+import React, {FunctionComponent, useContext} from 'react'
 import TransformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../../loading-button/LoadingButton";
-import MediaQueries from "../../../../utils/mediaQueries";
 import {useThwStyles} from "../Styles";
 import {useNavigate} from "react-router-dom";
-import mediaQueries from "../../../../utils/mediaQueries";
+import MediaQueriesContext from "../../../media-queries-context/MediaQueriesContext";
 
 
 export type AppLayoutProps = {}
@@ -15,24 +14,24 @@ export type AppLayoutProps = {}
 const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useThwStyles({bgImage: speakingWithTherapist})
     const history = useNavigate()
-    const xsDown = mediaQueries.useXsDown()
-    const smDown = mediaQueries.useSmDown()
+
+    const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
-        <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
+        <Grid container className={clsx(mediaQueriesContext.xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
               style={{position: "relative"}}>
-            <Grid container item className={xsDown ? classes.fullscreenPlus : classes.fullscreen}
+            <Grid container item className={mediaQueriesContext.xsDown ? classes.fullscreenPlus : classes.fullscreen}
                   style={{position: 'relative'}}>
                 <Grid container item style={{
                     position: "absolute",
                     bottom: 0,
                     height: '120px',
-                    backgroundImage: smDown ? `linear-gradient(180deg, transparent, rgba(111,111,111,1)` : 'transparent'
+                    backgroundImage: mediaQueriesContext.smDown ? `linear-gradient(180deg, transparent, rgba(111,111,111,1)` : 'transparent'
                 }}>
                 </Grid>
             </Grid>
             <Grid container item
-                  className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}>
+                  className={clsx(mediaQueriesContext.xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}>
             </Grid>
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
@@ -42,7 +41,7 @@ const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
                   }}
                   justifyContent='center' alignItems='center'>
                 <Grid container item xs={11} justifyContent='center'>
-                    <Typography align='center' color='primary' style={{fontSize: smDown?"150px":"250px", lineHeight:1, fontWeight: "bolder"}}>
+                    <Typography align='center' color='primary' style={{fontSize: mediaQueriesContext.smDown?"150px":"250px", lineHeight:1, fontWeight: "bolder"}}>
                         404</Typography>
                 </Grid>
                 <Grid container item xs={11} justifyContent='center'>

@@ -133,7 +133,7 @@ export type ThwServiceItemType = {
     benefitsOfServiceTitle:string
     benefitsOfServiceContents:string[]
     benefitsOfServiceBullets:string[]
-    serviceAmenities: ServiceAmenityTypeRef[]
+    serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
 }
 

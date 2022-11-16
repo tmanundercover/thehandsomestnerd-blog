@@ -1,4 +1,33 @@
-const HOMEPAGE = `
+const MENUGROUP = `
+          title,
+          _type,
+          slug,
+          menuGroupTitle,
+          "links":links[]->{
+            _type,
+            displayText,
+            url,
+            isOutlinedButton,
+            isContainedButton,
+          },
+          displayText,
+          url,
+          isOutlinedButton,
+          isContainedButton,
+`
+
+const MENUGROUPCONTAINER = `
+          title,
+          slug,
+          displayText,
+          "subMenus":subMenus[]->{
+            ${MENUGROUP}
+          },
+          logoImageSrc,
+          logoImageAltText
+`
+
+const HOMEPAGE = `_type,
           title,
           isUnderConstruction,
           releaseDate,
@@ -8,7 +37,18 @@ const HOMEPAGE = `
           phone,
           description,
           metaImage,
-          pageContent,
+          headerMenuRef->{
+             ${MENUGROUPCONTAINER}
+           },
+          footerMenuRef->{
+             ${MENUGROUPCONTAINER}
+          },
+          pageContent {
+            "content": content[]->{
+                ...,
+                "serviceAmenities": serviceAmenities[]->
+            }
+          },
           underConstructionPageRef,
           structuredData,
           facebook,
@@ -44,34 +84,7 @@ const HOMEPAGE = `
 //           "links": links[]->{title, displayText, url, isOutlinedButton, isContainedButton}
 // `
 
-const MENUGROUP = `
-          title,
-          _type,
-          slug,
-          menuGroupTitle,
-          "links":links[]->{
-            _type,
-            displayText,
-            url,
-            isOutlinedButton,
-            isContainedButton,
-          },
-          displayText,
-          url,
-          isOutlinedButton,
-          isContainedButton,
-`
 
-const MENUGROUPCONTAINER = `
-          title,
-          slug,
-          displayText,
-          "subMenus":subMenus[]->{
-            ${MENUGROUP}
-          },
-          logoImageSrc,
-          logoImageAltText
-`
 const SERVICE =
     `name,
         imageSrc,
@@ -92,8 +105,11 @@ const SERVICE =
         slug,`
 
 
+enum SANITY_TYPES_ENUM {
+    SERVICE="transformServiceItem"
+}
 
-const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP, SERVICE}
+const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP, SERVICE, SANITY_TYPES_ENUM}
 
 
 export default defaultObj

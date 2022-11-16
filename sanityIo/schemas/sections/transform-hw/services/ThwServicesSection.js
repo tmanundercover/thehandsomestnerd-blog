@@ -24,7 +24,7 @@ export default {
             name: 'contentTexts',
             title: 'Content Text',
             type: 'array',
-            of: [{type: 'string'}]
+            of: [{type: 'text'}]
         },
         {
             name: 'servicesList',

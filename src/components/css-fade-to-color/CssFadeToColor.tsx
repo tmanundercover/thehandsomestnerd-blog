@@ -1,10 +1,9 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, useMediaQuery} from '@material-ui/core'
+import {Grid} from '@material-ui/core'
 import {useThwStyles} from "../transform-hw/pages/Styles";
-import MediaQueries from "../../utils/mediaQueries";
 import {CssFadeToColorDirectionEnum} from "./CssFadeToColorDirectionEnum";
-import mediaQueries from "../../utils/mediaQueries";
+import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,8 +27,7 @@ interface IProps {
 
 const CssFadeToColor: FunctionComponent<IProps> = (props) => {
     const globalClasses = useThwStyles({})
-
-    const smDown = mediaQueries.useSmDown()
+    const mediaQueriesContext = useContext(MediaQueriesContext)
 
     const getStyle = () => {
         const getRotationAngle = () =>{
@@ -47,7 +45,7 @@ const CssFadeToColor: FunctionComponent<IProps> = (props) => {
         }
 
         const getColor = () => {
-            if (props.isResponsive && smDown)
+            if (props.isResponsive && mediaQueriesContext.smDown)
                 return 'transparent'
 
             let fromColor = props.fromColor ? props.fromColor : 'transparent'

@@ -31,7 +31,7 @@ export default {
     {
       name: 'contentText',
       title: 'Content Text',
-      type: 'string'
+      type: 'text'
     },
     {
       name: 'ctaButtonText',
@@ -70,7 +70,7 @@ export default {
       name: 'extendedDescriptions',
       title: 'Extended Description Content',
       type: 'array',
-      of:[{type: 'string'}]
+      of:[{type: 'text'}]
     },
     {
       name: 'benefitsOfServiceTitle',
@@ -81,7 +81,7 @@ export default {
       name: 'benefitsOfServiceContents',
       title: 'Benefits of Service Contents',
       type: 'array',
-      of:[{type: 'string'}]
+      of:[{type: 'text'}]
     },
     {
       name: 'benefitsOfServiceBullets',

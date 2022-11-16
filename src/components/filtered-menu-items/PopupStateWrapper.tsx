@@ -8,6 +8,8 @@ import {bindTrigger} from "material-ui-popup-state";
 import {ArrowDropDown} from "@material-ui/icons";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
 import {makeStyles, Theme} from "@material-ui/core/styles";
+import {useScrollPosition} from "../../utils/useScrollPosition";
+import mediaQueries from "../../utils/mediaQueries";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -23,11 +25,23 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface FilteredMenuItemsPopupProps {
     menuGroup: SanityMenuGroup
-    bgColor?: PropTypes.Color
 }
 
-const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menuGroup, bgColor}) => {
+const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menuGroup}) => {
     const classes = useStyles(TransformHWTheme)
+
+    // const [hideOnScroll, setHideOnScroll] = useState(true)
+    // const [backgroundColor, setBackgroundColor] = React.useState<any>("")
+
+
+    // React.useEffect(() => {
+    //     setBackgroundColor(!hideOnScroll && !mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE)
+    // }, [hideOnScroll,mdDown])
+    //
+    // useScrollPosition(({prevPos, currPos}: any) => {
+    //     const isShow = currPos.y > -100
+    //     if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+    // }, [hideOnScroll,setHideOnScroll])
 
     return (<PopupState variant="popover" popupId={menuGroup.menuGroupTitle?.toLowerCase().replace(" ", "-")}>
         {(popupState) => {
@@ -59,7 +73,7 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                         style: {
                             borderTopLeftRadius: 0,
                             borderTopRightRadius: 0,
-                            backgroundColor: bgColor
+                            backgroundColor: TransformHWTheme.palette.primary.main
                         }
                     }}
                     anchorOrigin={{

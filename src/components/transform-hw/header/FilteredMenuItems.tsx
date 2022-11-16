@@ -1,25 +1,24 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, Grid, Popover, Typography, useMediaQuery} from '@material-ui/core'
+import {Button, Grid, Popover, Typography} from '@material-ui/core'
 import {ArrowDropDown} from "@material-ui/icons";
 import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import SubMenu from "./SubMenu";
-import MediaQueries from "../../../utils/mediaQueries";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
-import mediaQueries from "../../../utils/mediaQueries";
+import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
 
-interface MainMenuProps {
+interface FilteredMenuProps {
     subMenus: any[]
     includeMenuItems?: boolean
     includeMenuGroups?: boolean
     onlyButtons?: boolean
 }
 
-const FilteredMenuItems: FunctionComponent<MainMenuProps> = ({
+const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                                                                  subMenus,
                                                                  onlyButtons,
                                                                  includeMenuItems,
@@ -31,15 +30,15 @@ const FilteredMenuItems: FunctionComponent<MainMenuProps> = ({
     };
 
     const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
 
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    const mdDown = mediaQueries.useMdDown()
+    const mediaQueriesContext = useContext(MediaQueriesContext)
 
-    return (<Grid item container justifyContent={mdDown?'flex-start':'flex-end'}>{
+
+    return (<Grid item container justifyContent={mediaQueriesContext.mdDown?'flex-start':'flex-end'}>{
             subMenus?.map(
                 (menuLink: any, index) => {
                     console.log(menuLink._type)

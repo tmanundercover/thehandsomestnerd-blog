@@ -1,5 +1,5 @@
 import './App.css'
-import {Grid} from '@material-ui/core'
+import {CssBaseline, Grid, MuiThemeProvider, useTheme} from '@material-ui/core'
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import React from 'react'
 import TransformHWLayout from "./components/transform-hw/pages/TransformHWLayout";
@@ -8,6 +8,10 @@ import TransformHWTheme from "./theme/transform-hw/TransformHWTheme";
 import FourOhFour from "./components/transform-hw/pages/error-page/FourOhFour";
 import SnackbarContext from "./components/snackbar-context/SnackbarContext";
 import SnackbarProvider from "./components/snackbar-context/SnackbarProvider";
+import PageProvider from "./components/page-context/PageProvider";
+import MediaQueriesContext from "./components/media-queries-context/MediaQueriesContext";
+import MediaQueriesProvider from "./components/media-queries-context/MediaQueriesProvider";
+import PageMux from "./components/transform-hw/pages/PageMux";
 
 export enum RoutesEnum {
     TRANSFORM_HW = "/transformative-healing-and-wellness/:pageSlug",
@@ -16,28 +20,51 @@ export enum RoutesEnum {
 }
 
 function App() {
-    const queryClient = new QueryClient();
-
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                // refetchOnWindowFocus: false,
+                // refetchOnMount: false,
+                // refetchOnReconnect: false,
+            },
+        },
+    });
     // useEffect(() => {
     //     redirect('/transformative-healing-and-wellness/coming-soon')
     // }, [])
 
+    const theme = useTheme()
     return (
-            <QueryClientProvider client={queryClient}>
-                <BrowserRouter>
-                    <Grid container item direction="column" alignItems="center"
-                          style={{backgroundColor: TransformHWTheme.palette.background.default, overflow: "scroll"}}>
-                        <Grid item>
-                            <Routes>
-                                <Route path={RoutesEnum.TRANSFORM_HW} element={<TransformHWLayout/>}/>
-                                <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
-                                <Route path={"/*"}
-                                       element={<Navigate to={'/transformative-healing-and-wellness/coming-soon'}/>}/>
-                            </Routes>
-                        </Grid>
-                    </Grid>
-                </BrowserRouter>
-            </QueryClientProvider>
+            <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+                <MuiThemeProvider theme={TransformHWTheme}>
+                    <CssBaseline/>
+                    <SnackbarProvider>
+                    <MediaQueriesProvider>
+                        <PageProvider>
+                            <Grid container item alignItems="center"
+                                  style={{
+                                      backgroundColor: theme.palette.background.default,
+                                      overflow:"hidden",
+                                      width: "100vw"
+                                  }}>
+
+                                <Grid item>
+                                    <Routes>
+                                        <Route path={RoutesEnum.TRANSFORM_HW} element={<PageMux/>}/>
+                                        <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
+                                        <Route path={"/*"}
+                                               element={<Navigate
+                                                   to={'/transformative-healing-and-wellness/coming-soon'}/>}/>
+                                    </Routes>
+                                </Grid>
+                            </Grid>
+                        </PageProvider>
+                    </MediaQueriesProvider>
+                    </SnackbarProvider>
+                </MuiThemeProvider>
+        </QueryClientProvider>
+            </BrowserRouter>
     )
 }
 

@@ -22,13 +22,6 @@ interface IProps {
 }
 
 const ResponsiveBullet: FunctionComponent<IProps> = (props: IProps) => {
-    const [bullet, setBullet] = React.useState<ReactNode>()
-    React.useEffect(() => {
-        if (props.bullet) {
-            setBullet(props.bullet)
-        }
-    }, [props.bullet])
-
     return (<Grid key={uuidv4()} container item sm={props.notResponsive ? 12 : 6} alignItems='center'>
         <Grid container item spacing={props.condensed ? 0 : 2} alignItems='flex-start' alignContent='flex-start'>
             <Grid item xs={2} container justifyContent='center' alignItems='center' alignContent='center'

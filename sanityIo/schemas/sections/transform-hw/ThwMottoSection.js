@@ -13,7 +13,7 @@ export default {
     {
       name: 'contentText',
       title: 'Content Text',
-      type: 'string',
+      type: 'text',
     },
     {
       name: 'contentSuperTitle',

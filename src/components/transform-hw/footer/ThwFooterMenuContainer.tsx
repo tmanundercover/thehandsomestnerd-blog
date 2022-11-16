@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect} from 'react'
+import React, {FunctionComponent, useContext, useEffect} from 'react'
 import {Divider, Grid, Typography, useMediaQuery} from '@material-ui/core'
 import ThwFooterMenuGroup from './ThwFooterMenuGroup'
 import {makeStyles, Theme} from '@material-ui/core/styles'
@@ -9,6 +9,8 @@ import MediaQueries from "../../../utils/mediaQueries";
 import Logo from "../logo/Logo";
 import {useQuery} from "react-query";
 import mediaQueries from "../../../utils/mediaQueries";
+import PageContext from "../../page-context/PageContext";
+import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -20,41 +22,26 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 interface IProps {
     menuContainerSlug?: string
-    homePage?: SanityTransformHwHomePage
+    homePage: SanityTransformHwHomePage
     updateIsLoading?: (value: boolean) => void
 }
 
 const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles(TransformHWTheme)
 
-    const [menu, setMenu] = React.useState<SanityMenuContainer>()
-    const smDown = mediaQueries.useSmDown()
+    const pageContext = useContext(PageContext)
+    const mediaQueriesContext = useContext(MediaQueriesContext)
 
-
-    const {data} = useQuery(
-        ['getFooter'],
-        () => {
-            return cmsClient.fetchLandingPageFooterMenu(props.menuContainerSlug)
-        }
-    );
-
-    React.useEffect(() => {
-        data && setMenu(data)
-    }, [data])
-
-    useEffect(() => {
-        props.updateIsLoading && props.updateIsLoading(!menu)
-    }, [menu])
 
     return (
         <Grid container item className={classes.root} spacing={5}>
-            <Grid container item xs={12} md={4} style={smDown ? {
+            <Grid container item xs={12} md={4} style={mediaQueriesContext.smDown ? {
                 borderLeft: `4px solid ${TransformHWTheme.palette.primary.main}`,
                 backgroundColor: "rgba(117,117,117,.5)",
                 borderRight: `4px solid ${TransformHWTheme.palette.primary.main}`,
             } : {}}>
                 {
-                    menu?.subMenus?.map((menuGroup: any, index: number) => {
+                    pageContext.pageFooter?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
                             <Grid key={index} item xs={6}>
                                 <ThwFooterMenuGroup menuGroup={menuGroup}/>
@@ -64,7 +51,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 }
             </Grid>
             <Grid item container xs={12} md={4} justifyContent='center'>
-                {menu?.logoImageSrc && <Logo isCenter logoImageSrc={menu.logoImageSrc} height={108}/>}
+                {pageContext.pageFooter?.logoImageSrc && <Logo isCenter logoImageSrc={pageContext.pageFooter.logoImageSrc} height={108}/>}
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",
                     marginTop: "12px",
@@ -82,19 +69,19 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid container item spacing={1} justifyContent='center'>
                         <Grid item>
                             <Typography color='inherit' style={{width: "180px"}} align='center' variant='subtitle1'
-                                        gutterBottom>{props.homePage?.address}</Typography>
+                                        gutterBottom>{props.homePage.address}</Typography>
                         </Grid>
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         <Grid item>
                             <Typography color='inherit' align='center'
-                                        variant='subtitle1'>{props.homePage?.phone}</Typography>
+                                        variant='subtitle1'>{props.homePage.phone}</Typography>
                         </Grid>
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         <Grid item style={{color: COLORS.DARK_GRAY}}>
                             <Typography color='inherit' align='center'
-                                        variant='subtitle1'>{props.homePage?.email}</Typography>
+                                        variant='subtitle1'>{props.homePage.email}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>

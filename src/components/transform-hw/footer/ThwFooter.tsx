@@ -3,12 +3,12 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid} from '@material-ui/core'
 import ThwFooterMenuContainer from './ThwFooterMenuContainer'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    // backgroundColor: '#3D3D3D',
+    backgroundColor: COLORS.DARKBLUE,
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,
@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 interface IProps {
   footerMenuSlug?:string
-  homePage?:  SanityTransformHwHomePage
+  homePage:  SanityTransformHwHomePage
   updateIsLoading?: (value:boolean) => void
 }
 
@@ -47,14 +47,13 @@ const ThwFooter: FunctionComponent<IProps> = (props:IProps) => {
   const classes = useStyles(TransformHWTheme)
 
   return (
-    props.homePage ? <Grid container className={classes.root}>
+    <Grid container className={classes.root}>
       <Grid container justifyContent="flex-start">
         <Grid item xs={12}>
           <ThwFooterMenuContainer updateIsLoading={props.updateIsLoading} homePage={props.homePage} menuContainerSlug={props.footerMenuSlug}/>
         </Grid>
       </Grid>
-    </Grid>:<></>
-
+    </Grid>
 
   )
 }

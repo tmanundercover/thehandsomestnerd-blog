@@ -19,7 +19,7 @@ export default {
         {
             name: 'description',
             title: 'Description(Meta tag description)',
-            type: 'string',
+            type: 'text',
         },
         {
             name: 'structuredData',
@@ -30,9 +30,21 @@ export default {
               ]
         },
         {
+            name: 'headerMenuRef',
+            title: 'Header Menu',
+            type: 'reference',
+            to: [{type:'menuContainer'}]
+        },
+        {
             name: 'pageContent',
             title: 'Page Content',
             type: 'contentContainer',
+        },
+        {
+            name: 'footerMenuRef',
+            title: 'Footer Menu',
+            type: 'reference',
+            to: [{type:'menuContainer'}]
         },
         {
             name: 'slug',

@@ -1,14 +1,12 @@
-import React, {FunctionComponent, useEffect} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {AppBar, Grid, Hidden, withWidth} from '@material-ui/core'
+import {AppBar, Grid, Hidden} from '@material-ui/core'
 import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
 import Logo from "../logo/Logo";
-import mediaQueries from "../../../utils/mediaQueries";
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
-import {SanityMenuContainer} from "../../../common/sanityIo/Types";
-import thwClient from "../thwClient";
+import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -23,28 +21,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export type HeaderProps = {
-    menuSlug?: string
-    isOpaque?: boolean
-    updateIsLoading?: (value:boolean) => void
+    pageHeader?: any
+    updateIsLoading?: (value: boolean) => void
 }
 
 const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
     const classes = useStyles()
+    const mediaQueriesContext = useContext(MediaQueriesContext)
 
-    const { data } = thwClient.useFetchMenuBySlugQuery(props.menuSlug ?? "")
-
-    useEffect(()=>{
-        props.updateIsLoading && props.updateIsLoading(!data)
-    }, [data])
-
-    const mdDown = mediaQueries.useMdDown()
+    React.useEffect(() => {
+        console.log("Page header in the header", props.pageHeader)
+    }, [props.pageHeader])
 
     return (
-        <AppBar className={clsx({[classes.opaque]: !props.isOpaque && !mdDown}, classes.root)}>{data?.title ?
-            <Grid item xs={12} container justifyContent="space-between" spacing={mdDown ? 3 : 0}>
+        <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.title ?
+            <Grid item xs={12} container justifyContent="space-between" spacing={mediaQueriesContext.mdDown ? 3 : 0}>
                 <Grid item container xs={2} md={2} lg={4} justifyContent='flex-start'>
                     {
-                        data?.logoImageSrc && <Logo logoImageSrc={data.logoImageSrc}/>
+                        props.pageHeader?.logoImageSrc && <Logo logoImageSrc={props.pageHeader.logoImageSrc}/>
                     }
                 </Grid>
                 <Grid item container xs={10} md={10} lg={8} justifyContent='space-between'>
@@ -54,12 +48,13 @@ const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
                               alignItems='stretch'
                               style={{
                                   height: "100%",
-                                  paddingRight: mdDown ? TransformHWTheme.spacing(0) : TransformHWTheme.spacing(4)
+                                  paddingRight: mediaQueriesContext.mdDown ? TransformHWTheme.spacing(0) : TransformHWTheme.spacing(4)
                               }}>
                             <FilteredMenuItems
-                                bgColor={!props.isOpaque && !mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
-                                 subMenus={data.subMenus ?? []} onlyButtons={mdDown}
-                                includeMenuItems={!mdDown} includeMenuGroups={!mdDown}/>
+                                // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
+                                subMenus={props.pageHeader.subMenus ?? []} onlyButtons={mediaQueriesContext.mdDown}
+                                includeMenuItems={!mediaQueriesContext.mdDown}
+                                includeMenuGroups={!mediaQueriesContext.mdDown}/>
                         </Grid>
                     </Hidden>
                     {/*// @ts-ignore*/}
@@ -70,7 +65,7 @@ const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
                                   alignItems='center'
                             >
                                 <Grid item>
-                                    <MainMenu menu={data} anchor='top'/>
+                                    <MainMenu menu={props.pageHeader} anchor='top'/>
                                 </Grid>
                             </Grid>
                         </Grid>

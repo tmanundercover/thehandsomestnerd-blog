@@ -1,18 +1,19 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent, useContext, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, Typography, useMediaQuery} from '@material-ui/core'
-import {ThwServiceItemNoRefType, ThwServiceItemType, ThwServicesSectionType} from "../BlockContentTypes";
-import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
+import {Grid, Typography} from '@material-ui/core'
+import {ThwServiceItemNoRefType, ThwServicesSectionType} from "../BlockContentTypes";
 import cmsClient from "../block-content-ui/cmsClient";
-import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
-import MediaQueries from "../../utils/mediaQueries";
 import mediaQueries from "../../utils/mediaQueries";
-import LoadingButton from "../loading-button/LoadingButton";
 import ThwServiceItem from "./ThwServiceItem";
+import thwClient from "./thwClient";
+import PageContext from "../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        padding: (props: any) => props.xsDown ? theme.spacing(5, 2, 5) : theme.spacing(6),
+        padding: theme.spacing(6),
+        [theme.breakpoints.down('xs')]: {
+            padding: theme.spacing(5, 2, 5)
+        },
         minHeight: 'max-content',
         backgroundColor: '#f6f6f6'
     },
@@ -28,23 +29,9 @@ interface IProps {
 }
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
-    const xsDown = mediaQueries.useXsDown()
-    const mdDown = mediaQueries.useMdDown()
-    const classes = useStyles({xsDown})
+    const classes = useStyles()
 
-    const [servicesList, setServicesList] = useState<ThwServiceItemNoRefType[]>()
-
-    React.useEffect(() => {
-        const realizedServices = props.sectionData?.servicesList?.map((service) => {
-            return cmsClient.fetchRef(service).then((serviceResp) => {
-                return serviceResp
-            })
-        })
-
-        Promise.all(realizedServices).then((response) => {
-            setServicesList(response)
-        }).catch(console.log)
-    }, [props.sectionData])
+    const pageContext = useContext(PageContext)
 
     return (
 
@@ -72,8 +59,8 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                 </Grid>))}
             </Grid>
             <Grid item container spacing={4} justifyContent='center'>
-                {servicesList?.map((service: ThwServiceItemNoRefType) => {
-                    return <ThwServiceItem service={service}/>
+                {pageContext.allServices?.map((service: ThwServiceItemNoRefType, index: number) => {
+                    return <ThwServiceItem key={index} service={service}/>
                 })}
             </Grid>
         </Grid>

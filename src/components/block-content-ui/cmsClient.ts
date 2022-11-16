@@ -4,11 +4,13 @@ import {
   SanityBlogCategory,
   SanityBlogGroup, SanityBlogPreview,
   SanityLandingPage, SanityMenuContainer,
-  SanityRef
+  SanityRef, SanityTransformHwHomePage
 } from '../../common/sanityIo/Types'
 
 import {WhySwitchSectionType} from "../BlockContentTypes";
 import GroqQueries from "../../utils/groqQueries";
+import groqQueries from "../../utils/groqQueries";
+import {SanityHomePage} from "./static-pages/cmsStaticPagesClient";
 
 const fetchLandingPage = (slug: string): Promise<SanityLandingPage> => {
   return sanityClient
@@ -252,8 +254,47 @@ const fetchRef = (sanityRef: SanityRef): Promise<any> => {
     })
 }
 
+const fetchRefs = async (sanityRefs: SanityRef[]): Promise<any> => {
+
+  console.log("get these refs", sanityRefs)
+
+  let servicesRefs:string[] = []
+  let otherContentRefs:string[] = []
+
+  sanityRefs?.forEach((sanityRef)=>{
+    console.log("does match?", sanityRef._type, groqQueries.SANITY_TYPES_ENUM.SERVICE,  sanityRef._type === groqQueries.SANITY_TYPES_ENUM.SERVICE)
+    if(sanityRef._type == groqQueries.SANITY_TYPES_ENUM.SERVICE) {
+      servicesRefs.push(sanityRef._ref)
+    }
+
+    otherContentRefs.push(sanityRef._ref)
+  })
+
+  console.log("Division of labor", sanityRefs, otherContentRefs)
+  const servicesQuery = `*[_type == ${groqQueries.SANITY_TYPES_ENUM.SERVICE} && _id in $references]{
+    ${groqQueries.SERVICE}
+  }`
+
+  const services = await sanityClient
+      .fetch(
+          servicesQuery,
+          {references:servicesRefs}
+      )
+
+  const otherRefs = await sanityClient
+      .fetch(
+          `*[_id in $references]`,
+          {references:otherContentRefs}
+      )
+
+  console.log("Done Division of labor", services, otherRefs)
+
+  return Promise.all([...services, otherRefs])
+}
+
 export default {
   fetchRef,
+  fetchRefs,
   fetchLandingPage,
   fetchBlogPost,
   fetchLatestBlogPostPreview,

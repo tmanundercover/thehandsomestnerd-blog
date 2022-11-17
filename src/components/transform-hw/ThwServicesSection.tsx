@@ -58,9 +58,9 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                     <Typography variant='body1' gutterBottom>{segment}</Typography>
                 </Grid>))}
             </Grid>
-            <Grid item container spacing={4} justifyContent='center'>
-                {pageContext.allServices?.map((service: ThwServiceItemNoRefType, index: number) => {
-                    return <ThwServiceItem key={index} service={service}/>
+            <Grid item container spacing={4} justifyContent='center' alignItems={"stretch"}>
+                {props.sectionData.servicesList?.map((service: ThwServiceItemNoRefType, index: number) => {
+                    return <ThwServiceItem showAmenities key={index} service={service}/>
                 })}
             </Grid>
         </Grid>

@@ -1,9 +1,10 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
 import {SanityMenuContainer, SanityRef, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 import thwClient from "../transform-hw/thwClient";
-import {ThwServiceItemNoRefType} from "../BlockContentTypes";
+import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
 import SnackbarContext from "../snackbar-context/SnackbarContext";
 import PageContext from './PageContext';
+import amenitiesSection from "../transform-hw/AmenitiesSection";
 
 type IProps = {};
 
@@ -299,6 +300,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             fetchPage,
 
             allServices: state.allServices,
+
             getOtherServices,
         }),
         [

@@ -8,6 +8,7 @@ import mediaQueries from "../../utils/mediaQueries";
 import {ServiceAmenityType} from "../BlockContentTypes";
 import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import AmenityContext from "../amenity-context/AmenityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -21,8 +22,13 @@ interface IProps {
 const ToolTipWrap: FunctionComponent<PropsWithChildren & IProps> = (props: PropsWithChildren & IProps) => {
     const snackbarContext = useContext(SnackbarContext)
     const mediaQueriesContext = useContext(MediaQueriesContext)
+    const amenityContext = useContext(AmenityContext)
 
-    return !mediaQueriesContext.smDown ? <Tooltip title={
+    return <Grid container xs={6} item
+                                               onClick={() => {
+                                                   amenityContext.openSnackbar && amenityContext.openSnackbar(props.serviceTitle,props.amenity)
+                                               }}>
+        <Tooltip disableHoverListener={mediaQueriesContext.smDown} title={
             <Grid container style={{maxWidth: "160px"}}>
                 <Typography
                     variant='subtitle1' color='textSecondary'>{props.amenity.title}</Typography>
@@ -31,42 +37,8 @@ const ToolTipWrap: FunctionComponent<PropsWithChildren & IProps> = (props: Props
             </Grid>
         }>
             {props.children as ReactElement}
-        </Tooltip> :
-        <Grid container xs={6} item
-              onClick={() => {
-                  snackbarContext.openSnackbar
-                  && snackbarContext.openSnackbar(
-                      <Grid
-                          container
-                          style={{minWidth: "200px"}}
-                      >
-                          <Grid item container xs={12} justifyContent='flex-end' alignItems='center' spacing={1} style={{marginBottom: "8px"}}>
-                              <Typography gutterBottom
-                                          variant='subtitle2'
-                                          color='textSecondary'>{props.serviceTitle} Amenity</Typography>
-                          </Grid>
-                          <Grid item container xs={12}>
-                              <Typography
-                                  variant='body2' color='textSecondary'
-                                  gutterBottom>{props.amenity.title}</Typography>
-                          </Grid>
-                          <Grid container item spacing={2} alignContent='center'
-                                alignItems='stretch' wrap={"nowrap"}>
-                              <Grid style={{maxWidth: "72px"}} item xs={2} container justifyContent='center'
-                                    alignContent='center' alignItems='center'>
-                                  <ColoredPng size={48} maskUrl={urlFor(props.amenity.imageSrc).url() ?? ""}
-                                              color={"white"}/>
-                              </Grid>
-                              <Grid item container alignItems='center' alignContent='center'>
-                                  <Typography gutterBottom
-                                              variant='body1' color='textSecondary' style={{
-                                      fontWeight: "normal",
-                                  }}>{props.amenity.description}</Typography>
-                              </Grid>
-                          </Grid>
-
-                      </Grid>)
-              }}>{props.children}</Grid>
+        </Tooltip>
+    </Grid>
 }
 
 export default ToolTipWrap

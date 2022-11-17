@@ -11,6 +11,14 @@ export default {
       type: 'string',
     },
     {
+      name: 'proprietorImage',
+      title: 'Proprietor Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'proprietorName',
       title: 'Proprietor Name',
       type: 'string',
@@ -19,6 +27,11 @@ export default {
       name: 'proprietorTitle',
       title: 'Proprietor Title',
       type: 'string',
+    },
+    {
+      name: 'proprietorServices',
+      title: 'Therapeutic Services',
+      type: 'proprietorService',
     },
     {
       name: 'contentTitle',
@@ -30,14 +43,6 @@ export default {
       title: 'Content Text',
       type: 'array',
       of:[{type: 'text'}]
-    },
-    {
-      name: 'proprietorImage',
-      title: 'Proprietor Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
     },
     {
       name: 'proprietorImageAltText',

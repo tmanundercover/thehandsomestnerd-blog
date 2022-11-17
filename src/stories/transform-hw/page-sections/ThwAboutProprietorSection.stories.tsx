@@ -55,15 +55,26 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof AboutTheProprietorSection> = (args) => <AboutTheProprietorSection {...args} />;
 
-export const ThwPositivePsychologySection = Template.bind({});
+export const ThwAboutTheProprietorSection = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-ThwPositivePsychologySection.args = {
+ThwAboutTheProprietorSection.args = {
     sectionData: {
         "contentText": ["Are you living your life to the fullest? Do you know your strengths? Or are you consumed with your weakness? Do you feel overwhelmed by stress? Are you seeking to create a relaxed day-to-day life? Are you", "burden with worries? Do you have dreams and goals you want to achieve but feel stuck? Are you looking for a warm, supportive and challenges? Using Strength based, Cognitive Behavorial, self aware problem solve and explore unlimited potential and possibilities."],
         "proprietorTitle": "MSW, LCSW-C",
         "ctaButtonLink": "",
         "ctaButtonText": "Talk with Me",
         "contentTitle":"Therapeutic Services",
+        proprietorServices:{
+            serviceName: "Therapeutic",
+            serviceTitle: "Therapy Session Types",
+            dividerImage: "",
+            amenitiesSectionTitle: "Modalities",
+            amenities:["Positive Psychology", "Cognitive Behavioral Therapy (CBT)", "Financial Mental Wellness", "Mindfulness", "Solution Focused",
+                "Psychodynamic Therapy", "Humanistic Therapy (Person Centered)", "Integrative/holistic Therapy"],
+            ctaButtonText:"Learn More",
+            ctaButtonLink:"/",
+            sessionList: ["Individual, Couples, or Group", "Clinical Supervision", "Solution Focused Training"],
+        },
         proprietorImage: {
             "_type": "image",
             "asset": {

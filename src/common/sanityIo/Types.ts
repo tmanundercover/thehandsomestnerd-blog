@@ -1,5 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityImageAsset} from "../../components/BlockContentTypes";
+import {SanityImageAsset, ThwServiceItemNoRefType} from "../../components/BlockContentTypes";
 import {Slug} from "@sanity/types";
 
 export type SanitySlug = Slug
@@ -29,6 +29,7 @@ export type SanityTransformHwHomePage = {
   headerMenuRef?: SanityRef
   footerMenuRef?: SanityRef
   pageContent?: any
+  servicesAvailable?: ThwServiceItemNoRefType[]
   structuredData?: any
   address?: string
   email?: string

@@ -27,7 +27,7 @@ const OtherServices: FunctionComponent<IProps> = (props: IProps) => {
         </Grid>
         <Grid container item spacing={3} justifyContent='center'>
             {
-                props.thisServiceSlug && pageContext.getOtherServices && pageContext.getOtherServices(props.thisServiceSlug).map((service) => {
+                pageContext.page?.servicesAvailable?.map((service) => {
                     return <ThwServiceItem key={uuidv4()} showAmenities service={service} hideLearnMoreButton
                                            hideCtaButton/>
                 })

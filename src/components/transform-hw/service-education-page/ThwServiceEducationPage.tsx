@@ -15,7 +15,7 @@ import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         [theme.breakpoints.down('xs')]:{
-        padding: theme.spacing(5, 2, 5)
+        padding: theme.spacing(0, 2, 5)
         },
         padding: theme.spacing(0, 4, 6, 6),
         minHeight: 'max-content',
@@ -38,22 +38,25 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
 
     // const {data} = thwClient.useFetchRefsQuery(props.serviceData.serviceAmenities)
     const mediaQueriesContext = useContext(MediaQueriesContext)
+
+
     return (
 
-        <Grid container item className={classes.root} xs={12}>
-            <Grid container item spacing={2} style={{position: "relative"}}>
-                <Grid item container style={{marginTop: TransformHWTheme.spacing(16.6)}}>
+        <Grid container item className={classes.root} xs={12} style={{position: "relative"}}>
+            <Grid container item >
+                <Grid item container style={{marginTop: TransformHWTheme.spacing(88)}}>
 
                 </Grid>
-                <Grid item container spacing={mediaQueriesContext.xsDown ? 5 : 10} style={{
+                <Grid container style={{
+                    backgroundColor: "red",
                     backgroundSize: 'cover',
-                    maxWidth: "100vw",
-                    minHeight: "300px",
+                    width: "100vw",
                     height: "600px",
-                    position: "relative",
-                    marginBottom: "16px",
-                    // left: -36,
-                    // top: 150,
+                    position: "absolute",
+                    // margin: TransformHWTheme.spacing(0,0,2,0),
+                    // margin: TransformHWTheme.spacing(0,0,2,0),
+                    left: 0,
+                    top: 102,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
                     backgroundImage: `url(${urlFor(props.serviceData.imageSrc).url()})`
@@ -66,9 +69,8 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                         width: "100%",
                         backgroundColor: "rgba(255,255,255,.3)"
                     }}> </Grid>
-                    <Grid item container>
-
-                        <Box style={{
+                    <Grid item container justifyContent='center'>
+                        <Grid item style={{
                             // padding: TransformHWTheme.spacing(0, 0, 0, 4),
                             // margin: TransformHWTheme.spacing(0, 1, 0, 0),
                             width: "100%",
@@ -79,22 +81,19 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                             backgroundSize: 'cover',
                             // backgroundImage: `url(${urlFor(props.serviceData.educationPageSlimHeroImage).height(200).url()})`
                         }}>
-                            <Grid style={{
-                                maxHeight: "100px",
-                                minHeight: "100px",
-                            }} container alignItems='center' alignContent='center'>
-                                <Grid item container justifyContent={mediaQueriesContext.xsDown ? 'center' : "flex-start"}>
-                                    <Typography align={mediaQueriesContext.xsDown ? "center" : "left"} variant='body1'
+                            <Grid container alignItems='center' alignContent='center' style={{ padding: TransformHWTheme.spacing(4,4,0,4),
+                            }}>
+                                <Grid item container justifyContent={mediaQueriesContext.smDown ? 'center' : "flex-start"}>
+                                    <Typography variant='body1'
                                                 style={{fontStyle: "italic"}}>Healing & Wellness</Typography>
                                 </Grid>
-                                <Grid container item justifyContent={mediaQueriesContext.xsDown ? 'center' : "flex-start"}>
-                                    <Typography color='secondary' variant={mediaQueriesContext.xsDown ? 'h3' : "h2"} align='center'
-                                                display='inline'>{props.serviceData.educationPageTitle}</Typography>
+                                <Grid container item justifyContent={mediaQueriesContext.smDown ? 'center' : "flex-start"}>
+                                    <Typography align={mediaQueriesContext.xsOnly ? 'center' : "left"} color='secondary' variant={mediaQueriesContext.xsDown ? 'h3' : "h2"}>{props.serviceData.educationPageTitle}</Typography>
 
                                 </Grid>
                             </Grid>
                             {/*    slim hero section */}
-                        </Box>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid container item>

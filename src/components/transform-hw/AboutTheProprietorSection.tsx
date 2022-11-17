@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Chip, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
-import {ThwAboutProprietorSectionType} from "../BlockContentTypes";
+import {ProprietorAtAGlanceType, ThwAboutProprietorSectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import transformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
@@ -31,7 +31,7 @@ interface IProps {
     sectionData: ThwAboutProprietorSectionType
 }
 
-const ProprietorAtAGlance = () => {
+const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType}) => {
     const mediaQueriesContext = useContext(MediaQueriesContext)
     return <Grid item container
                  justifyContent='center'
@@ -45,14 +45,15 @@ const ProprietorAtAGlance = () => {
                  xs={12}
     >
         <Grid container item xs={11}>
+            <Grid item container justifyContent='center'>
+                <Typography variant='body1' color='primary' gutterBottom>{props.sectionData.serviceName}</Typography>
+            </Grid>
             <Grid item container>
-                <Typography variant='h6' color='primary' gutterBottom>Therapeutic Service
-                    Sessions</Typography>
+                <Typography variant='h6' color='primary' gutterBottom>{props.sectionData.serviceTitle}</Typography>
             </Grid>
             <Grid item container alignItems='flex-start' alignContent='flex-start'>
 
-                {["Individual, Couples, or Group", "Clinical Supervision", "Solution Focused Training"]
-                    .map((term:string, index:number) =>
+                {props.sectionData.sessionList.map((term:string, index:number) =>
                         <ResponsiveBullet
                             key={index}
                             notResponsive
@@ -69,15 +70,14 @@ const ProprietorAtAGlance = () => {
         <Grid item container xs={11} justifyContent='center' style={{
             // marginBottom: TransformHWTheme.spacing(5)
         }}>
-            <ColoredPng maskUrl={mask} color={"white"} />
+            <ColoredPng maskUrl={urlFor(props.sectionData.dividerImage).url()??""} color={"white"} />
             <Grid item container justifyContent='center'>
 
-                <Typography variant='h6' color='primary' gutterBottom align='center'>Modalities</Typography>
+                <Typography variant='h6' color='primary' gutterBottom align='center'>{props.sectionData.amenitiesSectionTitle}</Typography>
             </Grid>
             <Grid item container spacing={1} justifyContent='center'>
 
-                {["Positive Psychology", "Cognitive Behavioral Therapy (CBT)", "Financial Mental Wellness", "Mindfulness", "Solution Focused",
-                    "Psychodynamic Therapy", "Humanistic Therapy (Person Centered)", "Integrative/holistic Therapy"].map((modality,index) =>
+                {props.sectionData.amenities.map((modality,index) =>
                     <Grid item key={index}>
                         <Chip variant={'default'} color='primary'
                               label={<Typography variant='inherit' color='secondary'>{modality}</Typography>}/>
@@ -86,9 +86,9 @@ const ProprietorAtAGlance = () => {
             </Grid>
         </Grid>
         <Grid item>
-            <LoadingButton href={'/transformative-healing-and-wellness/therapeutic-services'} color={"primary"}
+            <LoadingButton href={props.sectionData.ctaButtonLink} color={"primary"}
                            variant='outlined'>
-                Learn More
+                {props.sectionData.ctaButtonText}
             </LoadingButton>
         </Grid>
     </Grid>
@@ -135,7 +135,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                                 isResponsive
                         />
                     </Grid>
-                    {!mediaQueriesContext.mdDown && <Grid container item><ProprietorAtAGlance/></Grid>}
+                    {!mediaQueriesContext.smDown && <Grid container item><ProprietorAtAGlance sectionData={props.sectionData.proprietorServices}/></Grid>}
                 </Grid>
                 <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between' spacing={2}>
                     <Grid container item style={{minHeight: "549px"}} direction='column' spacing={4}>
@@ -184,10 +184,10 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-                {mediaQueriesContext.mdDown && <Grid
+                {mediaQueriesContext.smDown && <Grid
                     item
                     xs={12}
-                    sm={8}
+                    sm={12}
                     md={5}
                     lg={4}
                     container
@@ -198,7 +198,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         paddingTop: TransformHWTheme.spacing(3),
                         minWidth: "min-content"
                     }}
-                ><ProprietorAtAGlance/></Grid>}
+                ><ProprietorAtAGlance sectionData={props.sectionData.proprietorServices}/></Grid>}
             </Grid>
         </Grid>
     )

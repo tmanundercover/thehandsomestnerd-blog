@@ -96,13 +96,25 @@ export type ThwPositivePsychologySectionType = {
     ctaButtonLink: string
 }
 
+export type ProprietorAtAGlanceType = {
+    serviceName: string
+    serviceTitle:string
+    sessionList: string[]
+    dividerImage: SanityImageAsset
+    amenitiesSectionTitle: string
+    amenities: string[]
+    ctaButtonText: string
+    ctaButtonLink: string
+}
+
 export type ThwAboutProprietorSectionType = {
     name: string
+    proprietorImage: SanityImageAsset
     proprietorName:string
     proprietorTitle: string
+    proprietorServices: ProprietorAtAGlanceType
     contentTitle: string
     contentText: string[]
-    proprietorImage: SanityImageAsset
     proprietorImageAltText: string
     proprietorSignatureImage: SanityImageAsset
     proprietorSignatureImageAltText: string
@@ -164,7 +176,7 @@ export type ThwServicesSectionType = {
     contentPreTitle: string
     contentText: string
     contentTexts: string[]
-    servicesList: SanityRef[]
+    servicesList: ThwServiceItemNoRefType[]
 }
 export type ThwWhyChooseUsSectionType = {
     name: string

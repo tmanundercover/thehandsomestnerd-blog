@@ -6,6 +6,7 @@ export type MediaQueriesContextType = {
     mdUp?: boolean
     mdDown?: boolean
     xsOnly?: boolean
+    width?: string
 };
 
 const MediaQueriesContext = React.createContext<MediaQueriesContextType>({});

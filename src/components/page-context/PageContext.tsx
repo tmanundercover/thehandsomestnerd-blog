@@ -1,6 +1,6 @@
 import React from 'react';
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import {ThwServiceItemNoRefType} from "../BlockContentTypes";
+import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
 
 export type PageContextType = {
     page?: SanityTransformHwHomePage

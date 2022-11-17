@@ -27,6 +27,26 @@ const MENUGROUPCONTAINER = `
           logoImageAltText
 `
 
+const SERVICE =
+    `name,
+        imageSrc,
+        imageSrcAltText,
+        contentTitle,
+        contentText,
+        ctaButtonText,
+        ctaButtonLink,
+        learnMoreLink,
+        learnMoreText,
+        educationPageTitle,
+        educationPageSlimHeroImage,
+        extendedDescriptions,
+        benefitsOfServiceTitle,
+        benefitsOfServiceContents,
+        benefitsOfServiceBullets,
+        "serviceAmenities": serviceAmenities[]->,
+        slug,`
+
+
 const HOMEPAGE = `_type,
           title,
           isUnderConstruction,
@@ -46,8 +66,14 @@ const HOMEPAGE = `_type,
           pageContent {
             "content": content[]->{
                 ...,
+                "servicesList": servicesList[]->{
+                    ${SERVICE}
+                },
                 "serviceAmenities": serviceAmenities[]->
             }
+          },
+          "servicesAvailable": servicesAvailable[]->{
+            ${SERVICE}
           },
           underConstructionPageRef,
           structuredData,
@@ -84,25 +110,6 @@ const HOMEPAGE = `_type,
 //           "links": links[]->{title, displayText, url, isOutlinedButton, isContainedButton}
 // `
 
-
-const SERVICE =
-    `name,
-        imageSrc,
-        imageSrcAltText,
-        contentTitle,
-        contentText,
-        ctaButtonText,
-        ctaButtonLink,
-        learnMoreLink,
-        learnMoreText,
-        educationPageTitle,
-        educationPageSlimHeroImage,
-        extendedDescriptions,
-        benefitsOfServiceTitle,
-        benefitsOfServiceContents,
-        benefitsOfServiceBullets,
-        "serviceAmenities": serviceAmenities[]->,
-        slug,`
 
 
 enum SANITY_TYPES_ENUM {

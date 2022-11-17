@@ -1,111 +1,140 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, ReactNode, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, Typography} from '@material-ui/core'
+import {CircularProgress, Grid, List, Typography} from '@material-ui/core'
 import {ArrowLeft, ArrowRight} from "@material-ui/icons";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
 import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
 import {v4 as uuidv4} from "uuid";
 import ToolTipWrap from "./ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import PageContext from "../page-context/PageContext";
+import {useIsOverflow} from "../../utils/useIsOverflow";
+import AmenityContext from "../amenity-context/AmenityContext";
+import ProgressCircle
+    from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/progress/ProgressCircle";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-    },
+    root: {},
 }))
 
 interface IProps {
-    service:ThwServiceItemNoRefType
+    service: ThwServiceItemNoRefType
+    placeHolder?: JSX.Element
 }
 
-const AmenitiesSection: FunctionComponent<IProps> = (props:IProps) => {
+const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
     const ref = React.useRef(null);
-    const isOverflow = true
+    const isOverflow = useIsOverflow(ref, ()=>{})
 
-    return (<Grid container item justifyContent='center' style={{position: "relative"}} alignContent='center'
+    const [showAmenity, setShowAmenity] = React.useState<boolean>()
+    const pageContext = useContext(PageContext)
+    const amenityContext = useContext(AmenityContext)
+    const [loading, setLoading] = React.useState<boolean>()
+    const [elements, setElements] = React.useState<JSX.Element>()
+
+    React.useEffect(() => {
+        if (amenityContext.serviceId !== props.service.slug.current) {
+            setShowAmenity(false)
+        } else {
+            setShowAmenity(true)
+            // setElements(amenityContext.getElements && amenityContext.getElements(props.service.slug.current))
+        }
+    }, [amenityContext.serviceId])
+
+    React.useEffect(() => {
+        if (amenityContext.serviceId !== props.service.slug.current) {
+            setLoading(false)
+        } else {
+            setLoading(true)
+            // setElements(amenityContext.getElements && amenityContext.getElements(props.service.slug.current))
+        }
+    }, [amenityContext.serviceId])
+
+    React.useEffect(() => {
+        const newElements = amenityContext.getElements && amenityContext.getElements(props.service.slug.current)
+        if (newElements) {
+            console.log("setting the new elements in the component", props.service.slug.current)
+            setElements(newElements)
+        }
+    }, [amenityContext.getElements && amenityContext.getElements(props.service.slug.current)])
+
+
+    // React.useEffect(() => {
+    //     if (showAmenity) {
+    //         setLoading(true)
+    //     } else {
+    //         setLoading(false)
+    //     }
+    // }, [showAmenity])
+    // React.useEffect(() => {
+    //     // if (!amenityContext.elements && amenityContext.serviceId === props.service.slug.current) {
+    //     //         setLoading(true)
+    //     // }else
+    //         if (amenityContext.elements){
+    //         setLoading(false)
+    //     }
+    // }, [amenityContext.elements])
+
+
+    return (<Grid container item justifyContent='center'
+                  style={{
+                      // minHeight: "max-content",
+                      position: "relative"
+                  }}
                   alignItems='stretch'>
         {
             isOverflow ?
-            <Grid
-                // ref={ref}
-                container
-                xs={3}
-                alignItems='center'
-                alignContent='center'
-                item
-                style={{
-                    backgroundImage: 'linear-gradient(to right, whitesmoke, transparent)',
-                    position: "absolute",
-                    left: 16,
-                    height: "100%",
-                    zIndex: "1000",
-                    pointerEvents: 'none'
-                    // opacity: 0
-                }}
-            >
-                <ArrowLeft/>
-            </Grid>:<></>
+                <Grid
+                    // ref={ref}
+                    container
+                    xs={3}
+                    alignItems='center'
+                    alignContent='center'
+                    item
+                    style={{
+                        // backgroundImage: 'linear-gradient(to right, whitesmoke, transparent)',
+                        position: "absolute",
+                        left: 16,
+                        height: "100%",
+                        zIndex: "1000",
+                        pointerEvents: 'none'
+                        // opacity: 0
+                    }}
+                >
+                    <ArrowLeft/>
+                </Grid> : <></>
         }
         <Grid xs={10} item container>
-            <Grid
-                direction="column"
-                // justifyContent='flex-start'
-                alignContent={isOverflow ? 'flex-start' : 'center'}
-                ref={ref}
-                style={{
-                    paddingTop: TransformHWTheme.spacing(2),
-                    overflowY: "hidden",
-                    overflowX: "scroll",
-                    maxHeight: "110px",
-                    position: "relative",
-                    // backgroundColor: "red"
-                }}
-                container
-                item
-            >
-                {
-                    props.service.serviceAmenities?.map((serviceAmenity: ServiceAmenityType) => {
-                        return <Grid
-                            key={uuidv4()}
-                            item
-                            container
-                            xs={4}
-                            style={{minHeight: "60px", minWidth: "60px", cursor: "pointer"}}
-                        >
-                            <ToolTipWrap
-                                serviceTitle={props.service.contentTitle}
-                                amenity={serviceAmenity}
-                            >
-                                <Grid container item direction='column' justifyContent='center'
-                                      alignContent='center'
-                                      alignItems='center' style={{
-                                    marginBottom: "24px",
+            <Grid item container justifyContent='flex-start'>
 
-                                }} spacing={1}>
-                                    <Grid key={uuidv4()} item
-                                          container xs={2}
-                                          style={{
-                                              minHeight: "32px",
-                                              minWidth: "32px",
-                                              backgroundSize: 'contain',
-                                              backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).url()})`,
-                                              backgroundRepeat: "no-repeat",
+                <List
 
-                                          }}
-                                    ></Grid>
-                                    <Grid item container justifyContent='center'>
+                    style={{
+                        paddingTop: TransformHWTheme.spacing(2),
 
-                                        <Grid item xs={6} container justifyContent='center'>
-                                            <Typography
-                                                variant='subtitle2'
-                                                align='center'
-                                            >{serviceAmenity.title}</Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </ToolTipWrap>
-                        </Grid>
-                    })
-                }
+                        // display: 'flex', flexDirection: 'row',
+                        // overflowY: "hidden",
+                        width: "100%",
+                        // overflowX: "scroll",
+                        height: "130px",
+                    }}
+                >
+                    <Grid container ref={ref} direction='column' alignItems='center' alignContent='flex-start' style={{
+                        // marginTop: TransformHWTheme.spacing(2),
+                        //     margin: 0,
+                        // display: 'flex', flexDirection: 'row', padding: 0,
+                        paddingLeft: isOverflow?TransformHWTheme.spacing(2):TransformHWTheme.spacing(0),
+                        overflowY: "hidden",
+                        overflowX: "scroll",
+                        height: "100%",
+                        width: "100%",
+
+
+                    }}>
+                        {elements}
+                    </Grid>
+
+                </List>
             </Grid>
         </Grid>
         {
@@ -118,9 +147,9 @@ const AmenitiesSection: FunctionComponent<IProps> = (props:IProps) => {
                 pointerEvents: 'none'
                 // opacity: 0
             }}
-                                justifyContent='flex-end' alignContent='center'>
+                               justifyContent='flex-end' alignContent='center'>
                 <ArrowRight/>
-            </Grid>:<></>
+            </Grid> : <></>
         }
     </Grid>)
 }

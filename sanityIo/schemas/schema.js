@@ -45,6 +45,7 @@ import transformWhyChooseUsItem from "./sections/transform-hw/why-choose-us/tran
 import ThwContactUs from "./sections/transform-hw/ThwContactUsSection";
 import ThwUnderConstructionPage from "./sections/transform-hw/ThwUnderConstructionPage";
 import serviceAmenity from "./sections/transform-hw/services/serviceAmenity";
+import proprietorService from "./sections/transform-hw/proprietorService";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -90,5 +91,6 @@ export default createSchema({
         ThwContactUs,
         ThwUnderConstructionPage,
         serviceAmenity,
+        proprietorService,
     ]),
 })

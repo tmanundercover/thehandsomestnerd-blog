@@ -47,6 +47,13 @@ export default {
             to: [{type:'menuContainer'}]
         },
         {
+            name: 'servicesAvailable',
+            title: 'Other Services',
+            type: "array",
+            of: [{type: "reference", to:[{type: "transformServiceItem"}]},
+            ]
+        },
+        {
             name: 'slug',
             title: 'Slug',
             type: 'slug',

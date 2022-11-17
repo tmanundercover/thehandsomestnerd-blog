@@ -12,6 +12,7 @@ import PageProvider from "./components/page-context/PageProvider";
 import MediaQueriesContext from "./components/media-queries-context/MediaQueriesContext";
 import MediaQueriesProvider from "./components/media-queries-context/MediaQueriesProvider";
 import PageMux from "./components/transform-hw/pages/PageMux";
+import AmenityProvider from "./components/amenity-context/AmenityProvider";
 
 export enum RoutesEnum {
     TRANSFORM_HW = "/transformative-healing-and-wellness/:pageSlug",
@@ -35,36 +36,38 @@ function App() {
 
     const theme = useTheme()
     return (
-            <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+            <QueryClientProvider client={queryClient}>
                 <MuiThemeProvider theme={TransformHWTheme}>
                     <CssBaseline/>
                     <SnackbarProvider>
-                    <MediaQueriesProvider>
-                        <PageProvider>
-                            <Grid container item alignItems="center"
-                                  style={{
-                                      backgroundColor: theme.palette.background.default,
-                                      overflow:"hidden",
-                                      width: "100vw"
-                                  }}>
+                        <MediaQueriesProvider>
+                            <PageProvider>
+                                <AmenityProvider>
+                                    <Grid container item alignItems="center"
+                                          style={{
+                                              backgroundColor: theme.palette.background.default,
+                                              overflow: "hidden",
+                                              width: "100vw"
+                                          }}>
 
-                                <Grid item>
-                                    <Routes>
-                                        <Route path={RoutesEnum.TRANSFORM_HW} element={<PageMux/>}/>
-                                        <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
-                                        <Route path={"/*"}
-                                               element={<Navigate
-                                                   to={'/transformative-healing-and-wellness/coming-soon'}/>}/>
-                                    </Routes>
-                                </Grid>
-                            </Grid>
-                        </PageProvider>
-                    </MediaQueriesProvider>
+                                        <Grid item>
+                                            <Routes>
+                                                <Route path={RoutesEnum.TRANSFORM_HW} element={<PageMux/>}/>
+                                                <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
+                                                <Route path={"/*"}
+                                                       element={<Navigate
+                                                           to={'/transformative-healing-and-wellness/coming-soon'}/>}/>
+                                            </Routes>
+                                        </Grid>
+                                    </Grid>
+                                </AmenityProvider>
+                            </PageProvider>
+                        </MediaQueriesProvider>
                     </SnackbarProvider>
                 </MuiThemeProvider>
-        </QueryClientProvider>
-            </BrowserRouter>
+            </QueryClientProvider>
+        </BrowserRouter>
     )
 }
 

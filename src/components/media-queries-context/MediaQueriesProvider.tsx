@@ -103,7 +103,8 @@ const MediaQueriesProvider: FunctionComponent<IProps & PropsWithChildren> = (
             smDown: state.smDown,
             xsOnly: state.xsOnly,
             xsDown: state.xsDown,
-            mdUp: state.mdUp
+            mdUp: state.mdUp,
+            width
         }),
         [
             state,

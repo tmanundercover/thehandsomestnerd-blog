@@ -42,7 +42,7 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
             subMenus?.map(
                 (menuLink: any, index) => {
                     console.log(menuLink._type)
-                    if (menuLink["_type"] === "menuItem" && (includeMenuItems || (onlyButtons && (menuLink.isOutlinedButton || menuLink.isContainedButton)))) {
+                    if (menuLink["_type"] === "menuItem" && (includeMenuItems || (onlyButtons && (menuLink.isOutlinedButton || menuLink.isContainedButton || menuLink.isModalButton)))) {
                         const menuItem: SanityMenuItem = menuLink
                         return <Grid item key={uuidv4()}>
                             <Button href={menuItem.url ?? ""}

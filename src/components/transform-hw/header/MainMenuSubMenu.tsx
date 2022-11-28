@@ -1,9 +1,20 @@
-import React, {FunctionComponent} from 'react'
-import {Button, Collapse, createStyles, Divider, List, ListItem, ListItemText, MenuItemTypeMap} from '@material-ui/core'
+import React, {FunctionComponent, useContext} from 'react'
+import {
+    Button,
+    Collapse,
+    createStyles,
+    Divider,
+    List,
+    ListItem,
+    ListItemText,
+    MenuItemTypeMap,
+    Typography
+} from '@material-ui/core'
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import {ExpandLess, ExpandMore} from "@material-ui/icons";
 import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import {SanityMenuGroup} from "../../../common/sanityIo/Types";
+import ModalContext from "../../snackbar-context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,6 +49,7 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
         setOpen(!open);
     };
 
+    const modalContext = useContext(ModalContext)
     return (
         <List
             style={{padding: 0}}
@@ -60,16 +72,21 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                             <ListItem href={menuLink.url} key={index} button className={ classes.listItem} style={{
 
                             }}>
-                                <Button variant='text' href={menuLink.url} style={{
-
+                                <Button variant='text' href={menuLink.url}
+                                        onClick={menuLink.isModalButton?()=>{
+                                            console.log()
+                                            if(menuLink.isModalButton) {
+                                                modalContext.openModal && modalContext.openModal(menuLink.modalRef)
+                                            }
+                                        }:undefined}
+                                        style={{
                                 paddingTop: TransformHWTheme.spacing(2.25),
                                 paddingLeft: TransformHWTheme.spacing(6),
                                 paddingBottom: TransformHWTheme.spacing(2.25),
                                     height: "100%",
-                                    margin:0
+                                    margin:0,
                                 }} fullWidth>
-
-                                    <ListItemText primary={menuLink.displayText}/>
+                                    <ListItemText>{<Typography align='left'>{menuLink.displayText}</Typography>}</ListItemText>
                                 </Button>
                             </ListItem>
                         ))

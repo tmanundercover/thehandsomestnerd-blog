@@ -1,8 +1,9 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Button, Typography} from '@material-ui/core'
 import TransformHWTheme, {COLORS} from "../../theme/transform-hw/TransformHWTheme";
 import {SanityMenuItem} from "../../common/sanityIo/Types";
 import {makeStyles, Theme} from "@material-ui/core/styles";
+import ModalContext from "../snackbar-context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
     hover: {
@@ -22,6 +23,7 @@ interface HeaderMenuItemButtonProps {
 const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({menuItem}) => {
     const classes = useStyles(TransformHWTheme)
 
+    const modalContext = useContext(ModalContext)
     return (<Button href={menuItem.url ?? ""}
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                     style={{
@@ -33,6 +35,11 @@ const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({men
                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
                     }}
                     className={classes.hover}
+                    onClick={ (e:any)=>{
+                        if(menuItem.isModalButton) {
+                            modalContext.openModal && modalContext.openModal(menuItem.modalRef)
+                        }
+                    }}
                     variant={menuItem.isContainedButton ? 'contained' : (menuItem.isOutlinedButton ? 'outlined' : 'text')}>
         <Typography noWrap
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'textSecondary' : 'secondary'}

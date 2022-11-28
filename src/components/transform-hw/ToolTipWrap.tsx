@@ -1,14 +1,10 @@
 import React, {FunctionComponent, PropsWithChildren, ReactElement, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid, Tooltip, Typography} from '@material-ui/core'
-import ColoredPng from "../colored-png/ColoredPng";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import SnackbarContext from "../snackbar-context/SnackbarContext";
-import mediaQueries from "../../utils/mediaQueries";
 import {ServiceAmenityType} from "../BlockContentTypes";
-import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import AmenityContext from "../amenity-context/AmenityContext";
+import SnackbarContext from "../modal-context/SnackbarContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},

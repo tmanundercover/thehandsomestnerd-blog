@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
@@ -6,6 +6,8 @@ import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "./pages/Styles";
 import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
+import PageContext from "../page-context/PageContext";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -48,6 +50,8 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
         }
     }
 
+    const pageContext = useContext(PageContext)
+
     const classes = useStyles(classParameters)
     const globalClasses = useThwStyles({})
     return (
@@ -57,7 +61,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
             </Grid>
             <Grid container direction='column' style={{zIndex: 2}}>
                 <Grid item>
-                    <Grid container className={classes.contentSection} item  xs={11} sm={9} md={6}>
+                    <Grid container className={classes.contentSection} item xs={11} sm={9} md={6}>
                         <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
                             <Grid item>
                                 <Typography variant='subtitle1'
@@ -69,10 +73,14 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                             </Grid>
                             <Grid container item className={classes.contentBullets}
                                   style={{marginBottom: "60px"}}>
-                                        <Typography variant='body1' color='textSecondary'>{props.sectionData.contentText}</Typography>
+                                <Typography variant='body1'
+                                            color='textSecondary'>{props.sectionData.contentText}</Typography>
                             </Grid>
                             <Grid container item>
                                 <Button color='primary' variant='contained'
+                                        onClick={() => {
+                                            firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                                        }}
                                         href={props.sectionData.ctaButtonLink ?? ""}>
                                     <Typography variant='button'
                                                 color='secondary'>{props.sectionData.ctaButtonTitle}</Typography>

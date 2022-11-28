@@ -113,7 +113,8 @@ export const PINK = '#FFA9E7'
 // Marketplace colors
 
 export enum COLORS {
-    DARKBLUE = '#000035',
+    DARKBLUE = 'rgba(0,0,53,1)',
+    TRANSPARENT_DARKBLUE = 'rgba(0,0,53,.85)',
     BLUE = 'rgba(16, 43, 136, 1)',
     DARK_GRAY = '#A8A9AC',
     GRAY = 'rgba(207, 207, 207, 1)',

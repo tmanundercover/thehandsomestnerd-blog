@@ -9,6 +9,18 @@ const MENUGROUP = `
             url,
             isOutlinedButton,
             isContainedButton,
+            isModalButton,
+            modalRef->{
+                name,
+                title,
+                slug,
+                backgroundImageSrc,
+                iconOverlayImageSrc,
+                "contentText":contentText[],
+                "notes":notes[],
+                ctaButtonTitle,
+                ctaButtonLink
+            }
           },
           displayText,
           url,

@@ -11,6 +11,7 @@ import {useQuery} from "react-query";
 import mediaQueries from "../../../utils/mediaQueries";
 import PageContext from "../../page-context/PageContext";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
+import MailTo from "../../mail-to/MailTo";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -51,7 +52,8 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 }
             </Grid>
             <Grid item container xs={12} md={4} justifyContent='center'>
-                {pageContext.pageFooter?.logoImageSrc && <Logo isCenter logoImageSrc={pageContext.pageFooter.logoImageSrc} height={108}/>}
+                {pageContext.pageFooter?.logoImageSrc &&
+                    <Logo isCenter logoImageSrc={pageContext.pageFooter.logoImageSrc} height={108}/>}
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",
                     marginTop: "12px",
@@ -79,10 +81,9 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                         </Grid>
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
-                        <Grid item style={{color: COLORS.DARK_GRAY}}>
-                            <Typography color='inherit' align='center'
-                                        variant='subtitle1'>{props.homePage.email}</Typography>
-                        </Grid>
+                        {<Grid item>
+                            <MailTo color={COLORS.DARK_GRAY} email={props.homePage.email??""} subject={"Information Request"} body={""}/>
+                        </Grid>}
                     </Grid>
                 </Grid>
             </Grid>
@@ -102,25 +103,7 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid container item><Divider style={{width: "100%", backgroundColor: "white"}}/></Grid>
                     <Grid container item>
                         <Grid item xs={6}>
-                            <Typography variant='subtitle1' color='inherit'>Tue & Wed</Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Typography variant='subtitle1' color='inherit'>9am - 8pm</Typography>
-                        </Grid>
-                    </Grid>
-                    <Grid container item><Divider style={{width: "100%", backgroundColor: "white"}}/></Grid>
-                    <Grid container item>
-                        <Grid item xs={6}>
-                            <Typography variant='subtitle1' color='inherit'>Thu</Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Typography variant='subtitle1' color='inherit'>10am - 7pm</Typography>
-                        </Grid>
-                    </Grid>
-                    <Grid container item><Divider style={{width: "100%", backgroundColor: "white"}}/></Grid>
-                    <Grid container item>
-                        <Grid item xs={6}>
-                            <Typography variant='subtitle1' color='inherit'>Fri</Typography>
+                            <Typography variant='subtitle1' color='inherit'>Tue - Thur</Typography>
                         </Grid>
                         <Grid item xs={6}>
                             <Typography variant='subtitle1' color='inherit'>9am - 7pm</Typography>
@@ -129,10 +112,19 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid container item><Divider style={{width: "100%", backgroundColor: "white"}}/></Grid>
                     <Grid container item>
                         <Grid item xs={6}>
+                            <Typography variant='subtitle1' color='inherit'>Fri</Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography variant='subtitle1' color='inherit'>10am - 7pm</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container item><Divider style={{width: "100%", backgroundColor: "white"}}/></Grid>
+                    <Grid container item>
+                        <Grid item xs={6}>
                             <Typography variant='subtitle1' color='inherit'>Sat</Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant='subtitle1' color='inherit'> 8am - 4pm</Typography>
+                            <Typography variant='subtitle1' color='inherit'> 10am - 4pm</Typography>
                         </Grid>
                     </Grid>
                     <Grid container item><Divider style={{width: "100%", backgroundColor: "white"}}></Divider></Grid>
@@ -142,6 +134,24 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                         </Grid>
                         <Grid item xs={6}>
                             <Typography variant='subtitle1' color='inherit'>closed</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container item spacing={2} style={{marginTop: TransformHWTheme.spacing(2)}}>
+                        <Grid item xs={12} style={{
+                            borderLeft: "2px solid rgba(117, 117, 117, 0.99)",
+                            borderRight: "2px solid rgba(117, 117, 117, 0.99)",
+                            backgroundColor:'rgba(117, 117, 117, 0.5)'
+                        }}>
+                            <Typography gutterBottom variant='subtitle2' color='inherit' style={{fontSize: "14px", fontWeight: "350"}} >
+                                Transformative Healing & Wellness is a great place for paint & sip, splatter
+                                parties, AA Meetings, Group Counseling, large
+                                meetings or presentations and other
+                                private wellness experiences for groups.
+                            </Typography>
+                            <Typography variant='subtitle2' color='inherit'  style={{fontSize: "14px", fontWeight: "400"}} >
+                                To see what type of event we can create for you, please contact a member of our team:
+                            </Typography>
+                            <Typography variant='subtitle1' color='inherit' align='center'>private-parties@transformhw.org.</Typography>
                         </Grid>
                     </Grid>
 

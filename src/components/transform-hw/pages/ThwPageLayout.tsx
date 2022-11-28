@@ -7,16 +7,31 @@ import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
 import ThwHeader from "../header/ThwHeader";
 import ThwFooter from "../footer/ThwFooter";
+import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
+import {useLocation} from "react-router";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
 }
 
 const ThwPageLayout: FunctionComponent<IProps> = (props: IProps) => {
+    const location = useLocation();
+
+
+    React.useEffect(() => {
+            firebaseAnalyticsClient.analyticsPageView(
+                location.pathname,
+                location.search,
+                `${props.homePage.title} | Transformative Healing & Wellness`,
+            );
+    }, []);
 
     return (<Grid container item style={{width: "100vw"}}>
         <Grid container item>
             <ThwHeader pageHeader={props.homePage.headerMenuRef}/>
+        </Grid>
+        <Grid container item style={{height: "102px"}}>
+
         </Grid>
         <Grid item container>
             {

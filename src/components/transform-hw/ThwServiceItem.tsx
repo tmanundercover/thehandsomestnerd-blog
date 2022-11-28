@@ -11,6 +11,7 @@ import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -20,6 +21,7 @@ interface IProps {
     service: ThwServiceItemNoRefType
     hideLearnMoreButton?: boolean
     hideCtaButton?: boolean
+    source?:string
     showAmenities?: boolean
 }
 
@@ -30,14 +32,15 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     const LearnMoreButton = () => {
         return <Grid item container justifyContent='center'>
             {props.service.learnMoreText && props.service.learnMoreText.length > 0 &&
-                <LoadingButton color='secondary' href={props.service.learnMoreLink}
+                <LoadingButton
+                    clickHandler={()=>
+                    firebaseAnalyticsClient.ctaClick(props.service.slug.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+
+                } color='secondary' href={props.service.learnMoreLink}
                                variant='outlined'><Typography variant='button'
                                                               noWrap>{props.service.learnMoreText}</Typography></LoadingButton>}
         </Grid>
     }
-
-    const [loading, setLoading] = React.useState<boolean>()
-    const ref = useRef()
 
     return (
         <Grid key={uuidv4()} container item xs={12} sm={12} md={6} style={{marginBottom: TransformHWTheme.spacing(4)}}>
@@ -46,6 +49,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid container item direction={"column"}>
                     <Grid item container>
                         <ImageWIthButtonOverlay
+                            source={props.service.slug.current}
                             // hideCtaButton={prop.hideCtaButton}
                             tooltip={'Click to Learn More'}
                             learnMoreLink={props.service.learnMoreLink}
@@ -90,7 +94,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>}
                         </Grid>
                     }/>}
-                {!props.hideLearnMoreButton && <LearnMoreButton/>}
+                {!props.hideLearnMoreButton && <LearnMoreButton />}
             </Grid>
         </Grid>)
 }

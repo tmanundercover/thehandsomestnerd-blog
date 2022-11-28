@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent, useContext, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, createStyles, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
 import {Close, Menu} from "@material-ui/icons";
@@ -6,6 +6,7 @@ import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import Logo from "../logo/Logo";
 import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
+import ModalContext from "../../snackbar-context/ModalContext";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,6 +37,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
         setIsDrawerOpen(open);
     };
 
+    const modalContext = useContext(ModalContext)
     const classes = useStyles(TransformHWTheme)
     const list = (anchor: MainMenuAnchorType) => (
         <Grid item
@@ -54,7 +56,14 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                         const menuItem: SanityMenuItem = subMenu
                         return <List style={{padding: 0}} key={menuItem.displayText}>
                             <ListItem href={menuItem.url ?? ""} className={classes.listItem} button>
-                                <Button variant='text' href={menuItem.url} style={{
+                                <Button variant='text' href={menuItem.isModalButton?undefined:menuItem.url}
+                                        onClick={menuItem.isModalButton?()=>{
+                                            console.log()
+                                            if(menuItem.isModalButton) {
+                                                modalContext.openModal && modalContext.openModal(menuItem.modalRef)
+                                            }
+                                        }:undefined}
+                                        style={{
                                     paddingTop: TransformHWTheme.spacing(2.25),
                                     paddingLeft: TransformHWTheme.spacing(2),
                                     paddingBottom: TransformHWTheme.spacing(2.25),

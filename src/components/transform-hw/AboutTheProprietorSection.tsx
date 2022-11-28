@@ -10,9 +10,10 @@ import PsychologyTodaySeal from "./psychology-today-stamp/PsychologyToday";
 import LoadingButton from "../loading-button/LoadingButton";
 import ResponsiveBullet from "../ResponsiveBullet";
 import {FiberManualRecord} from "@material-ui/icons";
-import mask from "./PsychIcon.png"
 import ColoredPng from "../colored-png/ColoredPng";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
+import PageContext from "../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -31,8 +32,9 @@ interface IProps {
     sectionData: ThwAboutProprietorSectionType
 }
 
-const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType}) => {
+const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, source: string}) => {
     const mediaQueriesContext = useContext(MediaQueriesContext)
+    const pageContext = useContext(PageContext)
     return <Grid item container
                  justifyContent='center'
                  style={{
@@ -86,7 +88,12 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType}) => {
             </Grid>
         </Grid>
         <Grid item>
-            <LoadingButton href={props.sectionData.ctaButtonLink} color={"primary"}
+            <LoadingButton
+                clickHandler={(e:any)=>{
+                        firebaseAnalyticsClient.ctaClick(props.source, props.sectionData.ctaButtonText, pageContext.analyticsId,)
+            }}
+                           href={props.sectionData.ctaButtonLink}
+                           color={"primary"}
                            variant='outlined'>
                 {props.sectionData.ctaButtonText}
             </LoadingButton>
@@ -135,7 +142,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                                 isResponsive
                         />
                     </Grid>
-                    {!mediaQueriesContext.smDown && <Grid container item><ProprietorAtAGlance sectionData={props.sectionData.proprietorServices}/></Grid>}
+                    {!mediaQueriesContext.smDown && <Grid container item><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}
                 </Grid>
                 <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between' spacing={2}>
                     <Grid container item style={{minHeight: "549px"}} direction='column' spacing={4}>
@@ -198,7 +205,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         paddingTop: TransformHWTheme.spacing(3),
                         minWidth: "min-content"
                     }}
-                ><ProprietorAtAGlance sectionData={props.sectionData.proprietorServices}/></Grid>}
+                ><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}
             </Grid>
         </Grid>
     )

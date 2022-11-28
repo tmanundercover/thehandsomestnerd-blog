@@ -4,6 +4,7 @@ import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes"
 
 export type PageContextType = {
     page?: SanityTransformHwHomePage
+    analyticsId?: string
     slug?: string
     pageHeader?: SanityMenuContainer
     pageFooter?: SanityMenuContainer

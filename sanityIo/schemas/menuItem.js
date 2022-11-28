@@ -28,5 +28,16 @@ export default {
             title: 'Is this a contained button',
             type: 'boolean'
         },
+        {
+            name: 'isModalButton',
+            title: 'Is this a modal button',
+            type: 'boolean'
+        },
+        {
+            name: 'modalRef',
+            title: 'Which Modal',
+            type: 'reference',
+            to:[{type:"modal"}]
+        },
     ]
 }

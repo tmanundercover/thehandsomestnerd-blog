@@ -14,6 +14,7 @@ import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../../common/sanityIo/Types";
 import cmsClient from "../../../block-content-ui/cmsClient";
 import transformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
+import SubmitEmail from "../SubmitEmail";
 
 
 interface IProps {
@@ -27,21 +28,8 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
     const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
     const xsDown = useMediaQuery(TransformHWTheme.breakpoints.down('xs'))
 
-    const [email, setEmail] = useState("")
     const [releaseDate, setReleaseDate] = useState<Date>()
     const [cmsPageData, setCmsPageData] = useState<SanityUnderConstructionPageType>()
-
-
-    const {isLoading, isError, data, refetch} = useQuery(
-        ['createLead'],
-        () => {
-            if ((!data && !isError) && email && email.length > 0) {
-                return leadClient.createLead({email, source: "Coming Soon Page"});
-            }
-            return undefined
-        }
-    );
-
 
     React.useEffect(() => {
         const getPage = async () => {
@@ -63,29 +51,6 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
         setReleaseDate(releaseDateHolder)
 
     }, [cmsPageData])
-
-
-    const createLead = async (e: any): Promise<any> => {
-        return refetch()
-    }
-
-    const getHelperText = () => {
-        if ((data || isError) && !isEmail(email)) {
-            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>This is not a
-                valid email address.</Typography>
-        }
-
-        if (data) {
-            return <Typography style={{color: TransformHWTheme.palette.success.main}} variant='subtitle1'>Thank you for
-                your submission!</Typography>
-        }
-        if (isError) {
-            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>Please Try your
-                submission again later or contact jgreene@transformHW.org.</Typography>
-        }
-
-        return <Typography variant='subtitle1'>&nbsp;</Typography>
-    }
 
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
@@ -117,35 +82,8 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                     </Grid>
                 </Grid>
                 <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(5.75)}}>
-                    <Grid item container justifyContent='center'>
-                        <Typography color='primary' gutterBottom variant='body2'
-                                    align='center' style={{marginBottom: transformHWTheme.spacing(2)}}>{cmsPageData?.subscribeText}</Typography>
-                    </Grid>
-                    <Grid item container xs={11} md={5}>
-                        <TextField fullWidth
-                                   label={cmsPageData?.emailFieldText}
-                                   variant='filled'
-                                   type='email'
-                                   value={email}
-                                   onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                                       setEmail(event.target.value)
-                                   }}
-                                   className={classes.endAdornedInput}
-                                   InputProps={{
-                                       endAdornment:
-                                           <LoadingButton
-                                               width={200}
-                                               isLoading={isLoading}
-                                               groupiness={ButtonGroupMemberEnum.RIGHT}
-                                               disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
-                                               clickHandler={createLead}
-                                               color='secondary'
-                                               variant='contained'>{cmsPageData?.emailButtonText}</LoadingButton>
-                                       ,
-                                   }}/>
-                    </Grid>
-                    <Grid item container justifyContent='center' className={classes.spacer}>
-                        {getHelperText()}
+                    <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(5.75)}}>
+                        <SubmitEmail emailFieldText={cmsPageData?.emailFieldText??""} emailButtonText={cmsPageData?.emailButtonText??""} subscribeText={cmsPageData?.subscribeText??""} />
                     </Grid>
                     <Grid item container style={{
                         backgroundColor: xsDown ? TransformHWTheme.palette.background.default : "transparent",

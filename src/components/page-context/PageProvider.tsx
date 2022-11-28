@@ -1,11 +1,10 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
-import {SanityMenuContainer, SanityRef, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
+import {SanityMenuContainer, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 import thwClient from "../transform-hw/thwClient";
-import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
-import SnackbarContext from "../snackbar-context/SnackbarContext";
+import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import PageContext from './PageContext';
-import amenitiesSection from "../transform-hw/AmenitiesSection";
-
+import SnackbarContext from "../modal-context/SnackbarContext";
+import {v4 as uuidv4} from 'uuid'
 type IProps = {};
 
 type PageProviderState = {
@@ -18,6 +17,7 @@ type PageProviderState = {
     allServices?: ThwServiceItemNoRefType[],
     pageHeader?: SanityMenuContainer,
     pageFooter?: SanityMenuContainer,
+    analyticsId: string
 }
 
 const initialState: PageProviderState = {
@@ -30,6 +30,7 @@ const initialState: PageProviderState = {
     allServices: [],
     pageHeader: undefined,
     pageFooter: undefined,
+    analyticsId: uuidv4().toString(),
 };
 
 const reducer = (state: PageProviderState, action: any) => {
@@ -83,6 +84,12 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const loadedPageQuery = thwClient.useFetchPageBySlugQuery(state.pageSlug)
 
+    React.useEffect(() => {
+        if (state.analyticsId) {
+            console.log("states analytics changd", state.analyticsId)
+
+        }
+    }, [state.analyticsId])
     React.useEffect(() => {
         if ((state.pageSlug && state.pageSlug.length > 0)) {
             console.log("states pageslug changd", state.pageSlug)
@@ -302,6 +309,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             allServices: state.allServices,
 
             getOtherServices,
+            analyticsId: state.analyticsId
         }),
         [
             state.page,
@@ -314,6 +322,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             fetchPage,
             state.allServices,
             getOtherServices,
+            state.analyticsId,
         ]
     );
 

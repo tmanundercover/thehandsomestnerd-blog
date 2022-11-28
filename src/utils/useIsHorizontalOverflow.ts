@@ -1,6 +1,6 @@
 import React from "react";
 
-export const useIsOverflow = (ref: any, callback: (hasOverflow?: boolean) => any) => {
+export const useIsHorizontalOverflow = (ref: any, callback: (hasOverflow?: boolean) => any) => {
     const [isOverflow, setIsOverflow] = React.useState<boolean | undefined>(undefined);
 
     React.useEffect(() => {

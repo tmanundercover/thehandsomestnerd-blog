@@ -44,7 +44,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
 
         <Grid container item className={classes.root} xs={12} style={{position: "relative"}}>
             <Grid container item >
-                <Grid item container style={{marginTop: TransformHWTheme.spacing(88)}}>
+                <Grid item container style={{marginTop: TransformHWTheme.spacing(76)}}>
 
                 </Grid>
                 <Grid container style={{
@@ -56,7 +56,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     // margin: TransformHWTheme.spacing(0,0,2,0),
                     // margin: TransformHWTheme.spacing(0,0,2,0),
                     left: 0,
-                    top: 102,
+                    top: 0,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
                     backgroundImage: `url(${urlFor(props.serviceData.imageSrc).url()})`

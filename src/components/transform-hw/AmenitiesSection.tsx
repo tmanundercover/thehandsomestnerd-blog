@@ -8,10 +8,10 @@ import {v4 as uuidv4} from "uuid";
 import ToolTipWrap from "./ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
-import {useIsOverflow} from "../../utils/useIsOverflow";
 import AmenityContext from "../amenity-context/AmenityContext";
 import ProgressCircle
     from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/progress/ProgressCircle";
+import {useIsHorizontalOverflow} from "../../utils/useIsHorizontalOverflow";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -24,7 +24,7 @@ interface IProps {
 
 const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
     const ref = React.useRef(null);
-    const isOverflow = useIsOverflow(ref, ()=>{})
+    const isOverflow = useIsHorizontalOverflow(ref, ()=>{})
 
     const [showAmenity, setShowAmenity] = React.useState<boolean>()
     const pageContext = useContext(PageContext)
@@ -139,7 +139,7 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
         </Grid>
         {
             isOverflow ? <Grid container xs={3} item style={{
-                backgroundImage: 'linear-gradient(to right,transparent, whitesmoke)',
+                // backgroundImage: 'linear-gradient(to right,transparent, whitesmoke)',
                 position: "absolute",
                 right: 16,
                 height: "100%",

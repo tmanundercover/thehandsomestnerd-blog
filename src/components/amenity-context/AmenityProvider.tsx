@@ -7,8 +7,8 @@ import ToolTipWrap from "../transform-hw/ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
 import ColoredPng from "../colored-png/ColoredPng";
-import snackbarContext from "../snackbar-context/SnackbarContext";
-import SnackbarContext from "../snackbar-context/SnackbarContext";
+import SnackbarContext from "../modal-context/SnackbarContext";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 
 type IProps = {};
 
@@ -84,6 +84,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             return <ListItem
                 key={uuidv4()}
                 style={{
+                    cursor: 'pointer',
                     height: "140px",
                     width: "100px",
                     backgroundColor: "whitesmoke",
@@ -100,6 +101,8 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                               width: "100%"
 
                     }} alignItems='center' alignContent='center'>
+                        <Grid item container justifyContent='center'>
+
                         <ListItemIcon key={uuidv4()}
                               style={{
                                   minHeight: "32px",
@@ -111,13 +114,14 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
                               }}
                         ></ListItemIcon>
-
+                        </Grid>
+                        <Grid item container justifyContent='center'>
                         <ListItemText>
                             <Typography
                                 variant='subtitle2'
-                                align='center'
                             >{serviceAmenity.title}</Typography>
                         </ListItemText>
+                        </Grid>
                     </Grid>
                 </ToolTipWrap>
             </ListItem>
@@ -138,6 +142,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const snackbarContext = useContext(SnackbarContext)
 
     const openSnackbar = (serviceTitle: string, amenity: ServiceAmenityType) => {
+        pageContext.analyticsId && firebaseAnalyticsClient.amenityTooltipShown && firebaseAnalyticsClient.amenityTooltipShown(serviceTitle, amenity.title, pageContext.analyticsId)
         const snack = <Grid
             container
             style={{minWidth: "200px"}}

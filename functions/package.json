@@ -20,8 +20,6 @@
     "@sanity/image-url": "^1.0.1",
     "@sanity/types": "^2.34.0",
     "@shopify/shopify-api": "^2.0.0",
-    "@types/firebase": "^3.2.1",
-    "@types/ws": "^8.2.2",
     "axios": "^0.24.0",
     "dotenv": "^16.0.3",
     "es6-promise": "^4.2.8",
@@ -34,6 +32,8 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
+    "@types/ws": "^8.2.2",
     "@types/json-bigint": "^1.0.1",
     "@types/node-fetch": "^2.5.12",
     "@types/uuid": "^8.3.3",

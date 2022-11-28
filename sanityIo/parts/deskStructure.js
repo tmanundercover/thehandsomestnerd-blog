@@ -15,6 +15,9 @@ export default () =>
                 .title('Page')
                 .child(createSuperPane('homePage', S)),
             S.listItem()
+                .title('Modal')
+                .child(createSuperPane('modal', S)),
+             S.listItem()
                 .title('Menu Container')
                 .child(createSuperPane('menuContainer', S)),
             S.listItem()

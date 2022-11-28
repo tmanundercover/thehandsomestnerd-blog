@@ -114,13 +114,33 @@ export type SanityBlogPreview = {
 //   text?: string
 // }
 
+
+export interface TextElementType {
+  question: string;
+  answer: number;
+}
+
+export type SanityModalType = {
+  name:string,
+  title:string,
+  slug:string,
+  backgroundImageSrc:SanityImageAsset
+  iconOverlayImageSrc:SanityImageAsset
+  contentText: TextElementType[]
+  notes: string[]
+  ctaButtonTitle: string
+  ctaButtonLink: string
+}
+
 export type SanityMenuItem = {
   _type: string
   title?: string,
   displayText?: string,
   url?: string,
   isContainedButton?: boolean,
-  isOutlinedButton?: boolean
+  isOutlinedButton?: boolean,
+  isModalButton?:boolean
+  modalRef?: SanityModalType
 }
 
 export type SanityMenuGroup = {

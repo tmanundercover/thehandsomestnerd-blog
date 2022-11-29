@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, createStyles, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
 import {Close, Menu} from "@material-ui/icons";
-import MackenziesMindTheme from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
@@ -38,7 +38,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     };
 
     const modalContext = useContext(ModalContext)
-    const classes = useStyles(MackenziesMindTheme)
+    const classes = useStyles(MixedFeelingsByTTheme)
     const list = (anchor: MainMenuAnchorType) => (
         <Grid item
               role="presentation"
@@ -64,9 +64,9 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                             }
                                         }:undefined}
                                         style={{
-                                    paddingTop: MackenziesMindTheme.spacing(2.25),
-                                    paddingLeft: MackenziesMindTheme.spacing(2),
-                                    paddingBottom: MackenziesMindTheme.spacing(2.25),
+                                    paddingTop: MixedFeelingsByTTheme.spacing(2.25),
+                                    paddingLeft: MixedFeelingsByTTheme.spacing(2),
+                                    paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
                                     height: "100%",
                                     margin: 0
                                 }} fullWidth>
@@ -92,8 +92,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
-                          paddingLeft: MackenziesMindTheme.spacing(4),
-                          paddingRight: MackenziesMindTheme.spacing(6),
+                          paddingLeft: MixedFeelingsByTTheme.spacing(4),
+                          paddingRight: MixedFeelingsByTTheme.spacing(6),
                       }}>
 
                     <Grid item xs={3}>

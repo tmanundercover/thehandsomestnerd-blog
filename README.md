@@ -1,10 +1,10 @@
-# MacKenzie's Mind
+# Mixed Feelings By T
 
-Application that serves as the website and landing pages for MacKenzie's Mind
+Application that serves as the website for Mixed Feelings By T
 
 ## Description
 
-Client project for MacKenzie's Mind. Serves as central location for music, media, and other content. 
+Client project for Mixed Feelings by T. Serves as central location for music, media, and other content. 
 Links for purchase of music and place for performance updates. 
 
 ## Getting Started
@@ -17,7 +17,7 @@ Links for purchase of music and place for performance updates.
 
 ### Installing
 
-* yarn install
+* npm install
 
 ### Executing program
 

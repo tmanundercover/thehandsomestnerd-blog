@@ -3,7 +3,7 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid} from '@material-ui/core'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import MackenziesMindTheme, {COLORS} from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -43,7 +43,7 @@ interface IProps {
 }
 
 const Footer: FunctionComponent<IProps> = (props:IProps) => {
-  const classes = useStyles(MackenziesMindTheme)
+  const classes = useStyles(MixedFeelingsByTTheme)
 
   return (
     <Grid container className={classes.root}>

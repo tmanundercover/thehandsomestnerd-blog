@@ -16,7 +16,7 @@ import {
 // @ts-ignore
 import BlockContent from '@sanity/block-content-to-react'
 import { ButtonMarkRender, ListItemRender, ListRender, UtmLinkRender } from './BlockContentAnnotations'
-import MackenziesMindTheme, {phonk} from "../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme, {bitterPro} from "../../theme/MixedFeelingsByTTheme";
 
 export type HeaderVariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type LinkType = { href: string, isAddUtm: boolean }
@@ -29,30 +29,30 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
   const wrapWithHTag = (children: any) => {
     switch (variant) {
       case 'h1':
-        return <h1 style={{...phonk}}>{children}</h1>
+        return <h1 style={{...bitterPro}}>{children}</h1>
       case 'h2':
-        return <h2 style={{...phonk}}>{children}</h2>
+        return <h2 style={{...bitterPro}}>{children}</h2>
       case 'h3':
-        return <h3 style={{...phonk}}>{children}</h3>
+        return <h3 style={{...bitterPro}}>{children}</h3>
       case 'h4':
-        return <h4 style={{...phonk}}>{children}</h4>
+        return <h4 style={{...bitterPro}}>{children}</h4>
       case 'h5':
-        return <h5 style={{...phonk}}>{children}</h5>
+        return <h5 style={{...bitterPro}}>{children}</h5>
       case 'h6':
-        return <h6 style={{...phonk}}>{children}</h6>
+        return <h6 style={{...bitterPro}}>{children}</h6>
       default:
         return <Typography display='inline' component='div'
                            style={{
-                             color: MackenziesMindTheme.palette.secondary.main,
+                             color: MixedFeelingsByTTheme.palette.secondary.main,
                              fontWeight: variant === 'h3' ? 300 : 700,
-                             marginBottom: MackenziesMindTheme.spacing(3)
+                             marginBottom: MixedFeelingsByTTheme.spacing(3)
                            }}
                            variant={variant as TypographyVariantType}>{children}</Typography>
     }
 
   }
 
-  return <MuiThemeProvider theme={MackenziesMindTheme}>
+  return <MuiThemeProvider theme={MixedFeelingsByTTheme}>
     <CssBaseline/>{wrapWithHTag(
     props.children
     )}
@@ -70,7 +70,7 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
 }
 
 export const CtaRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(MackenziesMindTheme)
+  const classes = useCommonStyles(MixedFeelingsByTTheme)
   return <Grid container item xs={12} className={classes.callToAction}>{props.children}</Grid>
 }
 
@@ -99,7 +99,7 @@ export const CodeBlockRender = (props: any) => {
 }
 
 export const HrRender: React.FunctionComponent = (props) => {
-  const classes = useCommonStyles(MackenziesMindTheme)
+  const classes = useCommonStyles(MixedFeelingsByTTheme)
 
   return <Grid container item>
     <hr className={classes.hr}/>
@@ -134,10 +134,10 @@ export const ButtonRender = (props: any) => {
     case 'outlined':
       switch (props.color) {
         case 'secondary':
-          textColor = MackenziesMindTheme.palette.secondary.main
+          textColor = MixedFeelingsByTTheme.palette.secondary.main
           break
         case 'primary':
-          textColor = MackenziesMindTheme.palette.primary.main
+          textColor = MixedFeelingsByTTheme.palette.primary.main
           break
         case 'mint':
           textColor = ""
@@ -155,31 +155,31 @@ export const ButtonRender = (props: any) => {
           textColor = 'whitesmoke'
           break
         case 'mint':
-          textColor = MackenziesMindTheme.palette.secondary.main
+          textColor = MixedFeelingsByTTheme.palette.secondary.main
           break
         default:
-          textColor = MackenziesMindTheme.palette.background.paper
+          textColor = MixedFeelingsByTTheme.palette.background.paper
       }
       break
     case 'text':
     default:
       switch (props.color) {
         case 'secondary':
-          textColor = MackenziesMindTheme.palette.secondary.main
+          textColor = MixedFeelingsByTTheme.palette.secondary.main
           break
         case 'primary':
-          textColor = MackenziesMindTheme.palette.primary.main
+          textColor = MixedFeelingsByTTheme.palette.primary.main
           break
         case 'mint':
           textColor = ""
           break
         default:
-          textColor = MackenziesMindTheme.palette.text.primary
+          textColor = MixedFeelingsByTTheme.palette.text.primary
       }
       break
   }
 
-  return <MuiThemeProvider theme={MackenziesMindTheme}>
+  return <MuiThemeProvider theme={MixedFeelingsByTTheme}>
     <CssBaseline/>
     <Grid container item>
       <Button style={props?.color === 'mint' ? props?.variant === 'contained' ? {
@@ -241,9 +241,9 @@ export const blockSerializers: any = {
   marks: {
     light: LightRender,
     dropCap: DropCapRender,
-    primaryTextColor: (props: any) => (TextColorRender(props, MackenziesMindTheme.palette.primary.main)),
-    secondaryTextColor: (props: any) => (TextColorRender(props, MackenziesMindTheme.palette.secondary.main)),
-    underlinePrimaryColor: (props: any) => (UnderlineRender(props, MackenziesMindTheme.palette.primary.main)),
+    primaryTextColor: (props: any) => (TextColorRender(props, MixedFeelingsByTTheme.palette.primary.main)),
+    secondaryTextColor: (props: any) => (TextColorRender(props, MixedFeelingsByTTheme.palette.secondary.main)),
+    underlinePrimaryColor: (props: any) => (UnderlineRender(props, MixedFeelingsByTTheme.palette.primary.main)),
     utmLink: UtmLinkRender,
     bold: BoldRender,
     button: ButtonMarkRender,

@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core'
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import {ExpandLess, ExpandMore} from "@material-ui/icons";
-import MackenziesMindTheme from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import {SanityMenuGroup} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
 
@@ -59,8 +59,8 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
             className={classes.root}
         >
             <ListItem button style={{
-                paddingTop: MackenziesMindTheme.spacing(2.25),
-                paddingBottom: MackenziesMindTheme.spacing(2.25),
+                paddingTop: MixedFeelingsByTTheme.spacing(2.25),
+                paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
             }} onClick={handleClick}>
                 <ListItemText primary={menuGroup.menuGroupTitle}/>
                 {open ? <ExpandLess/> : <ExpandMore/>}
@@ -80,9 +80,9 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                                             }
                                         }:undefined}
                                         style={{
-                                paddingTop: MackenziesMindTheme.spacing(2.25),
-                                paddingLeft: MackenziesMindTheme.spacing(6),
-                                paddingBottom: MackenziesMindTheme.spacing(2.25),
+                                paddingTop: MixedFeelingsByTTheme.spacing(2.25),
+                                paddingLeft: MixedFeelingsByTTheme.spacing(6),
+                                paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
                                     height: "100%",
                                     margin:0,
                                 }} fullWidth>

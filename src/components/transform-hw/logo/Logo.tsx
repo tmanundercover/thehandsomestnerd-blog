@@ -3,7 +3,7 @@ import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid} from '@material-ui/core'
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
-import logoImg from './transformhw-logo.png'
+import logoImg from './image_6487327.png'
 
 interface CssProps {
     logoImageSrc?: SanityImageSource
@@ -12,7 +12,7 @@ interface CssProps {
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: (props: CssProps) => ({
-        backgroundImage: `url(${props.logoImageSrc ? urlFor(props.logoImageSrc).url() : ""})`,
+        backgroundImage: `url(${props.logoImageSrc ? urlFor(props.logoImageSrc).url() : logoImg})`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         minWidth: "100px",
@@ -29,7 +29,7 @@ interface LogoProps {
 }
 
 const Logo: FunctionComponent<LogoProps> = (props) => {
-    const classes = useStyles({logoImageSrc: "", height: props.height})
+    const classes = useStyles({logoImageSrc: props.logoImageSrc, height: props.height})
 
     return (
         <Grid item container className={classes.root} style={{backgroundPosition: props.isCenter ? "center" : "left"}}/>

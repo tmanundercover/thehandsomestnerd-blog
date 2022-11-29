@@ -100,7 +100,7 @@ const serveIndexFile = (req: any, res: any) => {
     let pageSlug = tokenizedParams[tokenizedParams.length - 1];
 
     if (!pageSlug) {
-      pageSlug = "coming-soon";
+      pageSlug = "home";
     }
 
     logClient.log("server-side", "NOTICE",
@@ -110,9 +110,9 @@ const serveIndexFile = (req: any, res: any) => {
 
       // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
       const page = {
-        ogTitle: pageFromSanity.title,
-        description: pageFromSanity.description,
-        ogDescription: pageFromSanity.description,
+        ogTitle: pageFromSanity?.title,
+        description: pageFromSanity?.description,
+        ogDescription: pageFromSanity?.description,
         ogImage: pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
       };
 

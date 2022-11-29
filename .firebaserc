@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "mackenzies-mind"
-  }
+    "mixed-feelings-by-t": "mixed-feelings-by-t"
+  },
+  "targets": {},
+  "etags": {}
 }

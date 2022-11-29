@@ -1,29 +1,36 @@
 import {makeStyles} from "@material-ui/core";
-import MackenziesMindTheme from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
 
 const useCustomStyles = makeStyles({
     fullscreen: {
         width: 'calc(100vw)',
         height: 'calc(100vh)',
-        position: "relative"
+        position: "relative",
+        overflowY: "scroll"
     },
     fullscreenPlus: {
         width: 'calc(100vw)',
         height: 'calc(100vh)',
         position: "relative"
     },
+    transparentBacking: {
+        borderLeft: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
+        borderRight: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
+        padding: MixedFeelingsByTTheme.spacing(2,0),
+        backgroundColor:COLORS.TRANSPARENTWHITE
+    },
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
             border: "1px solid white",
             paddingRight: 0,
-            borderTopRightRadius: MackenziesMindTheme.shape.borderRadius,
-            borderBottomRightRadius: MackenziesMindTheme.shape.borderRadius
+            borderTopRightRadius: MixedFeelingsByTTheme.shape.borderRadius,
+            borderBottomRightRadius: MixedFeelingsByTTheme.shape.borderRadius
         },
         "& .MuiOutlinedInput-adornedEnd": {
             border: "1px solid white",
             paddingRight: 0,
-            borderTopRightRadius: MackenziesMindTheme.shape.borderRadius,
-            borderBottomRightRadius: MackenziesMindTheme.shape.borderRadius
+            borderTopRightRadius: MixedFeelingsByTTheme.shape.borderRadius,
+            borderBottomRightRadius: MixedFeelingsByTTheme.shape.borderRadius
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
@@ -31,7 +38,7 @@ const useCustomStyles = makeStyles({
                 borderBottomColor: "white"
             },
         },
-        "& .MuiButton-containedSecondary":{
+        "& .MuiButton-containedSecondary": {
             border: 0,
             borderLeft: '1px solid white'
         }
@@ -43,12 +50,16 @@ const useCustomStyles = makeStyles({
         position: "absolute",
         backgroundColor: `rgba(0, 0, 0, .5)`
     },
+    fullscreenWhiteOverlay: {
+        position: "absolute",
+        backgroundColor: `rgba(255, 255, 255, 0.3)`
+    },
     fullScreenImage: {
         position: "relative",
         backgroundImage: (props: any) => `url(${props.bgImage})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundColor: MackenziesMindTheme.palette.background.default
+        backgroundPosition: 'right',
+        backgroundColor: MixedFeelingsByTTheme.palette.background.default
     },
     fullSection: {
         width: 'calc(100vw)',

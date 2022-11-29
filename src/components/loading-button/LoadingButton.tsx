@@ -1,6 +1,6 @@
 import {Box, Button, CircularProgress, Grid, makeStyles, PropTypes} from '@material-ui/core'
 import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
-import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
@@ -23,7 +23,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return MackenziesMindTheme.shape.borderRadius
+                    return MixedFeelingsByTTheme.shape.borderRadius
             }
         },
         borderTopRightRadius: (props: CssProps) => {
@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return MackenziesMindTheme.shape.borderRadius
+                    return MixedFeelingsByTTheme.shape.borderRadius
             }
         },
         borderBottomRightRadius: (props: CssProps) => {
@@ -45,7 +45,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return MackenziesMindTheme.shape.borderRadius
+                    return MixedFeelingsByTTheme.shape.borderRadius
 
             }
         },
@@ -57,7 +57,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return MackenziesMindTheme.shape.borderRadius
+                    return MixedFeelingsByTTheme.shape.borderRadius
             }
         },
     }
@@ -81,9 +81,9 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
     const getProgressContrastColor = () => {
         switch (props.color) {
             case 'primary':
-                return MackenziesMindTheme.palette.primary.main
+                return MixedFeelingsByTTheme.palette.primary.main
             case 'secondary':
-                return MackenziesMindTheme.palette.secondary.main
+                return MixedFeelingsByTTheme.palette.secondary.main
             default:
                 return '#FFFFFF'
         }
@@ -103,7 +103,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
                     {
                         props.isLoading ?
                             <CircularProgress style={{
-                                color: MackenziesMindTheme.palette.getContrastText(getProgressContrastColor()),
+                                color: MixedFeelingsByTTheme.palette.getContrastText(getProgressContrastColor()),
                                 width: "22px",
                                 height: "22px"
                             }}/>

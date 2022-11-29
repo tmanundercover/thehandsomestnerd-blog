@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {AppBar, Grid, Hidden} from '@material-ui/core'
-import MackenziesMindTheme, {COLORS} from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
@@ -48,7 +48,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                               alignItems='stretch'
                               style={{
                                   height: "100%",
-                                  paddingRight: mediaQueriesContext.mdDown ? MackenziesMindTheme.spacing(0) : MackenziesMindTheme.spacing(4)
+                                  paddingRight: mediaQueriesContext.mdDown ? MixedFeelingsByTTheme.spacing(0) : MixedFeelingsByTTheme.spacing(4)
                               }}>
                             <FilteredMenuItems
                                 // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}

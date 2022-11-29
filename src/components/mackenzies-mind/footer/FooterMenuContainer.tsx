@@ -3,7 +3,7 @@ import {Divider, Grid, Typography} from '@material-ui/core'
 import FooterMenuGroup from './FooterMenuGroup'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import MackenziesMindTheme, {COLORS} from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
 import PageContext from "../../page-context/PageContext";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import MailTo from "../../mail-to/MailTo";
@@ -24,7 +24,7 @@ interface IProps {
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles(MackenziesMindTheme)
+    const classes = useStyles(MixedFeelingsByTTheme)
 
     const pageContext = useContext(PageContext)
     const mediaQueriesContext = useContext(MediaQueriesContext)
@@ -33,9 +33,9 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     return (
         <Grid container item className={classes.root} spacing={5}>
             <Grid container item xs={12} md={4} style={mediaQueriesContext.smDown ? {
-                borderLeft: `4px solid ${MackenziesMindTheme.palette.primary.main}`,
+                borderLeft: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
                 backgroundColor: "rgba(117,117,117,.5)",
-                borderRight: `4px solid ${MackenziesMindTheme.palette.primary.main}`,
+                borderRight: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
             } : {}}>
                 {
                     pageContext.pageFooter?.subMenus?.map((menuGroup: any, index: number) => {

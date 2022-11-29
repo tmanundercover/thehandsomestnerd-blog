@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core'
 import { FiberManualRecord } from '@material-ui/icons'
 import { useCommonStyles } from './CommonStyles'
-import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
 
@@ -27,10 +27,10 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
     case 'outlined':
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = MackenziesMindTheme.palette.secondary.main
+          textColor = MixedFeelingsByTTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = MackenziesMindTheme.palette.primary.main
+          textColor = MixedFeelingsByTTheme.palette.primary.main
           break;
         case 'mint':
           textColor = ""
@@ -48,26 +48,26 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
           textColor = "whitesmoke"
           break;
         case 'mint':
-          textColor = MackenziesMindTheme.palette.secondary.main
+          textColor = MixedFeelingsByTTheme.palette.secondary.main
           break;
         default:
-          textColor = MackenziesMindTheme.palette.background.paper
+          textColor = MixedFeelingsByTTheme.palette.background.paper
       }
       break
     case 'text':
     default:
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = MackenziesMindTheme.palette.secondary.main
+          textColor = MixedFeelingsByTTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = MackenziesMindTheme.palette.primary.main
+          textColor = MixedFeelingsByTTheme.palette.primary.main
           break;
         case 'mint':
           textColor = ""
           break;
         default:
-          textColor = MackenziesMindTheme.palette.text.primary
+          textColor = MixedFeelingsByTTheme.palette.text.primary
       }
       break
   }

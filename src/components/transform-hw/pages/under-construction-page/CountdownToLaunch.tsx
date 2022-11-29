@@ -2,14 +2,14 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import Countdown from "react-countdown";
-import MackenziesMindTheme, {COLORS} from "../../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme, {COLORS} from "../../../../theme/MixedFeelingsByTTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     counterSection: {
         height: "155px",
         width: "155px",
         borderRadius: "85px",
-        backgroundColor: "rgba(16, 43, 136, .7)",
+        backgroundColor: COLORS.TRANSPARENTWHITE,
         border: `4px solid ${theme.palette.primary.main}`
     }
 }))
@@ -20,10 +20,10 @@ interface IProps {
 }
 
 const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(MackenziesMindTheme)
+    const classes = useStyles(MixedFeelingsByTTheme)
     const Completionist = () => <span>Congratulations! If your site is not already here please contact hello@thehandsomestnerd.com launched!</span>
 
-    const smDown = useMediaQuery(MackenziesMindTheme.breakpoints.down('sm'))
+    const smDown = useMediaQuery(MixedFeelingsByTTheme.breakpoints.down('sm'))
 
     const pluralize = (subject: string) => {
         return subject + 's'
@@ -34,7 +34,7 @@ const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
                      className={classes.counterSection}>
             <Grid item><Typography variant='h1' color='primary'
                                    style={{textTransform: "uppercase"}}>{props.value}</Typography></Grid>
-            <Grid item><Typography variant='h6' color='primary'
+            <Grid item><Typography variant='h6'
                                    style={{textTransform: "uppercase"}}>{props.value !== 1 ? pluralize(props.units) : props.units}</Typography></Grid>
         </Grid>
     }

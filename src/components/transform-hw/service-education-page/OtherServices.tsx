@@ -5,7 +5,7 @@ import thwClient from "../thwClient";
 import {v4 as uuidv4} from 'uuid'
 import {ThwServiceItemType} from "../../BlockContentTypes";
 import ThwServiceItem from "../ThwServiceItem";
-import MackenziesMindTheme from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import ProgressBar
     from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/progress/ProgressBar";
 import PageContext from "../../page-context/PageContext";
@@ -22,7 +22,7 @@ const OtherServices: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
 
     return (<Grid container item>
-        <Grid container item justifyContent='center' style={{marginBottom: MackenziesMindTheme.spacing(4)}}>
+        <Grid container item justifyContent='center' style={{marginBottom: MixedFeelingsByTTheme.spacing(4)}}>
             <Typography variant='h4' color='secondary'>Other Services</Typography>
         </Grid>
         <Grid container item spacing={3} justifyContent='center'>

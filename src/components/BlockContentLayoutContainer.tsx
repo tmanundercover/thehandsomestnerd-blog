@@ -13,7 +13,7 @@ import {
     ThwServicesSectionType,
     ThwWhyChooseUsSectionType,
 } from "./BlockContentTypes";
-import MackenziesMindTheme from "../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../theme/MixedFeelingsByTTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
 import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
@@ -103,7 +103,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwPositivePsychologySection: ThwPositivePsychologySectionType = columnLayoutContainer
 
                     return <Grid key={'transformPositivePsychologySection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MackenziesMindTheme.palette.background.paper}}>
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <Link id={"ABOUT_US"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <ThwPositivePsychology
@@ -114,7 +114,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwMottoSection: ThwMottoSectionType = columnLayoutContainer
 
                     return <Grid key={'transformMottoSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MackenziesMindTheme.palette.background.paper}}>
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <ThwMottoSection
                             sectionData={thwMottoSection}
                         />
@@ -123,7 +123,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwProprietorSection: ThwAboutProprietorSectionType = columnLayoutContainer
 
                     return <Grid key={'transformAboutProprietorSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MackenziesMindTheme.palette.background.paper}}>
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <Link id={"ABOUT_PROPRIETOR"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <AboutTheProprietorSection
@@ -134,7 +134,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwServicesSection: ThwServicesSectionType = columnLayoutContainer
 
                     return <Grid key={'transformServicesSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MackenziesMindTheme.palette.background.paper}}>
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <Link id={"SERVICES"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <ThwServicesSection
@@ -145,7 +145,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwWCUSection: ThwWhyChooseUsSectionType = columnLayoutContainer
 
                     return <Grid key={'transformWhyChooseUsSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MackenziesMindTheme.palette.background.paper}}>
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <ThwWhyChooseUsSection
                             sectionData={thwWCUSection}
                         />
@@ -154,7 +154,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwCUSection: ThwContactUsSectionType = columnLayoutContainer
 
                     return <Grid key={'transformContactUsSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MackenziesMindTheme.palette.background.paper}}>
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <ThwContactUsSection
                             sectionData={thwCUSection}
                         />

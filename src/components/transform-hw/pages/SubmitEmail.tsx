@@ -6,7 +6,7 @@ import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum"
 import isEmail from "validator/lib/isEmail";
 import {useQuery} from "react-query";
 import leadClient from "./under-construction-page/leadClient";
-import MackenziesMindTheme from "../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -21,7 +21,7 @@ interface IProps {
 
 const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
-    const classes = useCustomStyles(MackenziesMindTheme)
+    const classes = useCustomStyles(MixedFeelingsByTTheme)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(
@@ -63,7 +63,7 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
                         align='center'
                         style={{marginBottom: theme.spacing(2)}}>{props.subscribeText}</Typography>
         </Grid>
-        <Grid item container xs={11} md={5}>
+        <Grid item container xs={11} md={8}>
             <TextField fullWidth
                        label={props.emailFieldText}
                        variant='filled'

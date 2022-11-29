@@ -3,7 +3,7 @@ import {CssBaseline, Grid, MuiThemeProvider, useTheme} from '@material-ui/core'
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import React from 'react'
 import {QueryClient, QueryClientProvider} from 'react-query';
-import MackenziesMindTheme from "./theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "./theme/MixedFeelingsByTTheme";
 import FourOhFour from "./components/transform-hw/pages/error-page/FourOhFour";
 import PageProvider from "./components/page-context/PageProvider";
 import MediaQueriesProvider from "./components/media-queries-context/MediaQueriesProvider";
@@ -13,7 +13,7 @@ import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/mackenzies-mind/pages/PageMux";
 
 export enum RoutesEnum {
-    MACKENZIES_MIND = "/mackenzies-mind/:pageSlug",
+    MACKENZIES_MIND = "/mixed-feelings-by-t/:pageSlug",
     ERROR = '/error'
 }
 
@@ -32,7 +32,7 @@ function App() {
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-                <MuiThemeProvider theme={MackenziesMindTheme}>
+                <MuiThemeProvider theme={MixedFeelingsByTTheme}>
                     <CssBaseline/>
                     <SnackbarProvider>
                         <MediaQueriesProvider>
@@ -52,7 +52,7 @@ function App() {
                                                     <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
                                                     <Route path={"/*"}
                                                            element={<Navigate
-                                                               to={'/mackenzies-mind/home'}/>}/>
+                                                               to={'/mixed-feelings-by-t/home'}/>}/>
                                                 </Routes>
                                             </Grid>
                                         </Grid>

@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import {Button, Grid, Popover, Typography} from '@material-ui/core'
-import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 
 import PopupState, {bindPopover, bindTrigger} from "material-ui-popup-state";
 import {ArrowDropDown} from "@material-ui/icons";
@@ -25,7 +25,7 @@ interface FilteredMenuItemsPopupProps {
 }
 
 const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menuGroup}) => {
-    const classes = useStyles(MackenziesMindTheme)
+    const classes = useStyles(MixedFeelingsByTTheme)
 
     // const [hideOnScroll, setHideOnScroll] = useState(true)
     // const [backgroundColor, setBackgroundColor] = React.useState<any>("")
@@ -53,10 +53,10 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                     color={"secondary"}
                     style={{
                         borderRadius: 0,
-                        paddingLeft: MackenziesMindTheme.spacing(2),
-                        paddingRight: MackenziesMindTheme.spacing(3),
+                        paddingLeft: MixedFeelingsByTTheme.spacing(2),
+                        paddingRight: MixedFeelingsByTTheme.spacing(3),
                         height: "100%",
-                        color: MackenziesMindTheme.palette.secondary.main
+                        color: MixedFeelingsByTTheme.palette.secondary.main
                     }}
                     endIcon={<ArrowDropDown></ArrowDropDown>}
                 >
@@ -70,7 +70,7 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                         style: {
                             borderTopLeftRadius: 0,
                             borderTopRightRadius: 0,
-                            backgroundColor: MackenziesMindTheme.palette.primary.main
+                            backgroundColor: MixedFeelingsByTTheme.palette.primary.main
                         }
                     }}
                     anchorOrigin={{

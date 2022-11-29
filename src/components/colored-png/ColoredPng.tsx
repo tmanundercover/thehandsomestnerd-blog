@@ -1,7 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import { Grid } from '@material-ui/core'
-import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
+import {Grid} from '@material-ui/core'
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {

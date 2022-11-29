@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid, IconButton, InputAdornment, Link, TextField, Typography, withStyles} from "@material-ui/core";
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
-import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
@@ -93,12 +93,12 @@ const StyledTextField = withStyles({
             backgroundColor: "#292929",
         },
         "& .MuiOutlinedInput-root": {
-            borderColor: `${MackenziesMindTheme.palette.primary.main} !important`,
+            borderColor: `${MixedFeelingsByTTheme.palette.primary.main} !important`,
             "&.Mui-focused": {
-                borderColor: `${MackenziesMindTheme.palette.primary.main} !important`,
+                borderColor: `${MixedFeelingsByTTheme.palette.primary.main} !important`,
                 "&:hover": {
                     "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: `${MackenziesMindTheme.palette.primary.main} !important`
+                        borderColor: `${MixedFeelingsByTTheme.palette.primary.main} !important`
                     }
                 }
             },
@@ -116,7 +116,7 @@ export type ContactUsProps = {
 }
 
 const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
-    const classes = useStyles(MackenziesMindTheme)
+    const classes = useStyles(MixedFeelingsByTTheme)
 
     const globalClasses = useCustomStyles({})
     const mediaQueriesContext = useContext(MediaQueriesContext)
@@ -162,11 +162,11 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
 
     const getHelperText = () => {
         if (data) {
-            return <Typography style={{color: MackenziesMindTheme.palette.success.main}} variant='subtitle1'>Thank you for
+            return <Typography style={{color: MixedFeelingsByTTheme.palette.success.main}} variant='subtitle1'>Thank you for
                 your submission!</Typography>
         }
         if (isError) {
-            return <Typography style={{color: MackenziesMindTheme.palette.error.main}} variant='subtitle1'>Please Try your
+            return <Typography style={{color: MixedFeelingsByTTheme.palette.error.main}} variant='subtitle1'>Please Try your
                 submission again later or contact jgreene@transformHW.org.</Typography>
         }
 
@@ -192,7 +192,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                 <Grid container item
                       className={clsx(globalClasses.fullSectionOverlay)}/>
                 <Grid spacing={mediaQueriesContext.smDown ? 0 : 4} container item style={{
-                    padding: MackenziesMindTheme.spacing(0, mediaQueriesContext.smDown ? 2 : 8, 6)
+                    padding: MixedFeelingsByTTheme.spacing(0, mediaQueriesContext.smDown ? 2 : 8, 6)
                 }} justifyContent={"center"}>
                     <Grid container item md={6}>
                         <Grid container direction="column" item className={classes.lhsContainer}
@@ -296,7 +296,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                             {/*        </Typography>*/}
                             {/*    </Typography>*/}
                             {/*</Grid>*/}
-                            <Grid container item style={{marginTop: MackenziesMindTheme.spacing(8)}}>
+                            <Grid container item style={{marginTop: MixedFeelingsByTTheme.spacing(8)}}>
                                 <StyledTextField
                                     fullWidth
                                     id="contact-name-input"
@@ -388,7 +388,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                 />
                             </Grid>
                             <Grid container item alignItems="center" justifyContent="center"
-                                  style={{marginTop: MackenziesMindTheme.spacing(4)}}>
+                                  style={{marginTop: MixedFeelingsByTTheme.spacing(4)}}>
                                 {/*<Button color="primary" variant="contained"><Typography variant="button">Send*/}
                                 {/*    Button</Typography></Button>*/}
                                 <LoadingButton

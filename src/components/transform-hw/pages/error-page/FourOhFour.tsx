@@ -1,6 +1,6 @@
 import {Grid, Typography} from '@material-ui/core'
 import React, {FunctionComponent, useContext} from 'react'
-import MackenziesMindTheme from "../../../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme from "../../../../theme/MixedFeelingsByTTheme";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../../loading-button/LoadingButton";
@@ -36,8 +36,8 @@ const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
                       position: 'absolute',
-                      paddingTop: MackenziesMindTheme.spacing(10),
-                      paddingBottom: MackenziesMindTheme.spacing(10)
+                      paddingTop: MixedFeelingsByTTheme.spacing(10),
+                      paddingBottom: MixedFeelingsByTTheme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
                 <Grid container item xs={11} justifyContent='center'>

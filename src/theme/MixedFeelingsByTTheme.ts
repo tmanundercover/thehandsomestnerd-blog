@@ -1,8 +1,7 @@
 import {createTheme} from '@material-ui/core'
 // import GrotescoLight from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-Light.ttf'
 // import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
-import Phonk from './common/fonts/Phonk/Phonk Regular.otf'
-import SingaSerif from './common/fonts/Singa/Singa Serif Regular.ttf'
+import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
 import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
 import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
 // import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
@@ -28,27 +27,17 @@ type FontFace = {
 //   `
 // }
 
-export const phonk: FontFace = {
-    fontFamily: 'Phonk',
+export const bitterPro: FontFace = {
+    fontFamily: 'Bitter Pro',
     fontStyle: 'normal',
     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
     fontWeight: 400,
     src: `
-    local('Phonk'),
-    url(${Phonk}) format('opentype')
+    local('Bitter Pro'),
+    url(${BitterPro}) format('truetype')
   `
 }
 
-export const singa: FontFace = {
-    fontFamily: 'Singa Serif DEMO',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Singa Serif DEMO'),
-    url(${SingaSerif}) format('truetype')
-  `
-}
 
 export const raleway: FontFace = {
     fontFamily: 'Raleway',
@@ -93,7 +82,7 @@ export const rainbow: FontFace = {
 //   `
 // }
 
-const fonts = ['Phonk', 'Singa Serif DEMO', 'Raleway'].join(',')
+const fonts = ['Bitter Pro'].join(',')
 
 export enum COLORS {
     DARKBLUE = 'rgba(0,0,53,1)',
@@ -101,16 +90,19 @@ export enum COLORS {
     BLUE = 'rgba(16, 43, 136, 1)',
     DARK_GRAY = '#A8A9AC',
     GRAY = 'rgba(207, 207, 207, 1)',
-    LIGHT_GRAY = '#E3E3E3',
+    LIGHT_GRAY = '#949495',
     TRANSPARENTWHITE = 'rgba(255,255,255,0.75)',
     LIGHTBLUE = '#2CC4D7',
     ALMOSTPURPLE = "#331BAD",
     LIGHTGRAY = "#F4F3F5",
+    TRANSPARENTLIGHTGRAY = "rgba(244,243,245,0.87)",
     MEDIUMGRAY = "#BCB9B0",
-    DARKGRAY = "#43424A"
+    DARKGRAY = "#43424A",
+    TRANSPARENTDARKGRAY = "rgba(67,66,74,0.78)"
+
 }
 
-const MackenziesMindTheme = createTheme({
+const MixedFeelingsByTTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
@@ -127,10 +119,10 @@ const MackenziesMindTheme = createTheme({
             paper: COLORS.DARKGRAY
         },
         primary: {
-            main: COLORS.LIGHTBLUE,
+            main: "#dd4f11",
         },
         secondary: {
-            main: COLORS.ALMOSTPURPLE,
+            main: COLORS.DARKGRAY,
         },
         error: {
             main: '#840E0E',
@@ -148,8 +140,8 @@ const MackenziesMindTheme = createTheme({
             dark: '#CF800A'
         },
         text: {
-            primary: COLORS.DARKBLUE,
-            secondary: COLORS.LIGHT_GRAY,
+            primary: "#383838",
+            secondary: COLORS.LIGHTGRAY,
             disabled: COLORS.LIGHT_GRAY
         }
     },
@@ -161,7 +153,7 @@ const MackenziesMindTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: "bold",
             lineHeight: 1.3,
-            letterSpacing: '0.20em'
+            letterSpacing: '-0.01em'
         },
         h2: {
             // Title2
@@ -169,7 +161,7 @@ const MackenziesMindTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 700,
             lineHeight: 1.25,
-            letterSpacing: '-0.03em'
+            letterSpacing: '-0.02em'
         },
         h3: {
             // Title3
@@ -197,7 +189,7 @@ const MackenziesMindTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 350,
             lineHeight: 1.5,
-            letterSpacing: '-0.03em'
+            letterSpacing: '-0.01em'
         },
         body2: {
             // Large
@@ -205,7 +197,7 @@ const MackenziesMindTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.2,
-            letterSpacing: '-0.03em'
+            letterSpacing: '-0.01em'
         },
         button: {
             // Button
@@ -236,7 +228,7 @@ const MackenziesMindTheme = createTheme({
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [phonk, singa]
+                '@font-face': [bitterPro]
             },
         },
         MuiInputBase: {
@@ -373,4 +365,4 @@ const MackenziesMindTheme = createTheme({
     }
 })
 
-export default MackenziesMindTheme
+export default MixedFeelingsByTTheme

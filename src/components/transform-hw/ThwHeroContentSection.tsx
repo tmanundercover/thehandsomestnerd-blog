@@ -5,7 +5,7 @@ import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import MackenziesMindTheme, {rainbow, raleway, ralewayBold, singa} from "../../theme/MackenziesMindTheme";
+import MixedFeelingsByTTheme, {rainbow, raleway} from "../../theme/MixedFeelingsByTTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import {Speaker} from "@material-ui/icons";
@@ -69,7 +69,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                               alignContent='center' justifyContent='center'>
                             <Grid item>
                                 <Typography variant='subtitle1'
-                                            style={{color: MackenziesMindTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                            style={{color: MixedFeelingsByTTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
                             </Grid>
                             <Grid item justifyContent='center'>
                                 <Typography variant='h1'

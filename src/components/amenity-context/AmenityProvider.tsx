@@ -8,7 +8,7 @@ import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
 import ColoredPng from "../colored-png/ColoredPng";
 import SnackbarContext from "../modal-context/SnackbarContext";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 
 type IProps = {};
 

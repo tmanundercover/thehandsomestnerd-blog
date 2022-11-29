@@ -8,7 +8,7 @@ import {ArrowDropDown, Close} from "@material-ui/icons";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useIsVerticalOverflow} from "../../utils/useIsVerticalOverflow";
-import {COLORS} from "../../theme/transform-hw/TransformHWTheme";
+import {COLORS} from "../../theme/MackenziesMindTheme";
 
 type IProps = {};
 

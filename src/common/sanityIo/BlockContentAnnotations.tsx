@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core'
 import { FiberManualRecord } from '@material-ui/icons'
 import { useCommonStyles } from './CommonStyles'
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
 
@@ -27,10 +27,10 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
     case 'outlined':
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = TransformHWTheme.palette.secondary.main
+          textColor = MackenziesMindTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = TransformHWTheme.palette.primary.main
+          textColor = MackenziesMindTheme.palette.primary.main
           break;
         case 'mint':
           textColor = ""
@@ -48,26 +48,26 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
           textColor = "whitesmoke"
           break;
         case 'mint':
-          textColor = TransformHWTheme.palette.secondary.main
+          textColor = MackenziesMindTheme.palette.secondary.main
           break;
         default:
-          textColor = TransformHWTheme.palette.background.paper
+          textColor = MackenziesMindTheme.palette.background.paper
       }
       break
     case 'text':
     default:
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = TransformHWTheme.palette.secondary.main
+          textColor = MackenziesMindTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = TransformHWTheme.palette.primary.main
+          textColor = MackenziesMindTheme.palette.primary.main
           break;
         case 'mint':
           textColor = ""
           break;
         default:
-          textColor = TransformHWTheme.palette.text.primary
+          textColor = MackenziesMindTheme.palette.text.primary
       }
       break
   }

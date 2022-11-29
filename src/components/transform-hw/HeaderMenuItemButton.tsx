@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Button, Typography} from '@material-ui/core'
-import TransformHWTheme, {COLORS} from "../../theme/transform-hw/TransformHWTheme";
+import MackenziesMindTheme, {COLORS} from "../../theme/MackenziesMindTheme";
 import {SanityMenuItem} from "../../common/sanityIo/Types";
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import ModalContext from "../snackbar-context/ModalContext";
@@ -21,17 +21,17 @@ interface HeaderMenuItemButtonProps {
 }
 
 const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({menuItem}) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(MackenziesMindTheme)
 
     const modalContext = useContext(ModalContext)
     return (<Button href={menuItem.url ?? ""}
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                     style={{
-                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.shape.borderRadius : 0,
-                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3.25) : TransformHWTheme.spacing(1),
-                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3.25) : TransformHWTheme.spacing(1),
-                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3) : 0,
-                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(2) : 0,
+                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MackenziesMindTheme.shape.borderRadius : 0,
+                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MackenziesMindTheme.spacing(3.25) : MackenziesMindTheme.spacing(1),
+                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MackenziesMindTheme.spacing(3.25) : MackenziesMindTheme.spacing(1),
+                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MackenziesMindTheme.spacing(3) : 0,
+                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MackenziesMindTheme.spacing(2) : 0,
                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
                     }}
                     className={classes.hover}

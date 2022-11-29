@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid} from '@material-ui/core'
-import {useThwStyles} from "../transform-hw/pages/Styles";
+import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import {CssFadeToColorDirectionEnum} from "./CssFadeToColorDirectionEnum";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
@@ -26,7 +26,7 @@ interface IProps {
 
 
 const CssFadeToColor: FunctionComponent<IProps> = (props) => {
-    const globalClasses = useThwStyles({})
+    const globalClasses = useCustomStyles({})
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     const getStyle = () => {

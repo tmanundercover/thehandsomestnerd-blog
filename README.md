@@ -1,12 +1,11 @@
-# The Handsomest Nerd Portfolio
+# MacKenzie's Mind
 
-Application that can serve as a resume and a knowledgebase
+Application that serves as the website and landing pages for MacKenzie's Mind
 
 ## Description
 
-This  will start as a simple digital resume but will gro into a fully featured app
-showcasing my skills. I hope to build several templates from this app by pulling from
-other applications.
+Client project for MacKenzie's Mind. Serves as central location for music, media, and other content. 
+Links for purchase of music and place for performance updates. 
 
 ## Getting Started
 

@@ -3,16 +3,14 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Chip, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ProprietorAtAGlanceType, ThwAboutProprietorSectionType} from "../BlockContentTypes";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import transformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
-import PsychologyTodaySeal from "./psychology-today-stamp/PsychologyToday";
 import LoadingButton from "../loading-button/LoadingButton";
 import ResponsiveBullet from "../ResponsiveBullet";
 import {FiberManualRecord} from "@material-ui/icons";
 import ColoredPng from "../colored-png/ColoredPng";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -38,10 +36,10 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
     return <Grid item container
                  justifyContent='center'
                  style={{
-                     backgroundColor: transformHWTheme.palette.secondary.dark,
+                     backgroundColor: MackenziesMindTheme.palette.secondary.dark,
                      border: mediaQueriesContext.smDown?"0px solid transparent":"1px solid white",
-                     margin: mediaQueriesContext.smDown?TransformHWTheme.spacing(0, 0, 0, 0):TransformHWTheme.spacing(2, 0, 0, 0),
-                     padding: TransformHWTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
+                     margin: mediaQueriesContext.smDown?MackenziesMindTheme.spacing(0, 0, 0, 0):MackenziesMindTheme.spacing(2, 0, 0, 0),
+                     padding: MackenziesMindTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
                  }}
                  spacing={6}
                  xs={12}
@@ -103,13 +101,13 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
 
 
 const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(MackenziesMindTheme)
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
         <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly?12:11} style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
-            paddingBottom: TransformHWTheme.spacing(10),
-            paddingTop: TransformHWTheme.spacing(10),
+            paddingBottom: MackenziesMindTheme.spacing(10),
+            paddingTop: MackenziesMindTheme.spacing(10),
         }}>
             <Grid container item justifyContent='space-around'
             >
@@ -130,7 +128,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         overflow: "hidden",
                         position: "relative",
                         backgroundColor: "white",
-                        marginBottom: TransformHWTheme.spacing(3)
+                        marginBottom: MackenziesMindTheme.spacing(3)
                     }} container
                           sm={8} md={12}
                           justifyContent='center'>
@@ -184,9 +182,6 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                     <img alt={props.sectionData.proprietorSignatureImageAltText}
                                          src={urlFor(props.sectionData.proprietorSignatureImage).height(70).url() ?? ''}/>
                                 </Grid>
-                                <Grid item>
-                                    <PsychologyTodaySeal/>
-                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -202,7 +197,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                     alignContent='flex-start'
                     alignItems='flex-start'
                     style={{
-                        paddingTop: TransformHWTheme.spacing(3),
+                        paddingTop: MackenziesMindTheme.spacing(3),
                         minWidth: "min-content"
                     }}
                 ><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}

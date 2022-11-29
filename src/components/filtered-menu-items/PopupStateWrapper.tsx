@@ -1,15 +1,12 @@
-import React, {FunctionComponent, RefObject, useState} from 'react'
-import {Button, Grid, Popover, PropTypes, Typography} from '@material-ui/core'
-import TransformHWTheme, {COLORS} from "../../theme/transform-hw/TransformHWTheme";
-import SubMenu from "../transform-hw/header/SubMenu";
+import React, {FunctionComponent} from 'react'
+import {Button, Grid, Popover, Typography} from '@material-ui/core'
+import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
 
-import PopupState, {bindPopover} from "material-ui-popup-state";
-import {bindTrigger} from "material-ui-popup-state";
+import PopupState, {bindPopover, bindTrigger} from "material-ui-popup-state";
 import {ArrowDropDown} from "@material-ui/icons";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
 import {makeStyles, Theme} from "@material-ui/core/styles";
-import {useScrollPosition} from "../../utils/useScrollPosition";
-import mediaQueries from "../../utils/mediaQueries";
+import SubMenu from "../mackenzies-mind/header/SubMenu";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -28,7 +25,7 @@ interface FilteredMenuItemsPopupProps {
 }
 
 const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menuGroup}) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(MackenziesMindTheme)
 
     // const [hideOnScroll, setHideOnScroll] = useState(true)
     // const [backgroundColor, setBackgroundColor] = React.useState<any>("")
@@ -56,10 +53,10 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                     color={"secondary"}
                     style={{
                         borderRadius: 0,
-                        paddingLeft: TransformHWTheme.spacing(2),
-                        paddingRight: TransformHWTheme.spacing(3),
+                        paddingLeft: MackenziesMindTheme.spacing(2),
+                        paddingRight: MackenziesMindTheme.spacing(3),
                         height: "100%",
-                        color: TransformHWTheme.palette.secondary.main
+                        color: MackenziesMindTheme.palette.secondary.main
                     }}
                     endIcon={<ArrowDropDown></ArrowDropDown>}
                 >
@@ -73,7 +70,7 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                         style: {
                             borderTopLeftRadius: 0,
                             borderTopRightRadius: 0,
-                            backgroundColor: TransformHWTheme.palette.primary.main
+                            backgroundColor: MackenziesMindTheme.palette.primary.main
                         }
                     }}
                     anchorOrigin={{

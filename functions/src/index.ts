@@ -8,8 +8,10 @@ import * as cmsClient from "./cmsClient";
 import * as Promise from "es6-promise";
 import * as path from "path";
 import * as fs from "fs";
-import {SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
-import {urlFor} from "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
+import {SanityColdLead, SanityTransformHwHomePage}
+  from "../../src/common/sanityIo/Types";
+import {urlFor} from
+  "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -43,7 +45,8 @@ const Logger = function(req: any, res: any, next: any) {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-// app.use(require("prerender-node").set("prerenderToken", process.env.PRERENDER_TOKEN));
+// app.use(require("prerender-node")
+// .set("prerenderToken", process.env.PRERENDER_TOKEN));
 
 
 app.use(Logger);
@@ -142,7 +145,13 @@ app.post("/collect-email-address",
           "Request to collect an email address", reqBody.email);
 
       try {
-        const response = await cmsClient.createColdLead({email: reqBody.email, leadPhone: reqBody.leadPhone, leadMessage: reqBody.leadMessage, leadName: reqBody.leadName, source: reqBody.source});
+        const response = await cmsClient.createColdLead({
+          email: reqBody.email,
+          leadPhone: reqBody.leadPhone,
+          leadMessage: reqBody.leadMessage,
+          leadName: reqBody.leadName,
+          source: reqBody.source,
+        });
         functionRes.send({status: "200", response, email: reqBody.email});
       } catch (e) {
         logClient.log("collect-email-address", "ERROR",

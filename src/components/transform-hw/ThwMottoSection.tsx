@@ -1,15 +1,13 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, Typography, useMediaQuery} from '@material-ui/core'
+import {Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../BlockContentTypes";
 import {Parallax} from 'react-parallax';
-import {useThwStyles} from "./pages/Styles";
 import clsx from "clsx";
-import mediaQueries from "../../utils/mediaQueries";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
-import PageContext from "../page-context/PageContext";
+import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import useCustomStyles from "../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,7 +27,7 @@ interface IProps {
 }
 
 const ThwMottoSection: FunctionComponent<IProps> = (props) => {
-    const globalClasses = useThwStyles(TransformHWTheme)
+    const globalClasses = useCustomStyles(MackenziesMindTheme)
     const classes = useStyles()
     const mediaQueriesContext = useContext(MediaQueriesContext)
 

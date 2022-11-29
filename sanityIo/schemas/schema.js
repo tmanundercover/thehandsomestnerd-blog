@@ -6,28 +6,19 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // We import object and document schemas
 import blockContent from './blockContent'
-import category from './category'
-import post from './post'
-import author from './author'
 import menuContainer from './menuContainer'
 import menuGroup from './menuGroup'
 import menuItem from './menuItem'
 import homePage from './homePage'
-import skill from './sections/skill'
 import column1BlockContent from './column1BlockContent'
 import column2BlockContent from './column2BlockContent'
 import contentContainer from './contentContainer'
 import lineBreak from './lineBreak'
-import gradient from './ab/gradient'
-import heroImageWithText from './ab/heroImageWithText'
-import imageCarousel from './imageCarousel'
-import imageAsset from './imageAsset'
 import heroContentSection from './sections/aft/HeroContentSection'
 import whySwitchSection from './sections/aft/why-switch/WhySwitchSection'
 import whySwitchReason from './sections/aft/why-switch/WhySwitchReason'
 import aboutAndaCardSection from './sections/aft/AboutAndaCardSection'
 import cryptoInYourPocketSection from './sections/aft/CryptoInYourPocketSection'
-import aftHomepage from './aftHomepage'
 import structuredDataProduct from './sections/aft/structured-data/StructuredDataProduct'
 import structuredDataOffer from './sections/aft/structured-data/StructuredDataOffer'
 import structuredDataSeller from './sections/aft/structured-data/StructuredDataSeller'
@@ -40,7 +31,6 @@ import ThwAboutProprietor from "./sections/transform-hw/ThwAboutProprietor";
 import ThwServicesSection from "./sections/transform-hw/services/ThwServicesSection";
 import transformServiceItem from "./sections/transform-hw/services/transformServiceItem";
 import ThwWhyChooseUsSection from "./sections/transform-hw/why-choose-us/ThwWhyChooseUsSection";
-import thwWhyChooseUsSection from "./sections/transform-hw/why-choose-us/ThwWhyChooseUsSection";
 import transformWhyChooseUsItem from "./sections/transform-hw/why-choose-us/transformWhyChooseUsItem";
 import ThwContactUs from "./sections/transform-hw/ThwContactUsSection";
 import ThwUnderConstructionPage from "./sections/transform-hw/ThwUnderConstructionPage";

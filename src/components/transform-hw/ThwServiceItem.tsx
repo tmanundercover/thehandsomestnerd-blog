@@ -6,12 +6,12 @@ import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/I
 import LoadingButton from "../loading-button/LoadingButton";
 import {v4 as uuidv4} from 'uuid'
 import amenitiesIcon from "./amenitiesIcon.png";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import MackenziesMindTheme from "../../theme/MackenziesMindTheme";
 import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -43,7 +43,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     return (
-        <Grid key={uuidv4()} container item xs={12} sm={12} md={6} style={{marginBottom: TransformHWTheme.spacing(4)}}>
+        <Grid key={uuidv4()} container item xs={12} sm={12} md={6} style={{marginBottom: MackenziesMindTheme.spacing(4)}}>
             <Grid container item direction='column' justifyContent='space-between' alignContent='center'
                   alignItems='center'>
                 <Grid container item direction={"column"}>

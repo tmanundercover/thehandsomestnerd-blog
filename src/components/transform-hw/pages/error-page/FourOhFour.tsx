@@ -1,10 +1,10 @@
 import {Grid, Typography} from '@material-ui/core'
 import React, {FunctionComponent, useContext} from 'react'
-import TransformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
+import MackenziesMindTheme from "../../../../theme/MackenziesMindTheme";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../../loading-button/LoadingButton";
-import {useThwStyles} from "../Styles";
+import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import {useNavigate} from "react-router-dom";
 import MediaQueriesContext from "../../../media-queries-context/MediaQueriesContext";
 
@@ -12,7 +12,7 @@ import MediaQueriesContext from "../../../media-queries-context/MediaQueriesCont
 export type AppLayoutProps = {}
 
 const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
-    const classes = useThwStyles({bgImage: speakingWithTherapist})
+    const classes = useCustomStyles({bgImage: speakingWithTherapist})
     const history = useNavigate()
 
     const mediaQueriesContext = useContext(MediaQueriesContext)
@@ -36,8 +36,8 @@ const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
                       position: 'absolute',
-                      paddingTop: TransformHWTheme.spacing(10),
-                      paddingBottom: TransformHWTheme.spacing(10)
+                      paddingTop: MackenziesMindTheme.spacing(10),
+                      paddingBottom: MackenziesMindTheme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
                 <Grid container item xs={11} justifyContent='center'>

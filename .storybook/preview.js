@@ -1,5 +1,5 @@
 import {muiTheme} from "storybook-addon-material-ui";
-import TransformHWTheme from "../src/theme/transform-hw/TransformHWTheme";
+import MackenziesMindTheme from "../src/theme/transform-hw/TransformHWTheme";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {BrowserRouter} from "react-router-dom";
 
@@ -28,5 +28,5 @@ export const decorators = [
             <Story/>
             </BrowserRouter>
         </QueryClientProvider>),
-    muiTheme([TransformHWTheme]),
+    muiTheme([MackenziesMindTheme]),
 ];

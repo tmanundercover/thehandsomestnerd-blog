@@ -1,15 +1,13 @@
 import React, {ChangeEvent, FunctionComponent, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, TextField, Typography} from '@material-ui/core'
+import {Grid, TextField, Typography, useTheme} from '@material-ui/core'
 import LoadingButton from "../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
 import isEmail from "validator/lib/isEmail";
 import {useQuery} from "react-query";
 import leadClient from "./under-construction-page/leadClient";
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
-import {useThwStyles} from "./Styles";
-import therapistHoldingHand from "./under-construction-page/assets/therapistHoldingHand.jpg";
-import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import MackenziesMindTheme from "../../../theme/MackenziesMindTheme";
+import useCustomStyles from "../../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -22,7 +20,8 @@ interface IProps {
 }
 
 const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useThwStyles(TransformHWTheme)
+    const theme = useTheme()
+    const classes = useCustomStyles(MackenziesMindTheme)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(
@@ -41,16 +40,16 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
 
     const getHelperText = () => {
         if ((data || isError) && !isEmail(email)) {
-            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>This is not a
+            return <Typography style={{color: theme.palette.error.main}} variant='subtitle1'>This is not a
                 valid email address.</Typography>
         }
 
         if (data) {
-            return <Typography style={{color: TransformHWTheme.palette.success.main}} variant='subtitle1'>Thank you for
+            return <Typography style={{color: theme.palette.success.main}} variant='subtitle1'>Thank you for
                 your submission!</Typography>
         }
         if (isError) {
-            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>Please Try your
+            return <Typography style={{color: theme.palette.error.main}} variant='subtitle1'>Please Try your
                 submission again later or contact jgreene@transformHW.org.</Typography>
         }
 
@@ -62,7 +61,7 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
         <Grid item container justifyContent='center'>
             <Typography color='primary' gutterBottom variant='body2'
                         align='center'
-                        style={{marginBottom: transformHWTheme.spacing(2)}}>{props.subscribeText}</Typography>
+                        style={{marginBottom: theme.spacing(2)}}>{props.subscribeText}</Typography>
         </Grid>
         <Grid item container xs={11} md={5}>
             <TextField fullWidth

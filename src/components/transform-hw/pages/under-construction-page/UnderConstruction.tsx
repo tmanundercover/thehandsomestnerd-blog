@@ -1,19 +1,13 @@
-import React, {ChangeEvent, FunctionComponent, useEffect, useState} from 'react'
-import {Grid, TextField, Typography, useMediaQuery} from '@material-ui/core'
-import {useThwStyles} from "../Styles";
-import TransformHWTheme, {COLORS} from "../../../../theme/transform-hw/TransformHWTheme";
+import React, {FunctionComponent, useEffect, useState} from 'react'
+import {Grid, Typography, useMediaQuery, useTheme} from '@material-ui/core'
+import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
+import {COLORS} from "../../../../theme/MackenziesMindTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
 import therapistHoldingHand from "./assets/therapistHoldingHand.jpg"
 import clsx from "clsx";
-import leadClient from "./leadClient";
-import {useQuery} from "react-query";
-import isEmail from 'validator/lib/isEmail';
-import LoadingButton from "../../../loading-button/LoadingButton";
-import {ButtonGroupMemberEnum} from "../../../loading-button/ButtonGroupMemberEnum";
 import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../../common/sanityIo/Types";
 import cmsClient from "../../../block-content-ui/cmsClient";
-import transformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
 import SubmitEmail from "../SubmitEmail";
 
 
@@ -23,10 +17,10 @@ interface IProps {
 }
 
 const UnderConstruction: FunctionComponent<IProps> = (props) => {
-    const classes = useThwStyles({bgImage: therapistHoldingHand})
-
-    const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
-    const xsDown = useMediaQuery(TransformHWTheme.breakpoints.down('xs'))
+    const classes = useCustomStyles({bgImage: therapistHoldingHand})
+    const theme = useTheme()
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
 
     const [releaseDate, setReleaseDate] = useState<Date>()
     const [cmsPageData, setCmsPageData] = useState<SanityUnderConstructionPageType>()
@@ -64,7 +58,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
                       position: 'absolute',
-                      paddingBottom: smDown ? 0 : TransformHWTheme.spacing(10)
+                      paddingBottom: smDown ? 0 : theme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
                 <Grid container item xs={11} className={classes.spacer} justifyContent='center'>
@@ -74,19 +68,21 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                 <Grid xs={10} container item justifyContent='center' className={classes.spacer}>
                     <CountdownToLaunch launchDate={releaseDate ?? new Date(Date.now() + 2000000000)}/>
                 </Grid>
-                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(2.5)}}>
+                <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2.5)}}>
                     <Grid item xs={10} md={8}>
                         <Typography variant='body1' color='textSecondary'
                                     align='center'>{cmsPageData?.contentText}</Typography>
 
                     </Grid>
                 </Grid>
-                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(5.75)}}>
-                    <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(5.75)}}>
-                        <SubmitEmail emailFieldText={cmsPageData?.emailFieldText??""} emailButtonText={cmsPageData?.emailButtonText??""} subscribeText={cmsPageData?.subscribeText??""} />
+                <Grid container item justifyContent='center' style={{marginTop: theme.spacing(5.75)}}>
+                    <Grid container item justifyContent='center' style={{marginTop: theme.spacing(5.75)}}>
+                        <SubmitEmail emailFieldText={cmsPageData?.emailFieldText ?? ""}
+                                     emailButtonText={cmsPageData?.emailButtonText ?? ""}
+                                     subscribeText={cmsPageData?.subscribeText ?? ""}/>
                     </Grid>
                     <Grid item container style={{
-                        backgroundColor: xsDown ? TransformHWTheme.palette.background.default : "transparent",
+                        backgroundColor: xsDown ? theme.palette.background.default : "transparent",
                         position: 'static',
                         bottom: 0,
                         height: "84px"
@@ -94,7 +90,9 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                         <Grid item xs={12} container justifyContent='center' direction='column' alignItems='center'>
                             {
                                 cmsPageData?.footerTextLines.map(
-                                    (footerLine, index) => <Grid item key={index}><Typography align='center' color='textSecondary' variant='body1'>
+                                    (footerLine, index) => <Grid item key={index}><Typography align='center'
+                                                                                              color='textSecondary'
+                                                                                              variant='body1'>
                                         {footerLine}
                                     </Typography></Grid>)
                             }

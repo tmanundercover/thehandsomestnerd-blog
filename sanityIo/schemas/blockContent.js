@@ -14,7 +14,7 @@ import {
 } from '../../src/common/sanityIo/BlockContentMarkRenderers'
 import {ButtonRender, CtaRender, HeaderRender, HrRender} from '../../src/common/sanityIo/BlockContentRenderer'
 import {ListRender, UtmLinkRender} from '../../src/common/sanityIo/BlockContentAnnotations'
-import TransformHWLayout from "../../src/components/transform-hw/pages/TransformHWLayout";
+import MackenziesMindTheme from "../../src/theme/MackenziesMindTheme";
 
 const highlightIcon = color => {
   console.log("highlightIcon color", color)
@@ -94,9 +94,10 @@ const underlineIcon = color => {
 
 const internalLinkRender = props => {
   console.log('lik props', props)
+
   return <Link href={props.href}>
     <Typography
-      style={{display: 'inline-block', color: TransformHWLayout.palette.primary.main}}>
+      style={{display: 'inline-block', color: MackenziesMindTheme.palette.primary.main}}>
       {props.children}
     </Typography>
   </Link>
@@ -217,7 +218,7 @@ export const blockContentConfig = {
         title: 'Light',
         value: 'light',
         blockEditor: {
-          icon: () => lightIcon(TransformHWLayout.palette.primary.main),
+          icon: () => lightIcon(MackenziesMindTheme.palette.primary.main),
           render: LightRender
         }
       },
@@ -225,24 +226,24 @@ export const blockContentConfig = {
         title: 'Primary Text Color',
         value: 'primaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(TransformHWLayout.palette.primary.main),
-          render: (props) => (TextColorRender(props, TransformHWLayout.palette.primary.main))
+          icon: () => highlightIcon(MackenziesMindTheme.palette.primary.main),
+          render: (props) => (TextColorRender(props, MackenziesMindTheme.palette.primary.main))
         }
       },
       {
         title: 'Secondary Text Color',
         value: 'secondaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(TransformHWLayout.palette.secondary.main),
-          render: (props) => (TextColorRender(props, TransformHWLayout.palette.secondary.main))
+          icon: () => highlightIcon(MackenziesMindTheme.palette.secondary.main),
+          render: (props) => (TextColorRender(props, MackenziesMindTheme.palette.secondary.main))
         }
       },
       {
         title: 'Underline Primary Color',
         value: 'underlinePrimaryColor',
         blockEditor: {
-          icon: () => underlineIcon(TransformHWLayout.palette.primary.main),
-          render: (props) => UnderlineRender(props, TransformHWLayout.palette.primary.main)
+          icon: () => underlineIcon(MackenziesMindTheme.palette.primary.main),
+          render: (props) => UnderlineRender(props, MackenziesMindTheme.palette.primary.main)
         }
       },
       {

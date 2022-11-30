@@ -1,6 +1,6 @@
 import {CircularProgress, Grid, makeStyles, Theme, Typography, useTheme} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
-import MixedFeelingsByTTheme, {COLORS, raleway} from "../../../../theme/MixedFeelingsByTTheme";
+import MixedFeelingsByTTheme, {raleway} from "../../../../theme/MixedFeelingsByTTheme";
 import useCustomStyles from "../Styles";
 import Logo from "../../../transform-hw/logo/Logo";
 
@@ -22,7 +22,7 @@ const LoadingPage: FunctionComponent = (props) => {
             <Logo isCenter height={200}/>
             <Grid item container justifyContent='center' spacing={3}>
                 <Grid item container justifyContent='center'>
-                    <Typography align='center' variant='h5' style={{...raleway}}>Loading...</Typography>
+                    <Typography align='center' variant='h6' style={{...raleway}}>Loading...</Typography>
                 </Grid>
                 <Grid item>
                     <CircularProgress size={40}/>

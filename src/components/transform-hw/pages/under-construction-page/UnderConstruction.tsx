@@ -1,9 +1,8 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {Grid, Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
-import {COLORS} from "../../../../theme/MixedFeelingsByTTheme";
+import MixedFeelingsByTTheme, {COLORS, raleway, ralewayBold} from "../../../../theme/MixedFeelingsByTTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
-import therapistHoldingHand from "./assets/therapistHoldingHand.jpg"
 import clsx from "clsx";
 import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../../common/sanityIo/Types";
@@ -11,7 +10,7 @@ import cmsClient from "../../../block-content-ui/cmsClient";
 import SubmitEmail from "../SubmitEmail";
 import Logo from "../../logo/Logo";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
-
+import MailTo from "../../../mail-to/MailTo";
 
 interface IProps {
     email?: string
@@ -75,13 +74,13 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                 </Grid>
                 <Grid container item sm={10} className={classes.transparentBacking} style={{paddingBottom: theme.spacing(5), marginBottom: xsDown? 0: theme.spacing(1)}}>
                     <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2.5)}}>
-                        <Grid item sm={10}>
+                        <Grid item xs={11} sm={10}>
                             <Typography variant='body1'
-                                        align='center'>{cmsPageData?.contentText}</Typography>
+                                        align='center' style={{...raleway}}>{cmsPageData?.contentText}</Typography>
 
                         </Grid>
                     </Grid>
-                    <Grid container item justifyContent='center' style={{marginTop: theme.spacing(5.75)}}>
+                    <Grid container item justifyContent='center'>
                         <Grid container item justifyContent='center' style={{marginTop: theme.spacing(5.75)}}>
                             <SubmitEmail emailFieldText={cmsPageData?.emailFieldText ?? ""}
                                          emailButtonText={cmsPageData?.emailButtonText ?? ""}
@@ -93,17 +92,23 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                             bottom: 0,
                             // height: "84px"
                         }}>
+                            <Grid item container justifyContent='center'>
+                                <Grid item>
+
+                                    <MailTo color={MixedFeelingsByTTheme.palette.primary.main} email={props.email??""} subject={"Information Request"} body={""}>
+                                        {props.email}
+                                    </MailTo>
+                                </Grid>
+                                {/*<Typography color='primary' variant='h6'>{props.email}</Typography>*/}
+                            </Grid>
                             <Grid item sm={12} container justifyContent='center' direction='column' alignItems='center'>
                                 {
                                     cmsPageData?.footerTextLines?.map(
                                         (footerLine, index) => <Grid item key={index}><Typography align='center'
-                                                                                                  variant='subtitle1'>
+                                                                                                  variant='subtitle1' style={{...ralewayBold}}>
                                             {footerLine}
                                         </Typography></Grid>)
                                 }
-                            </Grid>
-                            <Grid item container justifyContent='center'>
-                                <Typography color='primary' variant='h6'>{props.email}</Typography>
                             </Grid>
                         </Grid>
                     </Grid>

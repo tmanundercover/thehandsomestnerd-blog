@@ -3,6 +3,7 @@ import {createTheme} from '@material-ui/core'
 // import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
 import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
 import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
+import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
 import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
 // import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
 import PoppinsXBold from './common/fonts/Poppins/Poppins-ExtraBold.ttf'
@@ -43,9 +44,9 @@ export const raleway: FontFace = {
     fontFamily: 'Raleway',
     fontStyle: 'normal',
     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
+    fontWeight: 500,
     src: `
-    local('Raleway Bold'),
+    local('Raleway Regular'),
     url(${Raleway}) format('truetype')
   `
 }
@@ -54,10 +55,10 @@ export const ralewayBold: FontFace = {
     fontFamily: 'Raleway',
     fontStyle: 'normal',
     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
+    fontWeight: 1000,
     src: `
-    local('Raleway Regular'),
-    url(${Raleway}) format('truetype')
+    local('Raleway Bold'),
+    url(${RalewayBold}) format('truetype')
   `
 }
 
@@ -82,7 +83,7 @@ export const rainbow: FontFace = {
 //   `
 // }
 
-const fonts = ['Bitter Pro'].join(',')
+const fonts = ['Bitter Pro', 'Raleway'].join(',')
 
 export enum COLORS {
     DARKBLUE = 'rgba(0,0,53,1)',
@@ -197,7 +198,7 @@ const MixedFeelingsByTTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.2,
-            letterSpacing: '-0.01em'
+            letterSpacing: '0.0em'
         },
         button: {
             // Button
@@ -228,7 +229,7 @@ const MixedFeelingsByTTheme = createTheme({
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [bitterPro]
+                '@font-face': [bitterPro, raleway, ralewayBold]
             },
         },
         MuiInputBase: {

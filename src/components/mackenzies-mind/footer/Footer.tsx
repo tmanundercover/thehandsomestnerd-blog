@@ -7,7 +7,7 @@ import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTThem
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: COLORS.DARKBLUE,
+    backgroundColor: COLORS.DARKORANGE,
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,

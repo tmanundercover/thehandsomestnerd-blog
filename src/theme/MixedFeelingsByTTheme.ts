@@ -163,7 +163,7 @@ export const PINK = '#FFA9E7'
 // Marketplace colors
 
 export enum COLORS {
-    DARKBLUE = 'rgba(0,0,53,1)',
+    DARKORANGE = 'rgb(70,38,0)',
     TRANSPARENT_DARKBLUE = 'rgba(0,0,53,.85)',
     BLUE = 'rgba(16, 43, 136, 1)',
     DARK_GRAY = '#A8A9AC',
@@ -212,7 +212,7 @@ const MixedFeelingsByTTheme = createTheme({
             dark: '#CF800A'
         },
         text: {
-            primary: COLORS.DARKBLUE,
+            primary: COLORS.DARKORANGE,
             secondary: COLORS.LIGHT_GRAY,
             disabled: COLORS.LIGHT_GRAY
         }

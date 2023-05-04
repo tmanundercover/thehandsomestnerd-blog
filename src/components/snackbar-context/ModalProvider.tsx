@@ -60,7 +60,7 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                           style={{width: "100%", height: "100%", position: "relative"}}>
 
                         <Grid item container xs={12} sm={9} md={7} style={{
-                            border: `2px solid ${COLORS.DARKBLUE}`,
+                            border: `2px solid ${COLORS.DARKORANGE}`,
                             // borderRight:`4px solid ${theme.palette.primary.dark}`,
                             backgroundColor: 'rgb(250,250,250,.96)',
                             color: theme.palette.getContrastText(theme.palette.background.paper),

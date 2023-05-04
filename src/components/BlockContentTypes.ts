@@ -210,3 +210,18 @@ export type ThwContactUsSectionType = {
     rhsTitle:string,
     formSubmitButtonText: string
 }
+
+
+//MixedFeelingsByT Types
+export type MfbtHeroContentSectionType = {
+    name: string
+    title: string
+    heroImage: SanityImageAsset
+    heroImageAltText: string
+    heroImageBackground?: SanityImageAsset
+    contentWelcomeMessage: string
+    contentTitle: string
+    contentText: string
+    ctaButtonTitle: string
+    ctaButtonLink: string
+}

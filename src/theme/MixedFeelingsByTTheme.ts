@@ -1,13 +1,16 @@
 import {createTheme} from '@material-ui/core'
 // import GrotescoLight from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-Light.ttf'
 // import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
-import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
-import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
-import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
+import Poppins from './common/fonts/Poppins/Poppins-Medium.ttf'
+import MontserratBold from './common/fonts/Montserrat/Montserrat-Bold.ttf'
+import MontserratBold2 from './common/fonts/Montserrat/Montserrat-Bold.otf'
 import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
 // import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
 import PoppinsXBold from './common/fonts/Poppins/Poppins-ExtraBold.ttf'
 // import PlexSans from '../common/fonts/IBM Plex/OpenType/IBM-Plex-Sans/IBMPlexSans-Regular.otf'
+import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
+import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
+import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
 
 type FontFace = {
     fontDisplay?: any
@@ -17,14 +20,36 @@ type FontFace = {
     src?: string
 }
 
-// const poppins: FontFace = {
-//     fontFamily: 'Poppins',
+// export const grotesco: FontFace = {
+//     fontFamily: 'Grotesco',
 //     fontStyle: 'normal',
 //     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
 //     fontWeight: 400,
 //     src: `
-//     local('Poppins'),
-//     url(${Poppins}) format('opentype')
+//     local('Grotesco'),
+//     url(${Grotesco}) format('truetype')
+//   `
+// }
+
+// const grotescoLight: FontFace = {
+//     fontFamily: 'Grotesco Light',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Grotesco Light'),
+//     url(${GrotescoLight}) format('truetype')
+//   `
+// }
+
+// const feixen: FontFace = {
+//     fontFamily: 'Feixen',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Feixen'),
+//     url(${Feixen}) format('opentype')
 //   `
 // }
 
@@ -39,6 +64,17 @@ export const bitterPro: FontFace = {
   `
 }
 
+const poppins: FontFace = {
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+    fontWeight: 400,
+    src: `
+    local('Poppins'),
+    url(${Poppins}) format('opentype')
+  `
+}
+
 
 export const raleway: FontFace = {
     fontFamily: 'Raleway',
@@ -46,9 +82,9 @@ export const raleway: FontFace = {
     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
     fontWeight: 500,
     src: `
-    local('Raleway Regular'),
+local('Raleway Regular'),
     url(${Raleway}) format('truetype')
-  `
+`
 }
 
 export const ralewayBold: FontFace = {
@@ -62,6 +98,29 @@ export const ralewayBold: FontFace = {
   `
 }
 
+export const montserratBold: FontFace = {
+    fontFamily: 'Montserrat',
+    fontStyle: 'bold',
+    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+    fontWeight: 700,
+    src: `
+    local('Montserrat'),
+    url(${MontserratBold}) format('truetype'),
+    url(${MontserratBold2}) format('opentype'),
+    'sans-serif'
+  `
+}
+
+// const poppinsBold: FontFace = {
+//     fontFamily: 'Poppins',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 700,
+//     src: `
+//     local('Poppins'),
+//     url(${PoppinsBold}) format('opentype')
+//   `
+// }
 export const rainbow: FontFace = {
     fontFamily: 'Rainbow',
     fontStyle: 'normal',
@@ -72,18 +131,36 @@ export const rainbow: FontFace = {
     url(${Rainbow}) format('truetype')
   `
 }
-// export const poppinsXBold: FontFace = {
-//     fontFamily: 'Poppins',
+
+
+export const poppinsXBold: FontFace = {
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+    fontWeight: 900,
+    src: `
+    local('Poppins'),
+    url(${PoppinsXBold}) format('opentype')
+  `
+}
+
+// const plexSans: FontFace = {
+//     fontFamily: 'Plex Sans',
 //     fontStyle: 'normal',
 //     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-//     fontWeight: 900,
+//     fontWeight: 400,
 //     src: `
-//     local('Poppins'),
-//     url(${PoppinsXBold}) format('opentype')
+//     local('Plex Sans'),
+//     url(${PlexSans}) format('opentype')
 //   `
 // }
 
-const fonts = ['Bitter Pro', 'Raleway'].join(',')
+const fonts = ['Poppins', 'Montserrat', 'sans-serif'].join(',')
+
+// New Registration flow colors
+export const PINK = '#FFA9E7'
+
+// Marketplace colors
 
 export enum COLORS {
     DARKBLUE = 'rgba(0,0,53,1)',
@@ -91,16 +168,10 @@ export enum COLORS {
     BLUE = 'rgba(16, 43, 136, 1)',
     DARK_GRAY = '#A8A9AC',
     GRAY = 'rgba(207, 207, 207, 1)',
-    LIGHT_GRAY = '#949495',
+    LIGHT_GRAY = '#E3E3E3',
     TRANSPARENTWHITE = 'rgba(255,255,255,0.75)',
-    LIGHTBLUE = '#2CC4D7',
-    ALMOSTPURPLE = "#331BAD",
     LIGHTGRAY = "#F4F3F5",
-    TRANSPARENTLIGHTGRAY = "rgba(244,243,245,0.87)",
-    MEDIUMGRAY = "#BCB9B0",
     DARKGRAY = "#43424A",
-    TRANSPARENTDARKGRAY = "rgba(67,66,74,0.78)"
-
 }
 
 const MixedFeelingsByTTheme = createTheme({
@@ -141,8 +212,8 @@ const MixedFeelingsByTTheme = createTheme({
             dark: '#CF800A'
         },
         text: {
-            primary: "#383838",
-            secondary: COLORS.LIGHTGRAY,
+            primary: COLORS.DARKBLUE,
+            secondary: COLORS.LIGHT_GRAY,
             disabled: COLORS.LIGHT_GRAY
         }
     },
@@ -150,11 +221,11 @@ const MixedFeelingsByTTheme = createTheme({
         fontFamily: fonts,
         h1: {
             // Title1
-            fontSize: '70px',
+            fontSize: '66px',
             fontStyle: 'normal',
             fontWeight: "bold",
             lineHeight: 1.3,
-            letterSpacing: '-0.01em'
+            letterSpacing: '-0.03em'
         },
         h2: {
             // Title2
@@ -162,7 +233,7 @@ const MixedFeelingsByTTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 700,
             lineHeight: 1.25,
-            letterSpacing: '-0.02em'
+            letterSpacing: '-0.03em'
         },
         h3: {
             // Title3
@@ -190,7 +261,7 @@ const MixedFeelingsByTTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 350,
             lineHeight: 1.5,
-            letterSpacing: '-0.01em'
+            letterSpacing: '-0.03em'
         },
         body2: {
             // Large
@@ -198,7 +269,7 @@ const MixedFeelingsByTTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.2,
-            letterSpacing: '0.0em'
+            letterSpacing: '-0.03em'
         },
         button: {
             // Button
@@ -229,7 +300,7 @@ const MixedFeelingsByTTheme = createTheme({
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [bitterPro, raleway, ralewayBold]
+                '@font-face': [poppins, poppinsXBold]
             },
         },
         MuiInputBase: {

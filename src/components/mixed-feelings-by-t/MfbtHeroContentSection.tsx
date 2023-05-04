@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
-import {ThwHeroContentSectionType} from "../BlockContentTypes";
+import {MfbtHeroContentSectionType, ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import PageContext from "../page-context/PageContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
@@ -10,7 +10,7 @@ import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 
 interface IProps {
-    sectionData: ThwHeroContentSectionType
+    sectionData: MfbtHeroContentSectionType
 }
 
 interface CSSProps {
@@ -25,6 +25,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backgroundSize: 'cover, contain',
         minHeight: '521px',
         backgroundColor: 'transparent',
+        backgroundPosition:"right",
         position: "relative"
     }),
     contentSection: {
@@ -38,7 +39,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     }
 }))
 
-const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
+const MfbtHeroContentSection: FunctionComponent<IProps> = (props) => {
     let classParameters: CSSProps = {
         heroBaseImageUrl: urlFor(props.sectionData.heroImage).url() ?? '',
     }
@@ -57,7 +58,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
     return (
         <Grid container item className={classes.marketingBackground}>
             <Grid container item
-                  className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
+                  className={clsx(globalClasses.fullSection, globalClasses.fullscreenWhiteOverlay)}>
             </Grid>
             <Grid container direction='column' style={{zIndex: 2}}>
                 <Grid item>
@@ -74,25 +75,26 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                             <Grid container item className={classes.contentBullets}
                                   style={{marginBottom: "60px"}}>
                                 <Typography variant='body1'
-                                            color='textSecondary'>{props.sectionData.contentText}</Typography>
+                                            color='textPrimary'>{props.sectionData.contentText}</Typography>
                             </Grid>
-                            <Grid container item>
-                                <Button color='primary' variant='contained'
-                                        onClick={() => {
-                                            firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
-                                        }}
-                                        href={props.sectionData.ctaButtonLink ?? ""}>
-                                    <Typography variant='button'
-                                                color='secondary'>{props.sectionData.ctaButtonTitle}</Typography>
-                                </Button>
-                            </Grid>
+            <Grid container item>
+                <Button color='secondary' variant='contained'
+                        onClick={() => {
+                            firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                        }}
+                        href={props.sectionData.ctaButtonLink ?? ""}>
+                    <Typography variant='button'
+                                color='textSecondary'>{props.sectionData.ctaButtonTitle}</Typography>
+                </Button>
+            </Grid>
                         </Grid>
                     </Grid>
 
                 </Grid>
+
             </Grid>
         </Grid>
     )
 }
 
-export default ThwHeroContentSection
+export default MfbtHeroContentSection

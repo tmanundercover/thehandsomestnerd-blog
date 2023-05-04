@@ -4,6 +4,7 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    MfbtHeroContentSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -24,6 +25,7 @@ import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
 import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
+import MfbtHeroContentSection from "./mixed-feelings-by-t/MfbtHeroContentSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -157,6 +159,15 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                  style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <ThwContactUsSection
                             sectionData={thwCUSection}
+                        />
+                    </Grid>
+                case 'mfbtHeroContentSection':
+                    const mfbtHeroSection: MfbtHeroContentSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtContactUsSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <MfbtHeroContentSection
+                            sectionData={mfbtHeroSection}
                         />
                     </Grid>
                 // case 'menuContainer':

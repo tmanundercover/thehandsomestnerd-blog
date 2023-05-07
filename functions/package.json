@@ -2,14 +2,14 @@
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
-    "build": "tsc && npm run html",
+    "build": "tsc",
     "build:dev": "NODE_ENV=development tsc",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "html": "mv ../build/index.html ./lib/functions/src"
+    "html": "cp ../build/index.html ./lib/functions/src"
   },
   "engines": {
     "node": "14"

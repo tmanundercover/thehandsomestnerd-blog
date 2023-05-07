@@ -4,7 +4,8 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    MfbtHeroContentSectionType,
+    MfbtAboutProprietorSectionType,
+    MfbtHeroContentSectionType, MfbtPaymentMethodSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -26,6 +27,9 @@ import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
 import MfbtHeroContentSection from "./mixed-feelings-by-t/MfbtHeroContentSection";
+import MfbtAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
+import MFBTAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
+import MFBTPaymentMethodsSection from "./mixed-feelings-by-t/MFBTPaymentMethodsSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -168,6 +172,24 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                  style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
                         <MfbtHeroContentSection
                             sectionData={mfbtHeroSection}
+                        />
+                    </Grid>
+                case 'mfbtAboutProprietorSection':
+                    const mfbtAboutTheProprietorSection: MfbtAboutProprietorSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtAboutProprietorSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <MfbtAboutTheProprietor
+                            sectionData={mfbtAboutTheProprietorSection}
+                        />
+                    </Grid>
+                case 'mfbtPaymentMethods':
+                    const mfbtPaymentMethodsSection:  MfbtPaymentMethodSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtAboutProprietorSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: "white"}}>
+                        <MFBTPaymentMethodsSection
+                            sectionData={mfbtPaymentMethodsSection}
                         />
                     </Grid>
                 // case 'menuContainer':

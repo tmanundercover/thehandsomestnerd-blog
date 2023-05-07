@@ -72,8 +72,9 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                                            style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
                         <Grid item container style={{
                             backgroundImage: `url(${props.imageUrl ? props.imageUrl : urlFor(props.imageSrc ?? "").height(props.height).url() ?? ''})`,
-                            backgroundSize: "cover",
+                            backgroundSize: "contain",
                             backgroundPosition: "center",
+                            backgroundRepeat:"no-repeat",
                             height: props.height
                         }}>
                         </Grid>

@@ -39,6 +39,8 @@ import proprietorService from "./sections/transform-hw/proprietorService";
 import modal from "./modal/Modal";
 import faq from "./modal/faq";
 import mfbtHeroContentSection from "./sections/mixed-feelings-by-t/MfbtHeroContentSection";
+import mfbtAboutProprietor from "./sections/mixed-feelings-by-t/MfbtAboutProprietor";
+import mfbtPaymentMethods from "./sections/mixed-feelings-by-t/MfbtPaymentMethods";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -89,5 +91,7 @@ export default createSchema({
         faq,
         // mfbt
         mfbtHeroContentSection,
+        mfbtAboutProprietor,
+        mfbtPaymentMethods
     ]),
 })

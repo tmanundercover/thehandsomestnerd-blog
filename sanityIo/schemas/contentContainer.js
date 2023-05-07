@@ -28,6 +28,8 @@ export default {
         {name: 'heroContentSection', title: 'Hero + Content Section',type: 'reference', to: [{type: 'heroContentSection'}]},
         {name: 'transformHeroContentSection', title: SanitySectionTitlesEnum.HERO_CONTENT,type: 'reference', to: [{type: 'transformHeroContentSection'}]},
         {name: 'mfbtHeroContentSection', title: "MFBT Hero Image + Content section",type: 'reference', to: [{type: 'mfbtHeroContentSection'}]},
+        {name: 'mfbtAboutProprietorSection', title: "MFBT 1/3 Image + 2/3 Content",type: 'reference', to: [{type: 'mfbtAboutProprietorSection'}]},
+        {name: 'mfbtPaymentMethods', title: "MFBT 4 icons",type: 'reference', to: [{type: 'mfbtPaymentMethods'}]},
         {name: 'transformPositivePsychologySection', title: SanitySectionTitlesEnum.POSITIVE_PSYCHOLOGY,type: 'reference', to: [{type: 'transformPositivePsychologySection'}]},
         {name: 'transformMottoSection', title: SanitySectionTitlesEnum.MOTTO,type: 'reference', to: [{type: 'transformMottoSection'}]},
         {name: 'transformAboutProprietorSection', title: SanitySectionTitlesEnum.ABOUT_PROPRIETOR,type: 'reference', to: [{type: 'transformAboutProprietorSection'}]},

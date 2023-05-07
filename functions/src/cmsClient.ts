@@ -1,12 +1,11 @@
 import {log} from "./logClient";
 import {sanityClient} from "./sanityClient";
-import {SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
-import groqQueries from "../../src/utils/groqQueries";
+import groqQueries from "./groqQueries";
 
-const createColdLead = async (coldLead: SanityColdLead) => {
+const createColdLead = async (coldLead:any) => {
   log("createSanityColdLead", "DEBUG", "creating cold lead ", coldLead.email);
 
-  const newColdLead: SanityColdLead = {
+  const newColdLead = {
     ...coldLead,
   };
 
@@ -27,7 +26,7 @@ const fetchPage = async (pageSlug:string)=>{
           `*[slug.current == $pageSlug]{
           ${groqQueries.HOMEPAGE}
        }`, {pageSlug})
-      .then((data: SanityTransformHwHomePage[]) => {
+      .then((data: any[]) => {
         log("fetchPage", "NOTICE", "fetched page", {pageSlug, page: data[0]});
         return data[0];
       })

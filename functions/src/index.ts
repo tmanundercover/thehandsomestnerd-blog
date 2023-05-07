@@ -8,10 +8,9 @@ import * as cmsClient from "./cmsClient";
 import * as Promise from "es6-promise";
 import * as path from "path";
 import * as fs from "fs";
-import {SanityColdLead, SanityTransformHwHomePage}
-  from "../../src/common/sanityIo/Types";
-import {urlFor} from
-  "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "./sanityClient";
+
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -86,6 +85,8 @@ const indexPath = path.resolve(__dirname, ...indexPathParts, "index.html");
 
 console.log(path.resolve(__dirname, ...indexPathParts), files);
 
+const builder = imageUrlBuilder(sanityClient);
+
 const serveIndexFile = (req: any, res: any) => {
   fs.readFile(indexPath, "utf8", async (err, htmlData) => {
     if (err) {
@@ -106,14 +107,14 @@ const serveIndexFile = (req: any, res: any) => {
     logClient.log("server-side", "NOTICE",
         "Loading this page from sanity", pageSlug);
     try {
-      const pageFromSanity: SanityTransformHwHomePage = await cmsClient.fetchPage(pageSlug);
+      const pageFromSanity = await cmsClient.fetchPage(pageSlug);
 
       // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
       const page = {
         ogTitle: pageFromSanity?.title,
         description: pageFromSanity?.description,
         ogDescription: pageFromSanity?.description,
-        ogImage: pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
+        ogImage: pageFromSanity.metaImage && builder.image(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
       };
 
       logClient.log("server-side", "NOTICE",
@@ -139,7 +140,7 @@ const serveIndexFile = (req: any, res: any) => {
 
 app.post("/collect-email-address",
     async (req: any, functionRes: any) => {
-      const reqBody: SanityColdLead = JSON.parse(req.body);
+      const reqBody = JSON.parse(req.body);
 
       logClient.log("collect-email-address", "NOTICE",
           "Request to collect an email address", reqBody.email);

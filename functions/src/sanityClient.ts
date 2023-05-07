@@ -7,4 +7,4 @@ export const sanityClient = client({
   token: process.env.SANITY_API_TOKEN,
   useCdn: false,
 });
-
+export default sanityClient;

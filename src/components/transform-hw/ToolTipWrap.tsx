@@ -21,19 +21,21 @@ const ToolTipWrap: FunctionComponent<PropsWithChildren & IProps> = (props: Props
     const amenityContext = useContext(AmenityContext)
 
     return <Grid container xs={6} item
-                                               onClick={() => {
-                                                   amenityContext.openSnackbar && amenityContext.openSnackbar(props.serviceTitle,props.amenity)
-                                               }}>
-        <Tooltip disableHoverListener={mediaQueriesContext.smDown} title={
-            <Grid container style={{maxWidth: "160px"}}>
-                <Typography
-                    variant='subtitle1' color='textSecondary'>{props.amenity.title}</Typography>
-                <Typography
-                    variant='subtitle2' color='textSecondary'>{props.amenity.description}</Typography>
-            </Grid>
-        }>
-            {props.children as ReactElement}
-        </Tooltip>
+                 onClick={() => {
+                     amenityContext.openSnackbar && amenityContext.openSnackbar(props.serviceTitle, props.amenity)
+                 }}>
+        <Grid item>
+            <Tooltip disableHoverListener={mediaQueriesContext.smDown} title={
+                <Grid container style={{maxWidth: "160px"}} justifyContent='center'>
+                    <Typography
+                        variant='subtitle1' color='textSecondary'>{props.amenity.title}</Typography>
+                    <Typography
+                        variant='subtitle2' color='textSecondary'>{props.amenity.description}</Typography>
+                </Grid>
+            }>
+                {props.children as ReactElement}
+            </Tooltip>
+        </Grid>
     </Grid>
 }
 

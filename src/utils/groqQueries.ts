@@ -78,6 +78,8 @@ const HOMEPAGE = `_type,
           pageContent {
             "content": content[]->{
                 ...,
+                "mixedList": mixedList[]->,
+                "teamList": teamList[]->,
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },

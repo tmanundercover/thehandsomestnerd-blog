@@ -70,13 +70,21 @@ const useCustomStyles = makeStyles({
         width: "100%",
         zIndex: 1
     },
+    fullSectionOverlayDark: {
+        position: "absolute",
+        backgroundColor: `rgba(0, 0, 0, .8)`,
+        minHeight: '512px',
+        height: '100%',
+        width: "100%",
+        zIndex: 1
+    },
     fullContainer: {
         width: '100%',
         height: '100%'
     },
     fullscreenWhiteOverlay: {
         position: "absolute",
-        backgroundColor: `rgba(255, 255, 255, 0.3)`
+        backgroundColor: `rgba(255, 255, 255, 0.65)`
     },
 })
 

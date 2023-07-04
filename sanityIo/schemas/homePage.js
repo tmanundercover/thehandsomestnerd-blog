@@ -50,7 +50,9 @@ export default {
             name: 'servicesAvailable',
             title: 'Other Services',
             type: "array",
-            of: [{type: "reference", to:[{type: "transformServiceItem"}]},
+            of: [
+                {name: "transformServiceItem", title: "THW service", type: "reference", to:[{type: "transformServiceItem"}]},
+                {name: "mfbtServiceItem", title:"MFBT Service", type: "reference", to:[{type: "mfbtServiceItem"}]},
             ]
         },
         {

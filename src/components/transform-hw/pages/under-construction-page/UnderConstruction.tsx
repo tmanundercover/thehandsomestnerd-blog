@@ -76,7 +76,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                     <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2.5)}}>
                         <Grid item xs={11} sm={10}>
                             <Typography variant='body1'
-                                        align='center' style={{...raleway}}>{cmsPageData?.contentText}</Typography>
+                                        align='center' style={{...raleway, color: "black"}}>{cmsPageData?.contentText}</Typography>
 
                         </Grid>
                     </Grid>

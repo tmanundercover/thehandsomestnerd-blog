@@ -4,16 +4,16 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    MfbtAboutProprietorSectionType,
-    MfbtHeroContentSectionType, MfbtPaymentMethodSectionType,
+    MfbtAboutProprietorSectionType, MfbtGallerySectionType,
+    MfbtHeroContentSectionType, MfbtPaymentMethodSectionType, MfbtServicesSectionType, MfbtTeamSectionType,
     ThwAboutProprietorSectionType,
-    ThwContactUsSectionType,
+    MfbtContactUsSectionType,
     ThwHeroContentSectionType,
     ThwMottoSectionType,
     ThwPositivePsychologySectionType,
     ThwServiceItemType,
     ThwServicesSectionType,
-    ThwWhyChooseUsSectionType,
+    ThwWhyChooseUsSectionType, MfbtMixedListSectionType,
 } from "./BlockContentTypes";
 import MixedFeelingsByTTheme from "../theme/MixedFeelingsByTTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
@@ -30,6 +30,11 @@ import MfbtHeroContentSection from "./mixed-feelings-by-t/MfbtHeroContentSection
 import MfbtAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
 import MFBTAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
 import MFBTPaymentMethodsSection from "./mixed-feelings-by-t/MFBTPaymentMethodsSection";
+import MFBTTeamSection from "./mixed-feelings-by-t/MFBTTeamSection";
+import MFBTGallerySection from "./mixed-feelings-by-t/MFBTGallerySection";
+import MFBTServicesSection from "./mixed-feelings-by-t/MFBTServicesSection";
+import MFBTContactUsSection from "./mixed-feelings-by-t/MFBTContactUsSection";
+import MFBTMixedListSection from "./mixed-feelings-by-t/MFBTMixedListSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -157,7 +162,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         />
                     </Grid>
                 case 'transformContactUsSection':
-                    const thwCUSection: ThwContactUsSectionType = columnLayoutContainer
+                    const thwCUSection: MfbtContactUsSectionType = columnLayoutContainer
 
                     return <Grid key={'transformContactUsSection'} container item xs={12} justifyContent='center'
                                  style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
@@ -186,10 +191,58 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                 case 'mfbtPaymentMethods':
                     const mfbtPaymentMethodsSection:  MfbtPaymentMethodSectionType = columnLayoutContainer
 
-                    return <Grid key={'mfbtAboutProprietorSection'} container item xs={12} justifyContent='center'
+                    return <Grid key={'mfbtPaymentSection'} container item xs={12}
                                  style={{backgroundColor: "white"}}>
                         <MFBTPaymentMethodsSection
                             sectionData={mfbtPaymentMethodsSection}
+                        />
+                    </Grid>
+                case 'MfbtTeamSection':
+                    const mfbtTeamSection: MfbtTeamSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtTeamSection'} container item xs={12} justifyContent='center'
+                                 >
+                        <MFBTTeamSection
+                            sectionData={mfbtTeamSection}
+                        />
+                    </Grid>
+                case 'MfbtServicesSection':
+                    const mfbtServicesSection: MfbtServicesSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtServicesSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: "white"}}>
+                        <MFBTServicesSection
+                            sectionData={mfbtServicesSection}
+                        />
+                    </Grid>
+                case 'MfbtGallerySection':
+                    const mfbtGallerySection: MfbtGallerySectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtGallerySection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: "white"}}>
+                        <MFBTGallerySection
+                            sectionData={mfbtGallerySection}
+                        />
+                    </Grid>
+                case 'MfbtMixedListSection':
+                    const mfbtMixedListSection: MfbtMixedListSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtMixedListSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: "white"}}>
+                        <a id="mfbtMixedListSection"></a>
+                        <MFBTMixedListSection
+                            sectionData={mfbtMixedListSection}
+                        />
+                    </Grid>
+                case 'MfbtContactUsSection':
+                    const mfbtCUSection: MfbtContactUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtContactUsSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper, position:"relative"}}>
+                        <a id="ContactUs" style={{top:-100, position:"absolute"}}></a>
+
+                        <MFBTContactUsSection
+                            sectionData={mfbtCUSection}
                         />
                     </Grid>
                 // case 'menuContainer':

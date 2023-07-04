@@ -22,7 +22,7 @@ const LoadingPage: FunctionComponent = (props) => {
             <Logo isCenter height={200}/>
             <Grid item container justifyContent='center' spacing={3}>
                 <Grid item container justifyContent='center'>
-                    <Typography align='center' variant='h6' style={{...raleway}}>Loading...</Typography>
+                    <Typography  align='center' variant='h6' style={{...raleway,color:"black"}}>Loading...</Typography>
                 </Grid>
                 <Grid item>
                     <CircularProgress size={40}/>

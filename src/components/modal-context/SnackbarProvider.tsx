@@ -6,6 +6,21 @@ import Countdown from "react-countdown";
 import GridItem
     from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/lists/grid/GridItem";
 import SecondsCountdownButton from "./SecondsCountdownButton";
+import {useCommonStyles} from "../../common/sanityIo/CommonStyles";
+import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import {makeStyles, Theme} from "@material-ui/core/styles";
+
+
+export const useStyles = makeStyles((theme: Theme) => ({
+    snackRoot: {
+        // "& .MuiSnackbarContent-root": {
+        //     backgroundColor: 'gray',
+        //
+        // }
+
+
+    },
+}))
 
 type IProps = {
     setLoginSnackbar?: (isOpen: boolean) => void
@@ -20,6 +35,8 @@ export interface SnackbarMessage {
 const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
+    const classes = useStyles(MixedFeelingsByTTheme)
+
     const [snackbarOpen, setSnackbarOpen] = React.useState<boolean>(false)
     const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
     const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
@@ -66,33 +83,34 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
     return (
         <SnackbarContext.Provider value={newValue}>
             <Grid container item>
-            <Snackbar
-                key={messageInfo ? messageInfo.key : undefined}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center'
-                }}
-                TransitionProps={{onExited: handleExited}}
-                open={snackbarOpen}
-                autoHideDuration={15000}
-                onClose={handleSnackbarClose}
-                message={messageInfo ? messageInfo.message : undefined}
-                action={
-                    <Grid item container alignContent='center' alignItems='center'>
-                        <Grid item>
-                            <Countdown
-                                date={(new Date(Date.now() + 14000))}
-                                renderer={
-                                    (date) => (<SecondsCountdownButton date={date}/>)
-                                }
-                            />
+                <Snackbar
+                    className={classes.snackRoot}
+                    key={messageInfo ? messageInfo.key : undefined}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center'
+                    }}
+                    TransitionProps={{onExited: handleExited}}
+                    open={snackbarOpen}
+                    autoHideDuration={15000}
+                    onClose={handleSnackbarClose}
+                    message={messageInfo ? messageInfo.message : undefined}
+                    action={
+                        <Grid item container alignContent='center' alignItems='center'>
+                            <Grid item>
+                                <Countdown
+                                    date={(new Date(Date.now() + 14000))}
+                                    renderer={
+                                        (date) => (<SecondsCountdownButton date={date}/>)
+                                    }
+                                />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                }
-            />
+                    }
+                />
             </Grid>
             <Grid container item>
-            {props.children}
+                {props.children}
             </Grid>
         </SnackbarContext.Provider>
     );

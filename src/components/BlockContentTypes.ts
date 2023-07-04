@@ -196,7 +196,7 @@ export type ThwWhyChooseUsItemType = {
     contentText: string
 }
 
-export type ThwContactUsSectionType = {
+export type MfbtContactUsSectionType = {
     name: string
     bgImageSrc: SanityImageAsset
     lhsTitle: string
@@ -259,3 +259,76 @@ export type MfbtPaymentMethodSectionType = {
     paymentName3: string,
 }
 
+export type MfbtTeamSectionType = {
+
+    name: string
+    contentPretitle: string
+    contentTitle: string
+    contentTexts: string[],
+    teamList: MfbtTeamMember[],
+}
+
+export type MfbtMixedListSectionType = {
+
+    name: string
+    contentPretitle: string
+    contentTitle: string
+    contentTexts: string[],
+    mixedList: MfbtMixedListItemType[],
+}
+
+export type MfbtMixedListItemType =  {
+    categoryName: string,
+    image: SanityImageAsset,
+    drinkName: string,
+    description: string,
+    isEnabled:string,
+}
+export type MfbtGallerySectionType = {
+
+    name: string
+    contentPretitle: string
+    contentTitle: string
+    contentTexts: string[],
+    gallery: SanityImageAsset[],
+}
+
+export type MfbtTeamMember =  {
+    image: SanityImageAsset,
+    title: string,
+    firstName: string,
+    lastName: string,
+    homeCity:string,
+    homeState:string,
+    hobby:string,
+    faveDrinkToMake:string,
+}
+
+export type MfbtServicesSectionType = {
+    name: string
+    contentTitle: string
+    contentPreTitle: string
+    contentText: string
+    contentTexts: string[]
+    servicesList: MfbtServiceItemNoRefType[]
+}
+
+export type MfbtServiceItemNoRefType = {
+    name: string
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    learnMoreLink: string
+    learnMoreText: string
+    // educationPageTitle: string
+    // educationPageSlimHeroImage: SanityImageAsset
+    // extendedDescriptions: string[]
+    benefitsOfServiceTitle: string
+    benefitsOfServiceContents: string[]
+    benefitsOfServiceBullets: string[]
+    serviceAmenities: ServiceAmenityType[]
+    slug: SanitySlug
+}

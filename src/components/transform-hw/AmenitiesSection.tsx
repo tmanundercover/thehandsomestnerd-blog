@@ -3,7 +3,7 @@ import {makeStyles, Theme} from "@material-ui/core/styles"
 import {CircularProgress, Grid, List, Typography} from '@material-ui/core'
 import {ArrowLeft, ArrowRight} from "@material-ui/icons";
 import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
-import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
+import {MfbtServiceItemNoRefType, ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
 import {v4 as uuidv4} from "uuid";
 import ToolTipWrap from "./ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 interface IProps {
-    service: ThwServiceItemNoRefType
+    service: ThwServiceItemNoRefType | MfbtServiceItemNoRefType
     placeHolder?: JSX.Element
 }
 
@@ -54,9 +54,10 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
         const newElements = amenityContext.getElements && amenityContext.getElements(props.service.slug.current)
         if (newElements) {
             console.log("setting the new elements in the component", props.service.slug.current)
+            console.log(newElements)
             setElements(newElements)
         }
-    }, [amenityContext.getElements && amenityContext.getElements(props.service.slug.current)])
+    }, [amenityContext.getElements])
 
 
     // React.useEffect(() => {
@@ -104,25 +105,23 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
                     <ArrowLeft/>
                 </Grid> : <></>
         }
-        <Grid xs={10} item container>
-            <Grid item container justifyContent='flex-start'>
-
+        <Grid xs={isOverflow?10:12} item container>
+            <Grid item container>
                 <List
-
                     style={{
                         paddingTop: MixedFeelingsByTTheme.spacing(2),
-
                         // display: 'flex', flexDirection: 'row',
                         // overflowY: "hidden",
                         width: "100%",
                         // overflowX: "scroll",
-                        height: "130px",
+                        height: "150px",
                     }}
                 >
-                    <Grid container ref={ref} direction='column' alignItems='center' alignContent='flex-start' style={{
+                    <Grid container ref={ref} direction='column' alignItems='center' alignContent='center' justifyContent={'flex-start'} style={{
                         // marginTop: TransformHWTheme.spacing(2),
                         //     margin: 0,
                         // display: 'flex', flexDirection: 'row', padding: 0,
+
                         paddingLeft: isOverflow?MixedFeelingsByTTheme.spacing(2):MixedFeelingsByTTheme.spacing(0),
                         overflowY: "hidden",
                         overflowX: "scroll",

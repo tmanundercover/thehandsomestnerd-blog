@@ -41,6 +41,15 @@ import faq from "./modal/faq";
 import mfbtHeroContentSection from "./sections/mixed-feelings-by-t/MfbtHeroContentSection";
 import mfbtAboutProprietor from "./sections/mixed-feelings-by-t/MfbtAboutProprietor";
 import mfbtPaymentMethods from "./sections/mixed-feelings-by-t/MfbtPaymentMethods";
+import MfbtTeamSection from "./sections/mixed-feelings-by-t/team/MfbtTeamSection";
+import MfbtTeamMember from "./sections/mixed-feelings-by-t/team/MfbtTeamMember";
+import MFBTGallerySection from "../../src/components/mixed-feelings-by-t/MFBTGallerySection";
+import MfbtGallerySection from "./sections/mixed-feelings-by-t/gallery/MfbtGallerySection";
+import MfbtServicesSection from "./sections/mixed-feelings-by-t/services/MfbtServicesSection";
+import mfbtServiceItem from "./sections/mixed-feelings-by-t/services/mfbtServiceItem";
+import MfbtContactUsSection from "./sections/mixed-feelings-by-t/MfbtContactUsSection";
+import MfbtMixedListSection from "./sections/mixed-feelings-by-t/mixed-list/MfbtMixedListSection";
+import MfbtMixedListItem from "./sections/mixed-feelings-by-t/mixed-list/MfbtMixedListItem";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -92,6 +101,14 @@ export default createSchema({
         // mfbt
         mfbtHeroContentSection,
         mfbtAboutProprietor,
-        mfbtPaymentMethods
+        mfbtPaymentMethods,
+        MfbtServicesSection,
+        mfbtServiceItem,
+        MfbtGallerySection,
+        MfbtMixedListSection,
+        MfbtMixedListItem,
+        MfbtTeamMember,
+        MfbtTeamSection,
+        MfbtContactUsSection
     ]),
 })

@@ -188,13 +188,13 @@ const MixedFeelingsByTTheme = createTheme({
     palette: {
         background: {
             default: COLORS.LIGHTGRAY,
-            paper: COLORS.DARKGRAY
+            paper: "#000000"
         },
         primary: {
             main: "#dd4f11",
         },
         secondary: {
-            main: COLORS.DARKGRAY,
+            main: "#FFFFFF",
         },
         error: {
             main: '#840E0E',
@@ -212,8 +212,8 @@ const MixedFeelingsByTTheme = createTheme({
             dark: '#CF800A'
         },
         text: {
-            primary: COLORS.DARKORANGE,
-            secondary: COLORS.LIGHT_GRAY,
+            primary: "#FAFAFA",
+            secondary: "#dd4f11",
             disabled: COLORS.LIGHT_GRAY
         }
     },
@@ -259,7 +259,7 @@ const MixedFeelingsByTTheme = createTheme({
             // Body
             fontSize: '18px',
             fontStyle: 'normal',
-            fontWeight: 350,
+            fontWeight: 150,
             lineHeight: 1.5,
             letterSpacing: '-0.03em'
         },
@@ -326,7 +326,7 @@ const MixedFeelingsByTTheme = createTheme({
             root: {
                 marginTop: "100px",
                 border: "3px solid white",
-                backgroundColor: 'rgba(16, 43, 136, .95) !important'
+                // backgroundColor: 'rgba(16, 43, 136, .95) !important'
             }
         },
         MuiFilledInput: {
@@ -428,6 +428,23 @@ const MixedFeelingsByTTheme = createTheme({
                 paddingLeft: "64px",
                 paddingRight: "64px",
             }
+        },
+        MuiImageListItem:{
+            item:{
+                overflow: "visible"
+            }
+        },
+        MuiImageList:{
+            root:{
+                // overflowY: "visible",
+                overflowY:"hidden",
+                overflowX:"visible"
+            },
+        },
+        MuiAccordion:{
+          root: {
+              backgroundColor: "rgba(0,0,0,.89)"
+          }
         },
         MuiCircularProgress: {
             // colorPrimary: {

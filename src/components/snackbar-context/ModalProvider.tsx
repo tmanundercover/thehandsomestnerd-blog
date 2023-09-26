@@ -99,7 +99,7 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                                                 color='secondary'>{modalContent?.title}</Typography>
                                 </Grid>
                                 <Grid container item style={{position: "relative", flexGrow:"2"}} justifyContent='center'>
-                                    <Grid container xs={12} sm={11}
+                                    <Grid container item xs={12} sm={11}
                                           ref={ref}
 
                                           style={{maxHeight: mediaQueriesContext.xsDown?"":"600px", overflowY: "scroll", overflowX: "hidden"}}>

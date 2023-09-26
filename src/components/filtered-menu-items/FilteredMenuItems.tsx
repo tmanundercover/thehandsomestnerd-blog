@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {CSSProperties, FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid} from '@material-ui/core'
@@ -7,6 +7,7 @@ import PopupStateWrapper from "./PopupStateWrapper";
 import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../common/sanityIo/Types";
 import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import {GridJustification} from "@material-ui/core/Grid/Grid";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -17,6 +18,8 @@ interface FilteredMenuItemsProps {
     includeMenuGroups?: boolean
     onlyButtons?: boolean
     anchorRef?: any
+    textStyle?: CSSProperties
+    contentJustification?: GridJustification
 }
 
 type HeaderMenuButtonType = {
@@ -27,20 +30,21 @@ type HeaderMenuButtonType = {
     button: any
 }
 const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
-                                                                 subMenus,
-                                                                 onlyButtons,
-                                                                 includeMenuItems,
-                                                                 includeMenuGroups,
-                                                             }) => {
+                                                                          subMenus,
+                                                                          onlyButtons,
+                                                                          includeMenuItems,
+                                                                          includeMenuGroups,
+                                                                          textStyle,contentJustification
+                                                                      }) => {
     // const anchorRef = useRef<HTMLButtonElement | null>(null)
     const mediaQueriesContext = useContext(MediaQueriesContext)
-    return (<Grid item container justifyContent={mediaQueriesContext.mdDown ? 'flex-start' : 'flex-end'} alignItems='stretch'>
+    return (<Grid item container justifyContent={contentJustification ? contentJustification: (mediaQueriesContext.mdDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}}>
             {
                 subMenus?.reduce(
                     (accumulated: JSX.Element[], menuButton:any, index) => {
                         if (menuButton?._type === "menuItem" && (includeMenuItems || (onlyButtons && (menuButton.isOutlinedButton || menuButton.isContainedButton || menuButton.isModalButton)))) {
                             return accumulated.concat([<Grid item key={uuidv4()}>
-                                <HeaderMenuItemButton menuItem={menuButton}/>
+                                <HeaderMenuItemButton textStyle={textStyle} menuItem={menuButton}/>
                             </Grid>])
                         } else if (menuButton?._type === "menuGroup" && includeMenuGroups) {
                             return accumulated.concat([<Grid item key={uuidv4()}>

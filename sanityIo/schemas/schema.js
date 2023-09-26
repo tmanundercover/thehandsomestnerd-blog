@@ -50,6 +50,10 @@ import mfbtServiceItem from "./sections/mixed-feelings-by-t/services/mfbtService
 import MfbtContactUsSection from "./sections/mixed-feelings-by-t/MfbtContactUsSection";
 import MfbtMixedListSection from "./sections/mixed-feelings-by-t/mixed-list/MfbtMixedListSection";
 import MfbtMixedListItem from "./sections/mixed-feelings-by-t/mixed-list/MfbtMixedListItem";
+import headerContentContainer from "./headerContentContainer";
+import footerContentContainer from "./footerContentContainer";
+import HeaderSection from "./sections/HeaderSection";
+import FooterSection from "./sections/web-dev/FooterSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({

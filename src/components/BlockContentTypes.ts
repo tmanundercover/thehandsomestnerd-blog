@@ -1,5 +1,6 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {FileAsset, ImageAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
     name: string
@@ -331,4 +332,14 @@ export type MfbtServiceItemNoRefType = {
     benefitsOfServiceBullets: string[]
     serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
+}
+
+export type HeaderSectionType = {
+    name:string
+    headerMenuRef: SanityMenuContainer
+}
+
+export type FooterSectionType = {
+    name:string
+    footerMenuRef: SanityMenuContainer
 }

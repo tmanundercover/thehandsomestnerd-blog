@@ -11,9 +11,12 @@ import AmenityProvider from "./components/amenity-context/AmenityProvider";
 import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/mackenzies-mind/pages/PageMux";
+import DigitalResumeTheme from "./theme/DigitalResumeTheme";
 
 export enum RoutesEnum {
-    MACKENZIES_MIND = "/mixed-feelings-by-t/:pageSlug",
+    MAINROUTE = "/resume/:pageSlug",
+    HOMEROUTE = "/resume/home",
+
     ERROR = '/error'
 }
 
@@ -32,7 +35,6 @@ function App() {
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-                <MuiThemeProvider theme={MixedFeelingsByTTheme}>
                     <CssBaseline/>
                     <SnackbarProvider>
                         <MediaQueriesProvider>
@@ -48,11 +50,11 @@ function App() {
 
                                             <Grid item>
                                                 <Routes>
-                                                    <Route path={RoutesEnum.MACKENZIES_MIND} element={<PageMux/>}/>
+                                                    <Route path={RoutesEnum.MAINROUTE} element={<PageMux/>}/>
                                                     <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
                                                     <Route path={"/*"}
                                                            element={<Navigate
-                                                               to={'/mixed-feelings-by-t/home'}/>}/>
+                                                               to={RoutesEnum.HOMEROUTE}/>}/>
                                                 </Routes>
                                             </Grid>
                                         </Grid>
@@ -61,7 +63,6 @@ function App() {
                             </ModalProvider>
                         </MediaQueriesProvider>
                     </SnackbarProvider>
-                </MuiThemeProvider>
             </QueryClientProvider>
         </BrowserRouter>
     )

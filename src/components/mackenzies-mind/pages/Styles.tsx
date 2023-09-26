@@ -86,6 +86,9 @@ const useCustomStyles = makeStyles({
         position: "absolute",
         backgroundColor: `rgba(255, 255, 255, 0.65)`
     },
+    resumeSection: {
+        borderBottom: `1px solid ${COLORS.LIGHTGRAY}`
+    },
 })
 
 

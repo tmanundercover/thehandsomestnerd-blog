@@ -1,8 +1,8 @@
 // First, we must import the schema creator
-import createSchema from 'part:@sanity/base/schema-creator'
+// import createSchema from 'part:@sanity/base/schema-creator'
 
 // Then import schema types from any plugins that might expose them
-import schemaTypes from 'all:part:@sanity/base/schema-type'
+// import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // We import object and document schemas
 import blockContent from './blockContent'
@@ -41,14 +41,27 @@ import faq from "./modal/faq";
 import mfbtHeroContentSection from "./sections/mixed-feelings-by-t/MfbtHeroContentSection";
 import mfbtAboutProprietor from "./sections/mixed-feelings-by-t/MfbtAboutProprietor";
 import mfbtPaymentMethods from "./sections/mixed-feelings-by-t/MfbtPaymentMethods";
+import ResumeBioSection from "./sections/resume/resume-bio/ResumeBioSection";
+import ResumeFile from "./sections/resume/resume-bio/ResumeFile";
+import ResumeSkillSet from "./sections/resume/resume-skills/ResumeSkillSet";
+import ResumeSkill from "./sections/resume/resume-skills/ResumeSkill";
+import ResumeSkillsSection from "./sections/resume/resume-skills/ResumeSkillsSection";
+import ResumeExperience from "./sections/resume/resume-experience/ResumeExperience";
+import ResumeExperienceSection from "./sections/resume/resume-experience/ResumeExperienceSection";
+import ResumeEducationSection from "./sections/resume/resume-education/ResumeEducationSection";
+import ResumeEducation from "./sections/resume/resume-education/ResumeEducation";
+import ResumeFeedback from "./sections/resume/resume-feedback/ResumeFeedback";
+import ResumeFeedbackSection from "./sections/resume/resume-feedback/ResumeFeedbackSection";
+import ResumeContactUsSection from "./sections/resume/resume-contact-us/ResumeContactUsSection";
+import ResumePortfolioItem from "./sections/resume/resume-portfolio/ResumePortfolioItem";
+import ResumePortfolioSection from "./sections/resume/resume-portfolio/ResumePortfolioSection";
+import WebDevHeroContentSection from "./sections/web-dev/WebDevHeroContentSection";
+import WebDevStatistic from "./sections/web-dev/WebDevStatistic";
+import WebDevStatsCounterSection from "./sections/web-dev/WebDevStatsCounterSection";
+import WebDevAboutUs from "./sections/web-dev/WebDevAboutUs";
 
 // Then we give our schema to the builder and provide the result to Sanity
-export default createSchema({
-    // We name our schema
-    name: 'default',
-    // Then proceed to concatenate our document type
-    // to the ones provided by any plugins that are installed
-    types: schemaTypes.concat([
+export default [
         // The following are document types which will appear
         // in the studio.
         // When added to this list, object types can be used as
@@ -92,6 +105,23 @@ export default createSchema({
         // mfbt
         mfbtHeroContentSection,
         mfbtAboutProprietor,
-        mfbtPaymentMethods
-    ]),
-})
+        mfbtPaymentMethods,
+        ResumeBioSection,
+        ResumeFile,
+        ResumeSkillSet,
+        ResumeSkill,
+        ResumeSkillsSection,
+        ResumeExperience,
+        ResumeExperienceSection,
+        ResumeEducationSection,
+        ResumeEducation,
+        ResumeFeedback,
+        ResumeFeedbackSection,
+        ResumeContactUsSection,
+        ResumePortfolioItem,
+        ResumePortfolioSection,
+        WebDevHeroContentSection,
+        WebDevStatistic,
+        WebDevStatsCounterSection,
+        WebDevAboutUs,
+    ]

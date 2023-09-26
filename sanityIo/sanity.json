@@ -1,18 +1,18 @@
 {
   "root": true,
   "api": {
-    "projectId": "fxig22wf",
+    "projectId": "e5l5k4i5",
     "dataset": "production"
   },
   "project": {
-    "name": "Mixed Feelings By T"
+    "name": "The Handsomest Nerd"
   },
   "__experimental_spaces": [
     {
       "name": "production",
       "title": "Production",
       "api": {
-        "projectId": "fxig22wf",
+        "projectId": "e5l5k4i5",
         "dataset": "production"
       }
     },
@@ -21,7 +21,7 @@
       "title": "Development",
       "default": true,
       "api": {
-        "projectId": "fxig22wf",
+        "projectId": "e5l5k4i5",
         "dataset": "development"
       }
     }

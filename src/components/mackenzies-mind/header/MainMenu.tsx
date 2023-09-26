@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, createStyles, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
 import {Close, Menu} from "@material-ui/icons";
-import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
@@ -38,7 +38,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     };
 
     const modalContext = useContext(ModalContext)
-    const classes = useStyles(MixedFeelingsByTTheme)
+    const classes = useStyles(DigitalResumeTheme)
     const list = (anchor: MainMenuAnchorType) => (
         <Grid item
               role="presentation"
@@ -64,13 +64,13 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                             }
                                         }:undefined}
                                         style={{
-                                    paddingTop: MixedFeelingsByTTheme.spacing(2.25),
-                                    paddingLeft: MixedFeelingsByTTheme.spacing(2),
-                                    paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
+                                    paddingTop: DigitalResumeTheme.spacing(2.25),
+                                    paddingLeft: DigitalResumeTheme.spacing(2),
+                                    paddingBottom: DigitalResumeTheme.spacing(2.25),
                                     height: "100%",
                                     margin: 0
                                 }} fullWidth>
-                                    <ListItemText primary={menuItem.displayText}/>
+                                    <ListItemText secondary={menuItem.displayText}/>
                                 </Button>
 
                             </ListItem>
@@ -84,7 +84,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
     return (<Grid item>
             <Button onClick={toggleDrawer(anchor, true)}>
-                <Menu color='secondary'
+                <Menu color='inherit'
                       fontSize='large'/>
             </Button>
             <Drawer anchor={anchor} open={isDrawerOpen}
@@ -92,8 +92,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
-                          paddingLeft: MixedFeelingsByTTheme.spacing(4),
-                          paddingRight: MixedFeelingsByTTheme.spacing(6),
+                          paddingLeft: DigitalResumeTheme.spacing(4),
+                          paddingRight: DigitalResumeTheme.spacing(6),
                       }}>
 
                     <Grid item xs={3}>

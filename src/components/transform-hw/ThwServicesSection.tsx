@@ -1,11 +1,8 @@
-import React, {FunctionComponent, useContext, useState} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography} from '@material-ui/core'
 import {ThwServiceItemNoRefType, ThwServicesSectionType} from "../BlockContentTypes";
-import cmsClient from "../block-content-ui/cmsClient";
-import mediaQueries from "../../utils/mediaQueries";
 import ThwServiceItem from "./ThwServiceItem";
-import thwClient from "./thwClient";
 import PageContext from "../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -30,8 +27,6 @@ interface IProps {
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
-
-    const pageContext = useContext(PageContext)
 
     return (
 

@@ -2,12 +2,12 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid} from '@material-ui/core'
 import FooterMenuContainer from './FooterMenuContainer'
-import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
+import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
+import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: COLORS.DARKORANGE,
+    backgroundColor: COLORS.DARK_GRAY,
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,
@@ -37,19 +37,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 interface IProps {
+  pageFooter?: SanityMenuContainer
   footerMenuSlug?:string
-  homePage:  SanityTransformHwHomePage
   updateIsLoading?: (value:boolean) => void
 }
 
 const Footer: FunctionComponent<IProps> = (props:IProps) => {
-  const classes = useStyles(MixedFeelingsByTTheme)
+  const classes = useStyles(DigitalResumeTheme)
 
   return (
     <Grid container className={classes.root}>
       <Grid container justifyContent="flex-start">
         <Grid item xs={12}>
-          <FooterMenuContainer updateIsLoading={props.updateIsLoading} homePage={props.homePage} menuContainerSlug={props.footerMenuSlug}/>
+          {props.pageFooter && <FooterMenuContainer pageFooterMenu={props.pageFooter} updateIsLoading={props.updateIsLoading}
+                                />}
         </Grid>
       </Grid>
     </Grid>

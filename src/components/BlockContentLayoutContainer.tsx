@@ -4,8 +4,18 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    HowItWorksSectionType,
     MfbtAboutProprietorSectionType,
-    MfbtHeroContentSectionType, MfbtPaymentMethodSectionType,
+    MfbtHeroContentSectionType,
+    MfbtPaymentMethodSectionType,
+    PortfolioSectionType,
+    ResumeBioSectionType,
+    ResumeContactUsSectionType,
+    ResumeEducationSectionType,
+    ResumeExperienceSectionType,
+    ResumeFeedbackSectionType,
+    ResumePortfolioSectionType,
+    ResumeSkillSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -14,6 +24,10 @@ import {
     ThwServiceItemType,
     ThwServicesSectionType,
     ThwWhyChooseUsSectionType,
+    WebDevAboutUsSectionType,
+    WebDevHeroContentSectionType,
+    WebDevStatsCounterSectionType,
+    WebDevTestimonialsSectionType,
 } from "./BlockContentTypes";
 import MixedFeelingsByTTheme from "../theme/MixedFeelingsByTTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
@@ -28,8 +42,21 @@ import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClie
 import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
 import MfbtHeroContentSection from "./mixed-feelings-by-t/MfbtHeroContentSection";
 import MfbtAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
-import MFBTAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
 import MFBTPaymentMethodsSection from "./mixed-feelings-by-t/MFBTPaymentMethodsSection";
+import ResumeBio from "./my-digital-resume/ResumeBio";
+import ResumeExperienceSection from "./my-digital-resume/ResumeExperienceSection";
+import ResumePortfolioSection from "./my-digital-resume/ResumePortfolioSection";
+import ResumeSkillsSection from "./my-digital-resume/ResumeSkillsSection";
+import ResumeFeedbackSection from "./my-digital-resume/ResumeFeedbackSection";
+import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
+import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
+import WebDevHeroContentSection from "./web-dev-site/WebDevHeroContentSection";
+import WebDevStatsCounterSection from "./web-dev-site/WebDevStatsCounterSection";
+import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
+import WebDevAboutUsSection from "./web-dev-site/WebDevAboutUsSection";
+import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
+import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
+import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -204,6 +231,143 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                 //             <ThwFooter footerMenuSlug={pageFooter.slug?.current} homePage={props.homePage}/>
                 //         </Grid>
                 //     }
+                case 'ResumeBioSection':
+                    const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeBioSection'} container item xs={12} justifyContent='center' >
+                        <Link id={"TOP_OF_PAGE"} style={{position: "relative", top: -80}}><></></Link>
+                        <Link id={"BIO"} style={{position: "relative", top: -80}}><></></Link>
+
+                        <ResumeBio
+                            homePage={props.homePage}
+                            sectionData={resumeBioSection}
+                        />
+                    </Grid>
+                case 'ResumeSkillSection':
+                    const resumeSkillSection: ResumeSkillSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeSkillSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"SKILLS"} style={{position: "relative", top: -80}}><></></Link>
+
+                        <ResumeSkillsSection
+                            sectionData={resumeSkillSection}
+                        />
+                    </Grid>
+                case 'ResumeExperienceSection':
+                    const resumeExperienceSection: ResumeExperienceSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeExperienceSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"EXPERIENCE"} style={{position: "relative", top: -80}}><></></Link>
+
+                        <ResumeExperienceSection
+                            sectionData={resumeExperienceSection}
+                        />
+                    </Grid>
+                case 'ResumeEducationSection':
+                    const resumeEducationSection: ResumeEducationSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeEducationSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"EDUCATION"} style={{position: "relative", top: -80}}><></></Link>
+
+                        <ResumeEducationSection
+                            sectionData={resumeEducationSection}
+                        />
+                    </Grid>
+                case 'ResumeFeedbackSection':
+                    const resumeFeedbackSection: ResumeFeedbackSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeFeedbackSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"FEEDBACK"} style={{position: "relative", top: -80}}><></></Link>
+
+                        <ResumeFeedbackSection
+                            sectionData={resumeFeedbackSection}
+                        />
+                    </Grid>
+                case 'ResumePortfolioSection':
+                    const resumePortfolioSection: ResumePortfolioSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumePortfolioSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"PORTFOLIO"} style={{position: "relative", top: -80}}><></></Link>
+
+                        <ResumePortfolioSection
+                            sectionData={resumePortfolioSection}
+                        />
+                    </Grid>
+                case 'ResumeContactUsSection':
+                    const resumeContactUsSection: ResumeContactUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeContactUsSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"CONTACT"} style={{position: "relative", top: -80}}><></></Link>
+
+                        <ResumeContactUsSection
+                            sectionData={resumeContactUsSection}
+                        />
+                    </Grid>
+                case 'WebDevHeroContentSection':
+                    const webDevHeroSection: WebDevHeroContentSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevHeroContentSection'} container item xs={12}>
+                        <Link id={"TOP_OF_PAGE"}><></></Link>
+                        <WebDevHeroContentSection
+                            sectionData={webDevHeroSection}
+                        />
+                    </Grid>
+                case 'WebDevStatsCounterSection':
+                    const webDevStatsCounterSection: WebDevStatsCounterSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevStatsCounterSection'} container item xs={12}>
+                        <WebDevStatsCounterSection
+                            sectionData={webDevStatsCounterSection}
+                        />
+                    </Grid>
+                case 'WebDevAboutUsSection':
+                    const webDevAboutUsSection: WebDevAboutUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevAboutUsSection'} container item xs={12}>
+                        <Link id={"ABOUT_US"}><></></Link>
+                        <WebDevAboutUsSection
+                            sectionData={webDevAboutUsSection}
+                        />
+                    </Grid>
+                case 'ServicesSection':
+                    const webDevServicesSection: PortfolioSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevServicesSection'} container item xs={12}>
+                        <Link id={"SERVICES"}><></></Link>
+
+                        <WebDevServicesSection
+                            sectionData={webDevServicesSection}
+                        />
+                    </Grid>
+                case 'PortfolioSection':
+                    const webDevPortfolioSection: PortfolioSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevPortfolioSection'} container item xs={12}>
+                        <Link id={"PORTFOLIO"}><></></Link>
+
+                        <WebDevPortfolioSection
+                            sectionData={webDevPortfolioSection}
+                        />
+                    </Grid>
+                case 'TestimonialsSection':
+                    const webDevTestimonialsSection: WebDevTestimonialsSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevTestimonialsSection'} container item xs={12}>
+                        <Link id={"TESTIMONIALS"}><></></Link>
+
+                        <WebDevTestimonialsSection
+                            sectionData={webDevTestimonialsSection}
+                        />
+                    </Grid>
+                case 'WebDevHowItWorksSection':
+                    const webDevHowItWorksSection: HowItWorksSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevHowItWorksSection'} container item xs={12}>
+                        <Link id={"HOW_IT_WORKS"}><></></Link>
+                        <WebDevHowItWorksSection
+                            sectionData={webDevHowItWorksSection}
+                        />
+                    </Grid>
                 default:
                     return <Grid container item></Grid>
                     // return <span key={index}>Undefined section {columnLayoutContainer._type}</span>

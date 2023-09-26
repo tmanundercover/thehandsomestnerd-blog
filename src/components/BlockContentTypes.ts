@@ -1,5 +1,6 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {FileAsset, ImageAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
     name: string
@@ -259,3 +260,239 @@ export type MfbtPaymentMethodSectionType = {
     paymentName3: string,
 }
 
+
+export type ResumeBioSectionType = {
+    name?: string
+    title?: string
+    careerTitle?: string
+    introduction?: string
+    contactMeButtonTitle?: string
+    resumeFileDownloadText?: string
+    resumeFile?: FileAsset
+    cvFileDownloadText?: string,
+    cvFile?: FileAsset
+    mainImage?: ImageAsset
+}
+
+
+
+export type ResumeSkill = {
+    name?: string
+    title?: string
+}
+export type ResumeSkillSet = {
+    name?: string
+    title?: string
+    skills?: ResumeSkill[]
+}
+
+export type ResumeSkillSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    skillsets?: ResumeSkillSet[]
+}
+
+
+
+
+export type ResumeExperience = {
+    name?: string
+    title?: string
+    companySubtitle?: string
+    companyName?: string
+    locationCity?: string
+    locationState?: string
+    dateStart?: Date
+    dateEnd?: Date
+    description?: string
+    skillsUsed?: ResumeSkill[]
+}
+
+export type ResumeExperienceSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    experiences?: ResumeExperience[]
+}
+
+export type ResumeEducation = {
+    name?: string
+    institutionName?: string
+    qualification?:string
+    locationCity?: string
+    locationState?: string
+    dateStart?: Date
+    dateEnd?: Date
+    description?: string
+}
+
+export type ResumeEducationSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    educationExperiences?: ResumeEducation[]
+}
+
+export type ResumeFeedback = {
+    name?: string
+    customerName?: string
+    customerTitle?: string
+    companyName?: string
+    qualification?:string
+    quote?: string
+    imageSrc?:SanityImageAsset
+}
+
+export type ResumeFeedbackSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    feedbackEntries?: ResumeFeedback[]
+}
+
+export type ResumePortfolioItem = {
+    name?: string
+    title?: string
+    coverImage?: SanityImageAsset
+    inceptionDate?: Date
+    slug?: SanitySlug
+    skillsHighlighted?:ResumeSkill[]
+    detailTitle?: string
+    detailDescription?: string
+    linkToProd?: string
+    linkToDev?: string
+    imageGallery?:SanityImageAsset[]
+}
+
+export type ResumePortfolioSectionType = {
+    name?: string
+    preTitle?:string
+    title?: string
+    introduction?: string
+    portfolioEntries?: ResumePortfolioItem[]
+}
+
+
+export type ResumeContactUsSectionType = {
+    name: string
+    title?: string
+    introduction?: string
+    formSubmitButtonText: string
+}
+
+
+export type WebDevHeroContentSectionType = {
+    name: string
+    title: string
+    heroImageBackground?: SanityImageAsset
+    contentTitle: string
+    contentText: string
+    ctaButtonTitle: string
+    ctaButtonLink: string
+}
+
+export type WebDevStatsCounterSectionType = {
+    name: string
+    title: string
+    stats: {statValue: string, statContent:string}[]
+}
+
+
+export type WebDevAboutUsSectionType = {
+    name: string
+    imageSrc: SanityImageAsset
+    welcomeMessage: string
+    contentTitle: string
+    contentText: string[]
+    ctaButtonText: string
+    ctaButtonLink: string
+}
+
+
+export type ServiceItemNoRefType = {
+    name: string
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    learnMoreLink: string
+    learnMoreText: string
+    educationPageTitle: string
+    educationPageSlimHeroImage: SanityImageAsset
+    extendedDescriptions: string[]
+    benefitsOfServiceTitle:string
+    benefitsOfServiceContents:string[]
+    benefitsOfServiceBullets:string[]
+    serviceAmenities: ServiceAmenityType[]
+    slug: SanitySlug
+}
+
+export type PortfolioSectionType = {
+    name: string
+    contentTitle: string
+    contentPreTitle: string
+    contentText: string
+    contentTexts: string[]
+    servicesList: ServiceItemNoRefType[]
+}
+
+export type WebDevTestimonialsType = {
+    name?: string
+    customerName?: string
+    customerTitle?: string
+    companyName?: string
+    qualification?:string
+    quoteSummary?: string
+    quote?: string
+    imageSrc?:SanityImageAsset
+}
+
+export type WebDevTestimonialsSectionType = {
+    name?: string
+    preTitle?: string
+    backgroundImage?: SanityImageAsset
+    title?: string
+    introduction?: string
+    feedbackEntries?: WebDevTestimonialsType[]
+}
+
+
+export type HowItWorksStepNoRefType = {
+    title: string
+    slug: SanitySlug
+    content: string
+    imageSrc: SanityImageAsset
+    isEnabled: boolean
+    contentText: string
+    contentTexts: string[]
+    learnMoreLink: string
+    learnMoreText: string
+}
+export type HowItWorksSectionType = {
+    name: string
+    contentTitle: string
+    contentPreTitle: string
+    contentTexts: string[]
+    steps: HowItWorksStepNoRefType[]
+}
+
+
+export type DevelopmentHeaderSectionType = {
+    name:string
+    headerMenuRef: SanityMenuContainer
+}
+export type HeaderSectionType = {
+    name:string
+    headerMenuRef: SanityMenuContainer
+}
+export type DevelopmentFooterSectionType = {
+    name:string
+    footerMenuRef: SanityMenuContainer
+}
+export type FooterSectionType = {
+    name:string
+    footerMenuRef: SanityMenuContainer
+}

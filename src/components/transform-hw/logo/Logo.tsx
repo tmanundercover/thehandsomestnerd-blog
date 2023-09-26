@@ -3,7 +3,7 @@ import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid} from '@material-ui/core'
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
-import logoImg from './image_6487327.png'
+import logoImg from './thehandsomestNerdlogo-small.png'
 
 interface CssProps {
     logoImageSrc?: SanityImageSource
@@ -12,13 +12,13 @@ interface CssProps {
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: (props: CssProps) => ({
-        backgroundImage: `url(${props.logoImageSrc ? urlFor(props.logoImageSrc).url() : logoImg})`,
+        backgroundImage: `url(${props.logoImageSrc ? urlFor(props.logoImageSrc).height(props.height ?? 0).url() : logoImg})`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         minWidth: "100px",
         height: `${props.height ?? 68}px`,
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(2)
+        // marginTop: theme.spacing(2),
+        // marginBottom: theme.spacing(2)
     }),
 }))
 

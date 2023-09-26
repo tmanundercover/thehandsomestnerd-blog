@@ -1,5 +1,6 @@
 // block renderers can return JSX Elements that are block or inline elements since they will be the top level element
 import {makeStyles, Theme} from '@material-ui/core/styles'
+import {COLORS} from "../../theme/DigitalResumeTheme";
 
 export const useThwCommonStyles = makeStyles((theme: Theme) => ({
     layoutContainer: {
@@ -92,6 +93,9 @@ export const useThwCommonStyles = makeStyles((theme: Theme) => ({
     },
     listItemRoot: {
         paddingLeft: '8px',
+    },
+    resumeSection: {
+        borderBottom: `1px solid ${COLORS.LIGHTGRAY}`
     },
 }))
 

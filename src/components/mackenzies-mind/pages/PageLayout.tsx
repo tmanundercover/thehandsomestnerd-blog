@@ -33,9 +33,9 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         {/*<Grid container item>*/}
         {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
         {/*</Grid>*/}
-        <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
+        {props.homePage.isFabActivated && <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
             <BusinessCard menu={pageContext.page?.headerContent.content[0].headerMenuRef} anchor={'bottom'}/>
-        </Grid>
+        </Grid>}
         <Grid container item>
             {props.homePage.headerContent && <Grid container item>
                 <HeaderBlockContentLayoutContainer

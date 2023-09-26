@@ -320,7 +320,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                 <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
                     <Grid container spacing={2} alignItems='center'>
                         <Grid item>
-                            <Avatar style={{backgroundColor: "whitesmoke"}} src={urlFor(menu.logoImageSrc ?? "").url() ?? ""}/>
+                            <Avatar style={{backgroundColor: "whitesmoke"}}
+                                    src={urlFor(menu.logoImageSrc ?? "").url() ?? ""}/>
 
                         </Grid>
                         <Grid item>

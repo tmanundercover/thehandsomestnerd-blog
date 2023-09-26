@@ -118,6 +118,7 @@ const HOMEPAGE = `_type,
           "servicesAvailable": servicesAvailable[]->{
             ${SERVICE}
           },
+          isFabActivated,
           underConstructionPageRef,
           structuredData,
           facebook,

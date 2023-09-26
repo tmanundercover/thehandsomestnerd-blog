@@ -59,69 +59,82 @@ import WebDevHeroContentSection from "./sections/web-dev/WebDevHeroContentSectio
 import WebDevStatistic from "./sections/web-dev/WebDevStatistic";
 import WebDevStatsCounterSection from "./sections/web-dev/WebDevStatsCounterSection";
 import WebDevAboutUs from "./sections/web-dev/WebDevAboutUs";
+import headerContentContainer from "./headerContentContainer";
+import footerContentContainer from "./footerContentContainer";
+import HeaderSection from "./sections/HeaderSection";
+import FooterSection from "./sections/web-dev/FooterSection";
+import DevelopmentHeaderSection from "./sections/DevelopmentHeaderSection";
+import DevelopmentFooterSection from "./sections/web-dev/DevelopmentFooterSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
-        // The following are document types which will appear
-        // in the studio.
-        // When added to this list, object types can be used as
-        // { type: 'typename' } in other document schemas
-        menuContainer,
-        menuGroup,
-        menuItem,
-        homePage,
-        blockContent,
-        contentContainer,
-        lineBreak,
-        column1BlockContent,
-        column2BlockContent,
-        // HomePageSections
-        heroContentSection,
-        whySwitchSection,
-        whySwitchReason,
-        aboutAndaCardSection,
-        cryptoInYourPocketSection,
-        // structured Data
-        structuredDataProduct,
-        structuredDataOffer,
-        structuredDataSeller,
-        structuredDataEvent,
-        coldLead,
-        // transform hw sections
-        ThwHeroContentSection,
-        ThwPositivePsychology,
-        ThwMottoSection,
-        ThwAboutProprietor,
-        ThwServicesSection,
-        transformServiceItem,
-        ThwWhyChooseUsSection,
-        transformWhyChooseUsItem,
-        ThwContactUs,
-        ThwUnderConstructionPage,
-        serviceAmenity,
-        proprietorService,
-        modal,
-        faq,
-        // mfbt
-        mfbtHeroContentSection,
-        mfbtAboutProprietor,
-        mfbtPaymentMethods,
-        ResumeBioSection,
-        ResumeFile,
-        ResumeSkillSet,
-        ResumeSkill,
-        ResumeSkillsSection,
-        ResumeExperience,
-        ResumeExperienceSection,
-        ResumeEducationSection,
-        ResumeEducation,
-        ResumeFeedback,
-        ResumeFeedbackSection,
-        ResumeContactUsSection,
-        ResumePortfolioItem,
-        ResumePortfolioSection,
-        WebDevHeroContentSection,
-        WebDevStatistic,
-        WebDevStatsCounterSection,
-        WebDevAboutUs,
-    ]
+    // The following are document types which will appear
+    // in the studio.
+    // When added to this list, object types can be used as
+    // { type: 'typename' } in other document schemas
+    menuContainer,
+    menuGroup,
+    menuItem,
+    homePage,
+    blockContent,
+    contentContainer,
+    lineBreak,
+    column1BlockContent,
+    column2BlockContent,
+    // HomePageSections
+    heroContentSection,
+    whySwitchSection,
+    whySwitchReason,
+    aboutAndaCardSection,
+    cryptoInYourPocketSection,
+    // structured Data
+    structuredDataProduct,
+    structuredDataOffer,
+    structuredDataSeller,
+    structuredDataEvent,
+    coldLead,
+    // transform hw sections
+    ThwHeroContentSection,
+    ThwPositivePsychology,
+    ThwMottoSection,
+    ThwAboutProprietor,
+    ThwServicesSection,
+    transformServiceItem,
+    ThwWhyChooseUsSection,
+    transformWhyChooseUsItem,
+    ThwContactUs,
+    ThwUnderConstructionPage,
+    serviceAmenity,
+    proprietorService,
+    modal,
+    faq,
+    // mfbt
+    mfbtHeroContentSection,
+    mfbtAboutProprietor,
+    mfbtPaymentMethods,
+    ResumeBioSection,
+    ResumeFile,
+    ResumeSkillSet,
+    ResumeSkill,
+    ResumeSkillsSection,
+    ResumeExperience,
+    ResumeExperienceSection,
+    ResumeEducationSection,
+    ResumeEducation,
+    ResumeFeedback,
+    ResumeFeedbackSection,
+    ResumeContactUsSection,
+    ResumePortfolioItem,
+    ResumePortfolioSection,
+    WebDevHeroContentSection,
+    WebDevStatistic,
+    WebDevStatsCounterSection,
+    WebDevAboutUs,
+    headerContentContainer,
+    footerContentContainer,
+    HeaderSection,
+    DevelopmentHeaderSection,
+    DevelopmentFooterSection,
+    FooterSection,
+
+]

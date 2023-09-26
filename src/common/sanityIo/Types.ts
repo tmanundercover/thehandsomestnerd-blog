@@ -57,6 +57,7 @@ export type SanityTransformHwHomePage = {
     fdicImage?: string
     isUnderConstruction?: boolean
     underConstructionPageRef?: SanityRef
+    isFabActivated?: boolean
 }
 
 export type SanityUnderConstructionPageType = {

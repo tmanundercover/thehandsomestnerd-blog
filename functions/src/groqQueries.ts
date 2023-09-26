@@ -115,6 +115,7 @@ const HOMEPAGE = `_type,
                 "cvFile": cvFile.asset->
             }
           },
+          isFabActivated,
           underConstructionPageRef,
           structuredData,
           facebook,

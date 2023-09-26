@@ -69,21 +69,11 @@ const HOMEPAGE = `_type,
           phone,
           description,
           metaImage,
-          headerContent {
-            "content": content[]->{
-                ...,
-                headerMenuRef->{
-                 ${MENUGROUPCONTAINER}
-               },
-            }
-          },
-          footerContent {
-            "content": content[]->{
-                ...,
-                footerMenuRef->{
-                 ${MENUGROUPCONTAINER}
-               },
-            }
+          headerMenuRef->{
+             ${MENUGROUPCONTAINER}
+           },
+          footerMenuRef->{
+             ${MENUGROUPCONTAINER}
           },
           pageContent {
             "content": content[]->{
@@ -93,34 +83,12 @@ const HOMEPAGE = `_type,
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },
-                "serviceAmenities": serviceAmenities[]->,
-                "skillsets": skillsets[]{
-                    ...,
-                    "skills": skills[]->{
-                        _id,
-                        name,
-                        title,
-                    },
-                }, 
-                "experiences": experiences[]->{
-                    ...,
-                    "skillsUsed": skillsUsed[]->
-                },
-                "educationExperiences": educationExperiences[]->,
-                "feedbackEntries": feedbackEntries[]->,
-                "portfolioEntries": portfolioEntries[]->{
-                    ...,
-                    "skillsHighlighted": skillsHighlighted[]->,
-                    "imageGallery": imageGallery[]
-                },
-                "resumeFile": resumeFile.asset->,
-                "cvFile": cvFile.asset->
+                "serviceAmenities": serviceAmenities[]->
             }
           },
           "servicesAvailable": servicesAvailable[]->{
             ${SERVICE}
           },
-          isFabActivated,
           underConstructionPageRef,
           structuredData,
           facebook,

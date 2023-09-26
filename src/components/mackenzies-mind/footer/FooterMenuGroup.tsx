@@ -2,7 +2,7 @@ import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 
 import {Grid, Link, Typography} from '@material-ui/core'
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -41,7 +41,7 @@ export type LandingPagesFooterMenuGroupProps = {
 }
 
 const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(MixedFeelingsByTTheme)
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()

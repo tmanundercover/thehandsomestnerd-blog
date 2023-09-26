@@ -1,6 +1,6 @@
 import {CircularProgress, Grid, makeStyles, Theme, Typography, useTheme} from '@material-ui/core'
 import React, {FunctionComponent} from 'react'
-import DigitalResumeTheme, {raleway} from "../../../../theme/DigitalResumeTheme";
+import MixedFeelingsByTTheme, {raleway} from "../../../../theme/MixedFeelingsByTTheme";
 import useCustomStyles from "../Styles";
 import Logo from "../../../transform-hw/logo/Logo";
 
@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 const LoadingPage: FunctionComponent = (props) => {
     const theme = useTheme()
-    const globalClasses = useCustomStyles(DigitalResumeTheme)
+    const globalClasses = useCustomStyles(MixedFeelingsByTTheme)
 
     return (
         <Grid container item justifyContent='center' alignItems='center'

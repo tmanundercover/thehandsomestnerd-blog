@@ -1,7 +1,10 @@
-import React, {FunctionComponent, PropsWithChildren, useMemo,} from 'react';
+import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
 import SnackbarContext from './SnackbarContext';
-import {Grid, Snackbar} from "@material-ui/core";
+import {CircularProgress, Grid, IconButton, LinearProgress, Slide, Snackbar, Typography} from "@material-ui/core";
+import {Close} from "@material-ui/icons";
 import Countdown from "react-countdown";
+import GridItem
+    from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/lists/grid/GridItem";
 import SecondsCountdownButton from "./SecondsCountdownButton";
 import {useCommonStyles} from "../../common/sanityIo/CommonStyles";
 import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
@@ -32,11 +35,10 @@ export interface SnackbarMessage {
 const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
-
     const classes = useStyles(MixedFeelingsByTTheme)
+
     const [snackbarOpen, setSnackbarOpen] = React.useState<boolean>(false)
     const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
-    const [autoCloseTime, setAutoCloseTime] = React.useState<number | undefined>(15)
     const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
         undefined,
     );
@@ -56,7 +58,6 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const handleSnackbarClose = (event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
-
             return;
         }
 
@@ -65,14 +66,11 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const handleExited = () => {
         setMessageInfo(undefined);
-        setSnackbarOpen(false)
     };
 
-    const openSnackbar = (message: any, time?: number) => {
-        setAutoCloseTime(time)
+    const openSnackbar = (message: any) => {
         setSnackPack((prev) => [...prev, {message, key: new Date().getTime()}]);
-
-        // setSnackbarOpen(state=>!state)
+        setSnackbarOpen(true)
     }
 
     const newValue = useMemo(
@@ -112,7 +110,7 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 />
             </Grid>
             <Grid container item>
-            {props.children}
+                {props.children}
             </Grid>
         </SnackbarContext.Provider>
     );

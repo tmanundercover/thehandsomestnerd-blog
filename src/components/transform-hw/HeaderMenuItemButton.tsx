@@ -1,6 +1,6 @@
-import React, {CSSProperties, FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Button, Typography} from '@material-ui/core'
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
+import MixedFeelingsByTTheme, {COLORS} from "../../theme/MixedFeelingsByTTheme";
 import {SanityMenuItem} from "../../common/sanityIo/Types";
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import ModalContext from "../snackbar-context/ModalContext";
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         "&:hover":{
             backgroundColor: 'rgba(16,43,136, 0.04)',
             "& .MuiTypography-root": {
-                color: theme.palette.primary.main
+            color: "#2828d3"
             }
         }
     }
@@ -18,21 +18,20 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface HeaderMenuItemButtonProps {
     menuItem: SanityMenuItem
-    textStyle?: CSSProperties
 }
 
-const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({menuItem, textStyle}) => {
-    const classes = useStyles(DigitalResumeTheme)
+const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({menuItem}) => {
+    const classes = useStyles(MixedFeelingsByTTheme)
 
     const modalContext = useContext(ModalContext)
     return (<Button href={menuItem.url ?? ""}
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                     style={{
-                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.shape.borderRadius : 0,
-                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3.25) : DigitalResumeTheme.spacing(1),
-                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3.25) : DigitalResumeTheme.spacing(1),
-                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3) : 0,
-                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(2) : 0,
+                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MixedFeelingsByTTheme.shape.borderRadius : 0,
+                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MixedFeelingsByTTheme.spacing(3.25) : MixedFeelingsByTTheme.spacing(1),
+                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MixedFeelingsByTTheme.spacing(3.25) : MixedFeelingsByTTheme.spacing(1),
+                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MixedFeelingsByTTheme.spacing(3) : 0,
+                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? MixedFeelingsByTTheme.spacing(2) : 0,
                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
                     }}
                     className={classes.hover}
@@ -43,9 +42,9 @@ const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({men
                     }}
                     variant={menuItem.isContainedButton ? 'contained' : (menuItem.isOutlinedButton ? 'outlined' : 'text')}>
         <Typography noWrap
-                    color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'textPrimary' : 'textPrimary'}
+                    color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'textSecondary' : 'secondary'}
                     variant={menuItem.isOutlinedButton || menuItem.isContainedButton ? "button" : 'body2'}
-                    style={{fontSize: "18px", ...textStyle}}>{menuItem.displayText}</Typography>
+                    style={{fontSize: "18px"}}>{menuItem.displayText}</Typography>
     </Button>)
 }
 

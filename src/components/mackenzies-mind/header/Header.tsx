@@ -10,13 +10,12 @@ import Logo from "../../transform-hw/logo/Logo";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        height: '104px',
-        backgroundColor: COLORS.TRANSPARENTWHITE,
+        backgroundColor: COLORS.TRANSPARENTBLACK,
         transition: 'background-color .5s ease 0s',
         paddingLeft: theme.spacing(4)
     },
     opaque: {
-        backgroundColor: `${COLORS.LIGHTGRAY} !important`,
+        backgroundColor: `black !important`,
     }
 }))
 
@@ -38,10 +37,10 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
             <Grid item xs={12} container justifyContent="space-between" spacing={mediaQueriesContext.mdDown ? 3 : 0}>
                 <Grid item container xs={2} md={2} lg={4} justifyContent='flex-start'>
                     {
-                        props.pageHeader?.logoImageSrc && <Logo logoImageSrc={props.pageHeader.logoImageSrc}/>
+                        props.pageHeader?.logoImageSrc && <Logo height={80} logoImageSrc={props.pageHeader.logoImageSrc}/>
                     }
                 </Grid>
-                <Grid item container xs={10} md={10} lg={8} justifyContent='space-between'>
+                <Grid item container xs={10} md={10} lg={8} style={{maxWidth:"900px"}} justifyContent='space-between'>
                     {/*// @ts-ignore*/}
                     <Hidden xsDown>
                         <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'

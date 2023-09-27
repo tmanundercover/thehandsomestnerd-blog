@@ -80,12 +80,12 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                                             }
                                         }:undefined}
                                         style={{
-                                paddingTop: MixedFeelingsByTTheme.spacing(2.25),
-                                paddingLeft: MixedFeelingsByTTheme.spacing(6),
-                                paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
-                                    height: "100%",
-                                    margin:0,
-                                }} fullWidth>
+                                            paddingTop: MixedFeelingsByTTheme.spacing(2.25),
+                                            paddingLeft: MixedFeelingsByTTheme.spacing(6),
+                                            paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
+                                            height: "100%",
+                                            margin:0,
+                                        }} fullWidth>
                                     <ListItemText>{<Typography align='left'>{menuLink.displayText}</Typography>}</ListItemText>
                                 </Button>
                             </ListItem>

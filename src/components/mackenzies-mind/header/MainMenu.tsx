@@ -64,12 +64,12 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                             }
                                         }:undefined}
                                         style={{
-                                    paddingTop: MixedFeelingsByTTheme.spacing(2.25),
-                                    paddingLeft: MixedFeelingsByTTheme.spacing(2),
-                                    paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
-                                    height: "100%",
-                                    margin: 0
-                                }} fullWidth>
+                                            paddingTop: MixedFeelingsByTTheme.spacing(2.25),
+                                            paddingLeft: MixedFeelingsByTTheme.spacing(2),
+                                            paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
+                                            height: "100%",
+                                            margin: 0
+                                        }} fullWidth>
                                     <ListItemText primary={menuItem.displayText}/>
                                 </Button>
 

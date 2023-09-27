@@ -4,10 +4,12 @@ import {Grid} from '@material-ui/core'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
-
+import bgImage from './Shutterstock_1575466351.png'
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: COLORS.DARKORANGE,
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize:"cover",
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,
@@ -46,13 +48,13 @@ const Footer: FunctionComponent<IProps> = (props:IProps) => {
   const classes = useStyles(MixedFeelingsByTTheme)
 
   return (
-    <Grid container className={classes.root}>
-      <Grid container justifyContent="flex-start">
-        <Grid item xs={12}>
-          <FooterMenuContainer updateIsLoading={props.updateIsLoading} homePage={props.homePage} menuContainerSlug={props.footerMenuSlug}/>
+      <Grid container className={classes.root}>
+        <Grid container justifyContent="flex-start">
+          <Grid item xs={12}>
+            <FooterMenuContainer updateIsLoading={props.updateIsLoading} homePage={props.homePage} menuContainerSlug={props.footerMenuSlug}/>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
 
   )
 }

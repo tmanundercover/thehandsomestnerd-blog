@@ -58,7 +58,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                     <Link
                         gutterBottom
                         href='https://thehandsomestnerd.com'
-                        color='textPrimary'
+                        color='primary'
                         variant='subtitle2'>
                         © Copyright 2022
                         TheHandsomestNerd, LLC. All Rights Reserved.

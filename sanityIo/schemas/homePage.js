@@ -19,7 +19,7 @@ export default {
         {
             name: 'description',
             title: 'Description(Meta tag description)',
-            type: 'string',
+            type: 'text',
         },
         {
             name: 'structuredData',
@@ -30,9 +30,30 @@ export default {
               ]
         },
         {
+            name: 'headerMenuRef',
+            title: 'Header Menu',
+            type: 'reference',
+            to: [{type:'menuContainer'}]
+        },
+        {
             name: 'pageContent',
             title: 'Page Content',
             type: 'contentContainer',
+        },
+        {
+            name: 'footerMenuRef',
+            title: 'Footer Menu',
+            type: 'reference',
+            to: [{type:'menuContainer'}]
+        },
+        {
+            name: 'servicesAvailable',
+            title: 'Other Services',
+            type: "array",
+            of: [
+                {name: "transformServiceItem", title: "THW service", type: "reference", to:[{type: "transformServiceItem"}]},
+                {name: "mfbtServiceItem", title:"MFBT Service", type: "reference", to:[{type: "mfbtServiceItem"}]},
+            ]
         },
         {
             name: 'slug',
@@ -43,7 +64,21 @@ export default {
                 maxLength: 96,
             },
         },
-
+        {
+            name: 'address',
+            title: 'Physical Address',
+            type: 'string',
+        },
+        {
+            name: 'email',
+            title: 'email',
+            type: 'string',
+        },
+        {
+            name: 'phone',
+            title: 'Phone',
+            type: 'string',
+        },
         {
             name: 'facebook',
             title: 'Facebook Handle',
@@ -84,43 +119,15 @@ export default {
             },
         },
         {
-            name: 'androidPlayStoreLink',
-            title: 'Android Play Store Link',
-            type: 'string',
+            name: 'isUnderConstruction',
+            title: 'Is Under Construction',
+            type: 'boolean',
         },
         {
-            name: 'androidPlayStoreIconSrc',
-            title: 'Android Play Store Icon',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'appStoreLink',
-            title: 'iOS App Store Link',
-            type: 'string',
-        },
-        {
-            name: 'appStoreIconSrc',
-            title: 'iOS App Store Icon',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'fdicImage',
-            title: 'FDIC Logo',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'fdicDisclaimer',
-            title: 'FDIC Disclaimer',
-            type: 'string',
+            name: 'underConstructionPageRef',
+            title: 'Under Construction Page',
+            type: 'reference',
+            to:[{type: 'transformUnderConstructionPage'}]
         },
     ]
 }

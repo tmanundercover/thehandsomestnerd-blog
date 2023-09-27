@@ -14,7 +14,7 @@ import {
 } from '../../src/common/sanityIo/BlockContentMarkRenderers'
 import {ButtonRender, CtaRender, HeaderRender, HrRender} from '../../src/common/sanityIo/BlockContentRenderer'
 import {ListRender, UtmLinkRender} from '../../src/common/sanityIo/BlockContentAnnotations'
-import AftTheme from '../../src/theme/aft-theme/AftTheme'
+import MixedFeelingsByTTheme from "../../src/theme/MixedFeelingsByTTheme";
 
 const highlightIcon = color => {
   console.log("highlightIcon color", color)
@@ -94,9 +94,10 @@ const underlineIcon = color => {
 
 const internalLinkRender = props => {
   console.log('lik props', props)
+
   return <Link href={props.href}>
     <Typography
-      style={{display: 'inline-block', color: AftTheme.palette.primary.main}}>
+      style={{display: 'inline-block', color: MixedFeelingsByTTheme.palette.primary.main}}>
       {props.children}
     </Typography>
   </Link>
@@ -217,7 +218,7 @@ export const blockContentConfig = {
         title: 'Light',
         value: 'light',
         blockEditor: {
-          icon: () => lightIcon(AftTheme.palette.primary.main),
+          icon: () => lightIcon(MixedFeelingsByTTheme.palette.primary.main),
           render: LightRender
         }
       },
@@ -225,24 +226,24 @@ export const blockContentConfig = {
         title: 'Primary Text Color',
         value: 'primaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(AftTheme.palette.primary.main),
-          render: (props) => (TextColorRender(props, AftTheme.palette.primary.main))
+          icon: () => highlightIcon(MixedFeelingsByTTheme.palette.primary.main),
+          render: (props) => (TextColorRender(props, MixedFeelingsByTTheme.palette.primary.main))
         }
       },
       {
         title: 'Secondary Text Color',
         value: 'secondaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(AftTheme.palette.secondary.main),
-          render: (props) => (TextColorRender(props, AftTheme.palette.secondary.main))
+          icon: () => highlightIcon(MixedFeelingsByTTheme.palette.secondary.main),
+          render: (props) => (TextColorRender(props, MixedFeelingsByTTheme.palette.secondary.main))
         }
       },
       {
         title: 'Underline Primary Color',
         value: 'underlinePrimaryColor',
         blockEditor: {
-          icon: () => underlineIcon(AftTheme.palette.primary.main),
-          render: (props) => UnderlineRender(props, AftTheme.palette.primary.main)
+          icon: () => underlineIcon(MixedFeelingsByTTheme.palette.primary.main),
+          render: (props) => UnderlineRender(props, MixedFeelingsByTTheme.palette.primary.main)
         }
       },
       {

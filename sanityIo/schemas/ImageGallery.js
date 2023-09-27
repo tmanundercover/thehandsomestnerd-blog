@@ -1,4 +1,3 @@
-import theme from '../../src/common/Theme'
 export default {
   name: 'imageGallery',
   title: 'Image Gallery',

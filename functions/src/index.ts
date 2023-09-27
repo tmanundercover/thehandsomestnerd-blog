@@ -1,130 +1,174 @@
+import "dotenv/config";
 import * as functions from "firebase-functions";
 import express from "express";
 import cors from "cors";
 import * as admin from "firebase-admin";
 import * as logClient from "./logClient";
 import * as cmsClient from "./cmsClient";
-import {SanityCsvToProcess, SanityDesignToProcess} from "./cmsClient";
-import * as convertImageClient from "./convertImageClient";
 import * as Promise from "es6-promise";
-import csvClient, {CSVItemColor, CSVItemType, CSVSize} from "./csvClient";
-import Queue from "queue-promise";
+import * as path from "path";
+import * as fs from "fs";
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "./sanityClient";
+
 // To Throttle requests to sanity
-const queue = new Queue({
-  concurrent: 1,
-  interval: 1000 /25,
-});
+
 Promise.polyfill();
 
 const app = express();
+const corsOptionsDelegate = (req: any, callback: any) => {
+  logClient.log("CORS", "NOTICE", "checking allowlist", {origin: req.header("Origin")});
+  // let corsOptions;
+  // if (allowlist.indexOf(req.header("Origin")) !== -1) {
+  //   logClient.log("CORS", LogLevels.NOTICE, "origin in allowlist", {origin: req.header("Origin"), allowlist});
+  //   corsOptions = {origin: allowlist}; // reflect (enable) the requested origin in the CORS response
+  // } else {
+  //   logClient.log("CORS", LogLevels.NOTICE, "origin NOT in allowlist", {origin: req.header("Origin"), allowlist});
+  //   corsOptions = {origin: false}; // disable CORS for this request
+  // }
+  const corsOptions = {origin: true};
 
-
-export type JamWorksOrder ={
-  tshirt?: number
-  sweatshirt?:number
-}
-
-app.use(cors());
+  callback(null, corsOptions); // callback expects two parameters: error and options
+};
+app.use(cors(corsOptionsDelegate));
+// app.use(cors());
 
 admin.initializeApp({
   // credential: admin.credential.cert(serviceAccount),
 });
 
 // Custom logger to keep log messages together in one json
-const Logger = function(req:any, res:any, next:any) {
+const Logger = function(req: any, res: any, next: any) {
   logClient.createLogger(req, res, next);
   next();
 };
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+// app.use(require("prerender-node")
+// .set("prerenderToken", process.env.PRERENDER_TOKEN));
+
+
 app.use(Logger);
+// https://blog.logrocket.com/adding-dynamic-meta-tags-react-app-without-ssr/
+app.get("/*", (req, res, next) => {
+  logClient.log("server-side", "NOTICE",
+      "Hello from the Server Siiiiiide", req.params);
 
-app.post("/process-csv-into-sanity-documents",
+  logClient.log("server-side", "NOTICE",
+      "index path", indexPath);
+
+  serveIndexFile(req, res);
+});
+
+app.get("/", (req, res, next) => {
+  logClient.log("server-side", "NOTICE",
+      "Serving Index instead of hosting", req.params);
+
+  serveIndexFile(req, res);
+});
+
+app.get("/index.html", (req, res, next) => {
+  logClient.log("server-side", "NOTICE",
+      "Serving Index instead of hosting", req.params);
+
+  serveIndexFile(req, res);
+});
+
+console.log(__dirname + " " + "../../../../" + "build");
+
+const devIndexPath: string[] = [];
+const prodIndexPath: string[] = [];
+const indexPathParts = process.env.SANITY_DB === "production" ? prodIndexPath : devIndexPath;
+const files = fs.readdirSync(path.resolve(__dirname, ...indexPathParts));
+
+const indexPath = path.resolve(__dirname, ...indexPathParts, "index.html");
+
+console.log(path.resolve(__dirname, ...indexPathParts), files);
+
+const builder = imageUrlBuilder(sanityClient);
+
+const serveIndexFile = (req: any, res: any) => {
+  fs.readFile(indexPath, "utf8", async (err, htmlData) => {
+    if (err) {
+      console.error("Error during file reading", err);
+      return res.status(404).end();
+    }
+
+    // TODO get info from sanity info
+    const params: any = req.params;
+    const tokenizedParams = params["0"].split("/");
+
+    let pageSlug = tokenizedParams[tokenizedParams.length - 1];
+
+    if (!pageSlug) {
+      pageSlug = "home";
+    }
+
+    logClient.log("server-side", "NOTICE",
+        "Loading this page from sanity", pageSlug);
+    try {
+      const pageFromSanity = await cmsClient.fetchPage(pageSlug);
+
+      // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
+
+      if (pageFromSanity) {
+        const page = {
+          ogTitle: pageFromSanity?.title,
+          description: pageFromSanity?.description,
+          ogDescription: pageFromSanity?.description,
+          ogImage: pageFromSanity.metaImage && builder.image(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
+        };
+
+        logClient.log("server-side", "NOTICE",
+            "MetaTag Data", page);
+
+        htmlData = htmlData.replace(
+            "<title>React App</title>",
+            `<title>${page.ogTitle}</title>`)
+            .replace("__META_OG_TITLE__", page.ogTitle ?? "")
+            .replace("__META_OG_DESCRIPTION__", page.description ?? "")
+            .replace("__META_DESCRIPTION__", page.ogDescription ?? "")
+            .replace("__META_OG_IMAGE__", page.ogImage ?? "");
+
+        return res.send(htmlData);
+      }
+      return res.send({status: "404", message: "Error fetching page " + pageSlug});
+    } catch (e: any) {
+      logClient.log("server-side", "ERROR",
+          "Error Fetching Page", {pageSlug, error: e.message});
+      return res.send({status: "404", message: e.message});
+    }
+  });
+};
+
+
+app.post("/collect-email-address",
     async (req: any, functionRes: any) => {
-      const csvReadReq: SanityCsvToProcess = req.body;
-      const {dataset} = req.headers;
+      const reqBody = JSON.parse(req.body);
 
-      logClient.log(`process-csv-into-sanity-documents-${dataset}`, "NOTICE",
-          "Request to process a csv", csvReadReq);
+      logClient.log("collect-email-address", "NOTICE",
+          "Request to collect an email address", reqBody.email);
 
-      // get type of object
-      const sanityObjectType: string= csvReadReq.objectType ?? "";
-      logClient.log(`process-csv-into-sanity-documents-${dataset}`, "NOTICE",
-          "Get requests for type ", sanityObjectType);
-
-      // read csv into obj
-      const csV = await csvClient.loadCSV(csvReadReq.csvFile?.asset?.url);
-
-      logClient.log(`process-csv-into-sanity-documents-${dataset}`, "NOTICE",
-          "csv form file ", csV);
-      let newObjects:CSVSize[] | CSVItemType[]| CSVItemColor[] = [];
-
-      queue.on("resolve", (createdDocument) => {
-        logClient.log(`process-csv-into-sanity-documents-${dataset}`, "NOTICE",
-            "Created a document ", createdDocument);
-        // update request
-
-        // update request with created ids
-        logClient.log(`process-csv-into-sanity-documents-${dataset}`, "NOTICE",
-            `Created ${newObjects.length} new ${sanityObjectType}s`, newObjects);
-
-        // once all resolved somehow
-        if (queue.isEmpty) {
-          logClient.log(`process-csv-into-sanity-documents-${dataset}`, "NOTICE",
-              "Finished processing CSV found", newObjects);
-
-          functionRes.send({status: "200", newDocuments: newObjects});
-        }
-      });
-
-      queue.on("reject", (error) => {
-        logClient.log(`process-csv-into-sanity-documents-${dataset}`, "ERROR",
-            "Could not create object", error);
-      });
-
-      newObjects = csV.map((sanityObj:CSVItemType | CSVItemColor | CSVSize)=>{
-        queue.enqueue(()=> cmsClient.createSanityDocument(sanityObj, sanityObjectType));
-      });
+      try {
+        const response = await cmsClient.createColdLead({
+          email: reqBody.email,
+          leadPhone: reqBody.leadPhone,
+          leadMessage: reqBody.leadMessage,
+          leadName: reqBody.leadName,
+          source: reqBody.source,
+        });
+        functionRes.send({status: "200", response, email: reqBody.email});
+      } catch (e) {
+        logClient.log("collect-email-address", "ERROR",
+            "Could not create Lead", {email: reqBody.email});
+        functionRes.error({status: "400", e});
+      }
     });
 
-app.post("/process-jpg-to-transparent-png",
-    async (req: any, functionRes: any) => {
-      const screenshotReq: SanityDesignToProcess = req.body;
-      const {dataset} = req.headers;
-
-      const LOG_COMPONENT = `process-jpg-to-transparent-png-${dataset}`;
-
-      logClient.log(LOG_COMPONENT, "NOTICE",
-          "Request to process a cricut screenshot", screenshotReq);
-
-      let pngUrl;
-      if (screenshotReq.imageSrc?.asset?.url) {
-        pngUrl = await convertImageClient
-            .convertJpgToPng(screenshotReq.imageSrc?.asset?.url ?? "");
-      } else {
-        logClient.log(LOG_COMPONENT, "ERROR",
-            "Sanity Image does not have a URL", screenshotReq);
-      }
-
-      if (pngUrl) {
-        const sanityImageAsset = await cmsClient.uploadImageFromURL(pngUrl, screenshotReq.title ?? screenshotReq._id ?? "noFilename");
-        logClient.log(LOG_COMPONENT, "NOTICE",
-            "Image uploaded to Sanity", sanityImageAsset);
-
-        if (sanityImageAsset) {
-          const creationResult = await cmsClient.createSanityDesign(screenshotReq, sanityImageAsset);
-          const recordSuccess = await cmsClient.updateDesignToProcess(screenshotReq, creationResult);
-          logClient.log(LOG_COMPONENT, "NOTICE",
-              "Sanity Design Creation complete", creationResult);
-
-          functionRes.send({createdDesign: creationResult, designCreationRequest: recordSuccess});
-        }
-        functionRes.send({status: "404", message: "Error in uploading converted file"});
-      } else {
-        logClient.log(LOG_COMPONENT, "ERROR",
-            "Design Creation complete:NO PNG Created ");
-        functionRes.send({status: "404", message: "Error in converting original file"});
-      }
-    });
+app.use(express.static(
+    path.resolve(__dirname, "../../../../", "build"),
+    {maxAge: "30d", index: "blah.txt"},
+));
 
 exports.app = functions.https.onRequest(app);
 

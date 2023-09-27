@@ -1,5 +1,4 @@
 import category from '../category'
-import theme from '../../../src/common/Theme'
 
 export default {
     name: 'portfolioItem',

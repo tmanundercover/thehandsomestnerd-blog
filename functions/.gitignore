@@ -1,5 +1,5 @@
 # Compiled JavaScript files
-lib/**/*.js
+lib/**/*
 lib/**/*.js.map
 
 # TypeScript v1 declaration files
@@ -9,4 +9,4 @@ typings/
 node_modules/
 
 .env
-.env.prod
+.*.log

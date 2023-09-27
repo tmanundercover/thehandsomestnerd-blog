@@ -1,205 +1,270 @@
-import React, { FunctionComponent } from 'react'
+import React, {FunctionComponent} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import { Card, Grid } from '@material-ui/core'
+import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
-import { blockSerializers } from '../common/sanityIo/BlockContentRenderer'
-import { useCommonStyles } from '../common/sanityIo/CommonStyles'
-import theme from '../common/Theme'
-import IntroSection from './terrells-portfolio-sections/IntroSection'
-import ProfileSection from './terrells-portfolio-sections/ProfileSection'
-import SelectedWorksSection from './terrells-portfolio-sections/SelectedWorksSection'
-import SkillsSection from './terrells-portfolio-sections/SkillsSection'
-import BookMeSection from './terrells-portfolio-sections/BookMeSection'
-import LatestNews from './terrells-portfolio-sections/LatestNews'
-import ContactUs from './terrells-portfolio-sections/ContactUs'
-import BlogSection from './terrells-portfolio-sections/BlogSection'
-import SourceCode from './SourceCode'
-import ModernServiceSection from './derm-sections/ModernServiceSection'
-import SelectedWorksMockupsSectionTerrell from './terrells-portfolio-sections/SelectedWorksMockupsSectionTerrell'
-import HeroContentSection from './aft-marketing/HeroContentSection'
-import cmsClient, { SanityImage } from './abReplica/cmsClient'
-import WhySwitchSection from './aft-marketing/WhySwitchSection'
-import AboutAndaCardSection from './aft-marketing/AboutAndaCardSection'
-import CryptoInYourPocketSection from './aft-marketing/CryptoInYourPocketSection'
-import { SanityImageAsset } from './abReplica/static-pages/cmsStaticPagesClient'
-import { SanityImageAssetDocument } from '@sanity/client'
+import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
+import {
+    MfbtAboutProprietorSectionType, MfbtGallerySectionType,
+    MfbtHeroContentSectionType, MfbtPaymentMethodSectionType, MfbtServicesSectionType, MfbtTeamSectionType,
+    ThwAboutProprietorSectionType,
+    MfbtContactUsSectionType,
+    ThwHeroContentSectionType,
+    ThwMottoSectionType,
+    ThwPositivePsychologySectionType,
+    ThwServiceItemType,
+    ThwServicesSectionType,
+    ThwWhyChooseUsSectionType, MfbtMixedListSectionType,
+} from "./BlockContentTypes";
+import MixedFeelingsByTTheme from "../theme/MixedFeelingsByTTheme";
+import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
+import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
+import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
+import ThwMottoSection from "./transform-hw/ThwMottoSection";
+import AboutTheProprietorSection from "./transform-hw/AboutTheProprietorSection";
+import ThwServicesSection from "./transform-hw/ThwServicesSection";
+import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
+import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
+import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
+import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
+import MfbtHeroContentSection from "./mixed-feelings-by-t/MfbtHeroContentSection";
+import MfbtAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
+import MFBTAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
+import MFBTPaymentMethodsSection from "./mixed-feelings-by-t/MFBTPaymentMethodsSection";
+import MFBTTeamSection from "./mixed-feelings-by-t/MFBTTeamSection";
+import MFBTGallerySection from "./mixed-feelings-by-t/MFBTGallerySection";
+import MFBTServicesSection from "./mixed-feelings-by-t/MFBTServicesSection";
+import MFBTContactUsSection from "./mixed-feelings-by-t/MFBTContactUsSection";
+import MFBTMixedListSection from "./mixed-feelings-by-t/MFBTMixedListSection";
 
-export type BlockContentLayoutContainerProps = { content?: any }
-
-export type HeroContentSectionType = {
-  name: string
-  title: string
-  heroImage: SanityImage
-  heroImageAltText: string
-  heroImageBackground: SanityImage
-  contentTitle: string
-  contentBullets: string[]
-  ctaButtonTitle: string
-  ctaButtonLink: string
-}
-
-
-export type AboutAndaCardSectionType = {
-  name: string
-  title: string
-  cardImage: SanityImage
-  cardImageAltText: string
-  cardImageBackground: SanityImage
-  contentTitle: string
-  contentLeft: string
-  contentRight: string
-  ctaButtonTitle: string
-  ctaButtonLink: string
-}
-
-export type WhySwitchReasonType = {
-  icon: SanityImage
-  iconAlt: string
-  text: string
-}
-
-export type WhySwitchSectionType = {
-  _id:string
-  imageSrc: SanityImage
-  imageAlt: string
-  reasons: WhySwitchReasonType[]
-}
-
-export type CryptoInYourPocketSectionType = {
-  name: string
-  title: string
-  imageSrc: SanityImage
-  imageSrcAltText: string
-  bullets: WhySwitchReasonType[]
-  ctaHeader1: string
-  ctaText: string
-  ctaButtonText: string
-  ctaButtonLink: string
+export type BlockContentLayoutContainerProps = {
+    content?: any,
+    homePage: SanityHomePage
 }
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
-  const classes = useCommonStyles(theme)
+    const classes = useThwCommonStyles()
 
-  return <Grid container>
-    {props?.content?.map((columnLayoutContainer: any, index: number) => {
-
-        switch (columnLayoutContainer._type) {
-          case 'column1BlockContent':
-            return <Grid key={index} container justifyContent='center' alignItems='stretch'>
-              <Grid item>
-                <Card className={classes.root} style={{paddingTop: '80px'}}>
-                  <Grid container item xs={12} className={classes.layoutContainer}>
-                    <Grid item xs={12}>
-                      <BlockContent
-                        blocks={columnLayoutContainer.content}
-                        serializers={blockSerializers}
-                        projectId={sanityClient.config().projectId}
-                        dataset={sanityClient.config().dataset}
-                      />
+    return <Grid container item>
+        {props?.content?.map((columnLayoutContainer: any, index: number) => {
+            switch (columnLayoutContainer._type) {
+                case 'column1BlockContent':
+                    return <Grid key={'column1BlockContent'} container justifyContent='center' alignItems='stretch'>
+                        <Grid item>
+                            <Card className={classes.root} style={{paddingTop: '80px'}}>
+                                <Grid container item xs={12} className={classes.layoutContainer}>
+                                    <Grid item xs={12}>
+                                        <BlockContent
+                                            blocks={columnLayoutContainer.content}
+                                            serializers={blockSerializers}
+                                            projectId={sanityClient.config().projectId}
+                                            dataset={sanityClient.config().dataset}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Card>
+                        </Grid>
                     </Grid>
-                  </Grid>
-                </Card>
-              </Grid>
-            </Grid>
-          case 'column2BlockContent':
-            return <Grid key={index} container justifyContent='center' alignItems='stretch'>
-              <Grid item>
-                <Card className={classes.root} style={{paddingTop: '80px'}}>
-                  <Grid container item xs={12} className={classes.layoutContainer}>
-                    <Grid item xs={6}>
-                      <BlockContent
-                        blocks={columnLayoutContainer.column1.content}
-                        serializers={blockSerializers}
-                        projectId={sanityClient.config().projectId}
-                        dataset={sanityClient.config().dataset}
-                      />
+                case 'column2BlockContent':
+                    return <Grid key={'column2BlockContent'} container justifyContent='center' alignItems='stretch'>
+                        <Grid item>
+                            <Card className={classes.root} style={{paddingTop: '80px'}}>
+                                <Grid container item xs={12} className={classes.layoutContainer}>
+                                    <Grid item xs={6}>
+                                        <BlockContent
+                                            blocks={columnLayoutContainer.column1.content}
+                                            serializers={blockSerializers}
+                                            projectId={sanityClient.config().projectId}
+                                            dataset={sanityClient.config().dataset}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <BlockContent
+                                            blocks={columnLayoutContainer.column2.content}
+                                            serializers={blockSerializers}
+                                            projectId={sanityClient.config().projectId}
+                                            dataset={sanityClient.config().dataset}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Card></Grid>
                     </Grid>
-                    <Grid item xs={6}>
-                      <BlockContent
-                        blocks={columnLayoutContainer.column2.content}
-                        serializers={blockSerializers}
-                        projectId={sanityClient.config().projectId}
-                        dataset={sanityClient.config().dataset}
-                      />
+                case 'transformHeroContentSection':
+                    const thwHeroSection: ThwHeroContentSectionType = columnLayoutContainer
+
+                    return <Grid key={'transformHeroContentSection'} container item xs={12}>
+                        <Link id={"TOP_OF_PAGE"}><></>
+                        </Link>
+                        <ThwHeroContentSection
+                            sectionData={thwHeroSection}
+                        />
                     </Grid>
-                  </Grid>
-                </Card></Grid>
-            </Grid>
-          case 'heroImageNameCareer':
-            return <IntroSection key={index} clientName={columnLayoutContainer.clientName}
-                                 occupation={columnLayoutContainer.occupation}
-                                 heroImage={columnLayoutContainer.heroImage}/>
-          case 'aboutMe':
-            return <ProfileSection key={index} profileImage={columnLayoutContainer.profileImage}
-                                   aboutMeBody={columnLayoutContainer.aboutMeBody}
-                                   specialties={columnLayoutContainer.specialties}/>
-          case 'selectedWorks':
-            return <SelectedWorksSection key={index} projects={columnLayoutContainer.portfolioItems}/>
-          case 'modernServicesSection':
-            return <ModernServiceSection/>
-          case 'skillsSection':
-            return <SkillsSection key={index} skillsHeading={columnLayoutContainer.skillsHeading}
-                                  skillsText={columnLayoutContainer.skillsText} skills={columnLayoutContainer.skills}/>
-          case 'selectedWorksAnimated':
-            return <SelectedWorksMockupsSectionTerrell/>
-          case 'bookMe':
-            return <BookMeSection key={index} prompt={columnLayoutContainer.freelancePrompt}/>
-          case 'contactUs':
-            return <ContactUs key={index} youtube={columnLayoutContainer.youtube}
-                              linkedIn={columnLayoutContainer.linkedIn}
-                              facebook={columnLayoutContainer.facebook}
-                              email={columnLayoutContainer.email}
-                              address={columnLayoutContainer.address}
-                              phone={columnLayoutContainer.phone}
-                              twitter={columnLayoutContainer.twitter}/>
-          case 'latestNewsSection':
-            return <LatestNews key={index}/>
-          case 'blogPostSection':
-            return <BlogSection key={index}/>
-          case 'reference':
-            return <Grid key={index} container item xs={12} className={classes.layoutContainer}>
-              <SourceCode reference={columnLayoutContainer}/>
-            </Grid>
-          //AFT SECTIONS
-          case 'heroContentSection':
-            const heroSection: HeroContentSectionType = columnLayoutContainer
+                case 'transformServiceItem':
+                    const thwServiceEducationPage: ThwServiceItemType = columnLayoutContainer
 
-            return <Grid key={index} container item xs={12}>
-              <HeroContentSection
-                sectionData={heroSection}
-              />
-            </Grid>
-          case 'whySwitchSection':
-            const whySwitchSection: WhySwitchSectionType = columnLayoutContainer
+                    // const fetchedServiceItem =
 
-            return <Grid key={index} container item xs={12}>
-              <WhySwitchSection
-                sectionData={whySwitchSection}
-              />
-            </Grid>
-          case 'aboutAndaCardSection':
-            const aboutAndaCardSection: AboutAndaCardSectionType = columnLayoutContainer
+                    return <Grid key={'transformServiceItem'} container item xs={12}>
+                        <Link id={"TOP_OF_PAGE"}><></>
+                        </Link>
+                        <ThwServicesEducationPage
+                            serviceData={thwServiceEducationPage}
+                        />
+                    </Grid>
+                case 'transformPositivePsychologySection':
+                    const thwPositivePsychologySection: ThwPositivePsychologySectionType = columnLayoutContainer
 
-            return <Grid key={index} container item xs={12}>
-              <AboutAndaCardSection
-                sectionData={aboutAndaCardSection}
-              />
-            </Grid>
-          case 'cryptoInYourPocketSection':
-            const cryptoInYourPocket: CryptoInYourPocketSectionType = columnLayoutContainer
+                    return <Grid key={'transformPositivePsychologySection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <Link id={"ABOUT_US"} style={{position: "relative", top: -80}}><></>
+                        </Link>
+                        <ThwPositivePsychology
+                            sectionData={thwPositivePsychologySection}
+                        />
+                    </Grid>
+                case 'transformMottoSection':
+                    const thwMottoSection: ThwMottoSectionType = columnLayoutContainer
 
-            return <Grid key={index} container item xs={12}>
-              <CryptoInYourPocketSection
-                sectionData={cryptoInYourPocket}
-              />
-            </Grid>
-          default:
-            return <span key={index}>Undefined section {columnLayoutContainer._type}</span>
+                    return <Grid key={'transformMottoSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <ThwMottoSection
+                            sectionData={thwMottoSection}
+                        />
+                    </Grid>
+                case 'transformAboutProprietorSection':
+                    const thwProprietorSection: ThwAboutProprietorSectionType = columnLayoutContainer
+
+                    return <Grid key={'transformAboutProprietorSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <Link id={"ABOUT_PROPRIETOR"} style={{position: "relative", top: -80}}><></>
+                        </Link>
+                        <AboutTheProprietorSection
+                            sectionData={thwProprietorSection}
+                        />
+                    </Grid>
+                case 'transformServicesSection':
+                    const thwServicesSection: ThwServicesSectionType = columnLayoutContainer
+
+                    return <Grid key={'transformServicesSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <Link id={"SERVICES"} style={{position: "relative", top: -80}}><></>
+                        </Link>
+                        <ThwServicesSection
+                            sectionData={thwServicesSection}
+                        />
+                    </Grid>
+                case 'transformWhyChooseUsSection':
+                    const thwWCUSection: ThwWhyChooseUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'transformWhyChooseUsSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <ThwWhyChooseUsSection
+                            sectionData={thwWCUSection}
+                        />
+                    </Grid>
+                case 'transformContactUsSection':
+                    const thwCUSection: MfbtContactUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'transformContactUsSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <ThwContactUsSection
+                            sectionData={thwCUSection}
+                        />
+                    </Grid>
+                case 'mfbtHeroContentSection':
+                    const mfbtHeroSection: MfbtHeroContentSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtContactUsSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <MfbtHeroContentSection
+                            sectionData={mfbtHeroSection}
+                        />
+                    </Grid>
+                case 'mfbtAboutProprietorSection':
+                    const mfbtAboutTheProprietorSection: MfbtAboutProprietorSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtAboutProprietorSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                        <MfbtAboutTheProprietor
+                            sectionData={mfbtAboutTheProprietorSection}
+                        />
+                    </Grid>
+                case 'mfbtPaymentMethods':
+                    const mfbtPaymentMethodsSection:  MfbtPaymentMethodSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtPaymentSection'} container item xs={12}
+                                 style={{backgroundColor: "white"}}>
+                        <MFBTPaymentMethodsSection
+                            sectionData={mfbtPaymentMethodsSection}
+                        />
+                    </Grid>
+                case 'MfbtTeamSection':
+                    const mfbtTeamSection: MfbtTeamSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtTeamSection'} container item xs={12} justifyContent='center'
+                                 >
+                        <MFBTTeamSection
+                            sectionData={mfbtTeamSection}
+                        />
+                    </Grid>
+                case 'MfbtServicesSection':
+                    const mfbtServicesSection: MfbtServicesSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtServicesSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: "white"}}>
+                        <MFBTServicesSection
+                            sectionData={mfbtServicesSection}
+                        />
+                    </Grid>
+                case 'MfbtGallerySection':
+                    const mfbtGallerySection: MfbtGallerySectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtGallerySection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: "white"}}>
+                        <MFBTGallerySection
+                            sectionData={mfbtGallerySection}
+                        />
+                    </Grid>
+                case 'MfbtMixedListSection':
+                    const mfbtMixedListSection: MfbtMixedListSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtMixedListSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: "white"}}>
+                        <a id="mfbtMixedListSection"></a>
+                        <MFBTMixedListSection
+                            sectionData={mfbtMixedListSection}
+                        />
+                    </Grid>
+                case 'MfbtContactUsSection':
+                    const mfbtCUSection: MfbtContactUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'mfbtContactUsSection'} container item xs={12} justifyContent='center'
+                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper, position:"relative"}}>
+                        <a id="ContactUs" style={{top:-100, position:"absolute"}}></a>
+
+                        <MFBTContactUsSection
+                            sectionData={mfbtCUSection}
+                        />
+                    </Grid>
+                // case 'menuContainer':
+                //     if (columnLayoutContainer.slug.current.includes('header')) {
+                //         const pageHeader: SanityMenuContainer = columnLayoutContainer
+                //         return <Grid container item xs={12} key='transform-hw-header'>
+                //             <ThwHeader menuSlug={pageHeader.slug?.current}/>
+                //         </Grid>
+                //     } else {
+                //         const pageFooter: SanityMenuContainer = columnLayoutContainer
+                //         return <Grid container item xs={12} key='transform-hw-footer'>
+                //             <ThwFooter footerMenuSlug={pageFooter.slug?.current} homePage={props.homePage}/>
+                //         </Grid>
+                //     }
+                default:
+                    return <Grid container item></Grid>
+                    // return <span key={index}>Undefined section {columnLayoutContainer._type}</span>
+            }
+        }) ?? <></>
         }
-    }) ?? <></>
-    }
 
-  </Grid>
+    </Grid>
 }
 
 export default BlockContentLayoutContainer

@@ -1,14 +1,18 @@
 {
   "root": true,
+  "api": {
+    "projectId": "fxig22wf",
+    "dataset": "production"
+  },
   "project": {
-    "name": "Assembled Financial Marketing POC"
+    "name": "Mixed Feelings By T"
   },
   "__experimental_spaces": [
     {
       "name": "production",
       "title": "Production",
       "api": {
-        "projectId": "u5x1k2us",
+        "projectId": "fxig22wf",
         "dataset": "production"
       }
     },
@@ -17,15 +21,11 @@
       "title": "Development",
       "default": true,
       "api": {
-        "projectId": "u5x1k2us",
+        "projectId": "fxig22wf",
         "dataset": "development"
       }
     }
   ],
-  "api": {
-    "projectId": "u5x1k2us",
-    "dataset": "production"
-  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",

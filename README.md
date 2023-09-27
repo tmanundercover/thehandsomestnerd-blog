@@ -1,12 +1,11 @@
-# The Handsomest Nerd Portfolio
+# Mixed Feelings By T
 
-Application that can serve as a resume and a knowledgebase
+Application that serves as the website for Mixed Feelings By T
 
 ## Description
 
-This  will start as a simple digital resume but will gro into a fully featured app
-showcasing my skills. I hope to build several templates from this app by pulling from
-other applications.
+Client project for Mixed Feelings by T. Serves as central location for music, media, and other content. 
+Links for purchase of music and place for performance updates. 
 
 ## Getting Started
 
@@ -18,7 +17,7 @@ other applications.
 
 ### Installing
 
-* yarn install
+* npm install
 
 ### Executing program
 

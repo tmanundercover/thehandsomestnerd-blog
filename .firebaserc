@@ -1,14 +1,7 @@
 {
   "projects": {
-    "default": "af-marketing-poc"
+    "mixed-feelings-by-t": "mixed-feelings-by-t"
   },
-  "targets": {
-    "the-handsomest-nerd": {
-      "hosting": {
-        "the-handsomest-nerd": [
-          "the-handsomest-nerd"
-        ]
-      }
-    }
-  }
+  "targets": {},
+  "etags": {}
 }

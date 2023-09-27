@@ -34,7 +34,7 @@ export default {
             name: 'subMenus',
             title: 'Sub Menu',
             type: 'array',
-            of: [{type: 'reference', to: {type: 'menuGroup'}}],
+            of: [{name: "Menu Group", type: 'reference', to: {type: 'menuGroup'}},{name: "Menu Item", type: 'reference', to: {type: 'menuItem'}}],
         }
     ]
 }

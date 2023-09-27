@@ -55,6 +55,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
               justifyContent='space-between'>
             <Grid item xs={8}>
                 <Grid item xs={8} sm={12}>
+
                     <Link
                         gutterBottom
                         href='https://thehandsomestnerd.com'

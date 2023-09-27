@@ -110,25 +110,29 @@ const serveIndexFile = (req: any, res: any) => {
       const pageFromSanity = await cmsClient.fetchPage(pageSlug);
 
       // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
-      const page = {
-        ogTitle: pageFromSanity?.title,
-        description: pageFromSanity?.description,
-        ogDescription: pageFromSanity?.description,
-        ogImage: pageFromSanity.metaImage && builder.image(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
-      };
 
-      logClient.log("server-side", "NOTICE",
-          "MetaTag Data", page);
+      if (pageFromSanity) {
+        const page = {
+          ogTitle: pageFromSanity?.title,
+          description: pageFromSanity?.description,
+          ogDescription: pageFromSanity?.description,
+          ogImage: pageFromSanity.metaImage && builder.image(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
+        };
 
-      htmlData = htmlData.replace(
-          "<title>React App</title>",
-          `<title>${page.ogTitle}</title>`)
-          .replace("__META_OG_TITLE__", page.ogTitle ?? "")
-          .replace("__META_OG_DESCRIPTION__", page.description ?? "")
-          .replace("__META_DESCRIPTION__", page.ogDescription ?? "")
-          .replace("__META_OG_IMAGE__", page.ogImage ?? "");
+        logClient.log("server-side", "NOTICE",
+            "MetaTag Data", page);
 
-      return res.send(htmlData);
+        htmlData = htmlData.replace(
+            "<title>React App</title>",
+            `<title>${page.ogTitle}</title>`)
+            .replace("__META_OG_TITLE__", page.ogTitle ?? "")
+            .replace("__META_OG_DESCRIPTION__", page.description ?? "")
+            .replace("__META_DESCRIPTION__", page.ogDescription ?? "")
+            .replace("__META_OG_IMAGE__", page.ogImage ?? "");
+
+        return res.send(htmlData);
+      }
+      return res.send({status: "404", message: "Error fetching page " + pageSlug});
     } catch (e: any) {
       logClient.log("server-side", "ERROR",
           "Error Fetching Page", {pageSlug, error: e.message});

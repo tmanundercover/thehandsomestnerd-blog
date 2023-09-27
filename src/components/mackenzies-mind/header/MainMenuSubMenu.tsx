@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core'
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import {ExpandLess, ExpandMore} from "@material-ui/icons";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import {SanityMenuGroup} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
 
@@ -59,8 +59,8 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
             className={classes.root}
         >
             <ListItem button style={{
-                paddingTop: DigitalResumeTheme.spacing(2.25),
-                paddingBottom: DigitalResumeTheme.spacing(2.25),
+                paddingTop: MixedFeelingsByTTheme.spacing(2.25),
+                paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
             }} onClick={handleClick}>
                 <ListItemText primary={menuGroup.menuGroupTitle}/>
                 {open ? <ExpandLess/> : <ExpandMore/>}
@@ -80,12 +80,12 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                                             }
                                         }:undefined}
                                         style={{
-                                paddingTop: DigitalResumeTheme.spacing(2.25),
-                                paddingLeft: DigitalResumeTheme.spacing(6),
-                                paddingBottom: DigitalResumeTheme.spacing(2.25),
-                                    height: "100%",
-                                    margin:0,
-                                }} fullWidth>
+                                            paddingTop: MixedFeelingsByTTheme.spacing(2.25),
+                                            paddingLeft: MixedFeelingsByTTheme.spacing(6),
+                                            paddingBottom: MixedFeelingsByTTheme.spacing(2.25),
+                                            height: "100%",
+                                            margin:0,
+                                        }} fullWidth>
                                     <ListItemText>{<Typography align='left'>{menuLink.displayText}</Typography>}</ListItemText>
                                 </Button>
                             </ListItem>

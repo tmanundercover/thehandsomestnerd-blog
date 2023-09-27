@@ -9,6 +9,7 @@ import PageContext from "../page-context/PageContext";
 import ColoredPng from "../colored-png/ColoredPng";
 import SnackbarContext from "../modal-context/SnackbarContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 
 type IProps = {};
 
@@ -87,43 +88,48 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     cursor: 'pointer',
                     height: "140px",
                     width: "100px",
-                    backgroundColor: "whitesmoke",
                     zIndex: 11
                 }}
-            >
+            ><Grid item>
+
                 <ToolTipWrap
                     serviceTitle={serviceTitle}
                     amenity={serviceAmenity}
                 >
                     <Grid container item direction='column'
                           style={{
-                        marginBottom: "24px",
+                              // backgroundColor: "whitesmoke",
+
+                              marginBottom: "24px",
                               width: "100%"
 
-                    }} alignItems='center' alignContent='center'>
-                        <Grid item container justifyContent='center'>
+                    }} alignItems='center' alignContent='center' justifyContent='center'>
+                        {/*<Grid item container justifyContent='flex-start'>*/}
 
                         <ListItemIcon key={uuidv4()}
                               style={{
-                                  minHeight: "32px",
-                                  minWidth: "32px",
+                                  minHeight: "64px",
+                                  minWidth: "64px",
                                   backgroundSize: 'contain',
                                   backgroundPosition: 'center',
-                                  backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).width(32).height(32).url()})`,
+                                  // backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).width(32).height(32).url()})`,
                                   backgroundRepeat: "no-repeat",
 
                               }}
-                        ></ListItemIcon>
-                        </Grid>
-                        <Grid item container justifyContent='center'>
+                        ><ColoredPng size={56} maskUrl={urlFor(serviceAmenity.imageSrc).url() ?? ""} color={"whitesmoke"}/></ListItemIcon>
+                        {/*</Grid>*/}
+                        {/*<Grid item container justifyContent='center'>*/}
                         <ListItemText>
                             <Typography
+                                align='center'
                                 variant='subtitle2'
+                                style={{color: "white"}}
                             >{serviceAmenity.title}</Typography>
                         </ListItemText>
-                        </Grid>
+                        {/*</Grid>*/}
                     </Grid>
                 </ToolTipWrap>
+            </Grid>
             </ListItem>
         })
 

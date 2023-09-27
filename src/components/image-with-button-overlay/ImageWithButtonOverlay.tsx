@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, PropTypes, Tooltip, Typography} from '@material-ui/core'
+import {Button, Grid, PropTypes, Typography} from '@material-ui/core'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
@@ -33,6 +33,7 @@ interface IProps {
     learnMoreLink?: string
     tooltip?: string
     source?: string
+    isSquare?: boolean
 }
 
 
@@ -50,6 +51,20 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
     }
 
     const pageContext = useContext(PageContext)
+
+
+
+
+
+    const getTheImageUrl = () =>{
+        let theUrl = urlFor(props.imageSrc ?? "").height(props.height)
+        if(props.isSquare === true){
+            theUrl = theUrl.width(props.height)
+        }
+
+        return theUrl.url() ?? '';
+    }
+
     return (
         <Button fullWidth
                 onClick={(e) => {
@@ -67,18 +82,18 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                                     direction={props.direction}
                                     isResponsive={props.isResponsive}/>}
                 {
-                    <Tooltip
-                        title={<Typography variant='subtitle1'
-                                           style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
+                    // <Tooltip
+                    //     title={<Typography variant='subtitle1'
+                    //                        style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
                         <Grid item container style={{
-                            backgroundImage: `url(${props.imageUrl ? props.imageUrl : urlFor(props.imageSrc ?? "").height(props.height).url() ?? ''})`,
+                            backgroundImage: `url(${props.imageUrl ? props.imageUrl : getTheImageUrl()})`,
                             backgroundSize: "contain",
                             backgroundPosition: "center",
                             backgroundRepeat:"no-repeat",
                             height: props.height
                         }}>
                         </Grid>
-                    </Tooltip>
+                    // </Tooltip>
                 }
                 <Grid container
                       item

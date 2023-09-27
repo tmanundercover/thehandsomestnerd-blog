@@ -4,7 +4,7 @@ import {Grid, IconButton, InputAdornment, Link, TextField, Typography, withStyle
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
 import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import {ThwContactUsSectionType} from "../BlockContentTypes";
+import {MfbtContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
@@ -112,7 +112,7 @@ const StyledTextField = withStyles({
 })(TextField);
 
 export type ContactUsProps = {
-    sectionData: ThwContactUsSectionType
+    sectionData: MfbtContactUsSectionType
 }
 
 const ContactUs: FunctionComponent<ContactUsProps> = (props) => {

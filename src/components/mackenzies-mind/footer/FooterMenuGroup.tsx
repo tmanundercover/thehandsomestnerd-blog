@@ -2,15 +2,16 @@ import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 
 import {Grid, Link, Typography} from '@material-ui/core'
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        marginRight: theme.spacing(11),
+        // marginRight: theme.spacing(11),
     },
     footerLink: {
         marginBottom: '8px',
+        color:"black",
         textDecoration: 'none',
         // color: '#FDF3EB',
         '&:hover': {
@@ -41,7 +42,7 @@ export type LandingPagesFooterMenuGroupProps = {
 }
 
 const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(MixedFeelingsByTTheme)
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()
@@ -55,39 +56,37 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
     },[])
 
     return (
-        <Grid container direction="column" spacing={2} className={classes.root}>
-            <Grid container item>
-                <Typography color='primary' variant="body2"
-                            className={classes.menuTitle}>{menuGroupContents && menuGroupContents.menuGroupTitle}</Typography>
+        <Grid container spacing={2} item className={classes.root}>
+            {/*<Grid container item>*/}
+            {/*    <Typography color='primary' variant="body2"*/}
+            {/*                className={classes.menuTitle}>{menuGroupContents && menuGroupContents.menuGroupTitle}</Typography>*/}
+            {/*</Grid>*/}
+            <Grid item container justifyContent='center'>
+                {
+                    menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
+                        return (
+                            <Grid key={index} item justifyContent='center'>
+                                <Link href={menuLink.url} className={classes.footerLink}>
+                                    <Typography variant="body1" color='inherit' noWrap align='center'>
+                                        {menuLink.displayText}
+                                    </Typography>
+                                </Link>
+                            </Grid>
+                        )
+                    })
+                }
+                {
+                    menuItemContents && <Grid item>
+                        <Link href={menuItemContents.url} className={classes.footerLink}>
+                            <Typography variant="h5" color='inherit' noWrap align='center'>
+                                {menuItemContents.displayText}
+                            </Typography>
+                        </Link>
+                    </Grid>
+                }
+                {!menuGroupContents && !menuItemContents && <></>}
             </Grid>
-            <Grid item container>
-                <Grid container item xs={8} direction='column' spacing={2}>
-                    {
-                        menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
-                            return (
-                                <Grid key={index} item>
-                                    <Link href={menuLink.url} className={classes.footerLink}>
-                                        <Typography variant="body1" color='textSecondary' noWrap>
-                                            {menuLink.displayText}
-                                        </Typography>
-                                    </Link>
-                                </Grid>
-                            )
-                        })
-                    }
-                    {
-                        menuItemContents && <Grid item>
-                            <Link href={menuItemContents.url} className={classes.footerLink}>
-                                <Typography variant="body1" color='textSecondary' noWrap>
-                                    {menuItemContents.displayText}
-                                </Typography>
-                            </Link>
-                        </Grid>
-                    }
-                    {!menuGroupContents && !menuItemContents && <></>}
-                </Grid>
 
-            </Grid>
         </Grid>
 
     )

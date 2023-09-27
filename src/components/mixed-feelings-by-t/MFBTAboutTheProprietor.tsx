@@ -17,12 +17,23 @@ import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import {theme} from "@sanity/types/parts/part.@sanity/components/build-snapshot";
+import bgImage from "./bartender-tools-seamless.png"
+import clsx from "clsx";
+import useCustomStyles from "../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        minHeight: '521px',
-        backgroundColor: theme.palette.background.paper,
+        // minHeight: '521px',
+        zIndex: 100,
+        backgroundColor: "black",
+        position: "relative",
+        paddingBottom: 32
         // paddingLeft: -theme.spacing(-5),
+    },
+    seamlessBackground: {
+        backgroundImage: `url(${bgImage})`,
+        backgroundRepeat: "repeat",
+        // backgroundSize: "650px",
     },
     contentBullets: {
         // border: "1px solid black"
@@ -40,14 +51,17 @@ const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, sour
     const pageContext = useContext(PageContext)
     return <Grid item container
                  justifyContent='center'
-                 style={{
-                     backgroundColor: MixedFeelingsByTTheme.palette.secondary.dark,
-                     border: mediaQueriesContext.smDown ? "0px solid transparent" : "1px solid white",
-                     margin: mediaQueriesContext.smDown ? MixedFeelingsByTTheme.spacing(0, 0, 0, 0) : MixedFeelingsByTTheme.spacing(2, 0, 0, 0),
-                     padding: MixedFeelingsByTTheme.spacing(2, 0, mediaQueriesContext.smDown ? 6 : 2, 0)
-                 }}
-                 spacing={6}
-                 xs={12}
+        style={mediaQueriesContext.xsOnly?{
+            // backgroundColor: MixedFeelingsByTTheme.palette.secondary.dark,
+            // border: mediaQueriesContext.smDown ? "0px solid transparent" : "1px solid white",
+            // margin: mediaQueriesContext.smDown ? MixedFeelingsByTTheme.spacing(0, 0, 0, 0) : MixedFeelingsByTTheme.spacing(2, 0, 0, 0),
+            paddingTop: MixedFeelingsByTTheme.spacing(0)
+        }:{
+            paddingTop: MixedFeelingsByTTheme.spacing(4)
+
+        }}
+        // spacing={6}
+        //          xs={12}
     >
         {/*<Grid container item xs={11}>*/}
         {/*    <Grid item container justifyContent='center'>*/}
@@ -108,15 +122,14 @@ const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, sour
 const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(MixedFeelingsByTTheme)
     const mediaQueriesContext = useContext(MediaQueriesContext)
+    const globalClasses = useCustomStyles({})
 
-    return (<Grid container item>
-            <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly ? 12 : 11}
-                  style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
-                      paddingBottom: MixedFeelingsByTTheme.spacing(10),
-                      paddingTop: MixedFeelingsByTTheme.spacing(10),
-                  }}>
-                <Grid container item justifyContent='space-around'
-                >
+    return (<Grid  container item className={clsx([classes.seamlessBackground, classes.root])}>
+            <Grid container item style={{position: 'absolute', top:0}}
+                  className={clsx(globalClasses.fullSectionOverlayDark)}>
+            </Grid>
+            <Grid container item spacing={mediaQueriesContext.xsOnly ? 0 : 2} style={{zIndex: 100}}>
+                <Grid container item spacing={2} justifyContent='center'>
                     <Grid
                         item
                         xs={12}
@@ -124,18 +137,15 @@ const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
                         lg={4}
                         container
                         justifyContent='center'
-                        alignContent='flex-start'
-                        alignItems='flex-start'
-                        style={{
-                            minWidth: "min-content"
-                        }}
+                        // spacing={2}
                     >
-                        <Grid item style={{
-                            overflow: "hidden",
-                            position: "relative",
-                            backgroundColor: "white",
-                            marginBottom: MixedFeelingsByTTheme.spacing(3)
-                        }} container
+                        <Grid item
+                              style={{
+                                  overflow: "hidden",
+                                  // position: "relative",
+                                  // marginBottom: MixedFeelingsByTTheme.spacing(3)
+                              }}
+                              container
                               sm={8} md={12}
                               justifyContent='center'>
                             <ImageWIthButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText}
@@ -148,41 +158,31 @@ const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
                         </Grid>
                         {/*{!mediaQueriesContext.smDown && <Grid container item><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}*/}
                     </Grid>
-                    <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between'
-                          spacing={2}>
-                        <Grid container item style={{minHeight: "549px"}} direction='column' spacing={4}>
-                            <Grid container item direction='column'>
-                                <Grid item container>
-                                    <Grid item>
+                    <Grid item xs={11} md={7} lg={8} container spacing={1}
+                    >
+                        <Grid item>
+                            <Typography variant='h4'
+                                        color='primary'
+                                        noWrap
+                                        style={{fontWeight: 550}}>{props.sectionData.proprietorName}</Typography>
+                            <Typography variant='body1'
+                                        style={{
+                                            fontStyle: "italic",
+                                            color: "white"
+                                        }}>{props.sectionData.proprietorTitle}</Typography>
+                        </Grid>
+                        <Grid item container justifyContent='flex-end'>
+                            <Grid item container>
+                                <Typography variant='body2' color='primary'
+                                >{props.sectionData.contentTitle}</Typography>
 
-                                        <Typography variant='h4'
-                                                    color='primary'
-                                                    noWrap
-                                                    style={{fontWeight: 550}}>{props.sectionData.proprietorName}</Typography>
-                                    </Grid>
-                                </Grid>
-                                <Grid item>
-
+                            </Grid>
+                            {props.sectionData.contentText.map((text, index: number) => {
+                                return <Grid item container key={"text" + index}>
                                     <Typography variant='body1'
-                                                style={{
-                                                    fontStyle: "italic",
-                                                    color: "white"
-                                                }}>{props.sectionData.proprietorTitle}</Typography>
+                                                gutterBottom style={{color: "white"}}>{text}</Typography>
                                 </Grid>
-                            </Grid>
-                            <Grid item container spacing={2} justifyContent='flex-end'>
-                                <Grid item container>
-                                    <Typography variant='body2' color='primary'
-                                    >{props.sectionData.contentTitle}</Typography>
-
-                                </Grid>
-                                {props.sectionData.contentText.map((text, index: number) => {
-                                    return <Grid item container key={index}>
-                                        <Typography variant='body1'
-                                                    gutterBottom style={{color: "white"}}>{text}</Typography>
-                                    </Grid>
-                                })}
-                            </Grid>
+                            })}
                         </Grid>
                     </Grid>
                     {/*{mediaQueriesContext.smDown && <Grid*/}
@@ -201,24 +201,27 @@ const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
                     {/*    }}*/}
                     {/*><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}*/}
                 </Grid>
-            </Grid>
-            <Grid container item style={{backgroundColor: "black", padding: MixedFeelingsByTTheme.spacing(2, 4)}} justifyContent={'center'}>
-                <Grid container item xs={12} md={4} justifyContent='center' alignContent='center'
-                      style={{ minHeight: 200}} direction='column'>
-                        <ImageWIthButtonOverlay variant='contained'
-                            // toColor={"rgb(19,35,35)"}
-                                                imageSrc={props.sectionData.favDrinkImage2} height={170}
-                            // direction={CssFadeToColorDirectionEnum.RIGHT}
-                                                isResponsive
-                        />
-                </Grid>
-                <Grid container item xs={12} md={8}>
-                    <Grid item>
-                        <Typography variant={"h6"}
-                                    style={{color: "white"}}>{props.sectionData.favDrinkSectionTitle}</Typography>
-                        <Typography variant={"h6"} color='primary'>{props.sectionData.favDrinkTitle}</Typography>
-                        <Typography variant={"body1"}
-                                    style={{color: "white"}}>{props.sectionData.favDrinkDescription}</Typography>
+                <Grid container item
+                      style={{zIndex: 100,}} justifyContent='center'>
+                    <Grid container item xs={11} md={8}>
+                        <Grid item xs={12}>
+                            <Typography variant={"h6"}
+                                        color={'primary'}>{props.sectionData.favDrinkSectionTitle}</Typography>
+                            <Typography variant={"h6"} style={{color:"white"}}>{props.sectionData.favDrinkTitle}</Typography>
+                        </Grid>
+                        <Grid container item xs={12} md={12} xl={4} justifyContent={'center'} alignContent='center'
+                        >
+                            <ImageWIthButtonOverlay variant='contained'
+                                // toColor={"rgb(19,35,35)"}
+                                                    imageSrc={props.sectionData.favDrinkImage2} height={170}
+                                // direction={CssFadeToColorDirectionEnum.RIGHT}
+                                                    isResponsive
+                            />
+                        </Grid>
+                        <Grid item>
+                            <Typography variant={"body1"}
+                                        style={{color: "white"}}>{props.sectionData.favDrinkDescription}</Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

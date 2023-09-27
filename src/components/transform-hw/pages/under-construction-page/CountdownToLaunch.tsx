@@ -35,7 +35,7 @@ const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
             <Grid item><Typography variant='h1' color='primary'
                                    style={{textTransform: "uppercase"}}>{props.value}</Typography></Grid>
             <Grid item><Typography variant='h6'
-                                   style={{textTransform: "uppercase"}}>{props.value !== 1 ? pluralize(props.units) : props.units}</Typography></Grid>
+                                   style={{textTransform: "uppercase", color: "black"}}>{props.value !== 1 ? pluralize(props.units) : props.units}</Typography></Grid>
         </Grid>
     }
 
